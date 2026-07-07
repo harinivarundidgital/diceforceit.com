@@ -1,11 +1,137 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="diceforce IT | Something Great Is On The Way">
+	<main class="glow-bg w-screen h-screen flex flex-col justify-center items-center px-4 relative overflow-hidden select-none">
+		<!-- Interactive Mouse Spotlight Glow -->
+		<div class="mouse-spotlight"></div>
+		
+		<!-- Grid lines and Diamond shapes overlay -->
+		<div class="grid-overlay"></div>
+
+		<!-- Top Header logo (positioned absolutely at top) -->
+		<header class="absolute top-0 left-0 w-full px-6 sm:px-12 h-20 flex items-center justify-between z-40 animate-fade-in">
+			<div class="flex items-center gap-4">
+				<!-- diceforce IT Brand Logo from public/diceforceITlogo_.gif -->
+				<img src="/diceforceITlogo_.gif" alt="diceforce IT Logo" class="w-16 h-16 object-contain" width="64" height="64" />
+				<span class="text-base font-orbitron tracking-[0.35em] text-white/95 uppercase font-bold leading-none">diceforce IT</span>
+			</div>
+			<div>
+				<a 
+					href="mailto:hello@diceforceit.com" 
+					class="text-[11px] font-mono tracking-wider text-white/40 hover:text-white/80 transition-colors duration-300 border border-white/10 hover:border-white/20 rounded-full px-3 py-1 bg-white/[0.02]"
+					aria-label="Contact diceforce IT via email"
+				>
+					hello@diceforceit.com
+				</a>
+			</div>
+		</header>
+
+		<!-- Main Center Section (perfectly centered vertically and horizontally) -->
+		<div class="relative flex flex-col justify-center items-center gap-6 md:gap-8 z-30 max-w-4xl mx-auto text-center">
+			
+			<!-- Heading -->
+			<div class="space-y-4 animate-fade-in animation-delay-200">
+				<h1 class="font-sans font-bold tracking-tight text-white leading-[1.08] text-balance">
+					<span class="block text-4xl sm:text-5xl md:text-6xl lg:text-[72px]">
+						Something <span class="text-shimmer font-bold inline-block">Great</span>
+					</span>
+					<span class="block text-3xl sm:text-4xl md:text-5xl lg:text-[56px] text-white/35 mt-1 sm:mt-2">
+						Is On The Way
+					</span>
+				</h1>
+			</div>
+
+			<!-- Center Illustration (3D Hand holding glass card) -->
+			<div class="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-[350px] xl:h-[350px] mx-auto animate-float animate-fade-in animation-delay-400">
+				<!-- Outer glow behind hand -->
+				<div class="absolute inset-0 bg-[#4F7DFF]/15 rounded-full filter blur-[64px] opacity-70 animate-pulse-slow"></div>
+				
+				<!-- Cinematic 3D Hand Illustration -->
+				<img 
+					src="/glowing-hand-icon.png" 
+					alt="Cinematic 3D Hand holding a glowing glass card with star sparkle icon" 
+					width="384"
+					height="384"
+					class="w-full h-full object-contain relative z-10 scale-105 pointer-events-none select-none"
+					loading="eager"
+					fetchpriority="high"
+				/>
+
+				<!-- Subtle shadow block underneath to fade it to black -->
+				<div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black to-transparent z-20 pointer-events-none"></div>
+			</div>
+
+			<!-- Countdown Placeholder / Launch status -->
+			<div class="animate-fade-in animation-delay-600">
+				<div class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-white/5 bg-white/[0.01] shadow-2xl backdrop-blur-md">
+					<span class="relative flex h-2 w-2">
+						<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#4F7DFF]/70 opacity-75"></span>
+						<span class="relative inline-flex rounded-full h-2 w-2 bg-[#4F7DFF]"></span>
+					</span>
+					<span class="text-[11px] font-mono tracking-[0.2em] text-white/50 uppercase ml-1">
+						Launching Soon<span class="dot-1">.</span><span class="dot-2">.</span><span class="dot-3">.</span>
+					</span>
+				</div>
+			</div>
+		</div>
+
+		<!-- Giant bold text logo with cinematic half-reveal from bottom -->
+		<footer class="absolute bottom-0 left-0 w-full overflow-hidden pointer-events-none select-none z-10 reveal-mask">
+			<div class="animate-reveal-up animation-delay-600">
+				<h2 class="text-[9vw] sm:text-[10vw] lg:text-[150px] font-black tracking-[12px] text-white uppercase leading-none font-sans select-none text-center">
+					diceforce IT
+				</h2>
+			</div>
+		</footer>
+	</main>
+
+	<!-- Inject inline CSS for dot animations & spotlight -->
+	<style>
+		@keyframes dot-fade {
+			0%, 100% { opacity: 0.2; }
+			50% { opacity: 1; }
+		}
+		.dot-1 { animation: dot-fade 1.4s infinite 0s; }
+		.dot-2 { animation: dot-fade 1.4s infinite 0.2s; }
+		.dot-3 { animation: dot-fade 1.4s infinite 0.4s; }
+
+		/* Mouse Spotlight effect */
+		.mouse-spotlight {
+			position: absolute;
+			inset: 0;
+			background: radial-gradient(
+				600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+				rgba(79, 125, 255, 0.09) 0%,
+				transparent 75%
+			);
+			pointer-events: none;
+			z-index: 1;
+			transition: background 0.3s ease-out;
+		}
+
+		/* Hovering over the page increases interactive glow slightly */
+		body:hover .mouse-spotlight {
+			background: radial-gradient(
+				700px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+				rgba(79, 125, 255, 0.11) 0%,
+				transparent 75%
+			);
+		}
+	</style>
+
+	<script>
+		// Follow cursor for glowing spotlight effect
+		const mainElement = document.querySelector('main');
+		if (mainElement) {
+			window.addEventListener('mousemove', (e) => {
+				const rect = mainElement.getBoundingClientRect();
+				const x = e.clientX - rect.left;
+				const y = e.clientY - rect.top;
+				mainElement.style.setProperty('--mouse-x', `${x}px`);
+				mainElement.style.setProperty('--mouse-y', `${y}px`);
+			});
+		}
+	</script>
 </Layout>
