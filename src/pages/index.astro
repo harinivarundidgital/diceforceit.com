@@ -44,20 +44,23 @@ import Layout from '../layouts/Layout.astro';
 			</div>
 
 			<!-- Center Illustration (3D Hand holding glass card) -->
-			<div class="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-[350px] xl:h-[350px] mx-auto animate-float animate-fade-in animation-delay-400">
+			<div class="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-[350px] xl:h-[350px] mx-auto animate-float animate-fade-in animation-delay-400 perspective-container">
 				<!-- Outer glow behind hand -->
 				<div class="absolute inset-0 bg-[#4F7DFF]/15 rounded-full filter blur-[64px] opacity-70 animate-pulse-slow"></div>
 				
-				<!-- Cinematic 3D Hand Illustration -->
-				<img 
-					src="/glowing-hand-icon.png" 
-					alt="Cinematic 3D Hand holding a glowing glass card with star sparkle icon" 
-					width="384"
-					height="384"
-					class="w-full h-full object-contain relative z-10 scale-105 pointer-events-none select-none"
-					loading="eager"
-					fetchpriority="high"
-				/>
+				<!-- Tilt element wrapper -->
+				<div class="w-full h-full tilt-element relative z-10">
+					<!-- Cinematic 3D Hand Illustration -->
+					<img 
+						src="/glowing-hand-icon.png" 
+						alt="Cinematic 3D Hand holding a glowing glass card with star sparkle icon" 
+						width="384"
+						height="384"
+						class="w-full h-full object-contain pointer-events-none select-none scale-105"
+						loading="eager"
+						fetchpriority="high"
+					/>
+				</div>
 
 				<!-- Subtle shadow block underneath to fade it to black -->
 				<div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black to-transparent z-20 pointer-events-none"></div>
@@ -119,18 +122,49 @@ import Layout from '../layouts/Layout.astro';
 				transparent 75%
 			);
 		}
+
+		/* 3D Perspective and Tilt transition rules */
+		.perspective-container {
+			perspective: 1200px;
+		}
+		.tilt-element {
+			transform-style: preserve-3d;
+			transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+		}
 	</style>
 
 	<script>
-		// Follow cursor for glowing spotlight effect
+		// Follow cursor for glowing spotlight effect & 3D tilt
 		const mainElement = document.querySelector('main');
-		if (mainElement) {
+		const tiltElement = document.querySelector('.tilt-element');
+		
+		if (mainElement && tiltElement) {
 			window.addEventListener('mousemove', (e) => {
 				const rect = mainElement.getBoundingClientRect();
 				const x = e.clientX - rect.left;
 				const y = e.clientY - rect.top;
+				
+				// Update spotlight custom properties
 				mainElement.style.setProperty('--mouse-x', `${x}px`);
 				mainElement.style.setProperty('--mouse-y', `${y}px`);
+
+				// Parallax 3D tilt calculation
+				const centerX = rect.width / 2;
+				const centerY = rect.height / 2;
+				const percentX = (x - centerX) / centerX; // Range -1 to 1
+				const percentY = (y - centerY) / centerY; // Range -1 to 1
+
+				const maxTilt = 8; // Max rotation in degrees
+				const tiltX = (percentY * maxTilt * -1).toFixed(2); // Rotate around X axis
+				const tiltY = (percentX * maxTilt).toFixed(2);      // Rotate around Y axis
+
+				// Apply 3D rotation and a subtle zoom on hover
+				(tiltElement as HTMLElement).style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.02, 1.02, 1.02)`;
+			});
+
+			// Reset smooth rotation to zero when mouse leaves the page
+			document.addEventListener('mouseleave', () => {
+				(tiltElement as HTMLElement).style.transform = 'rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
 			});
 		}
 	</script>
