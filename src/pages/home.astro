@@ -1,0 +1,669 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="diceforce IT | AI & Machine Learning Solutions">
+	<!-- Ambient Background Glows & Grid -->
+	<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[#030303]">
+		<!-- Centered soft radial glows -->
+		<div class="absolute top-[20%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-blue-600/10 blur-[120px] animate-pulse-slow"></div>
+		<div class="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-cyan-500/[0.04] blur-[140px]"></div>
+		
+		<!-- High-fidelity background grid overlay -->
+		<div class="absolute inset-0 grid-overlay-home"></div>
+	</div>
+
+	<!-- Floating Pill Glassmorphic Header Navigation -->
+	<header class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-3xl">
+		<div class="backdrop-blur-md bg-black/40 border border-white/5 rounded-full px-5 py-2.5 flex items-center justify-between shadow-[0_12px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.05)]">
+			<!-- Brand Logo -->
+			<a href="/home" class="flex items-center gap-2 group">
+				<img src="/diceforceITlogo_.gif" alt="diceforce IT Logo" class="w-7 h-7 object-contain" width="28" height="28" />
+				<span class="text-[10px] font-orbitron tracking-[0.3em] text-shimmer uppercase font-bold leading-none">diceforce</span>
+			</a>
+
+			<!-- Navigation Links -->
+			<nav class="hidden md:flex items-center gap-6">
+				<a href="#home" class="text-[10px] font-mono tracking-wider text-white hover:text-white transition-colors uppercase animate-nav-link">Home</a>
+				<a href="#about" class="text-[10px] font-mono tracking-wider text-white/40 hover:text-white transition-colors uppercase animate-nav-link">About</a>
+				<a href="#services" class="text-[10px] font-mono tracking-wider text-white/40 hover:text-white transition-colors uppercase animate-nav-link">Services</a>
+				<a href="#staffing" class="text-[10px] font-mono tracking-wider text-white/40 hover:text-white transition-colors uppercase animate-nav-link">Staffing</a>
+				<a href="#career" class="text-[10px] font-mono tracking-wider text-white/40 hover:text-white transition-colors uppercase animate-nav-link">Careers</a>
+				<a href="#contact" class="text-[10px] font-mono tracking-wider text-white/40 hover:text-white transition-colors uppercase animate-nav-link">Contact</a>
+			</nav>
+
+			<!-- Compact CTA button -->
+			<div>
+				<a 
+					href="mailto:hello@diceforceit.com" 
+					class="text-[9px] font-mono tracking-wider text-white hover:text-white transition-colors duration-300 border border-white/10 hover:border-white/20 rounded-full px-3 py-1.5 bg-white/[0.02]"
+				>
+					hello@diceforceit.com
+				</a>
+			</div>
+		</div>
+	</header>
+
+	<!-- Main Centered Layout -->
+	<main class="relative z-10 w-full min-h-screen text-white font-sans flex flex-col justify-between overflow-x-hidden">
+		
+		<!-- High-fidelity Preloader Overlay -->
+		<div id="sequence-loading-screen" class="fixed inset-0 bg-[#030303] z-[100] flex flex-col items-center justify-center transition-opacity duration-700 ease-out">
+			<div class="flex flex-col items-center gap-6">
+				<!-- Glowing Logo -->
+				<div class="relative w-16 h-16">
+					<img src="/diceforceITlogo_.gif" alt="diceforce IT Logo" class="w-full h-full object-contain" />
+					<div class="absolute inset-[-4px] rounded-full border border-cyan-500/20 border-t-cyan-400 animate-spin duration-1000"></div>
+				</div>
+				<div class="text-center space-y-2">
+					<div class="font-orbitron text-[10px] tracking-[0.3em] text-white/80 uppercase">diceforce core</div>
+					<div class="font-mono text-[9px] text-white/40 uppercase tracking-widest">
+						Initializing Neural Engine... <span id="loading-progress-text">0%</span>
+					</div>
+				</div>
+				<!-- Loading bar container -->
+				<div class="w-48 h-[1px] bg-white/5 rounded-full overflow-hidden">
+					<div id="loading-progress-bar-fill" class="h-full w-0 bg-cyan-400 transition-all duration-300"></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Scroll-driven image sequence section (total scroll zone is 320% of viewport height) -->
+		<div class="relative w-full h-[320vh]" id="home">
+			<!-- Sticky Frame Container -->
+			<div class="sticky top-0 left-0 w-full h-screen overflow-hidden z-10 flex items-center justify-center bg-[#030303]">
+				
+				<!-- Canvas for Image Sequence -->
+				<canvas id="hero-sequence-canvas" class="absolute inset-0 w-full h-full object-cover pointer-events-none z-0 bg-[#030303]"></canvas>
+				
+				<!-- Dark vignette overlay for contrast -->
+				<div class="absolute inset-0 bg-gradient-to-b from-[#030303]/40 via-transparent to-[#030303]/70 z-10 pointer-events-none"></div>
+
+				<!-- Progress Indicator / Scroll Line at bottom of sticky -->
+				<div class="absolute bottom-0 left-0 w-full h-[2px] bg-white/5 z-30">
+					<div id="sequence-progress-bar" class="h-full w-0 bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 transition-all duration-300"></div>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- ABOUT SECTION -->
+		<section id="about" class="relative z-10 w-full min-h-screen py-32 px-6 sm:px-12 md:px-20 lg:px-32 max-w-5xl mx-auto flex flex-col justify-center gap-16">
+			<!-- Glow -->
+			<div class="absolute top-[20%] left-[-10%] w-[400px] h-[400px] rounded-full bg-blue-500/5 blur-[100px] pointer-events-none"></div>
+			
+			<div class="space-y-4">
+				<div class="inline-flex items-center gap-2 px-3 py-1 border border-white/5 rounded-full bg-white/[0.01]">
+					<span class="font-mono text-[9px] tracking-widest text-cyan-400 uppercase">02 // ABOUT THE CORE</span>
+				</div>
+				<h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+					Empowering enterprises through <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-500">cognitive engineering.</span>
+				</h2>
+				<p class="text-white/50 text-sm sm:text-base max-w-3xl leading-relaxed font-light">
+					We bridge the gap between complex neural architectures and operational workflows. Our team of expert engineers designs and implements high-throughput machine learning pipelines tailored for scalability, robustness, and decision intelligence.
+				</p>
+			</div>
+
+			<!-- Grid of 3 Cards -->
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+				<!-- Card 1 -->
+				<div class="relative group border border-white/5 rounded-xl bg-black/40 backdrop-blur-md p-6 hover:border-white/10 transition-all duration-300">
+					<div class="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center mb-6 text-cyan-400">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+					</div>
+					<h3 class="text-white text-base font-semibold mb-2">Cognitive Pipelines</h3>
+					<p class="text-white/40 text-xs leading-relaxed font-light">
+						End-to-end data processing pipelines optimized for real-time model inference and neural analysis.
+					</p>
+				</div>
+				<!-- Card 2 -->
+				<div class="relative group border border-white/5 rounded-xl bg-black/40 backdrop-blur-md p-6 hover:border-white/10 transition-all duration-300">
+					<div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center mb-6 text-blue-400">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+					</div>
+					<h3 class="text-white text-base font-semibold mb-2">Autonomous Agents</h3>
+					<p class="text-white/40 text-xs leading-relaxed font-light">
+						Intelligent agents that execute complex multi-step workflows, integrating with your existing tool stack.
+					</p>
+				</div>
+				<!-- Card 3 -->
+				<div class="relative group border border-white/5 rounded-xl bg-black/40 backdrop-blur-md p-6 hover:border-white/10 transition-all duration-300">
+					<div class="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center mb-6 text-indigo-400">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"></path><line x1="12" y1="2" x2="12" y2="8"></line><line x1="12" y1="16" x2="12" y2="22"></line></svg>
+					</div>
+					<h3 class="text-white text-base font-semibold mb-2">Custom Models</h3>
+					<p class="text-white/40 text-xs leading-relaxed font-light">
+						Domain-specific LLMs and neural models fine-tuned to your proprietary training datasets.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- SERVICES SECTION -->
+		<section id="services" class="relative z-10 w-full min-h-screen py-32 px-6 sm:px-12 md:px-20 lg:px-32 max-w-5xl mx-auto flex flex-col justify-center gap-16">
+			<!-- Glow -->
+			<div class="absolute top-[30%] right-[-10%] w-[400px] h-[400px] rounded-full bg-cyan-500/5 blur-[100px] pointer-events-none"></div>
+
+			<div class="space-y-4">
+				<div class="inline-flex items-center gap-2 px-3 py-1 border border-white/5 rounded-full bg-white/[0.01]">
+					<span class="font-mono text-[9px] tracking-widest text-blue-400 uppercase">03 // CORE CAPABILITIES</span>
+				</div>
+				<h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+					Custom technology for your <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500">machine learning stack.</span>
+				</h2>
+			</div>
+
+			<!-- Grid -->
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+				<div class="flex gap-4">
+					<span class="text-cyan-500 font-mono text-sm">// 01</span>
+					<div>
+						<h3 class="text-white font-semibold text-lg mb-2">Model Fine-tuning & Training</h3>
+						<p class="text-white/40 text-xs leading-relaxed font-light">
+							We optimize open-weight foundation models using customized SFT and DPO strategies, tailored to secure corporate environments.
+						</p>
+					</div>
+				</div>
+				<div class="flex gap-4">
+					<span class="text-cyan-500 font-mono text-sm">// 02</span>
+					<div>
+						<h3 class="text-white font-semibold text-lg mb-2">GPU Cluster Orchestration</h3>
+						<p class="text-white/40 text-xs leading-relaxed font-light">
+							Infrastructure set up for distributed model training and high-throughput inference endpoints with automatic scaling.
+						</p>
+					</div>
+				</div>
+				<div class="flex gap-4">
+					<span class="text-cyan-500 font-mono text-sm">// 03</span>
+					<div>
+						<h3 class="text-white font-semibold text-lg mb-2">Retrieval Augmented Generation</h3>
+						<p class="text-white/40 text-xs leading-relaxed font-light">
+							Production-grade vector database integrations and chunking pipelines that give models highly context-aware memory.
+						</p>
+					</div>
+				</div>
+				<div class="flex gap-4">
+					<span class="text-cyan-500 font-mono text-sm">// 04</span>
+					<div>
+						<h3 class="text-white font-semibold text-lg mb-2">Agentic Decision Systems</h3>
+						<p class="text-white/40 text-xs leading-relaxed font-light">
+							Orchestrated agent collectives that autonomously perform complex, long-running research, coding, or data tasks.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- STAFFING SECTION -->
+		<section id="staffing" class="relative z-10 w-full min-h-screen py-32 px-6 sm:px-12 md:px-20 lg:px-32 max-w-5xl mx-auto flex flex-col justify-center gap-16">
+			<div class="space-y-4 text-center max-w-3xl mx-auto">
+				<div class="inline-flex items-center gap-2 px-3 py-1 border border-white/5 rounded-full bg-white/[0.01]">
+					<span class="font-mono text-[9px] tracking-widest text-indigo-400 uppercase">04 // TALENT PIPELINE</span>
+				</div>
+				<h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+					Scale with elite engineering squads.
+				</h2>
+				<p class="text-white/50 text-sm sm:text-base leading-relaxed font-light">
+					Need dedicated specialists to build your neural infrastructure? We embed senior AI researchers, distributed systems engineers, and ML developers directly into your team.
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-6">
+				<div class="border border-white/5 rounded-xl bg-black/40 backdrop-blur-md p-6 text-center space-y-4">
+					<div class="text-sm font-mono text-cyan-400 uppercase">AI Researchers</div>
+					<p class="text-white/40 text-xs font-light leading-relaxed">Specializing in custom architectures, custom embeddings, and custom fine-tuning mechanics.</p>
+				</div>
+				<div class="border border-white/5 rounded-xl bg-black/40 backdrop-blur-md p-6 text-center space-y-4">
+					<div class="text-sm font-mono text-blue-400 uppercase">MLOps Engineers</div>
+					<p class="text-white/40 text-xs font-light leading-relaxed">Dedicated to optimizing CUDA workloads, Kubernetes deployment, and automated testing pipelines.</p>
+				</div>
+				<div class="border border-white/5 rounded-xl bg-black/40 backdrop-blur-md p-6 text-center space-y-4">
+					<div class="text-sm font-mono text-indigo-400 uppercase">Backend Pioneers</div>
+					<p class="text-white/40 text-xs font-light leading-relaxed">Designing high-concurrency event loops, system-level integrations, and secure vector databases.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- CAREERS SECTION -->
+		<section id="career" class="relative z-10 w-full min-h-screen py-32 px-6 sm:px-12 md:px-20 lg:px-32 max-w-5xl mx-auto flex flex-col justify-center">
+			<!-- Glow -->
+			<div class="absolute top-[40%] left-[20%] w-[300px] h-[300px] rounded-full bg-blue-600/5 blur-[120px] pointer-events-none"></div>
+
+			<div class="border border-white/5 bg-black/40 backdrop-blur-md rounded-2xl p-8 sm:p-12 md:p-16 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
+				<div class="space-y-4 max-w-xl">
+					<div class="inline-flex items-center gap-2 px-3 py-1 border border-white/5 rounded-full bg-white/[0.01]">
+						<span class="font-mono text-[9px] tracking-widest text-cyan-400 uppercase">05 // WORK WITH US</span>
+					</div>
+					<h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight leading-tight">
+						At the frontier of autonomous software.
+					</h2>
+					<p class="text-white/40 text-xs sm:text-sm font-light leading-relaxed">
+						We are always seeking deep-learning specialists, compiler engineers, and systems developers who want to push the boundaries of what code can do. We offer a remote-first culture, high autonomy, and challenging cognitive puzzles.
+					</p>
+				</div>
+				<a href="mailto:careers@diceforceit.com" class="px-8 py-3.5 bg-white text-black font-semibold rounded-full hover:bg-white/90 hover:scale-102 transition-all duration-300 text-xs tracking-wider uppercase whitespace-nowrap">
+					See Open Roles
+				</a>
+			</div>
+		</section>
+
+		<!-- CONTACT SECTION -->
+		<section id="contact" class="relative z-10 w-full min-h-screen py-32 px-6 sm:px-12 md:px-20 lg:px-32 max-w-3xl mx-auto flex flex-col justify-center gap-16">
+			<div class="space-y-4 text-center">
+				<div class="inline-flex items-center gap-2 px-3 py-1 border border-white/5 rounded-full bg-white/[0.01]">
+					<span class="font-mono text-[9px] tracking-widest text-blue-400 uppercase">06 // GET IN TOUCH</span>
+				</div>
+				<h2 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight">
+					Let's architect your <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-500">cognitive future.</span>
+				</h2>
+				<p class="text-white/40 text-xs sm:text-sm font-light leading-relaxed max-w-xl mx-auto">
+					Drop us a line to discuss custom integrations, neural architectures, or scaling your software capacity.
+				</p>
+			</div>
+
+			<div class="border border-white/5 bg-black/60 backdrop-blur-md rounded-2xl p-8 shadow-2xl space-y-6">
+				<div class="flex flex-col sm:flex-row gap-4">
+					<div class="flex-1 space-y-2">
+						<label class="font-mono text-[9px] tracking-widest text-white/30 uppercase">Name</label>
+						<input type="text" placeholder="John Doe" class="w-full bg-white/[0.02] border border-white/5 rounded-lg px-4 py-2.5 text-xs text-white placeholder-white/20 focus:border-cyan-400/50 outline-none transition-colors" />
+					</div>
+					<div class="flex-1 space-y-2">
+						<label class="font-mono text-[9px] tracking-widest text-white/30 uppercase">Email</label>
+						<input type="email" placeholder="john@example.com" class="w-full bg-white/[0.02] border border-white/5 rounded-lg px-4 py-2.5 text-xs text-white placeholder-white/20 focus:border-cyan-400/50 outline-none transition-colors" />
+					</div>
+				</div>
+				<div class="space-y-2">
+					<label class="font-mono text-[9px] tracking-widest text-white/30 uppercase">Message</label>
+					<textarea rows="4" placeholder="Tell us about your project requirements..." class="w-full bg-white/[0.02] border border-white/5 rounded-lg p-4 text-xs text-white placeholder-white/20 focus:border-cyan-400/50 outline-none transition-colors resize-none"></textarea>
+				</div>
+				<button class="w-full py-3 bg-gradient-to-r from-[#0377ff] to-[#883ae2] text-white font-semibold rounded-lg hover:opacity-90 active:scale-98 transition duration-300 text-xs tracking-wider uppercase shadow-[0_0_20px_rgba(3,119,255,0.15)]">
+					Send Transmission
+				</button>
+			</div>
+		</section>
+
+		<!-- FOOTER SECTION (Modern design style in dark theme) -->
+		<footer class="w-full border-t border-white/5 bg-[#050505] relative z-10 py-10 px-6 sm:px-12 md:px-20 lg:px-32">
+			<div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+				<!-- Brand identity -->
+				<a href="/home" class="flex items-center gap-2">
+					<img src="/diceforceITlogo_.gif" alt="diceforce IT Logo" class="w-8 h-8 object-contain" width="32" height="32" />
+					<span class="text-xs font-orbitron tracking-[0.3em] text-shimmer uppercase font-bold leading-none">diceforce IT</span>
+				</a>
+
+				<!-- Minimalist Footer Navigation -->
+				<div class="flex flex-wrap justify-center gap-x-8 gap-y-2 text-[10px] font-mono text-white/30">
+					<span class="hover:text-white/60 transition-colors cursor-default">About Us</span>
+					<span class="hover:text-white/60 transition-colors cursor-default">Services</span>
+					<span class="hover:text-white/60 transition-colors cursor-default">Staffing</span>
+					<span class="hover:text-white/60 transition-colors cursor-default">Careers</span>
+					<span class="hover:text-white/60 transition-colors cursor-default">Privacy</span>
+				</div>
+
+				<!-- Copyright Details -->
+				<div class="text-[9px] font-mono text-white/20 text-center md:text-right">
+					© 2026 diceforce IT. All rights reserved.
+				</div>
+			</div>
+		</footer>
+
+	</main>
+</Layout>
+
+<style>
+	/* Background Dot/Grid Pattern */
+	.grid-overlay-home {
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M 40 0 L 40 80 M 0 40 L 80 40' stroke='rgba(255, 255, 255, 0.015)' stroke-width='1'/%3E%3Cpolygon points='40,39.5 40.5,40 40,40.5 39.5,40' fill='rgba(255, 255, 255, 0.1)' stroke='rgba(255, 255, 255, 0.05)' stroke-width='0.5'/%3E%3C/svg%3E");
+		background-size: 80px 80px;
+		background-position: center center;
+		mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 90%);
+		-webkit-mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 90%);
+	}
+
+	@keyframes pulse-slow {
+		0%, 100% { opacity: 0.6; transform: scale(1); }
+		50% { opacity: 0.9; transform: scale(1.08); }
+	}
+	.animate-pulse-slow {
+		animation: pulse-slow 8s ease-in-out infinite;
+	}
+
+	@keyframes shimmer {
+		0% { background-position: -200% center; }
+		100% { background-position: 200% center; }
+	}
+
+	.text-shimmer {
+		background: linear-gradient(
+			90deg,
+			#22d3ee 0%,
+			#60a5fa 25%,
+			#6366f1 50%,
+			#60a5fa 75%,
+			#22d3ee 100%
+		);
+		background-size: 200% auto;
+		color: transparent;
+		background-clip: text;
+		-webkit-background-clip: text;
+		animation: shimmer 6s linear infinite;
+		filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.2));
+	}
+
+	@keyframes fade-in {
+		from {
+			opacity: 0;
+			transform: translateY(12px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.animate-fade-in {
+		animation: fade-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+	}
+
+	/* Lenis smooth scrolling rules */
+	html.lenis, html.lenis body {
+		height: auto;
+	}
+	.lenis-smooth {
+		scroll-behavior: auto !important;
+	}
+	.lenis-smooth [data-lenis-prevent] {
+		overscroll-behavior: contain;
+	}
+	.lenis-stopped {
+		overflow: hidden;
+	}
+	.lenis-scrolling iframe {
+		pointer-events: none;
+	}
+
+	/* Floating navigation link animations */
+	.animate-nav-link {
+		position: relative;
+		transition: color 0.3s ease;
+	}
+	.animate-nav-link::after {
+		content: '';
+		position: absolute;
+		bottom: -2px;
+		left: 0;
+		width: 0;
+		height: 1px;
+		background-color: #22d3ee;
+		transition: width 0.3s ease;
+	}
+	.animate-nav-link:hover::after {
+		width: 100%;
+	}
+</style>
+
+<script>
+	import Lenis from 'lenis';
+
+	// Main elements
+	const canvas = document.getElementById('hero-sequence-canvas') as HTMLCanvasElement | null;
+	const progressBar = document.getElementById('sequence-progress-bar') as HTMLDivElement | null;
+	const loadingScreen = document.getElementById('sequence-loading-screen') as HTMLDivElement | null;
+	const loadingProgressText = document.getElementById('loading-progress-text') as HTMLSpanElement | null;
+	const loadingFill = document.getElementById('loading-progress-bar-fill') as HTMLDivElement | null;
+	const scrollContainer = document.getElementById('home') as HTMLDivElement | null;
+
+	if (canvas && scrollContainer) {
+		const ctx = canvas.getContext('2d');
+		if (ctx) {
+			const totalFrames = 265;
+			const images: HTMLImageElement[] = [];
+			let loadedCount = 0;
+			
+			let currentFrame = 0;
+			let targetFrame = 0;
+			const ease = 0.08;
+			let lastDrawnFrame = -1;
+
+			// Path generator
+			const getFramePath = (index: number): string => {
+				const pad = String(index).padStart(5, '0');
+				return `/hom-hero/DiceForce IT-video/DiceForce IT-video_${pad}.png`;
+			};
+
+			// Build the progressive load order (keyframes first, then details)
+			const loadOrder: number[] = [];
+			loadOrder.push(0);
+			// Keyframes every 10 frames
+			for (let i = 10; i < totalFrames; i += 10) {
+				loadOrder.push(i);
+			}
+			// Rest of the frames
+			const loadedSet = new Set(loadOrder);
+			for (let i = 0; i < totalFrames; i++) {
+				if (!loadedSet.has(i)) {
+					loadOrder.push(i);
+				}
+			}
+
+			// Cover rendering logic
+			const drawImageCover = (context: CanvasRenderingContext2D, img: HTMLImageElement) => {
+				const canvasEl = context.canvas;
+				const imgRatio = img.width / img.height;
+				const canvasRatio = canvasEl.width / canvasEl.height;
+				let drawWidth, drawHeight, x, y;
+
+				if (canvasRatio > imgRatio) {
+					drawWidth = canvasEl.width;
+					drawHeight = canvasEl.width / imgRatio;
+					x = 0;
+					y = (canvasEl.height - drawHeight) / 2;
+				} else {
+					drawWidth = canvasEl.height * imgRatio;
+					drawHeight = canvasEl.height;
+					x = (canvasEl.width - drawWidth) / 2;
+					y = 0;
+				}
+
+				context.clearRect(0, 0, canvasEl.width, canvasEl.height);
+				context.drawImage(img, x, y, drawWidth, drawHeight);
+			};
+
+			// Draw frame with fallback to nearest loaded frame
+			const drawFrame = (index: number) => {
+				if (index === lastDrawnFrame) return;
+
+				let img = images[index];
+				if (!img) {
+					// Find nearest loaded frame
+					let step = 1;
+					while (step < totalFrames) {
+						if (index - step >= 0 && images[index - step]) {
+							img = images[index - step];
+							break;
+						}
+						if (index + step < totalFrames && images[index + step]) {
+							img = images[index + step];
+							break;
+						}
+						step++;
+					}
+				}
+
+				if (img && img.complete && img.naturalWidth !== 0) {
+					drawImageCover(ctx, img);
+					lastDrawnFrame = index;
+				}
+			};
+
+			// Resize handler
+			const resizeCanvas = () => {
+				const width = window.innerWidth;
+				const height = window.innerHeight;
+				canvas.width = width * window.devicePixelRatio;
+				canvas.height = height * window.devicePixelRatio;
+				canvas.style.width = width + 'px';
+				canvas.style.height = height + 'px';
+				drawFrame(Math.round(currentFrame));
+			};
+
+			window.addEventListener('resize', resizeCanvas);
+
+			// Scroll progress handler
+			const handleScroll = () => {
+				const rect = scrollContainer.getBoundingClientRect();
+				const totalScrollHeight = scrollContainer.offsetHeight - window.innerHeight;
+				
+				const rawProgress = -rect.top / totalScrollHeight;
+				const progress = Math.max(0, Math.min(1, rawProgress));
+				
+				targetFrame = progress * (totalFrames - 1);
+				
+				if (progressBar) {
+					progressBar.style.width = `${progress * 100}%`;
+				}
+			};
+
+			window.addEventListener('scroll', handleScroll);
+
+			// Animation Loop
+			const updateAnimation = () => {
+				const diff = targetFrame - currentFrame;
+				if (Math.abs(diff) < 0.01) {
+					currentFrame = targetFrame;
+				} else {
+					currentFrame += diff * ease;
+				}
+				drawFrame(Math.round(currentFrame));
+				requestAnimationFrame(updateAnimation);
+			};
+			requestAnimationFrame(updateAnimation);
+
+			// Loading Screen handling
+			const updateLoadingProgress = (percent: number) => {
+				const percentage = Math.round(percent * 100);
+				if (loadingProgressText) {
+					loadingProgressText.innerText = `${percentage}%`;
+				}
+				if (loadingFill) {
+					loadingFill.style.width = `${percentage}%`;
+				}
+			};
+
+			let isDismissed = false;
+			const dismissLoadingScreen = () => {
+				if (isDismissed) return;
+				isDismissed = true;
+				if (loadingScreen) {
+					loadingScreen.style.opacity = '0';
+					setTimeout(() => {
+						loadingScreen.style.display = 'none';
+					}, 700);
+				}
+			};
+
+			// Preload loading queue variables
+			let keyframesLoaded = 0;
+			const totalKeyframes = 27; // 27 keyframes where frameIdx % 10 === 0
+
+			let queueIndex = 1;
+			const loadNextFromQueue = () => {
+				if (queueIndex >= loadOrder.length) return;
+				const currentIdx = queueIndex++;
+				const frameIdx = loadOrder[currentIdx];
+
+				const img = new Image();
+				img.src = getFramePath(frameIdx);
+				img.onload = () => {
+					images[frameIdx] = img;
+					loadedCount++;
+
+					const percent = loadedCount / totalFrames;
+					updateLoadingProgress(percent);
+
+					// Check if keyframe
+					if (frameIdx % 10 === 0) {
+						keyframesLoaded++;
+					}
+
+					// Dismiss loading screen early once keyframes are loaded
+					if (keyframesLoaded >= totalKeyframes) {
+						dismissLoadingScreen();
+					}
+
+					if (loadedCount === totalFrames) {
+						dismissLoadingScreen();
+					}
+
+					loadNextFromQueue();
+				};
+				img.onerror = () => {
+					loadedCount++;
+					const percent = loadedCount / totalFrames;
+					updateLoadingProgress(percent);
+
+					if (frameIdx % 10 === 0) {
+						keyframesLoaded++;
+					}
+
+					if (keyframesLoaded >= totalKeyframes) {
+						dismissLoadingScreen();
+					}
+
+					if (loadedCount === totalFrames) {
+						dismissLoadingScreen();
+					}
+
+					loadNextFromQueue();
+				};
+			};
+
+			// Start with Frame 0 for instant rendering
+			const firstImg = new Image();
+			firstImg.src = getFramePath(0);
+			firstImg.onload = () => {
+				images[0] = firstImg;
+				loadedCount++;
+				updateLoadingProgress(loadedCount / totalFrames);
+				
+				resizeCanvas();
+				handleScroll(); // Sync initial scroll position on load
+				
+				// Start parallel queue loader
+				queueIndex = 1;
+				const limit = 4;
+				for (let i = 0; i < limit; i++) {
+					loadNextFromQueue();
+				}
+			};
+		}
+	}
+
+	// Initialize Lenis smooth scroll
+	const lenis = new Lenis({
+		duration: 1.2,
+		easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+		smoothWheel: true,
+		touchMultiplier: 1.5,
+	});
+
+	function raf(time: number) {
+		lenis.raf(time);
+		requestAnimationFrame(raf);
+	}
+	requestAnimationFrame(raf);
+
+	// Setup custom smooth scroll for anchor links
+	document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+		anchor.addEventListener('click', (e) => {
+			e.preventDefault();
+			const targetId = anchor.getAttribute('href');
+			if (targetId) {
+				const targetElement = document.querySelector(targetId);
+				if (targetElement) {
+					lenis.scrollTo(targetElement);
+				}
+			}
+		});
+	});
+</script>

@@ -14,7 +14,8 @@
     height: 100%;
     background-color: #000000;
     color: #ffffff;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     font-family: var(--font-sans);
   }
 }

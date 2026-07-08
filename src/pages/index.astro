@@ -66,6 +66,28 @@ import Layout from '../layouts/Layout.astro';
 				<div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black to-transparent z-20 pointer-events-none"></div>
 			</div>
 
+			<!-- Launch Button -->
+			<div class="animate-fade-in animation-delay-500 z-40">
+				<div class="relative group transition-transform duration-500 hover:scale-[1.015]">
+					<!-- Outer atmospheric soft glow using logo colors (very subtle, low opacity) -->
+					<div class="absolute -inset-1 bg-gradient-to-r from-[#0377ff] via-[#00deff] to-[#883ae2] rounded-full blur-md opacity-25 group-hover:opacity-60 transition-all duration-500 ease-out"></div>
+					
+					<!-- Rounded container that clips the rotating border gradient -->
+					<div class="relative rounded-full p-[1px] overflow-hidden flex items-center justify-center bg-white shadow-[0_4px_12px_rgba(0,0,0,0.25)] group-hover:shadow-[0_0_20px_rgba(3,119,255,0.3)] transition-all duration-500">
+						<!-- Rotating gradient element with logo colors -->
+						<div class="absolute inset-[-200%] bg-[conic-gradient(from_0deg,#0377ff,#00deff,#883ae2,#00deff,#0377ff)] animate-border-spin"></div>
+						
+						<!-- Main Button Link -->
+						<a 
+							href="/home" 
+							class="relative px-8 py-3.5 bg-white hover:bg-slate-50 text-black font-semibold rounded-full transition-all duration-300 inline-flex items-center gap-2.5 text-sm font-sans tracking-wide cursor-pointer z-10 select-none group-hover:text-[#0377ff]"
+						>
+							Launch Experience
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+						</a>
+					</div>
+				</div>
+			</div>
 
 		</div>
 
@@ -88,6 +110,19 @@ import Layout from '../layouts/Layout.astro';
 		.dot-1 { animation: dot-fade 1.4s infinite 0s; }
 		.dot-2 { animation: dot-fade 1.4s infinite 0.2s; }
 		.dot-3 { animation: dot-fade 1.4s infinite 0.4s; }
+
+		/* Custom slow, smooth spin for the button border gradient */
+		@keyframes border-spin {
+			from {
+				transform: rotate(0deg);
+			}
+			to {
+				transform: rotate(360deg);
+			}
+		}
+		.animate-border-spin {
+			animation: border-spin 5s linear infinite;
+		}
 
 		/* Mouse Spotlight effect */
 		.mouse-spotlight {
