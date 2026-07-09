@@ -1,0 +1,742 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="diceforce IT | Initialize Transmission">
+	<!-- Ambient Background Glows & Grid (Behind WebGL Canvas) -->
+	<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[#030303]">
+		<!-- Centered soft radial glows -->
+		<div class="absolute top-[30%] left-1/3 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-blue-600/[0.07] blur-[120px] animate-pulse-slow"></div>
+		<div class="absolute top-[60%] right-1/4 translate-x-1/2 translate-y-1/2 w-[600px] h-[600px] rounded-full bg-cyan-500/[0.04] blur-[140px]"></div>
+		
+		<!-- High-fidelity background grid overlay -->
+		<div class="absolute inset-0 grid-overlay-home opacity-50"></div>
+	</div>
+
+	<!-- Interactive 3D WebGL Canvas -->
+	<canvas id="webgl-canvas" class="fixed inset-0 w-full h-full z-10 pointer-events-auto cursor-crosshair"></canvas>
+
+	<!-- Glassmorphic Header Navigation -->
+	<header id="main-header" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-3xl opacity-0 -translate-y-4 pointer-events-auto">
+		<div class="backdrop-blur-md bg-black/40 border border-white/5 rounded-full px-5 py-2.5 flex items-center justify-between shadow-[0_12px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.05)]">
+			<!-- Brand Logo -->
+			<a href="/home" class="flex items-center gap-2 group">
+				<img src="/diceforceITlogo_.gif" alt="diceforce IT Logo" class="w-7 h-7 object-contain" width="28" height="28" />
+				<span class="text-[10px] font-orbitron tracking-[0.3em] text-shimmer uppercase font-bold leading-none">diceforce</span>
+			</a>
+
+			<!-- Navigation Links -->
+			<nav class="hidden md:flex items-center gap-6">
+				<a href="/home" class="text-[10px] font-mono tracking-wider text-white/40 hover:text-white transition-colors uppercase animate-nav-link">Home</a>
+				<a href="/home#about" class="text-[10px] font-mono tracking-wider text-white/40 hover:text-white transition-colors uppercase animate-nav-link">About</a>
+				<a href="/home#services" class="text-[10px] font-mono tracking-wider text-white/40 hover:text-white transition-colors uppercase animate-nav-link">Services</a>
+				<a href="/home#staffing" class="text-[10px] font-mono tracking-wider text-white/40 hover:text-white transition-colors uppercase animate-nav-link">Staffing</a>
+				<a href="/home#career" class="text-[10px] font-mono tracking-wider text-white/40 hover:text-white transition-colors uppercase animate-nav-link">Careers</a>
+				<a href="#" class="text-[10px] font-mono tracking-wider text-white transition-colors uppercase animate-nav-link">Contact</a>
+			</nav>
+
+			<!-- Compact CTA button -->
+			<div>
+				<a 
+					href="mailto:hello@diceforceit.com" 
+					class="text-[9px] font-mono tracking-wider text-white hover:text-white transition-colors duration-300 border border-white/10 hover:border-white/20 rounded-full px-3 py-1.5 bg-white/[0.02]"
+				>
+					hello@diceforceit.com
+				</a>
+			</div>
+		</div>
+	</header>
+
+	<!-- High-fidelity Preloader Overlay -->
+	<div id="sequence-loading-screen" class="fixed inset-0 bg-[#030303] z-[100] flex flex-col items-center justify-center transition-opacity duration-700 ease-out pointer-events-auto">
+		<div class="flex flex-col items-center gap-6">
+			<!-- Glowing Logo -->
+			<div class="relative w-16 h-16">
+				<img src="/diceforceITlogo_.gif" alt="diceforce IT Logo" class="w-full h-full object-contain" />
+				<div class="absolute inset-[-4px] rounded-full border border-cyan-500/20 border-t-cyan-400 animate-spin duration-1000"></div>
+			</div>
+			<div class="text-center space-y-2">
+				<div class="font-orbitron text-[10px] tracking-[0.3em] text-white/80 uppercase">diceforce core</div>
+				<div class="font-mono text-[9px] text-white/40 uppercase tracking-widest">
+					Calibrating Neural Interface... <span id="loading-progress-text">0%</span>
+				</div>
+			</div>
+			<!-- Loading bar container -->
+			<div class="w-48 h-[1px] bg-white/5 rounded-full overflow-hidden">
+				<div id="loading-progress-bar-fill" class="h-full w-0 bg-cyan-400 transition-all duration-300"></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Main Layout Layer -->
+	<main class="relative z-20 w-full min-h-screen text-white font-sans flex items-center justify-center px-4 sm:px-8 md:px-12 py-28 pointer-events-none select-none">
+		<div class="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+			
+			<!-- Left Column: Title & Futuristic Telemetry Card -->
+			<div class="lg:col-span-6 flex flex-col space-y-8 animate-stagger-item">
+				<div class="space-y-4">
+					<div class="inline-flex items-center gap-2 px-3 py-1 border border-cyan-500/20 rounded-full bg-cyan-500/5">
+						<span class="font-mono text-[9px] tracking-widest text-cyan-400 uppercase">transmission gateway</span>
+					</div>
+					<h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white font-orbitron leading-[1.1]">
+						INITIALIZE <span class="text-shimmer font-bold block sm:inline">TRANSMISSION</span>
+					</h1>
+					<p class="text-white/50 text-sm sm:text-base font-light leading-relaxed max-w-lg">
+						Connect directly with our cognitive engineering teams. Send system inquiries, project requirements, or career coordinates.
+					</p>
+				</div>
+
+				<!-- Telemetry Panel -->
+				<div class="border border-white/5 bg-black/40 backdrop-blur-md rounded-xl p-6 space-y-4 shadow-2xl relative pointer-events-auto">
+					<div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent"></div>
+					
+					<!-- Header telemetry status -->
+					<div class="flex items-center justify-between border-b border-white/5 pb-3">
+						<div class="flex items-center gap-2">
+							<span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span>
+							<span class="font-mono text-[9px] tracking-widest text-white/80 uppercase">interface telemetry</span>
+						</div>
+						<span class="font-mono text-[9px] text-cyan-400 uppercase">SYS_STATUS // ONLINE</span>
+					</div>
+
+					<!-- Technical metrics -->
+					<div class="grid grid-cols-3 gap-4 text-center">
+						<div class="space-y-1">
+							<div class="font-mono text-[8px] tracking-wider text-white/30 uppercase">Active Nodes</div>
+							<div class="font-orbitron text-xs text-white" id="nodes-count">14,832</div>
+						</div>
+						<div class="space-y-1">
+							<div class="font-mono text-[8px] tracking-wider text-white/30 uppercase">System Latency</div>
+							<div class="font-orbitron text-xs text-cyan-400" id="sys-latency">12ms</div>
+						</div>
+						<div class="space-y-1">
+							<div class="font-mono text-[8px] tracking-wider text-white/30 uppercase">Core Load</div>
+							<div class="font-orbitron text-xs text-white" id="core-load">87.4%</div>
+						</div>
+					</div>
+
+					<!-- Cursor position coordinate HUD -->
+					<div class="flex justify-between items-center text-[9px] font-mono border-t border-white/5 pt-3">
+						<span class="text-white/30 uppercase">Target Coordinates</span>
+						<div class="flex gap-4 text-white/60">
+							<div>X: <span id="hud-x" class="text-cyan-400">0.500</span></div>
+							<div>Y: <span id="hud-y" class="text-cyan-400">0.500</span></div>
+						</div>
+					</div>
+
+					<!-- System Log Terminal Console -->
+					<div class="space-y-2">
+						<div class="font-mono text-[8px] tracking-wider text-white/30 uppercase">Terminal Feed</div>
+						<div class="border border-white/5 bg-black/60 rounded-lg p-3 font-mono text-[9px] text-white/40 space-y-1 h-28 overflow-y-auto" id="console-logs">
+							<!-- Logs injected here -->
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Right Column: Premium Form Card -->
+			<div class="lg:col-span-6 animate-stagger-item">
+				<div class="border border-white/5 bg-black/40 backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-2xl relative pointer-events-auto overflow-hidden min-h-[460px] flex flex-col justify-between" id="form-container">
+					<div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#883ae2]/30 to-transparent"></div>
+					
+					<!-- Form Content -->
+					<form id="contact-form" class="space-y-6">
+						<div class="space-y-1">
+							<h3 class="font-orbitron text-xs tracking-[0.2em] text-white/80 uppercase font-semibold">configure transmission</h3>
+							<p class="text-[10px] font-mono text-white/30">Ensure all fields are fully resolved before submission.</p>
+						</div>
+
+						<div class="space-y-4">
+							<!-- Name field -->
+							<div class="space-y-1.5 relative group">
+								<label for="name" class="block font-mono text-[9px] tracking-widest text-white/40 group-focus-within:text-cyan-400 transition-colors uppercase">Sender Identity</label>
+								<input 
+									type="text" 
+									id="name" 
+									name="name" 
+									required 
+									placeholder="John Doe" 
+									class="w-full bg-white/[0.01] border border-white/5 hover:border-white/10 focus:border-cyan-400/50 rounded-lg px-4 py-3 text-xs text-white placeholder-white/15 outline-none transition-all duration-300"
+								/>
+							</div>
+
+							<!-- Email field -->
+							<div class="space-y-1.5 relative group">
+								<label for="email" class="block font-mono text-[9px] tracking-widest text-white/40 group-focus-within:text-cyan-400 transition-colors uppercase">Direct Comms Routing</label>
+								<input 
+									type="email" 
+									id="email" 
+									name="email" 
+									required 
+									placeholder="john@example.com" 
+									class="w-full bg-white/[0.01] border border-white/5 hover:border-white/10 focus:border-cyan-400/50 rounded-lg px-4 py-3 text-xs text-white placeholder-white/15 outline-none transition-all duration-300"
+								/>
+							</div>
+
+							<!-- Topic dropdown -->
+							<div class="space-y-1.5 relative group">
+								<label for="topic" class="block font-mono text-[9px] tracking-widest text-white/40 group-focus-within:text-cyan-400 transition-colors uppercase">Neural Subject Matter</label>
+								<div class="relative">
+									<select 
+										id="topic" 
+										name="topic" 
+										required 
+										class="w-full bg-black/90 border border-white/5 hover:border-white/10 focus:border-cyan-400/50 rounded-lg px-4 py-3 text-xs text-white appearance-none outline-none transition-all duration-300 cursor-pointer"
+									>
+										<option value="neural" class="bg-black text-white">01 // Cognitive Pipeline Engineering</option>
+										<option value="models" class="bg-black text-white">02 // Custom LLM Fine-Tuning</option>
+										<option value="staffing" class="bg-black text-white">03 // Embedded Engineering Squads</option>
+										<option value="careers" class="bg-black text-white">04 // Frontier Career Inquiries</option>
+										<option value="other" class="bg-black text-white">05 // System General Inquiries</option>
+									</select>
+									<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-white/40">
+										<svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+											<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+										</svg>
+									</div>
+								</div>
+							</div>
+
+							<!-- Message field -->
+							<div class="space-y-1.5 relative group">
+								<label for="message" class="block font-mono text-[9px] tracking-widest text-white/40 group-focus-within:text-cyan-400 transition-colors uppercase">Transmission Payload</label>
+								<textarea 
+									id="message" 
+									name="message" 
+									required 
+									rows="3" 
+									placeholder="Provide deep architectural details of your project..." 
+									class="w-full bg-white/[0.01] border border-white/5 hover:border-white/10 focus:border-cyan-400/50 rounded-lg p-4 text-xs text-white placeholder-white/15 outline-none transition-all duration-300 resize-none"
+								></textarea>
+							</div>
+						</div>
+
+						<!-- Submit Button -->
+						<div class="relative group transition-transform duration-500 hover:scale-[1.015] pt-2">
+							<div class="absolute -inset-1 bg-gradient-to-r from-[#0377ff] via-[#00deff] to-[#883ae2] rounded-lg blur opacity-25 group-hover:opacity-60 transition-all duration-500"></div>
+							
+							<div class="relative rounded-lg p-[1px] overflow-hidden flex items-center justify-center bg-black shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
+								<div class="absolute inset-[-200%] bg-[conic-gradient(from_0deg,#0377ff,#00deff,#883ae2,#00deff,#0377ff)] animate-border-spin opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+								
+								<button 
+									type="submit" 
+									class="w-full relative px-8 py-3.5 bg-black hover:bg-neutral-950 text-white font-semibold rounded-lg transition-all duration-300 inline-flex items-center justify-center gap-2.5 text-xs font-mono tracking-widest uppercase cursor-pointer z-10 select-none hover:text-[#00deff]"
+								>
+									<span>send transmission</span>
+									<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+								</button>
+							</div>
+						</div>
+					</form>
+
+					<!-- Success state (Hidden initially) -->
+					<div id="success-screen" class="hidden flex-col items-center justify-center text-center space-y-6 py-12">
+						<div class="relative w-16 h-16 mb-2">
+							<div class="absolute inset-0 rounded-full border border-cyan-400/20 bg-cyan-400/5 animate-pulse-slow"></div>
+							<div class="absolute inset-2 rounded-full border border-cyan-400/40 flex items-center justify-center">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+								</svg>
+							</div>
+						</div>
+						<div class="space-y-2">
+							<h3 class="text-lg font-bold font-orbitron tracking-wide text-white uppercase">transmission sent // success</h3>
+							<p class="text-xs font-mono text-white/50 max-w-sm mx-auto leading-relaxed">
+								Your packets have been successfully encrypted and routed. Expected response latency: <span class="text-cyan-400">12 cycles (hours)</span>.
+							</p>
+						</div>
+						<div class="border border-white/5 bg-black/60 rounded-lg p-3 font-mono text-[9px] text-cyan-400/70 w-full text-left space-y-0.5">
+							<div>STATUS: PACKETS_DELIVERED</div>
+							<div>HASH: 7F69A...43A9F</div>
+							<div>ROUTING_KEY: GATEWAY_SECURE</div>
+						</div>
+						<button 
+							id="reset-form-btn" 
+							class="text-[9px] font-mono tracking-widest text-white/40 hover:text-white uppercase transition-colors pointer-events-auto cursor-pointer"
+						>
+							// Send Another Packet
+						</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</main>
+
+	<!-- Inject CSS details -->
+	<style>
+		/* Custom border spinning animation */
+		@keyframes border-spin {
+			from { transform: rotate(0deg); }
+			to { transform: rotate(360deg); }
+		}
+		.animate-border-spin {
+			animation: border-spin 3s linear infinite;
+		}
+
+		/* Background Dot/Grid Pattern */
+		.grid-overlay-home {
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M 40 0 L 40 80 M 0 40 L 80 40' stroke='rgba(255, 255, 255, 0.015)' stroke-width='1'/%3E%3Cpolygon points='40,39.5 40.5,40 40,40.5 39.5,40' fill='rgba(255, 255, 255, 0.08)' stroke='rgba(255, 255, 255, 0.03)' stroke-width='0.5'/%3E%3C/svg%3E");
+			background-size: 80px 80px;
+			background-position: center center;
+			mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 90%);
+			-webkit-mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 90%);
+		}
+
+		@keyframes pulse-slow {
+			0%, 100% { opacity: 0.6; transform: scale(1); }
+			50% { opacity: 0.9; transform: scale(1.05); }
+		}
+		.animate-pulse-slow {
+			animation: pulse-slow 8s ease-in-out infinite;
+		}
+
+		@keyframes shimmer {
+			0% { background-position: -200% center; }
+			100% { background-position: 200% center; }
+		}
+
+		.text-shimmer {
+			background: linear-gradient(
+				90deg,
+				#22d3ee 0%,
+				#60a5fa 25%,
+				#6366f1 50%,
+				#60a5fa 75%,
+				#22d3ee 100%
+			);
+			background-size: 200% auto;
+			color: transparent;
+			background-clip: text;
+			-webkit-background-clip: text;
+			animation: shimmer 6s linear infinite;
+			filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.2));
+		}
+
+		/* Navigation link animation */
+		.animate-nav-link {
+			position: relative;
+			transition: color 0.3s ease;
+		}
+		.animate-nav-link::after {
+			content: '';
+			position: absolute;
+			bottom: -2px;
+			left: 0;
+			width: 0;
+			height: 1px;
+			background-color: #22d3ee;
+			transition: width 0.3s ease;
+		}
+		.animate-nav-link:hover::after {
+			width: 100%;
+		}
+	</style>
+
+	<!-- Hydration Script -->
+	<script>
+		import * as THREE from 'three';
+		import { gsap } from 'gsap';
+
+		// Elements
+		const loadingScreen = document.getElementById('sequence-loading-screen');
+		const loadingProgressText = document.getElementById('loading-progress-text');
+		const loadingFill = document.getElementById('loading-progress-bar-fill');
+		const mainHeader = document.getElementById('main-header');
+		const consoleLogs = document.getElementById('console-logs');
+
+		const hudX = document.getElementById('hud-x');
+		const hudY = document.getElementById('hud-y');
+		const nodesCountEl = document.getElementById('nodes-count');
+		const sysLatencyEl = document.getElementById('sys-latency');
+		const coreLoadEl = document.getElementById('core-load');
+
+		const contactForm = document.getElementById('contact-form') as HTMLFormElement | null;
+		const successScreen = document.getElementById('success-screen');
+		const resetFormBtn = document.getElementById('reset-form-btn');
+
+		// Throttling flag for coordinate logger
+		let lastLogTime = 0;
+
+		// 1. Console Terminal Logging Utility
+		const addLog = (message: string) => {
+			if (!consoleLogs) return;
+			const time = new Date().toLocaleTimeString().split(' ')[0];
+			const logEl = document.createElement('div');
+			logEl.innerHTML = `<span class="text-white/20">[${time}]</span> <span class="text-cyan-400/80">></span> ${message}`;
+			consoleLogs.appendChild(logEl);
+			
+			// Auto scroll to bottom
+			consoleLogs.scrollTop = consoleLogs.scrollHeight;
+		};
+
+		// 2. Simulated Preloader Sequence
+		let currentProgress = 0;
+		const loadInterval = setInterval(() => {
+			currentProgress += Math.floor(Math.random() * 15) + 5;
+			if (currentProgress >= 100) {
+				currentProgress = 100;
+				clearInterval(loadInterval);
+				dismissPreloader();
+			}
+			
+			if (loadingProgressText) loadingProgressText.innerText = `${currentProgress}%`;
+			if (loadingFill) loadingFill.style.width = `${currentProgress}%`;
+		}, 60);
+
+		const dismissPreloader = () => {
+			if (!loadingScreen) return;
+			
+			// Fade out screen
+			gsap.to(loadingScreen, {
+				opacity: 0,
+				duration: 0.6,
+				ease: 'power2.out',
+				onComplete: () => {
+					loadingScreen.style.display = 'none';
+					initializeEntranceAnimations();
+				}
+			});
+		};
+
+		// 3. GSAP Entrance Animations
+		const initializeEntranceAnimations = () => {
+			addLog('Neural handshake established.');
+			addLog('Gateway connection verified.');
+			addLog('System online & listening.');
+
+			// Animate Header
+			gsap.to(mainHeader, {
+				opacity: 1,
+				y: 0,
+				duration: 0.8,
+				ease: 'power3.out'
+			});
+
+			// Animate Left Column elements sequentially
+			gsap.fromTo('.animate-stagger-item', 
+				{ opacity: 0, y: 30 },
+				{ 
+					opacity: 1, 
+					y: 0, 
+					duration: 1, 
+					stagger: 0.15,
+					ease: 'power3.out' 
+				}
+			);
+		};
+
+		// 4. Telemetry fluctuations
+		setInterval(() => {
+			if (Math.random() > 0.4) {
+				// latency 9-16ms
+				const latency = Math.floor(Math.random() * 8) + 9;
+				if (sysLatencyEl) sysLatencyEl.textContent = `${latency}ms`;
+				
+				// nodes around 14832
+				const baseNodes = 14830;
+				const nodesOffset = Math.floor(Math.random() * 9) - 4;
+				if (nodesCountEl) nodesCountEl.textContent = (baseNodes + nodesOffset).toLocaleString();
+				
+				// load around 87.4%
+				const baseLoad = 87.4;
+				const loadOffset = (Math.random() * 0.8 - 0.4).toFixed(1);
+				if (coreLoadEl) coreLoadEl.textContent = `${(baseLoad + parseFloat(loadOffset)).toFixed(1)}%`;
+			}
+		}, 3000);
+
+		// 5. Form input interaction events for logs
+		const formInputs = document.querySelectorAll('#contact-form input, #contact-form textarea, #contact-form select');
+		formInputs.forEach(input => {
+			input.addEventListener('focus', () => {
+				const label = input.id.toUpperCase();
+				addLog(`Port listening opened on field [${label}].`);
+			});
+			
+			// Throttled change logger
+			input.addEventListener('input', () => {
+				const now = Date.now();
+				if (now - lastLogTime > 4000) {
+					addLog('Streaming buffer packets from input...');
+					lastLogTime = now;
+				}
+			});
+		});
+
+		const selectEl = document.getElementById('topic');
+		if (selectEl) {
+			selectEl.addEventListener('change', (e) => {
+				const val = (e.target as HTMLSelectElement).value;
+				addLog(`Routing priority parameter adjusted to: [${val}].`);
+			});
+		}
+
+		// 6. Three.js WebGL Interactive Particle Scene
+		const canvas = document.getElementById('webgl-canvas') as HTMLCanvasElement | null;
+		if (canvas) {
+			const scene = new THREE.Scene();
+			const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
+			camera.position.z = 10;
+
+			const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+			renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+			renderer.setSize(window.innerWidth, window.innerHeight);
+
+			// Geometry & Particles setup
+			const particlesCount = 280;
+			const geometry = new THREE.BufferGeometry();
+			const positions = new Float32Array(particlesCount * 3);
+			const velocities: { x: number; y: number; z: number }[] = [];
+
+			for (let i = 0; i < particlesCount; i++) {
+				// Sphere distribution
+				const u = Math.random();
+				const v = Math.random();
+				const theta = u * 2.0 * Math.PI;
+				const phi = Math.acos(2.0 * v - 1.0);
+				const r = 3 + Math.random() * 2.2; // radius between 3 and 5.2
+
+				const x = r * Math.sin(phi) * Math.cos(theta);
+				const y = r * Math.sin(phi) * Math.sin(theta);
+				const z = r * Math.cos(phi);
+
+				positions[i * 3] = x;
+				positions[i * 3 + 1] = y;
+				positions[i * 3 + 2] = z;
+
+				velocities.push({
+					x: (Math.random() - 0.5) * 0.003,
+					y: (Math.random() - 0.5) * 0.003,
+					z: (Math.random() - 0.5) * 0.003
+				});
+			}
+
+			geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+			// Soft particle texture
+			const createParticleTexture = () => {
+				const canvas = document.createElement('canvas');
+				canvas.width = 32;
+				canvas.height = 32;
+				const ctx = canvas.getContext('2d')!;
+				const grad = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
+				grad.addColorStop(0, 'rgba(255, 255, 255, 1)');
+				grad.addColorStop(0.2, 'rgba(34, 211, 238, 0.7)'); // Cyan glow
+				grad.addColorStop(0.5, 'rgba(99, 102, 241, 0.35)'); // Indigo tint
+				grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+				ctx.fillStyle = grad;
+				ctx.beginPath();
+				ctx.arc(16, 16, 16, 0, Math.PI * 2);
+				ctx.fill();
+				return new THREE.CanvasTexture(canvas);
+			};
+
+			const material = new THREE.PointsMaterial({
+				size: 0.16,
+				map: createParticleTexture(),
+				transparent: true,
+				blending: THREE.AdditiveBlending,
+				depthWrite: false
+			});
+
+			const particleSystem = new THREE.Points(geometry, material);
+			scene.add(particleSystem);
+
+			// Connect lines segment setup
+			const lineGeometry = new THREE.BufferGeometry();
+			const lineIndices: number[] = [];
+			
+			// Build static line associations between randomly coupled nodes
+			for (let i = 0; i < particlesCount; i++) {
+				for (let j = 0; j < 2; j++) {
+					const target = Math.floor(Math.random() * particlesCount);
+					if (target !== i) {
+						lineIndices.push(i, target);
+					}
+				}
+			}
+
+			lineGeometry.setIndex(lineIndices);
+			lineGeometry.setAttribute('position', geometry.getAttribute('position'));
+
+			const lineMaterial = new THREE.LineBasicMaterial({
+				color: 0x4f7dff,
+				transparent: true,
+				opacity: 0.13,
+				blending: THREE.AdditiveBlending
+			});
+
+			const lineSystem = new THREE.LineSegments(lineGeometry, lineMaterial);
+			scene.add(lineSystem);
+
+			// Mouse movements
+			const mouse = { x: 0, y: 0 };
+			const targetRotation = { x: 0, y: 0 };
+
+			window.addEventListener('mousemove', (e) => {
+				// NDC Mapping
+				mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+				mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+
+				targetRotation.x = mouse.y * 0.35;
+				targetRotation.y = mouse.x * 0.35;
+
+				// Update HUD values
+				if (hudX) hudX.textContent = (e.clientX / window.innerWidth).toFixed(3);
+				if (hudY) hudY.textContent = (e.clientY / window.innerHeight).toFixed(3);
+			});
+
+			// Resize handler
+			const resize = () => {
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+				renderer.setSize(window.innerWidth, window.innerHeight);
+			};
+			window.addEventListener('resize', resize);
+			resize();
+
+			// Interactive Shockwave on canvas click
+			canvas.addEventListener('click', (e) => {
+				// Don't trigger if clicked on HUD/form panels
+				const target = e.target as HTMLElement;
+				if (target.id !== 'webgl-canvas') return;
+
+				addLog('Quantum shockwave pulse deployed.');
+				
+				// Fast scale transition
+				gsap.killTweensOf(particleSystem.scale);
+				gsap.killTweensOf(lineMaterial);
+
+				gsap.to(particleSystem.scale, {
+					x: 1.35,
+					y: 1.35,
+					z: 1.35,
+					duration: 0.2,
+					ease: 'power1.out',
+					onComplete: () => {
+						gsap.to(particleSystem.scale, {
+							x: 1,
+							y: 1,
+							z: 1,
+							duration: 1.6,
+							ease: 'elastic.out(1, 0.4)'
+						});
+					}
+				});
+
+				gsap.to(lineMaterial, {
+					opacity: 0.04,
+					duration: 0.2,
+					onComplete: () => {
+						gsap.to(lineMaterial, {
+							opacity: 0.13,
+							duration: 1.5,
+							ease: 'power2.out'
+						});
+					}
+				});
+			});
+
+			// Frame render loop
+			const animate = () => {
+				requestAnimationFrame(animate);
+
+				// Rotate system continuously + Lerp to mouse target
+				particleSystem.rotation.y += 0.001;
+				particleSystem.rotation.x += (targetRotation.x - particleSystem.rotation.x) * 0.04;
+				particleSystem.rotation.y += (targetRotation.y - (particleSystem.rotation.y % (Math.PI * 2))) * 0.04;
+				
+				// Sync line system rotation with points
+				lineSystem.rotation.x = particleSystem.rotation.x;
+				lineSystem.rotation.y = particleSystem.rotation.y;
+
+				// Float individual particles
+				const posAttribute = geometry.getAttribute('position') as THREE.BufferAttribute;
+				const posArray = posAttribute.array as Float32Array;
+
+				for (let i = 0; i < particlesCount; i++) {
+					posArray[i * 3] += velocities[i].x;
+					posArray[i * 3 + 1] += velocities[i].y;
+					posArray[i * 3 + 2] += velocities[i].z;
+
+					const x = posArray[i * 3];
+					const y = posArray[i * 3 + 1];
+					const z = posArray[i * 3 + 2];
+					const r = Math.sqrt(x*x + y*y + z*z);
+
+					// Keep bounded to sphere radius limit
+					if (r > 5.5 || r < 2.5) {
+						velocities[i].x *= -1;
+						velocities[i].y *= -1;
+						velocities[i].z *= -1;
+					}
+				}
+
+				posAttribute.needsUpdate = true;
+				renderer.render(scene, camera);
+			};
+			animate();
+		}
+
+		// 7. Form Submission Encryption Animation
+		if (contactForm && successScreen && resetFormBtn) {
+			contactForm.addEventListener('submit', (e) => {
+				e.preventDefault();
+				addLog('Submitting packet to gateway...');
+				addLog('Initiating encryption algorithms...');
+				
+				const submitBtn = contactForm.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+				if (submitBtn) submitBtn.disabled = true;
+
+				// Animate form elements fade-out
+				gsap.to(contactForm, {
+					opacity: 0,
+					y: -10,
+					duration: 0.4,
+					onComplete: () => {
+						contactForm.classList.add('hidden');
+						successScreen.classList.remove('hidden');
+						successScreen.style.opacity = '0';
+						
+						addLog('Transmission successfully encrypted.');
+						addLog('Uploading data packets: [100% DONE].');
+						
+						gsap.to(successScreen, {
+							opacity: 1,
+							y: 0,
+							duration: 0.5,
+							ease: 'power2.out'
+						});
+					}
+				});
+			});
+
+			// Reset Form
+			resetFormBtn.addEventListener('click', () => {
+				addLog('Clearing transmission terminal queue.');
+				
+				gsap.to(successScreen, {
+					opacity: 0,
+					y: 10,
+					duration: 0.4,
+					onComplete: () => {
+						successScreen.classList.add('hidden');
+						contactForm.reset();
+						contactForm.classList.remove('hidden');
+						contactForm.style.opacity = '0';
+						
+						const submitBtn = contactForm.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+						if (submitBtn) submitBtn.disabled = false;
+
+						gsap.to(contactForm, {
+							opacity: 1,
+							y: 0,
+							duration: 0.5,
+							ease: 'power2.out'
+						});
+					}
+				});
+			});
+		}
+	</script>
+</Layout>
