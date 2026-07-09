@@ -1,9 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
-  --font-orbitron: "Orbitron", sans-serif;
+  --font-sans: "Figtree", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+  --font-syne: "Figtree", sans-serif;
+  --font-space: "Figtree", sans-serif;
 }
 
 @layer base {
@@ -165,4 +166,18 @@
 .reveal-mask {
   mask-image: linear-gradient(to top, transparent 15%, black 75%);
   -webkit-mask-image: linear-gradient(to top, transparent 15%, black 75%);
+}
+
+/* Futuristic Cyber Header Animations */
+@keyframes scanline {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+.animate-scanline {
+  animation: scanline 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
