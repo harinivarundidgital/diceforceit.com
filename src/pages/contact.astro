@@ -1,178 +1,130 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import PageLayout from '../layouts/PageLayout.astro';
 ---
 
-<Layout title="diceforce IT | Contact // Let's Talk" description="Thinking about your next move? Let's discuss how diceforce IT can help make it real. Reach out to our design, engineering, and staffing teams.">
-	<!-- Ambient Background Glows & Grid (Behind Content) -->
-	<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[#020205]">
-		<!-- Interactive Mouse Spotlight Glow -->
-		<div id="bg-spotlight" class="mouse-spotlight absolute inset-0"></div>
+<PageLayout 
+	title="diceforce IT | Contact | Let's Talk" 
+	description="Thinking about your next move? Let's discuss how diceforce IT can help make it real. Reach out to our design, engineering, and staffing teams."
+	activePage="contact"
+>
+	<div class="max-w-6xl mx-auto w-full flex flex-col gap-12">
 		
-		<!-- Centered soft radial glows using logo colors (slow CSS drifting) -->
-		<div class="absolute top-[10%] left-[-5%] w-[600px] h-[600px] rounded-full bg-[#00deff]/[0.12] blur-[130px] animate-drift-slow"></div>
-		<div class="absolute bottom-[10%] right-[-5%] w-[700px] h-[700px] rounded-full bg-[#0377ff]/[0.12] blur-[150px] animate-drift-medium"></div>
-		<div class="absolute top-[40%] right-[15%] w-[550px] h-[550px] rounded-full bg-[#883ae2]/[0.10] blur-[120px] animate-drift-slow"></div>
-		
-		<!-- High-fidelity background grid overlay -->
-		<div class="absolute inset-0 grid-overlay-home opacity-40"></div>
-	</div>
+		<!-- SECTION 1: HERO (2-Column Layout) -->
+		<section class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center animate-stagger-item">
+			<!-- Left Column: Hero Copy -->
+			<div class="lg:col-span-7 space-y-6">
+				<h1 class="font-syne font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tighter leading-[0.95] text-white select-text text-balance">
+					Thinking about<br class="hidden sm:inline" />
+					your next move?
+				</h1>
+				<p class="text-neutral-400 font-light text-base sm:text-lg max-w-xl mt-6 leading-relaxed select-text">
+					Let’s discuss how diceforce IT can help make it real. Reach out to our design, engineering, and staffing teams.
+				</p>
+			</div>
+			<!-- Right Column: Interactive Particles (Loaded from SVG) -->
+			<div class="lg:col-span-5 relative w-full h-[400px] sm:h-[480px] lg:h-[550px] flex items-center justify-center overflow-hidden">
+				<div class="absolute inset-0 bg-[#00deff]/[0.02] blur-[80px] rounded-full pointer-events-none"></div>
+				<!-- Three.js Canvas Container -->
+				<div id="canvas-container" class="w-full h-full cursor-grab active:cursor-grabbing relative z-10"></div>
+			</div>
+		</section>
 
-	<!-- Floating Header Navigation -->
-	<header id="main-header" class="fixed top-6 left-0 right-0 z-50 w-full flex justify-center transition-all duration-500 ease-out opacity-0 -translate-y-10 pointer-events-none">
-		<div class="w-[92%] max-w-6xl relative backdrop-blur-lg bg-black/60 border border-white/10 rounded-full px-8 py-2 flex items-center justify-between shadow-[0_4px_30px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.05)] z-50">
-			
-			<!-- Brand Logo & Link -->
-			<a href="/home" class="flex items-center gap-3 group relative z-10 pointer-events-auto shrink-0 transition-colors">
-				<img src="/diceforceITlogo_.gif" alt="diceforce IT Logo" class="w-14 h-14 object-contain filter drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]" width="56" height="56" />
-				<span class="text-[15px] font-space tracking-[0.25em] text-cyan-400 uppercase font-extrabold leading-none group-hover:text-white transition-colors">diceforce</span>
-			</a>
-			
-			<!-- Navigation Links (Right Aligned) -->
-			<nav class="hidden md:flex items-center gap-6 relative z-25 pointer-events-auto">
-				<!-- Home -->
-				<a href="/home#home" class="inline-flex items-center justify-center text-[13px] font-mono tracking-widest text-white/60 hover:text-cyan-400 transition-colors uppercase py-1 px-2 group/link">
-					<span class="text-cyan-400 opacity-0 group-hover/link:opacity-100 transition-[opacity,transform] duration-200 mr-1 translate-x-1 group-hover/link:translate-x-0">[</span>
-					<span>Home</span>
-					<span class="text-cyan-400 opacity-0 group-hover/link:opacity-100 transition-[opacity,transform] duration-200 ml-1 -translate-x-1 group-hover/link:translate-x-0">]</span>
-				</a>
-				<!-- About -->
-				<a href="/home#about" class="inline-flex items-center justify-center text-[13px] font-mono tracking-widest text-white/60 hover:text-cyan-400 transition-colors uppercase py-1 px-2 group/link">
-					<span class="text-cyan-400 opacity-0 group-hover/link:opacity-100 transition-[opacity,transform] duration-200 mr-1 translate-x-1 group-hover/link:translate-x-0">[</span>
-					<span>About</span>
-					<span class="text-cyan-400 opacity-0 group-hover/link:opacity-100 transition-[opacity,transform] duration-200 ml-1 -translate-x-1 group-hover/link:translate-x-0">]</span>
-				</a>
+		<!-- SECTION 2: CONTACT DETAILS & INQUIRY FORM -->
+		<section class="border-t border-white/5 pt-16 pb-20 animate-stagger-item">
+			<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
 				
-				<!-- Services Dropdown Group -->
-				<div class="relative group/dropdown py-1 flex items-center justify-center">
-					<a href="/home#services" class="inline-flex items-center justify-center text-[13px] font-mono tracking-widest text-white/60 hover:text-cyan-400 transition-colors uppercase py-1 px-2 gap-1 group/link">
-						<span class="text-cyan-400 opacity-0 group-hover/link:opacity-100 transition-[opacity,transform] duration-200 mr-1 translate-x-1 group-hover/link:translate-x-0">[</span>
-						<span>Services</span>
-						<span class="text-cyan-400 opacity-0 group-hover/link:opacity-100 transition-[opacity,transform] duration-200 ml-1 -translate-x-1 group-hover/link:translate-x-0">]</span>
-						<svg class="w-3.5 h-3.5 text-white/40 group-hover/dropdown:text-cyan-400 transition-[color,transform] group-hover/dropdown:rotate-180 duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-							<polyline points="6 9 12 15 18 9"></polyline>
-						</svg>
-					</a>
-					
-					<!-- Dropdown Menu Box -->
-					<div class="absolute top-full left-1/2 -translate-x-1/2 pt-2.5 opacity-0 invisible group-hover/dropdown:opacity-100 group-hover/dropdown:visible transition-[opacity,visibility] duration-300 w-56 pointer-events-none group-hover/dropdown:pointer-events-auto z-50">
-						<div class="backdrop-blur-md bg-black/95 border border-white/10 rounded-lg p-2 shadow-2xl flex flex-col items-stretch space-y-0.5">
-							<a href="/home#services" class="inline-flex items-center justify-center text-[11px] font-mono uppercase tracking-widest text-neutral-400 hover:text-cyan-400 hover:bg-white/5 px-3 py-2 rounded transition-[color,background-color] group/dropitem">
-								<span class="text-cyan-400 opacity-0 group-hover/dropitem:opacity-100 transition-[opacity,transform] duration-200 mr-1.5 translate-x-1 group-hover/dropitem:translate-x-0">[</span>
-								<span>AI & ML Services</span>
-								<span class="text-cyan-400 opacity-0 group-hover/dropitem:opacity-100 transition-[opacity,transform] duration-200 ml-1.5 -translate-x-1 group-hover/dropitem:translate-x-0">]</span>
-							</a>
-							<a href="/home#staffing" class="inline-flex items-center justify-center text-[11px] font-mono uppercase tracking-widest text-neutral-400 hover:text-cyan-400 hover:bg-white/5 px-3 py-2 rounded transition-[color,background-color] group/dropitem">
-								<span class="text-cyan-400 opacity-0 group-hover/dropitem:opacity-100 transition-[opacity,transform] duration-200 mr-1.5 translate-x-1 group-hover/dropitem:translate-x-0">[</span>
-								<span>IT Staffing</span>
-								<span class="text-cyan-400 opacity-0 group-hover/dropitem:opacity-100 transition-[opacity,transform] duration-200 ml-1.5 -translate-x-1 group-hover/dropitem:translate-x-0">]</span>
-							</a>
+				<!-- Left Column: Details (5 columns) -->
+				<div class="lg:col-span-5 space-y-8 lg:pr-4">
+					<div class="space-y-4">
+						<div class="flex items-center gap-2">
+							<span class="text-[10px] font-mono tracking-widest text-cyan-400/80 uppercase">Direct Communication</span>
 						</div>
+						<h2 class="font-syne font-semibold text-2xl sm:text-3xl text-white tracking-tight leading-none select-text">
+							Get in touch directly
+						</h2>
+						<p class="text-neutral-400 text-sm leading-relaxed select-text font-light">
+							Whether you have a specific project in mind, need technical staffing support, or just want to explore possibilities, we're here to help.
+						</p>
 					</div>
-				</div>
 
-				<!-- Careers -->
-				<a href="/home#career" class="inline-flex items-center justify-center text-[13px] font-mono tracking-widest text-white/60 hover:text-cyan-400 transition-colors uppercase py-1 px-2 group/link">
-					<span class="text-cyan-400 opacity-0 group-hover/link:opacity-100 transition-[opacity,transform] duration-200 mr-1 translate-x-1 group-hover/link:translate-x-0">[</span>
-					<span>Careers</span>
-					<span class="text-cyan-400 opacity-0 group-hover/link:opacity-100 transition-[opacity,transform] duration-200 ml-1 -translate-x-1 group-hover/link:translate-x-0">]</span>
-				</a>
-				
-				<!-- Contact (Active) -->
-				<a href="#" class="inline-flex items-center justify-center text-[13px] font-mono tracking-widest text-cyan-400 transition-colors uppercase py-1 px-2">
-					<span class="text-cyan-400 opacity-100 mr-1">[</span>
-					<span>Contact</span>
-					<span class="text-cyan-400 opacity-100 ml-1">]</span>
-				</a>
-			</nav>
-		</div>
-	</header>
+					<!-- Address details stack (Clean, neat & minimal cards) -->
+					<div class="space-y-4 pt-6 border-t border-white/5">
+						<!-- Office Card -->
+						<div class="flex flex-col gap-4 p-5 rounded-2xl border border-white/5 bg-white/[0.01] hover:border-cyan-500/20 hover:bg-white/[0.02] transition-all duration-300 group/item">
+							<div class="flex items-start gap-4">
+								<div class="flex items-center justify-center w-10 h-10 rounded-xl bg-cyan-400/5 text-cyan-400 border border-cyan-400/10 group-hover/item:bg-cyan-400/10 group-hover/item:border-cyan-400/30 transition-all duration-300 shrink-0">
+									<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+										<path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+										<path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+									</svg>
+								</div>
+								<div class="space-y-1">
+									<span class="text-[10px] font-mono tracking-widest text-neutral-500 uppercase block group-hover/item:text-cyan-400 transition-colors">Office Location</span>
+									<p class="text-neutral-300 text-sm leading-relaxed select-text font-light">
+										diceforce IT LLC.<br />
+										567 Sunset Blvd, Suite 501<br />
+										Los Angeles, CA 90026
+									</p>
+								</div>
+							</div>
 
-	<!-- High-fidelity Preloader Overlay -->
-	<div id="sequence-loading-screen" class="fixed inset-0 bg-[#030303] z-[100] flex flex-col items-center justify-center transition-opacity duration-700 ease-out pointer-events-auto">
-		<div class="flex flex-col items-center gap-6">
-			<!-- Glowing Logo -->
-			<div class="relative w-16 h-16">
-				<img src="/diceforceITlogo_.gif" alt="diceforce IT Logo" class="w-full h-full object-contain" />
-				<div class="absolute inset-[-4px] rounded-full border border-cyan-500/20 border-t-cyan-400 animate-spin duration-1000"></div>
-			</div>
-			<div class="text-center space-y-2">
-				<div class="font-space text-[10px] tracking-[0.3em] text-white/80 uppercase">diceforce core</div>
-				<div class="font-mono text-[9px] text-white/40 uppercase tracking-widest">
-					Calibrating Neural Interface… <span id="loading-progress-text">0%</span>
-				</div>
-			</div>
-			<!-- Loading bar container -->
-			<div class="w-48 h-[1px] bg-white/5 rounded-full overflow-hidden">
-				<div id="loading-progress-bar-fill" class="h-full w-0 bg-cyan-400 transition-all duration-300"></div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Main Layout Layer (Swiss Minimalist Editorial Style) -->
-	<main class="relative z-20 w-full min-h-screen text-white font-sans flex flex-col items-center px-6 sm:px-12 md:px-16 pt-36 pb-0 pointer-events-auto select-auto">
-		<div class="max-w-6xl mx-auto w-full flex flex-col gap-12">
-			
-			<!-- SECTION 1: HERO (2-Column Layout) -->
-			<section class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center animate-stagger-item">
-				<!-- Left Column: Hero Copy -->
-				<div class="lg:col-span-7 space-y-6">
-					<h1 class="font-syne font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tighter leading-[0.95] text-white select-text text-balance">
-						Thinking about<br class="hidden sm:inline" />
-						your next move?
-					</h1>
-					<p class="text-neutral-400 font-light text-base sm:text-lg max-w-xl mt-6 leading-relaxed select-text">
-						Let’s discuss how diceforce IT can help make it real. Reach out to our design, engineering, and staffing teams.
-					</p>
-				</div>
-				<!-- Right Column: Interactive Particles (Loaded from SVG) -->
-				<div class="lg:col-span-5 relative w-full h-[400px] sm:h-[480px] lg:h-[550px] flex items-center justify-center overflow-hidden">
-					<div class="absolute inset-0 bg-[#00deff]/[0.02] blur-[80px] rounded-full pointer-events-none"></div>
-					<!-- Three.js Canvas Container -->
-					<div id="canvas-container" class="w-full h-full cursor-grab active:cursor-grabbing relative z-10"></div>
-				</div>
-			</section>
-
-			<!-- SECTION 2: CONTACT DETAILS & INQUIRY FORM -->
-			<section class="border-t border-white/5 pt-16 pb-20 animate-stagger-item">
-				<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
-					
-					<!-- Left Column: Details (5 columns) -->
-					<div class="lg:col-span-5 space-y-8 lg:pr-4">
-						<div class="space-y-4">
-							<h2 class="font-syne font-semibold text-2xl sm:text-3xl text-white tracking-tight leading-none select-text">
-								Get in touch directly
-							</h2>
-							<p class="text-neutral-400 text-sm leading-relaxed select-text font-light">
-								Whether you have a specific project in mind, need technical staffing support, or just want to explore possibilities, we're here to help.
-							</p>
+							<!-- Embedded Google Map -->
+							<div class="w-full h-44 rounded-xl overflow-hidden border border-white/10 opacity-70 group-hover/item:opacity-100 transition-opacity duration-300">
+								<iframe 
+									src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.289139268307!2d-118.2673822!3d34.0748726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c77d5b88a83f%3A0xea84126b86f6f962!2sSunset%20Blvd%2C%20Los%20Angeles%2C%20CA!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" 
+									width="100%" 
+									height="100%" 
+									style="border:0; filter: grayscale(1) invert(0.92) contrast(1.15);" 
+									allowfullscreen="" 
+									loading="lazy" 
+									referrerpolicy="no-referrer-when-downgrade"
+								></iframe>
+							</div>
 						</div>
 
-						<!-- Address details stack (Clean, neat & minimal) -->
-						<div class="space-y-6 pt-6 border-t border-white/5">
-							<div class="space-y-2">
-								<span class="text-neutral-500 font-mono text-[11px] uppercase tracking-wider block">Office</span>
-								<p class="text-neutral-300 text-sm leading-relaxed select-text font-light">
-									diceforce IT LLC.<br />
-									567 Sunset Blvd, Suite 501<br />
-									Los Angeles, CA 90026
-								</p>
+						<!-- Email Card -->
+						<div class="flex items-start gap-4 p-5 rounded-2xl border border-white/5 bg-white/[0.01] hover:border-cyan-500/20 hover:bg-white/[0.02] transition-all duration-300 group/item">
+							<div class="flex items-center justify-center w-10 h-10 rounded-xl bg-cyan-400/5 text-cyan-400 border border-cyan-400/10 group-hover/item:bg-cyan-400/10 group-hover/item:border-cyan-400/30 transition-all duration-300 shrink-0">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+								</svg>
 							</div>
-							<div class="space-y-2">
-								<span class="text-neutral-500 font-mono text-[11px] uppercase tracking-wider block">Email</span>
-								<a href="mailto:hello@diceforceit.com" class="text-neutral-300 hover:text-white transition-colors block select-text font-mono text-sm">
+							<div class="space-y-1">
+								<span class="text-[10px] font-mono tracking-widest text-neutral-500 uppercase block group-hover/item:text-cyan-400 transition-colors">Email Address</span>
+								<a href="mailto:hello@diceforceit.com" class="text-neutral-300 hover:text-white transition-colors block select-text font-mono text-sm sm:text-base">
 									hello@diceforceit.com
 								</a>
 							</div>
-							<div class="space-y-2">
-								<span class="text-neutral-500 font-mono text-[11px] uppercase tracking-wider block">Phone</span>
-								<span class="text-neutral-300 font-mono text-sm block select-text">(310) 555-0165</span>
+						</div>
+
+						<!-- Phone Card -->
+						<div class="flex items-start gap-4 p-5 rounded-2xl border border-white/5 bg-white/[0.01] hover:border-cyan-500/20 hover:bg-white/[0.02] transition-all duration-300 group/item">
+							<div class="flex items-center justify-center w-10 h-10 rounded-xl bg-cyan-400/5 text-cyan-400 border border-cyan-400/10 group-hover/item:bg-cyan-400/10 group-hover/item:border-cyan-400/30 transition-all duration-300 shrink-0">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+								</svg>
+							</div>
+							<div class="space-y-1">
+								<span class="text-[10px] font-mono tracking-widest text-neutral-500 uppercase block group-hover/item:text-cyan-400 transition-colors">Phone Number</span>
+								<span class="text-neutral-300 font-mono text-sm sm:text-base block select-text">(310) 555-0165</span>
 							</div>
 						</div>
 					</div>
+				</div>
 
-					<!-- Right Column: Inquiry Form (7 columns) -->
-					<div class="lg:col-span-7 space-y-8">
-						<div class="space-y-2">
+				<!-- Right Column: Inquiry Form (7 columns) -->
+				<div class="lg:col-span-7">
+					<!-- Glassmorphic Card Container -->
+					<div class="relative bg-neutral-950/40 backdrop-blur-xl border border-white/10 rounded-3xl p-6 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden group/form">
+						<!-- Top atmospheric gradient decoration (subtle and premium) -->
+						<div class="absolute -top-40 -right-40 w-80 h-80 bg-cyan-500/10 rounded-full blur-[60px] pointer-events-none transition-all duration-700 group-hover/form:bg-cyan-500/15"></div>
+						<div class="absolute -bottom-40 -left-40 w-80 h-80 bg-[#883ae2]/10 rounded-full blur-[60px] pointer-events-none transition-all duration-700 group-hover/form:bg-[#883ae2]/15"></div>
+
+						<!-- Card Header -->
+						<div class="space-y-3 mb-8 relative z-10">
+							<div class="flex items-center gap-2">
+								<span class="text-[10px] font-mono tracking-widest text-cyan-400/80 uppercase">Secure Channel</span>
+							</div>
 							<h2 class="font-syne font-semibold text-2xl sm:text-3xl text-white tracking-tight leading-none select-text">
 								Send a message
 							</h2>
@@ -181,114 +133,137 @@ import Layout from '../layouts/Layout.astro';
 							</p>
 						</div>
 
-						<div class="relative min-h-[460px]">
+						<div class="relative min-h-[460px] z-10">
 							<!-- Contact Form -->
 							<form id="contact-form" class="space-y-6">
-								<!-- 1. Inquiry Type (Clean cards) -->
-								<div class="space-y-3">
-									<span class="block font-mono text-[11px] uppercase tracking-widest text-neutral-400">Inquiry Type</span>
-									<div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-										<label class="relative flex flex-col p-4 border border-white/5 rounded-xl cursor-pointer bg-neutral-950/20 hover:border-white/10 transition-colors select-none focus-within:border-white/30">
-											<input type="radio" name="inquiry_type" value="ai_ml" class="sr-only" checked />
-											<span class="text-xs font-mono text-white uppercase tracking-wider font-semibold">AI & ML Solutions</span>
-											<span class="text-[10px] text-neutral-400 mt-1 leading-normal font-light">Custom models & systems</span>
-										</label>
-										<label class="relative flex flex-col p-4 border border-white/5 rounded-xl cursor-pointer bg-neutral-950/20 hover:border-white/10 transition-colors select-none focus-within:border-white/30">
-											<input type="radio" name="inquiry_type" value="staffing" class="sr-only" />
-											<span class="text-xs font-mono text-white uppercase tracking-wider font-semibold">IT Staffing</span>
-											<span class="text-[10px] text-neutral-400 mt-1 leading-normal font-light">Embed dedicated specialists</span>
-										</label>
-										<label class="relative flex flex-col p-4 border border-white/5 rounded-xl cursor-pointer bg-neutral-950/20 hover:border-white/10 transition-colors select-none focus-within:border-white/30">
-											<input type="radio" name="inquiry_type" value="general" class="sr-only" />
-											<span class="text-xs font-mono text-white uppercase tracking-wider font-semibold">General Inquiry</span>
-											<span class="text-[10px] text-neutral-400 mt-1 leading-normal font-light">Other questions & topics</span>
-										</label>
+								<!-- 1. Inquiry Type (Dropdown selection) -->
+								<div class="space-y-2">
+									<label for="inquiry_type" class="block font-mono text-xs uppercase tracking-widest text-neutral-300">Inquiry Type</label>
+									<div class="relative rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] focus-within:border-cyan-500/50 focus-within:bg-white/[0.04] transition-all duration-300">
+										<select 
+											id="inquiry_type" 
+											name="inquiry_type" 
+											class="w-full bg-transparent text-sm sm:text-base text-white outline-none py-3 px-4 pr-10 appearance-none cursor-pointer border-none focus:ring-0"
+										>
+											<option value="ai_ml" class="bg-neutral-950 text-white">AI & ML Solutions (Custom models & systems)</option>
+											<option value="staffing" class="bg-neutral-950 text-white">IT Staffing (Embed dedicated specialists)</option>
+											<option value="general" class="bg-neutral-950 text-white">General Inquiry (Other questions & topics)</option>
+										</select>
+										<!-- Custom Chevron Icon -->
+										<div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-neutral-400">
+											<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+												<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+											</svg>
+										</div>
 									</div>
 								</div>
 
 								<!-- 2. Name & Company -->
 								<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
 									<!-- Name -->
-									<div class="border-b border-white/10 hover:border-white/20 focus-within:border-white transition-colors duration-300 py-1 relative">
-										<label for="name" class="block font-mono text-[11px] uppercase tracking-widest text-neutral-400 mb-1">Your name</label>
-										<input 
-											type="text" 
-											id="name" 
-											name="name" 
-											required 
-											autocomplete="name"
-											placeholder="e.g. Tobias Neumann…" 
-											class="w-full bg-transparent text-sm text-white placeholder-neutral-600 outline-none py-1.5 transition-colors rounded-none border-none animate-none focus:ring-0"
-										/>
+									<div class="space-y-2">
+										<label for="name" class="block font-mono text-xs uppercase tracking-widest text-neutral-300">Your name</label>
+										<div class="relative rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] focus-within:border-cyan-500/50 focus-within:bg-white/[0.04] transition-all duration-300 px-4 py-2 flex items-center">
+											<input 
+												(type="text")
+												id="name" 
+												name="name" 
+												required 
+												autocomplete="name"
+												placeholder="e.g. Tobias Neumann…" 
+												class="w-full bg-transparent text-sm sm:text-base text-white placeholder-neutral-500 outline-none py-1 border-none focus:ring-0"
+											/>
+										</div>
 									</div>
 									<!-- Company -->
-									<div class="border-b border-white/10 hover:border-white/20 focus-within:border-white transition-colors duration-300 py-1 relative">
-										<label for="company" class="block font-mono text-[11px] uppercase tracking-widest text-neutral-400 mb-1">Company</label>
-										<input 
-											type="text" 
-											id="company" 
-											name="company" 
-											required 
-											autocomplete="organization"
-											placeholder="e.g. diceforce IT…" 
-											class="w-full bg-transparent text-sm text-white placeholder-neutral-600 outline-none py-1.5 transition-colors rounded-none border-none animate-none focus:ring-0"
-										/>
+									<div class="space-y-2">
+										<label for="company" class="block font-mono text-xs uppercase tracking-widest text-neutral-300">Company</label>
+										<div class="relative rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] focus-within:border-cyan-500/50 focus-within:bg-white/[0.04] transition-all duration-300 px-4 py-2 flex items-center">
+											<input 
+												type="text" 
+												id="company" 
+												name="company" 
+												required 
+												autocomplete="organization"
+												placeholder="e.g. diceforce IT…" 
+												class="w-full bg-transparent text-sm sm:text-base text-white placeholder-neutral-500 outline-none py-1 border-none focus:ring-0"
+											/>
+										</div>
 									</div>
 								</div>
 
 								<!-- 3. Email -->
-								<div class="border-b border-white/10 hover:border-white/20 focus-within:border-white transition-colors duration-300 py-1 relative">
-									<label for="email" class="block font-mono text-[11px] uppercase tracking-widest text-neutral-400 mb-1">Email</label>
-									<input 
-										type="email" 
-										id="email" 
-										name="email" 
-										required 
-										autocomplete="email"
-										spellcheck="false"
-										placeholder="e.g. hello@diceforceit.com…" 
-										class="w-full bg-transparent text-sm text-white placeholder-neutral-600 outline-none py-1.5 transition-colors rounded-none border-none animate-none focus:ring-0"
-									/>
+								<div class="space-y-2">
+									<label for="email" class="block font-mono text-xs uppercase tracking-widest text-neutral-300">Email</label>
+									<div class="relative rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] focus-within:border-cyan-500/50 focus-within:bg-white/[0.04] transition-all duration-300 px-4 py-2 flex items-center">
+										<input 
+											type="email" 
+											id="email" 
+											name="email" 
+											required 
+											autocomplete="email"
+											spellcheck="false"
+											placeholder="e.g. hello@diceforceit.com…" 
+											class="w-full bg-transparent text-sm sm:text-base text-white placeholder-neutral-500 outline-none py-1 border-none focus:ring-0"
+										/>
+									</div>
 								</div>
 
 								<!-- 4. Interactive selection pills for Skills/Capabilities -->
-								<div class="space-y-4">
-									<span class="block font-mono text-[11px] uppercase tracking-widest text-neutral-400">Select Areas of Interest</span>
+								<div class="space-y-2 relative">
+									<label class="block font-mono text-xs uppercase tracking-widest text-neutral-300">Select Areas of Interest</label>
 									
-									<div class="grid grid-cols-1 sm:grid-cols-2 gap-6 bg-neutral-950/20 border border-white/5 rounded-2xl p-5">
+									<!-- Dropdown Trigger Button -->
+									<button 
+										type="button" 
+										id="interests-dropdown-trigger"
+										class="w-full flex items-center justify-between bg-white/[0.02] border border-white/10 rounded-xl px-4 py-3 text-sm sm:text-base text-neutral-400 hover:bg-white/[0.04] transition-all duration-300 cursor-pointer outline-none focus:border-cyan-500/50"
+									>
+										<span id="interests-trigger-text" class="truncate select-none">Select areas of interest…</span>
+										<!-- Custom Chevron Icon -->
+										<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-neutral-400 transition-transform duration-300 pointer-events-none" id="interests-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+											<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+										</svg>
+									</button>
+
+									<!-- Dropdown Content Card (Floating) -->
+									<div 
+										id="interests-dropdown-content"
+										class="hidden absolute z-30 left-0 right-0 mt-2 bg-neutral-950/98 backdrop-blur-xl border border-white/10 rounded-2xl p-5 shadow-2xl space-y-4 max-h-72 overflow-y-auto"
+									>
 										<!-- AI & ML Group -->
-										<div id="pills-ai-ml" class="space-y-2 transition-opacity duration-300">
-											<span class="block font-mono text-[9px] text-white/80 uppercase tracking-widest font-semibold">// AI & ML Solutions</span>
-											<div class="flex flex-wrap gap-2">
-												<label class="relative flex items-center justify-center px-3 py-1.5 border border-white/5 rounded-full cursor-pointer bg-neutral-950/40 hover:border-white/10 transition-colors select-none text-[10px] font-mono text-neutral-300">
-													<input type="checkbox" name="services" value="llms_agents" class="sr-only" />
+										<div id="pills-ai-ml" class="space-y-3 transition-opacity duration-300">
+											<span class="block font-mono text-[10px] text-cyan-400/80 uppercase tracking-widest font-semibold">AI & ML Solutions</span>
+											<div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+												<label class="relative flex items-center gap-3 px-4 py-2.5 border border-white/10 rounded-xl cursor-pointer bg-white/[0.02] hover:border-cyan-400/30 hover:bg-cyan-950/20 transition-all duration-300 select-none text-xs font-mono text-neutral-300">
+													<input type="checkbox" name="services" value="llms_agents" class="w-3.5 h-3.5 rounded border-white/20 bg-transparent text-cyan-500 focus:ring-0 focus:ring-offset-0 cursor-pointer" />
 													<span>LLMs & Agents</span>
 												</label>
-												<label class="relative flex items-center justify-center px-3 py-1.5 border border-white/5 rounded-full cursor-pointer bg-neutral-950/40 hover:border-white/10 transition-colors select-none text-[10px] font-mono text-neutral-300">
-													<input type="checkbox" name="services" value="fine_tuning" class="sr-only" />
+												<label class="relative flex items-center gap-3 px-4 py-2.5 border border-white/10 rounded-xl cursor-pointer bg-white/[0.02] hover:border-cyan-400/30 hover:bg-cyan-950/20 transition-all duration-300 select-none text-xs font-mono text-neutral-300">
+													<input type="checkbox" name="services" value="fine_tuning" class="w-3.5 h-3.5 rounded border-white/20 bg-transparent text-cyan-500 focus:ring-0 focus:ring-offset-0 cursor-pointer" />
 													<span>Fine-Tuning</span>
 												</label>
-												<label class="relative flex items-center justify-center px-3 py-1.5 border border-white/5 rounded-full cursor-pointer bg-neutral-950/40 hover:border-white/10 transition-colors select-none text-[10px] font-mono text-neutral-300">
-													<input type="checkbox" name="services" value="vector_db" class="sr-only" />
+												<label class="relative flex items-center gap-3 px-4 py-2.5 border border-white/10 rounded-xl cursor-pointer bg-white/[0.02] hover:border-cyan-400/30 hover:bg-cyan-950/20 transition-all duration-300 select-none text-xs font-mono text-neutral-300">
+													<input type="checkbox" name="services" value="vector_db" class="w-3.5 h-3.5 rounded border-white/20 bg-transparent text-cyan-500 focus:ring-0 focus:ring-offset-0 cursor-pointer" />
 													<span>Vector DBs</span>
 												</label>
 											</div>
 										</div>
 
 										<!-- Staffing Group -->
-										<div id="pills-staffing" class="space-y-2 transition-opacity duration-300">
-											<span class="block font-mono text-[9px] text-white/80 uppercase tracking-widest font-semibold">// IT Staffing Roles</span>
-											<div class="flex flex-wrap gap-2">
-												<label class="relative flex items-center justify-center px-3 py-1.5 border border-white/5 rounded-full cursor-pointer bg-neutral-950/40 hover:border-white/10 transition-colors select-none text-[10px] font-mono text-neutral-300">
-													<input type="checkbox" name="services" value="ai_researchers" class="sr-only" />
+										<div id="pills-staffing" class="space-y-3 transition-opacity duration-300">
+											<span class="block font-mono text-[10px] text-cyan-400/80 uppercase tracking-widest font-semibold">IT Staffing Roles</span>
+											<div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+												<label class="relative flex items-center gap-3 px-4 py-2.5 border border-white/10 rounded-xl cursor-pointer bg-white/[0.02] hover:border-cyan-400/30 hover:bg-cyan-950/20 transition-all duration-300 select-none text-xs font-mono text-neutral-300">
+													<input type="checkbox" name="services" value="ai_researchers" class="w-3.5 h-3.5 rounded border-white/20 bg-transparent text-cyan-500 focus:ring-0 focus:ring-offset-0 cursor-pointer" />
 													<span>AI Researchers</span>
 												</label>
-												<label class="relative flex items-center justify-center px-3 py-1.5 border border-white/5 rounded-full cursor-pointer bg-neutral-950/40 hover:border-white/10 transition-colors select-none text-[10px] font-mono text-neutral-300">
-													<input type="checkbox" name="services" value="mlops" class="sr-only" />
+												<label class="relative flex items-center gap-3 px-4 py-2.5 border border-white/10 rounded-xl cursor-pointer bg-white/[0.02] hover:border-cyan-400/30 hover:bg-cyan-950/20 transition-all duration-300 select-none text-xs font-mono text-neutral-300">
+													<input type="checkbox" name="services" value="mlops" class="w-3.5 h-3.5 rounded border-white/20 bg-transparent text-cyan-500 focus:ring-0 focus:ring-offset-0 cursor-pointer" />
 													<span>MLOps Engineers</span>
 												</label>
-												<label class="relative flex items-center justify-center px-3 py-1.5 border border-white/5 rounded-full cursor-pointer bg-neutral-950/40 hover:border-white/10 transition-colors select-none text-[10px] font-mono text-neutral-300">
-													<input type="checkbox" name="services" value="backend" class="sr-only" />
+												<label class="relative flex items-center gap-3 px-4 py-2.5 border border-white/10 rounded-xl cursor-pointer bg-white/[0.02] hover:border-cyan-400/30 hover:bg-cyan-950/20 transition-all duration-300 select-none text-xs font-mono text-neutral-300">
+													<input type="checkbox" name="services" value="backend" class="w-3.5 h-3.5 rounded border-white/20 bg-transparent text-cyan-500 focus:ring-0 focus:ring-offset-0 cursor-pointer" />
 													<span>Backend Pioneers</span>
 												</label>
 											</div>
@@ -297,16 +272,18 @@ import Layout from '../layouts/Layout.astro';
 								</div>
 
 								<!-- 5. Message -->
-								<div class="border-b border-white/10 hover:border-white/20 focus-within:border-white transition-colors duration-300 py-1 relative">
-									<label for="message" class="block font-mono text-[11px] uppercase tracking-widest text-neutral-400 mb-1">Your message</label>
-									<textarea 
-										id="message" 
-										name="message" 
-										required 
-										rows="4" 
-										placeholder="e.g. We need dedicated MLOps support for a custom LLM pipeline…" 
-										class="w-full bg-transparent text-sm text-white placeholder-neutral-600 outline-none py-1.5 transition-colors resize-none rounded-none border-none focus:ring-0"
-									></textarea>
+								<div class="space-y-2">
+									<label for="message" class="block font-mono text-xs uppercase tracking-widest text-neutral-300">Your message</label>
+									<div class="relative rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] focus-within:border-cyan-500/50 focus-within:bg-white/[0.04] transition-all duration-300 px-4 py-3">
+										<textarea 
+											id="message" 
+											name="message" 
+											required 
+											rows="4" 
+											placeholder="e.g. We need dedicated MLOps support for a custom LLM pipeline…" 
+											class="w-full bg-transparent text-sm sm:text-base text-white placeholder-neutral-500 outline-none py-1 border-none focus:ring-0 resize-none"
+										></textarea>
+									</div>
 								</div>
 
 								<div class="pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -337,7 +314,7 @@ import Layout from '../layouts/Layout.astro';
 							</form>
 
 							<!-- Success state (Hidden initially) -->
-							<div id="success-screen" class="hidden absolute inset-0 bg-[#000000]/98 backdrop-blur-md flex flex-col items-center justify-center text-center space-y-6 py-6 rounded-2xl z-20 border border-white/10">
+							<div id="success-screen" class="hidden absolute inset-0 bg-neutral-950/95 backdrop-blur-xl flex flex-col items-center justify-center text-center space-y-6 p-6 rounded-3xl z-20 border border-white/10">
 								<div class="relative w-16 h-16 mb-2">
 									<div class="absolute inset-0 rounded-full border border-white/10 bg-white/5 animate-pulse-slow"></div>
 									<div class="absolute inset-2 rounded-full border border-white/20 flex items-center justify-center">
@@ -350,7 +327,7 @@ import Layout from '../layouts/Layout.astro';
 									<h3 class="text-xl font-syne font-bold tracking-tight text-white uppercase select-text">Transmission Complete</h3>
 									
 									<!-- Simulated Console -->
-									<div class="bg-black/90 border border-white/10 rounded-lg p-4 font-mono text-[9px] text-left text-neutral-400 space-y-1.5 overflow-hidden h-28 max-w-sm mx-auto shadow-inner">
+									<div class="bg-black/90 border border-white/10 rounded-lg p-4 font-mono text-[10px] text-left text-neutral-400 space-y-1.5 overflow-hidden h-28 max-w-sm mx-auto shadow-inner">
 										<div class="terminal-line opacity-0">> CALIBRATING NEURAL ROUTING… [OK]</div>
 										<div class="terminal-line opacity-0">> UPLOADING SECURE STREAM… [OK]</div>
 										<div class="terminal-line opacity-0">> PACKET INTEGRITY MATCH: 100%</div>
@@ -365,205 +342,17 @@ import Layout from '../layouts/Layout.astro';
 									id="reset-form-btn" 
 									class="text-[10px] font-mono tracking-widest text-neutral-400 hover:text-white uppercase transition-colors pointer-events-auto cursor-pointer"
 								>
-									// Send Another Transmission
+									Send Another Transmission
 								</button>
 							</div>
 						</div>
 					</div>
-
 				</div>
-			</section>
 
-		</div>
-	</main>
-
-	<!-- FOOTER -->
-	<footer class="relative w-full pt-28 pb-40 mt-20 overflow-hidden bg-transparent px-6 sm:px-12 md:px-16">
-		
-		<!-- Footer Background Image (Aligned and stuck to bottom) -->
-		<div class="absolute inset-x-0 bottom-0 w-full h-full z-0 pointer-events-none overflow-hidden">
-			<img 
-				src="/footerbackground.jpg" 
-				alt="" 
-				aria-hidden="true"
-				class="w-full h-full object-cover object-bottom opacity-45 mix-blend-screen" 
-				style="mix-blend-mode: screen; object-position: bottom;"
-			/>
-		</div>
-
-		<!-- Footer Content Grid -->
-		<div class="max-w-6xl mx-auto w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-16 relative z-10 pointer-events-auto">
-			<!-- Brand Block -->
-			<div class="lg:col-span-4 space-y-3">
-				<a href="/home" class="flex items-center gap-3">
-					<img src="/diceforceITlogo_.gif" alt="Diceforce IT Logo" class="w-14 h-14 object-contain" width="56" height="56" />
-					<span class="text-[13px] font-space tracking-[0.25em] text-cyan-400 font-bold leading-none select-text">Diceforce IT</span>
-				</a>
-				<p class="text-neutral-300 text-[13px] leading-relaxed max-w-xs select-text">
-					Digital experiences that connect, scale and perform. A creative technology studio for design, strategy, marketing, and scalable AI solutions.
-				</p>
-				<span class="text-[13px] font-mono text-neutral-400 block pt-3 select-text">
-					© 2026 diceforce IT — All work, all rights reserved.
-				</span>
 			</div>
-			
-			<!-- Column 2: Navigate -->
-			<div class="lg:col-span-2 space-y-3">
-				<h4 class="text-[13px] font-mono uppercase tracking-[0.2em] text-white font-bold select-text">Navigate</h4>
-				<ul class="space-y-2 text-[13px] text-neutral-300 font-sans">
-					<li><a href="/home#home" class="hover:text-cyan-400 transition-colors">// Home</a></li>
-					<li><a href="/home#about" class="hover:text-cyan-400 transition-colors">// About</a></li>
-					<li><a href="/home#services" class="hover:text-cyan-400 transition-colors">// Services</a></li>
-					<li><a href="/home#staffing" class="hover:text-cyan-400 transition-colors">// Staffing</a></li>
-					<li><a href="/home#career" class="hover:text-cyan-400 transition-colors">// Careers</a></li>
-					<li><a href="#" class="text-white hover:text-cyan-400 transition-colors">// Contact</a></li>
-				</ul>
-			</div>
-			
-			<!-- Column 3: Links -->
-			<div class="lg:col-span-3 space-y-3">
-				<h4 class="text-[13px] font-mono uppercase tracking-[0.2em] text-white font-bold select-text">Links</h4>
-				<ul class="space-y-2 text-[13px] text-neutral-300 font-sans">
-					<li><a href="/terms" class="hover:text-cyan-400 transition-colors">Terms of Service</a></li>
-					<li><a href="/privacy" class="hover:text-cyan-400 transition-colors">Privacy Policy</a></li>
-					<li><a href="/disclaimer" class="hover:text-cyan-400 transition-colors">Disclaimer</a></li>
-					<li><a href="/404" class="hover:text-cyan-400 transition-colors">404 Error Page</a></li>
-					<li><a href="https://framer.com/templates" target="_blank" rel="noopener" class="hover:text-cyan-400 transition-colors">More Templates</a></li>
-				</ul>
-			</div>
-			
-			<!-- Column 4: Socials -->
-			<div class="lg:col-span-3 space-y-3">
-				<h4 class="text-[13px] font-mono uppercase tracking-[0.2em] text-white font-bold select-text">Socials</h4>
-				<ul class="space-y-2 text-[13px] text-neutral-300 font-sans">
-					<li>
-						<a href="https://dribbble.com/" target="_blank" rel="noopener" class="flex items-center gap-2 hover:text-cyan-400 transition-colors group py-0.5">
-							<svg class="w-3.5 h-3.5 text-neutral-400 group-hover:text-cyan-400 transition-colors" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 5.537 4.477 10.019 10 10.019 5.523 0 10-4.482 10-10.019C22 6.484 17.522 2 12 2zm1.19 1.834c1.867.759 3.284 2.115 4.148 3.864a7.994 7.994 0 00-3.328-1.57c-.126-.454-.265-.898-.415-1.328-3.08-1.127-5.918-.769-8.497.697-.247-.468-.465-.968-.65-1.498a8.04 8.04 0 018.742-1.493zm-5.74 3.731c2.146-1.135 4.473-1.42 6.945-.632.128.375.247.763.355 1.159-2.585.642-5.32 1.077-8.08 1.133a8.1 8.1 0 00.78-1.66zm-2.072 2.94a18.256 18.256 0 018.172-1.22c.237 1.012.428 2.062.569 3.125a17.06 17.06 0 01-6.19 2.503c-1.378-1.636-2.18-3.23-2.551-4.408zm.979 5.86c.264.838.835 2.032 1.764 3.298a8.013 8.013 0 01-5.187-5.074c.905-.098 2.235-.145 3.423-.292.052.704.072 1.396.072 2.068zm3.264 3.655a15.82 15.82 0 01-1.554-2.923c2.723-.559 5.485-1.696 7.643-3.649.626 1.488 1.066 3.037 1.282 4.604a8.026 8.026 0 01-7.371 1.968zm8.791-3.69c-.21-1.43-.604-2.833-1.171-4.185.736-.37 1.433-.8 2.075-1.286a8.006 8.006 0 01-.904 5.471z" clip-rule="evenodd" /></svg>
-							Dribbble
-						</a>
-					</li>
-					<li>
-						<a href="https://instagram.com/" target="_blank" rel="noopener" class="flex items-center gap-2 hover:text-cyan-400 transition-colors group py-0.5">
-							<svg class="w-3.5 h-3.5 text-neutral-400 group-hover:text-cyan-400 transition-colors" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" /></svg>
-							Instagram
-						</a>
-					</li>
-					<li>
-						<a href="https://twitter.com/" target="_blank" rel="noopener" class="flex items-center gap-2 hover:text-cyan-400 transition-colors group py-0.5">
-							<svg class="w-3.5 h-3.5 text-neutral-400 group-hover:text-cyan-400 transition-colors" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
-							Twitter / X
-						</a>
-					</li>
-					<li>
-						<a href="https://linkedin.com/" target="_blank" rel="noopener" class="flex items-center gap-2 hover:text-cyan-400 transition-colors group py-0.5">
-							<svg class="w-3.5 h-3.5 text-neutral-400 group-hover:text-cyan-400 transition-colors" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.23 0H1.77C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.2 0 22.23 0zM7.12 20.45H3.56V9h3.56v11.45zM5.34 7.43a2.06 2.06 0 110-4.11 2.06 2.06 0 010 4.11zm15.11 13.02h-3.56v-5.6c0-1.34-.03-3.05-1.86-3.05-1.86 0-2.14 1.45-2.14 2.95v5.7H9.33V9h3.42v1.56h.05c.48-.9 1.64-1.86 3.39-1.86 3.63 0 4.3 2.39 4.3 5.5v6.25z" /></svg>
-							LinkedIn
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
+		</section>
 
-		<!-- Giant bold text logo at the very bottom -->
-		<div class="w-full mt-24 pt-12 border-t border-white/5 relative z-10 pointer-events-auto select-none">
-			<h2 class="giant-reveal-text text-[12vw] sm:text-[15vw] lg:text-[220px] font-extrabold tracking-[12px] mr-[-12px] uppercase leading-none font-syne select-none text-center cursor-default">
-				DICEFORCE IT
-			</h2>
-		</div>
-	</footer>
-
-	<!-- Inject CSS details -->
-	<style>
-		/* Background Dot/Grid Pattern */
-		.grid-overlay-home {
-			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M 40 0 L 40 80 M 0 40 L 80 40' stroke='rgba(255, 255, 255, 0.012)' stroke-width='1'/%3E%3Cpolygon points='40,39.5 40.5,40 40,40.5 39.5,40' fill='rgba(255, 255, 255, 0.05)' stroke='rgba(255, 255, 255, 0.02)' stroke-width='0.5'/%3E%3C/svg%3E");
-			background-size: 80px 80px;
-			background-position: center center;
-			mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 90%);
-			-webkit-mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 90%);
-		}
-
-		/* Background slow CSS drifting animations */
-		@keyframes drift-slow {
-			0%, 100% { transform: translate(0px, 0px) scale(1); }
-			50% { transform: translate(45px, -35px) scale(1.06); }
-		}
-		@keyframes drift-medium {
-			0%, 100% { transform: translate(0px, 0px) scale(1.05); }
-			50% { transform: translate(-35px, 45px) scale(0.94); }
-		}
-		.animate-drift-slow {
-			animation: drift-slow 20s ease-in-out infinite;
-		}
-		.animate-drift-medium {
-			animation: drift-medium 24s ease-in-out infinite;
-		}
-
-		@keyframes pulse-slow {
-			0%, 100% { opacity: 0.5; transform: scale(1); }
-			50% { opacity: 0.8; transform: scale(1.03); }
-		}
-		.animate-pulse-slow {
-			animation: pulse-slow 8s ease-in-out infinite;
-		}
-
-		/* Interactive Mouse Spotlight Glow Effect */
-		.mouse-spotlight {
-			background: radial-gradient(
-				600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-				rgba(3, 119, 255, 0.04) 0%,
-				rgba(0, 222, 255, 0.02) 40%,
-				transparent 75%
-			);
-			transition: background 0.3s ease-out;
-		}
-
-		/* Native CSS :has() for interactive forms (Premium feel) */
-		label:has(input[type="radio"]:checked) {
-			border-color: rgba(255, 255, 255, 0.4);
-			background-color: rgba(255, 255, 255, 0.05);
-			box-shadow: none;
-		}
-		label:has(input[type="radio"]:checked) span:first-child {
-			color: #ffffff;
-			text-shadow: none;
-		}
-
-		label:has(input[type="checkbox"]:checked) {
-			border-color: rgba(255, 255, 255, 0.4);
-			background-color: rgba(255, 255, 255, 0.08);
-			color: #ffffff;
-			box-shadow: none;
-		}
-
-		/* Custom slow, smooth spin for the button border gradient */
-		@keyframes border-spin {
-			from {
-				transform: rotate(0deg);
-			}
-			to {
-				transform: rotate(360deg);
-			}
-		}
-		.animate-border-spin {
-			animation: border-spin 3s linear infinite;
-		}
-
-		/* Giant reveal text spotlight effect */
-		.giant-reveal-text {
-			background-image: radial-gradient(
-				220px circle at var(--text-mouse-x, -999px) var(--text-mouse-y, -999px),
-				rgba(255, 255, 255, 1) 0%,
-				rgba(0, 222, 255, 0.8) 35%,
-				rgba(3, 119, 255, 0.3) 65%,
-				rgba(255, 255, 255, 0.06) 100%
-			);
-			background-clip: text;
-			-webkit-background-clip: text;
-			color: transparent;
-			transition: background-image 0.1s ease-out;
-		}
-	</style>
+	</div>
 
 	<!-- Hydration Script -->
 	<script>
@@ -571,97 +360,25 @@ import Layout from '../layouts/Layout.astro';
 		import { gsap } from 'gsap';
 
 		// Elements
-		const loadingScreen = document.getElementById('sequence-loading-screen');
-		const loadingProgressText = document.getElementById('loading-progress-text');
-		const loadingFill = document.getElementById('loading-progress-bar-fill');
-		const mainHeader = document.getElementById('main-header');
-		const mainElement = document.querySelector('main');
-
 		const contactForm = document.getElementById('contact-form') as HTMLFormElement | null;
 		const successScreen = document.getElementById('success-screen');
 		const resetFormBtn = document.getElementById('reset-form-btn');
-
-
-		// 2. Simulated Preloader Sequence
-		let currentProgress = 0;
-		const loadInterval = setInterval(() => {
-			currentProgress += Math.floor(Math.random() * 15) + 5;
-			if (currentProgress >= 100) {
-				currentProgress = 100;
-				clearInterval(loadInterval);
-				dismissPreloader();
-			}
-			
-			if (loadingProgressText) loadingProgressText.innerText = `${currentProgress}%`;
-			if (loadingFill) loadingFill.style.width = `${currentProgress}%`;
-		}, 60);
-
-		const dismissPreloader = () => {
-			if (!loadingScreen) return;
-			
-			// Fade out screen
-			gsap.to(loadingScreen, {
-				opacity: 0,
-				duration: 0.6,
-				ease: 'power2.out',
-				onComplete: () => {
-					loadingScreen.style.display = 'none';
-					initializeEntranceAnimations();
-				}
-			});
-		};
-
-		// 3. GSAP Entrance Animations
-		const initializeEntranceAnimations = () => {
-			// Animate Header
-			gsap.to(mainHeader, {
-				opacity: 1,
-				y: 0,
-				duration: 0.8,
-				ease: 'power3.out',
-				onStart: () => {
-					if (mainHeader) {
-						mainHeader.classList.remove('pointer-events-none');
-						mainHeader.classList.add('pointer-events-auto');
-					}
-				}
-			});
-
-			// Animate elements sequentially
-			gsap.fromTo('.animate-stagger-item', 
-				{ opacity: 0, y: 30 },
-				{ 
-					opacity: 1, 
-					y: 0, 
-					duration: 1, 
-					stagger: 0.15,
-					ease: 'power3.out' 
-				}
-			);
-		};
-
-		// 4. Mouse Movements Spotlight Update
-		if (mainElement) {
-			window.addEventListener('mousemove', (e) => {
-				const rect = mainElement.getBoundingClientRect();
-				const x = e.clientX - rect.left;
-				const y = e.clientY - rect.top;
-				
-				mainElement.style.setProperty('--mouse-x', `${x}px`);
-				mainElement.style.setProperty('--mouse-y', `${y}px`);
-			});
-		}
-
-		// 5. Interactive Form Inquiry Filter
-		const inquiryRadios = document.querySelectorAll('input[name="inquiry_type"]');
+		const inquirySelect = document.getElementById('inquiry_type') as HTMLSelectElement | null;
 		const pillsAiMl = document.getElementById('pills-ai-ml');
 		const pillsStaffing = document.getElementById('pills-staffing');
-		
+		const dropdownTrigger = document.getElementById('interests-dropdown-trigger');
+		const dropdownContent = document.getElementById('interests-dropdown-content');
+		const dropdownChevron = document.getElementById('interests-chevron');
+		const triggerText = document.getElementById('interests-trigger-text');
+		const checkboxes = document.querySelectorAll('#interests-dropdown-content input[type="checkbox"]') as NodeListOf<HTMLInputElement>;
+		const canvasContainer = document.getElementById('canvas-container');
+		const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		// 1. Interactive Form Inquiry Filter
 		const updateInquiryGroups = () => {
-			const checkedRadio = document.querySelector('input[name="inquiry_type"]:checked') as HTMLInputElement | null;
-			if (!checkedRadio) return;
+			if (!inquirySelect) return;
 			
-			const type = checkedRadio.value;
+			const type = inquirySelect.value;
 			if (type === 'ai_ml') {
 				gsap.to(pillsAiMl, { opacity: 1, duration: 0.4 });
 				gsap.to(pillsStaffing, { opacity: 0.25, duration: 0.4 });
@@ -673,12 +390,66 @@ import Layout from '../layouts/Layout.astro';
 			}
 		};
 		
-		inquiryRadios.forEach(radio => {
-			radio.addEventListener('change', updateInquiryGroups);
-		});
+		if (inquirySelect) {
+			inquirySelect.addEventListener('change', updateInquiryGroups);
+		}
 		updateInquiryGroups();
 
-		// 6. Form Submission Animation (Simulated Terminal Output)
+		// Custom Multi-select Dropdown for Areas of Interest
+		if (dropdownTrigger && dropdownContent && dropdownChevron) {
+			dropdownTrigger.addEventListener('click', (e) => {
+				e.stopPropagation();
+				const isHidden = dropdownContent.classList.contains('hidden');
+				if (isHidden) {
+					dropdownContent.classList.remove('hidden');
+					dropdownChevron.style.transform = 'rotate(180deg)';
+				} else {
+					dropdownContent.classList.add('hidden');
+					dropdownChevron.style.transform = 'rotate(0deg)';
+				}
+			});
+			
+			// Close when clicking outside
+			document.addEventListener('click', (e) => {
+				const target = e.target as HTMLElement;
+				if (dropdownContent && dropdownTrigger && !dropdownContent.contains(target) && !dropdownTrigger.contains(target)) {
+					dropdownContent.classList.add('hidden');
+					dropdownChevron.style.transform = 'rotate(0deg)';
+				}
+			});
+		}
+
+		// Update trigger text based on selected options
+		const updateTriggerText = () => {
+			if (!triggerText || !checkboxes) return;
+			const selected: string[] = [];
+			checkboxes.forEach((cb) => {
+				if (cb.checked) {
+					// Get the label text
+					const labelSpan = cb.nextElementSibling as HTMLSpanElement | null;
+					if (labelSpan) {
+						selected.push(labelSpan.innerText.trim());
+					}
+				}
+			});
+
+			if (selected.length === 0) {
+				triggerText.innerText = 'Select areas of interest…';
+				triggerText.classList.remove('text-cyan-400');
+				triggerText.classList.add('text-neutral-400');
+			} else {
+				triggerText.innerText = selected.join(', ');
+				triggerText.classList.remove('text-neutral-400');
+				triggerText.classList.add('text-cyan-400');
+			}
+		};
+
+		checkboxes.forEach((cb) => {
+			cb.addEventListener('change', updateTriggerText);
+		});
+		updateTriggerText();
+
+		// 2. Form Submission Animation (Simulated Terminal Output)
 		if (contactForm && successScreen && resetFormBtn) {
 			contactForm.addEventListener('submit', (e) => {
 				e.preventDefault();
@@ -735,6 +506,7 @@ import Layout from '../layouts/Layout.astro';
 						
 						contactForm.reset();
 						updateInquiryGroups();
+						updateTriggerText();
 						contactForm.classList.remove('hidden');
 						contactForm.style.opacity = '0';
 						contactForm.style.transform = 'translateY(-10px)';
@@ -756,7 +528,7 @@ import Layout from '../layouts/Layout.astro';
 			});
 		}
 
-		// 7. Three.js Interactive Particle SVG Image System
+		// 3. Three.js Interactive Particle SVG Image System
 		let scene: THREE.Scene, 
 			camera: THREE.PerspectiveCamera, 
 			renderer: THREE.WebGLRenderer,
@@ -764,9 +536,6 @@ import Layout from '../layouts/Layout.astro';
 			points: THREE.Points,
 			currentScale = 1.0;
 		
-		const canvasContainer = document.getElementById('canvas-container');
-		const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
 		function initThree() {
 			if (!canvasContainer) return;
 			
@@ -777,7 +546,6 @@ import Layout from '../layouts/Layout.astro';
 			
 			img.onload = () => {
 				const sampleCanvas = document.createElement('canvas');
-				// Define canvas size keeping SVG aspect ratio (767.7 x 738.36)
 				const sWidth = 180;
 				const sHeight = Math.round(180 * (738.36 / 767.7));
 				
@@ -801,9 +569,7 @@ import Layout from '../layouts/Layout.astro';
 						const a = data[idx + 3];
 						
 						if (a > 60) {
-							// Map to centered WebGL coords (baseline scale 5.0)
 							const px = ((x / sWidth) - 0.5) * 5.0;
-							// Flip Y coordinate for WebGL
 							const py = -((y / sHeight) - 0.5) * 5.0 * (sHeight / sWidth);
 							const pz = (Math.random() - 0.5) * 0.12;
 							
@@ -819,7 +585,6 @@ import Layout from '../layouts/Layout.astro';
 					}
 				}
 				
-				// Limit for performance
 				const maxParticles = 3000;
 				let particlesList = [];
 				if (rawParticles.length > maxParticles) {
@@ -862,22 +627,18 @@ import Layout from '../layouts/Layout.astro';
 				const p = particlesList[i];
 				const i3 = i * 3;
 				
-				// Target shape coordinates
 				originalPositions[i3] = p.x;
 				originalPositions[i3 + 1] = p.y;
 				originalPositions[i3 + 2] = p.z;
 				
-				// Spawn/convergence starting position (widely dispersed particles)
 				positions[i3] = p.x + (Math.random() - 0.5) * 12;
 				positions[i3 + 1] = p.y + (Math.random() - 0.5) * 12;
 				positions[i3 + 2] = p.z + (Math.random() - 0.5) * 12;
 				
-				// Colors from the SVG gradients
 				colors[i3] = p.r;
 				colors[i3 + 1] = p.g;
 				colors[i3 + 2] = p.b;
 				
-				// Initial velocities
 				velocities[i3] = 0;
 				velocities[i3 + 1] = 0;
 				velocities[i3 + 2] = 0;
@@ -887,7 +648,6 @@ import Layout from '../layouts/Layout.astro';
 			geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 			geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 			
-			// Generate circular fuzzy texture
 			const canvas = document.createElement('canvas');
 			canvas.width = 32;
 			canvas.height = 32;
@@ -916,14 +676,12 @@ import Layout from '../layouts/Layout.astro';
 			points = new THREE.Points(geometry, material);
 			scene.add(points);
 			
-			// Dynamic Scale Adjuster based on container dimensions
 			function adjustScale() {
 				if (!points || !canvasContainer) return;
 				const w = canvasContainer.clientWidth;
 				const h = canvasContainer.clientHeight || 400;
 				const aspect = w / h;
 				
-				// Base scale is 1.0 (for width 3.8). Scale down on portrait displays to avoid cut-off.
 				if (aspect < 1.0) {
 					currentScale = aspect * 0.9;
 				} else {
@@ -932,13 +690,11 @@ import Layout from '../layouts/Layout.astro';
 				points.scale.set(currentScale, currentScale, currentScale);
 			}
 			
-			// Set initial scale
 			adjustScale();
 			
-			// Setup interaction variables
 			const mouse = new THREE.Vector2(-9999, -9999);
 			const mouse3D = new THREE.Vector3(-9999, -9999, 0);
-			const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0); // Z=0 plane
+			const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
 			const raycaster = new THREE.Raycaster();
 			
 			function updateMousePosition(clientX: number, clientY: number) {
@@ -1001,7 +757,6 @@ import Layout from '../layouts/Layout.astro';
 					let vy = velocities[idx + 1];
 					let vz = velocities[idx + 2];
 					
-					// 1. Interactive Mouse Repulsion (scaled to points local coordinate space)
 					if (mouse.x > -1000 && !prefersReduced) {
 						const localMouseX = mouse3D.x / currentScale;
 						const localMouseY = mouse3D.y / currentScale;
@@ -1024,7 +779,6 @@ import Layout from '../layouts/Layout.astro';
 						}
 					}
 					
-					// 2. Restoring Spring Force back to origin SVG shapes
 					const sx = (ox - x) * springForce;
 					const sy = (oy - y) * springForce;
 					const sz = (oz - z) * springForce;
@@ -1033,12 +787,10 @@ import Layout from '../layouts/Layout.astro';
 					vy += sy * delta;
 					vz += sz * delta;
 					
-					// 3. Physical Damping
 					vx *= damping;
 					vy *= damping;
 					vz *= damping;
 					
-					// 4. Update coordinates
 					x += vx;
 					y += vy;
 					z += vz;
@@ -1058,7 +810,6 @@ import Layout from '../layouts/Layout.astro';
 			
 			animate();
 			
-			// Window Resize Listener
 			window.addEventListener('resize', () => {
 				if (!canvasContainer || !renderer || !camera) return;
 				const w = canvasContainer.clientWidth;
@@ -1072,24 +823,6 @@ import Layout from '../layouts/Layout.astro';
 			});
 		}
 
-		// Initialisation
 		initThree();
-
-		// 8. Giant Reveal Text Spotlight Tracking
-		const revealText = document.querySelector('.giant-reveal-text') as HTMLElement | null;
-		if (revealText) {
-			revealText.addEventListener('mousemove', (e) => {
-				const rect = revealText.getBoundingClientRect();
-				const x = e.clientX - rect.left;
-				const y = e.clientY - rect.top;
-				revealText.style.setProperty('--text-mouse-x', `${x}px`);
-				revealText.style.setProperty('--text-mouse-y', `${y}px`);
-			});
-
-			revealText.addEventListener('mouseleave', () => {
-				revealText.style.setProperty('--text-mouse-x', `-999px`);
-				revealText.style.setProperty('--text-mouse-y', `-999px`);
-			});
-		}
 	</script>
-</Layout>
+</PageLayout>

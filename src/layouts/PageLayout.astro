@@ -1,0 +1,467 @@
+---
+import Layout from './Layout.astro';
+
+interface Props {
+	title?: string;
+	description?: string;
+	activePage?: 'home' | 'about' | 'services' | 'careers' | 'contact' | 'none';
+	showPreloader?: boolean;
+}
+
+const {
+	title = "diceforce IT | Let's Talk",
+	description = "Thinking about your next move? Let's discuss how diceforce IT can help make it real. Reach out to our design, engineering, and staffing teams.",
+	activePage = 'none',
+	showPreloader = true
+} = Astro.props;
+---
+
+<Layout title={title} description={description}>
+	<!-- Ambient Background Glows & Grid (Behind Content) -->
+	<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[#020205]">
+		<!-- Interactive Mouse Spotlight Glow -->
+		<div id="bg-spotlight" class="mouse-spotlight absolute inset-0"></div>
+		
+		<!-- Centered soft radial glows using logo colors (slow CSS drifting) -->
+		<div class="absolute top-[10%] left-[-5%] w-[600px] h-[600px] rounded-full bg-[#00deff]/[0.12] blur-[130px] animate-drift-slow"></div>
+		<div class="absolute bottom-[10%] right-[-5%] w-[700px] h-[700px] rounded-full bg-[#0377ff]/[0.12] blur-[150px] animate-drift-medium"></div>
+		<div class="absolute top-[40%] right-[15%] w-[550px] h-[550px] rounded-full bg-[#883ae2]/[0.10] blur-[120px] animate-drift-slow"></div>
+		
+		<!-- High-fidelity background grid overlay -->
+		<div class="absolute inset-0 grid-overlay-home opacity-40"></div>
+	</div>
+
+	<!-- Floating Header Navigation -->
+	<header id="main-header" class="fixed top-6 left-0 right-0 z-50 w-full flex justify-center transition-all duration-500 ease-out opacity-0 -translate-y-10 pointer-events-none">
+		<div class="w-[92%] max-w-6xl relative backdrop-blur-lg bg-black/60 border border-white/10 rounded-full px-8 py-2 flex items-center justify-between shadow-[0_4px_30px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.05)] z-50">
+			
+			<!-- Brand Logo & Link -->
+			<a href="/home" class="flex items-center gap-3 group relative z-10 pointer-events-auto shrink-0 transition-colors">
+				<img src="/diceforceITlogo_.gif" alt="diceforce IT Logo" class="w-14 h-14 object-contain filter drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]" width="56" height="56" />
+				<span class="text-[15px] font-space tracking-[0.25em] text-cyan-400 uppercase font-extrabold leading-none group-hover:text-white transition-colors">diceforce</span>
+			</a>
+			
+			<!-- Navigation Links (Right Aligned) -->
+			<nav class="hidden md:flex items-center gap-6 relative z-25 pointer-events-auto">
+				<!-- Home -->
+				{activePage === 'home' ? (
+					<a href="/home#home" class="inline-flex items-center justify-center text-[13px] font-mono tracking-widest text-cyan-400 transition-colors uppercase py-1 px-2">
+						<span class="text-cyan-400 opacity-100 mr-1">[</span>
+						<span>Home</span>
+						<span class="text-cyan-400 opacity-100 ml-1">]</span>
+					</a>
+				) : (
+					<a href="/home#home" class="inline-flex items-center justify-center text-[13px] font-mono tracking-widest text-white/60 hover:text-cyan-400 transition-colors uppercase py-1 px-2 group/link">
+						<span class="text-cyan-400 opacity-0 group-hover/link:opacity-100 transition-[opacity,transform] duration-200 mr-1 translate-x-1 group-hover/link:translate-x-0">[</span>
+						<span>Home</span>
+						<span class="text-cyan-400 opacity-0 group-hover/link:opacity-100 transition-[opacity,transform] duration-200 ml-1 -translate-x-1 group-hover/link:translate-x-0">]</span>
+					</a>
+				)}
+				
+				<!-- About -->
+				{activePage === 'about' ? (
+					<a href="/home#about" class="inline-flex items-center justify-center text-[13px] font-mono tracking-widest text-cyan-400 transition-colors uppercase py-1 px-2">
+						<span class="text-cyan-400 opacity-100 mr-1">[</span>
+						<span>About</span>
+						<span class="text-cyan-400 opacity-100 ml-1">]</span>
+					</a>
+				) : (
+					<a href="/home#about" class="inline-flex items-center justify-center text-[13px] font-mono tracking-widest text-white/60 hover:text-cyan-400 transition-colors uppercase py-1 px-2 group/link">
+						<span class="text-cyan-400 opacity-0 group-hover/link:opacity-100 transition-[opacity,transform] duration-200 mr-1 translate-x-1 group-hover/link:translate-x-0">[</span>
+						<span>About</span>
+						<span class="text-cyan-400 opacity-0 group-hover/link:opacity-100 transition-[opacity,transform] duration-200 ml-1 -translate-x-1 group-hover/link:translate-x-0">]</span>
+					</a>
+				)}
+				
+				<!-- Services Dropdown Group -->
+				<div class="relative group/dropdown py-1 flex items-center justify-center">
+					{activePage === 'services' ? (
+						<a href="/services" class="inline-flex items-center justify-center text-[13px] font-mono tracking-widest text-cyan-400 transition-colors uppercase py-1 px-2 gap-1 group/link">
+							<span class="text-cyan-400 opacity-100 mr-1">[</span>
+							<span>Services</span>
+							<span class="text-cyan-400 opacity-100 ml-1">]</span>
+							<svg class="w-3.5 h-3.5 text-cyan-400 transition-[color,transform] group-hover/dropdown:rotate-180 duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+								<polyline points="6 9 12 15 18 9"></polyline>
+							</svg>
+						</a>
+					) : (
+						<a href="/services" class="inline-flex items-center justify-center text-[13px] font-mono tracking-widest text-white/60 hover:text-cyan-400 transition-colors uppercase py-1 px-2 gap-1 group/link">
+							<span class="text-cyan-400 opacity-0 group-hover/link:opacity-100 transition-[opacity,transform] duration-200 mr-1 translate-x-1 group-hover/link:translate-x-0">[</span>
+							<span>Services</span>
+							<span class="text-cyan-400 opacity-0 group-hover/link:opacity-100 transition-[opacity,transform] duration-200 ml-1 -translate-x-1 group-hover/link:translate-x-0">]</span>
+							<svg class="w-3.5 h-3.5 text-white/40 group-hover/dropdown:text-cyan-400 transition-[color,transform] group-hover/dropdown:rotate-180 duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+								<polyline points="6 9 12 15 18 9"></polyline>
+							</svg>
+						</a>
+					)}
+					
+					<!-- Dropdown Menu Box -->
+					<div class="absolute top-full left-1/2 -translate-x-1/2 pt-2.5 opacity-0 invisible group-hover/dropdown:opacity-100 group-hover/dropdown:visible transition-[opacity,visibility] duration-300 w-56 pointer-events-none group-hover/dropdown:pointer-events-auto z-50">
+						<div class="backdrop-blur-md bg-black/95 border border-white/10 rounded-lg p-2 shadow-2xl flex flex-col items-stretch space-y-0.5">
+							<a href="/services#ai-ml" class="inline-flex items-center justify-center text-[11px] font-mono uppercase tracking-widest text-neutral-400 hover:text-cyan-400 hover:bg-white/5 px-3 py-2 rounded transition-[color,background-color] group/dropitem">
+								<span class="text-cyan-400 opacity-0 group-hover/dropitem:opacity-100 transition-[opacity,transform] duration-200 mr-1.5 translate-x-1 group-hover/dropitem:translate-x-0">[</span>
+								<span>AI & ML Services</span>
+								<span class="text-cyan-400 opacity-0 group-hover/dropitem:opacity-100 transition-[opacity,transform] duration-200 ml-1.5 -translate-x-1 group-hover/dropitem:translate-x-0">]</span>
+							</a>
+							<a href="/services#staffing" class="inline-flex items-center justify-center text-[11px] font-mono uppercase tracking-widest text-neutral-400 hover:text-cyan-400 hover:bg-white/5 px-3 py-2 rounded transition-[color,background-color] group/dropitem">
+								<span class="text-cyan-400 opacity-0 group-hover/dropitem:opacity-100 transition-[opacity,transform] duration-200 mr-1.5 translate-x-1 group-hover/dropitem:translate-x-0">[</span>
+								<span>IT Staffing</span>
+								<span class="text-cyan-400 opacity-0 group-hover/dropitem:opacity-100 transition-[opacity,transform] duration-200 ml-1.5 -translate-x-1 group-hover/dropitem:translate-x-0">]</span>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Careers -->
+				{activePage === 'careers' ? (
+					<a href="/careers" class="inline-flex items-center justify-center text-[13px] font-mono tracking-widest text-cyan-400 transition-colors uppercase py-1 px-2">
+						<span class="text-cyan-400 opacity-100 mr-1">[</span>
+						<span>Careers</span>
+						<span class="text-cyan-400 opacity-100 ml-1">]</span>
+					</a>
+				) : (
+					<a href="/careers" class="inline-flex items-center justify-center text-[13px] font-mono tracking-widest text-white/60 hover:text-cyan-400 transition-colors uppercase py-1 px-2 group/link">
+						<span class="text-cyan-400 opacity-0 group-hover/link:opacity-100 transition-[opacity,transform] duration-200 mr-1 translate-x-1 group-hover/link:translate-x-0">[</span>
+						<span>Careers</span>
+						<span class="text-cyan-400 opacity-0 group-hover/link:opacity-100 transition-[opacity,transform] duration-200 ml-1 -translate-x-1 group-hover/link:translate-x-0">]</span>
+					</a>
+				)}
+				
+				<!-- Contact -->
+				{activePage === 'contact' ? (
+					<a href="/contact" class="inline-flex items-center justify-center text-[13px] font-mono tracking-widest text-cyan-400 transition-colors uppercase py-1 px-2">
+						<span class="text-cyan-400 opacity-100 mr-1">[</span>
+						<span>Contact</span>
+						<span class="text-cyan-400 opacity-100 ml-1">]</span>
+					</a>
+				) : (
+					<a href="/contact" class="inline-flex items-center justify-center text-[13px] font-mono tracking-widest text-white/60 hover:text-cyan-400 transition-colors uppercase py-1 px-2 group/link">
+						<span class="text-cyan-400 opacity-0 group-hover/link:opacity-100 transition-[opacity,transform] duration-200 mr-1 translate-x-1 group-hover/link:translate-x-0">[</span>
+						<span>Contact</span>
+						<span class="text-cyan-400 opacity-0 group-hover/link:opacity-100 transition-[opacity,transform] duration-200 ml-1 -translate-x-1 group-hover/link:translate-x-0">]</span>
+					</a>
+				)}
+			</nav>
+		</div>
+	</header>
+
+	<!-- High-fidelity Preloader Overlay -->
+	{showPreloader && (
+		<div id="sequence-loading-screen" class="fixed inset-0 bg-[#030303] z-[100] flex flex-col items-center justify-center transition-opacity duration-700 ease-out pointer-events-auto">
+			<div class="flex flex-col items-center gap-6">
+				<!-- Glowing Logo -->
+				<div class="relative w-16 h-16">
+					<img src="/diceforceITlogo_.gif" alt="diceforce IT Logo" class="w-full h-full object-contain" />
+					<div class="absolute inset-[-4px] rounded-full border border-cyan-500/20 border-t-cyan-400 animate-spin duration-1000"></div>
+				</div>
+				<div class="text-center space-y-2">
+					<div class="font-space text-[10px] tracking-[0.3em] text-white/80 uppercase">diceforce core</div>
+					<div class="font-mono text-[9px] text-white/40 uppercase tracking-widest">
+						Calibrating Neural Interface… <span id="loading-progress-text">0%</span>
+					</div>
+				</div>
+				<!-- Loading bar container -->
+				<div class="w-48 h-[1px] bg-white/5 rounded-full overflow-hidden">
+					<div id="loading-progress-bar-fill" class="h-full w-0 bg-cyan-400 transition-all duration-300"></div>
+				</div>
+			</div>
+		</div>
+	)}
+
+	<!-- Main Layout Layer (Swiss Minimalist Editorial Style) -->
+	<main class="relative z-20 w-full min-h-screen text-white font-sans flex flex-col items-center px-6 sm:px-12 md:px-16 pt-36 pb-0 pointer-events-auto select-auto">
+		<slot />
+	</main>
+
+	<!-- FOOTER -->
+	<footer class="relative w-full pt-28 pb-40 mt-20 overflow-hidden bg-transparent px-6 sm:px-12 md:px-16">
+		<!-- Footer Background Image (Aligned and stuck to bottom) -->
+		<div class="absolute inset-x-0 bottom-0 w-full h-full z-0 pointer-events-none overflow-hidden">
+			<img 
+				src="/footerbackground.jpg" 
+				alt="" 
+				aria-hidden="true"
+				class="w-full h-full object-cover object-bottom opacity-45 mix-blend-screen" 
+				style="mix-blend-mode: screen; object-position: bottom;"
+			/>
+		</div>
+
+		<!-- Footer Content Grid -->
+		<div class="max-w-6xl mx-auto w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-16 relative z-10 pointer-events-auto">
+			<!-- Brand Block -->
+			<div class="lg:col-span-4 space-y-3">
+				<a href="/home" class="flex items-center gap-3">
+					<img src="/diceforceITlogo_.gif" alt="Diceforce IT Logo" class="w-14 h-14 object-contain" width="56" height="56" />
+					<span class="text-[13px] font-space tracking-[0.25em] text-cyan-400 font-bold leading-none select-text">Diceforce IT</span>
+				</a>
+				<p class="text-neutral-300 text-[13px] leading-relaxed max-w-xs select-text">
+					Digital experiences that connect, scale and perform. A creative technology studio for design, strategy, marketing, and scalable AI solutions.
+				</p>
+				<span class="text-[13px] font-mono text-neutral-400 block pt-3 select-text">
+					© 2026 diceforce IT — All work, all rights reserved.
+				</span>
+			</div>
+			
+			<!-- Column 2: Navigate -->
+			<div class="lg:col-span-2 space-y-3">
+				<h4 class="text-[13px] font-mono uppercase tracking-[0.2em] text-white font-bold select-text">Navigate</h4>
+				<ul class="space-y-2 text-[13px] text-neutral-300 font-sans">
+					<li><a href="/home#home" class="hover:text-cyan-400 transition-colors">Home</a></li>
+					<li><a href="/home#about" class="hover:text-cyan-400 transition-colors">About</a></li>
+					<li><a href="/services" class="hover:text-cyan-400 transition-colors">Services</a></li>
+					<li><a href="/services#staffing" class="hover:text-cyan-400 transition-colors">Staffing</a></li>
+					<li><a href="/careers" class="hover:text-cyan-400 transition-colors">Careers</a></li>
+					<li><a href="/contact" class="hover:text-cyan-400 transition-colors">Contact</a></li>
+				</ul>
+			</div>
+			
+			<!-- Column 3: Links -->
+			<div class="lg:col-span-3 space-y-3">
+				<h4 class="text-[13px] font-mono uppercase tracking-[0.2em] text-white font-bold select-text">Links</h4>
+				<ul class="space-y-2 text-[13px] text-neutral-300 font-sans">
+					<li><a href="/terms" class="hover:text-cyan-400 transition-colors">Terms of Service</a></li>
+					<li><a href="/privacy" class="hover:text-cyan-400 transition-colors">Privacy Policy</a></li>
+					<li><a href="/disclaimer" class="hover:text-cyan-400 transition-colors">Disclaimer</a></li>
+					<li><a href="/404" class="hover:text-cyan-400 transition-colors">404 Error Page</a></li>
+					<li><a href="https://framer.com/templates" target="_blank" rel="noopener" class="hover:text-cyan-400 transition-colors">More Templates</a></li>
+				</ul>
+			</div>
+			
+			<!-- Column 4: Socials -->
+			<div class="lg:col-span-3 space-y-3">
+				<h4 class="text-[13px] font-mono uppercase tracking-[0.2em] text-white font-bold select-text">Socials</h4>
+				<ul class="space-y-2 text-[13px] text-neutral-300 font-sans">
+					<li>
+						<a href="https://dribbble.com/" target="_blank" rel="noopener" class="flex items-center gap-2 hover:text-cyan-400 transition-colors group py-0.5">
+							<svg class="w-3.5 h-3.5 text-neutral-400 group-hover:text-cyan-400 transition-colors" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 5.537 4.477 10.019 10 10.019 5.523 0 10-4.482 10-10.019C22 6.484 17.522 2 12 2zm1.19 1.834c1.867.759 3.284 2.115 4.148 3.864a7.994 7.994 0 00-3.328-1.57c-.126-.454-.265-.898-.415-1.328-3.08-1.127-5.918-.769-8.497.697-.247-.468-.465-.968-.65-1.498a8.04 8.04 0 018.742-1.493zm-5.74 3.731c2.146-1.135 4.473-1.42 6.945-.632.128.375.247.763.355 1.159-2.585.642-5.32 1.077-8.08 1.133a8.1 8.1 0 00.78-1.66zm-2.072 2.94a18.256 18.256 0 018.172-1.22c.237 1.012.428 2.062.569 3.125a17.06 17.06 0 01-6.19 2.503c-1.378-1.636-2.18-3.23-2.551-4.408zm.979 5.86c.264.838.835 2.032 1.764 3.298a8.013 8.013 0 01-5.187-5.074c.905-.098 2.235-.145 3.423-.292.052.704.072 1.396.072 2.068zm3.264 3.655a15.82 15.82 0 01-1.554-2.923c2.723-.559 5.485-1.696 7.643-3.649.626 1.488 1.066 3.037 1.282 4.604a8.026 8.026 0 01-7.371 1.968zm8.791-3.69c-.21-1.43-.604-2.833-1.171-4.185.736-.37 1.433-.8 2.075-1.286a8.006 8.006 0 01-.904 5.471z" clip-rule="evenodd" /></svg>
+							Dribbble
+						</a>
+					</li>
+					<li>
+						<a href="https://instagram.com/" target="_blank" rel="noopener" class="flex items-center gap-2 hover:text-cyan-400 transition-colors group py-0.5">
+							<svg class="w-3.5 h-3.5 text-neutral-400 group-hover:text-cyan-400 transition-colors" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" /></svg>
+							Instagram
+						</a>
+					</li>
+					<li>
+						<a href="https://twitter.com/" target="_blank" rel="noopener" class="flex items-center gap-2 hover:text-cyan-400 transition-colors group py-0.5">
+							<svg class="w-3.5 h-3.5 text-neutral-400 group-hover:text-cyan-400 transition-colors" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
+							Twitter / X
+						</a>
+					</li>
+					<li>
+						<a href="https://linkedin.com/" target="_blank" rel="noopener" class="flex items-center gap-2 hover:text-cyan-400 transition-colors group py-0.5">
+							<svg class="w-3.5 h-3.5 text-neutral-400 group-hover:text-cyan-400 transition-colors" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.23 0H1.77C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.2 0 22.23 0zM7.12 20.45H3.56V9h3.56v11.45zM5.34 7.43a2.06 2.06 0 110-4.11 2.06 2.06 0 010 4.11zm15.11 13.02h-3.56v-5.6c0-1.34-.03-3.05-1.86-3.05-1.86 0-2.14 1.45-2.14 2.95v5.7H9.33V9h3.42v1.56h.05c.48-.9 1.64-1.86 3.39-1.86 3.63 0 4.3 2.39 4.3 5.5v6.25z" /></svg>
+							LinkedIn
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- Giant bold text logo at the very bottom -->
+		<div class="w-full mt-24 pt-12 border-t border-white/5 relative z-10 pointer-events-auto select-none">
+			<h2 class="giant-reveal-text text-[12vw] sm:text-[15vw] lg:text-[220px] font-extrabold tracking-[12px] mr-[-12px] uppercase leading-none font-syne select-none text-center cursor-default">
+				DICEFORCE IT
+			</h2>
+		</div>
+	</footer>
+
+	<!-- Inject CSS details -->
+	<style>
+		/* Background Dot/Grid Pattern */
+		.grid-overlay-home {
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M 40 0 L 40 80 M 0 40 L 80 40' stroke='rgba(255, 255, 255, 0.012)' stroke-width='1'/%3E%3Cpolygon points='40,39.5 40.5,40 40,40.5 39.5,40' fill='rgba(255, 255, 255, 0.05)' stroke='rgba(255, 255, 255, 0.02)' stroke-width='0.5'/%3E%3C/svg%3E");
+			background-size: 80px 80px;
+			background-position: center center;
+			mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 90%);
+			-webkit-mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 90%);
+		}
+
+		/* Background slow CSS drifting animations */
+		@keyframes drift-slow {
+			0%, 100% { transform: translate(0px, 0px) scale(1); }
+			50% { transform: translate(45px, -35px) scale(1.06); }
+		}
+		@keyframes drift-medium {
+			0%, 100% { transform: translate(0px, 0px) scale(1.05); }
+			50% { transform: translate(-35px, 45px) scale(0.94); }
+		}
+		.animate-drift-slow {
+			animation: drift-slow 20s ease-in-out infinite;
+		}
+		.animate-drift-medium {
+			animation: drift-medium 24s ease-in-out infinite;
+		}
+
+		@keyframes pulse-slow {
+			0%, 100% { opacity: 0.5; transform: scale(1); }
+			50% { opacity: 0.8; transform: scale(1.03); }
+		}
+		.animate-pulse-slow {
+			animation: pulse-slow 8s ease-in-out infinite;
+		}
+
+		/* Interactive Mouse Spotlight Glow Effect */
+		.mouse-spotlight {
+			background: radial-gradient(
+				600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+				rgba(3, 119, 255, 0.04) 0%,
+				rgba(0, 222, 255, 0.02) 40%,
+				transparent 75%
+			);
+			transition: background 0.3s ease-out;
+		}
+
+		/* Native CSS :has() for interactive forms (Premium feel) */
+		label:has(input[type="radio"]:checked) {
+			border-color: rgba(34, 211, 238, 0.4);
+			background-color: rgba(34, 211, 238, 0.06);
+			box-shadow: 0 0 20px rgba(34, 211, 238, 0.08);
+		}
+		label:has(input[type="radio"]:checked) span:first-of-type {
+			color: #22d3ee;
+			text-shadow: none;
+		}
+		label:has(input[type="radio"]:checked) span:last-of-type {
+			color: rgba(255, 255, 255, 0.7);
+		}
+
+		label:has(input[type="checkbox"]:checked) {
+			border-color: rgba(34, 211, 238, 0.5);
+			background-color: rgba(34, 211, 238, 0.1);
+			color: #22d3ee;
+			box-shadow: 0 0 12px rgba(34, 211, 238, 0.1);
+		}
+
+		/* Custom slow, smooth spin for the button border gradient */
+		@keyframes border-spin {
+			from {
+				transform: rotate(0deg);
+			}
+			to {
+				transform: rotate(360deg);
+			}
+		}
+		.animate-border-spin {
+			animation: border-spin 3s linear infinite;
+		}
+
+		/* Giant reveal text spotlight effect */
+		.giant-reveal-text {
+			background-image: radial-gradient(
+				220px circle at var(--text-mouse-x, -999px) var(--text-mouse-y, -999px),
+				rgba(255, 255, 255, 1) 0%,
+				rgba(0, 222, 255, 0.8) 35%,
+				rgba(3, 119, 255, 0.3) 65%,
+				rgba(255, 255, 255, 0.06) 100%
+			);
+			background-clip: text;
+			-webkit-background-clip: text;
+			color: transparent;
+			transition: background-image 0.1s ease-out;
+		}
+	</style>
+
+	<!-- Hydration Script -->
+	<script>
+		import { gsap } from 'gsap';
+
+		// Elements
+		const loadingScreen = document.getElementById('sequence-loading-screen');
+		const loadingProgressText = document.getElementById('loading-progress-text');
+		const loadingFill = document.getElementById('loading-progress-bar-fill');
+		const mainHeader = document.getElementById('main-header');
+		const mainElement = document.querySelector('main');
+
+		// Simulated Preloader Sequence
+		if (loadingScreen) {
+			let currentProgress = 0;
+			const loadInterval = setInterval(() => {
+				currentProgress += Math.floor(Math.random() * 15) + 5;
+				if (currentProgress >= 100) {
+					currentProgress = 100;
+					clearInterval(loadInterval);
+					dismissPreloader();
+				}
+				
+				if (loadingProgressText) loadingProgressText.innerText = `${currentProgress}%`;
+				if (loadingFill) loadingFill.style.width = `${currentProgress}%`;
+			}, 60);
+
+			const dismissPreloader = () => {
+				gsap.to(loadingScreen, {
+					opacity: 0,
+					duration: 0.6,
+					ease: 'power2.out',
+					onComplete: () => {
+						loadingScreen.style.display = 'none';
+						initializeEntranceAnimations();
+					}
+				});
+			};
+		} else {
+			// If no preloader, just run entrance animations immediately
+			setTimeout(() => {
+				initializeEntranceAnimations();
+			}, 50);
+		}
+
+		// GSAP Entrance Animations
+		const initializeEntranceAnimations = () => {
+			if (mainHeader) {
+				gsap.to(mainHeader, {
+					opacity: 1,
+					y: 0,
+					duration: 0.8,
+					ease: 'power3.out',
+					onStart: () => {
+						mainHeader.classList.remove('pointer-events-none');
+						mainHeader.classList.add('pointer-events-auto');
+					}
+				});
+			}
+
+			// Animate elements sequentially
+			gsap.fromTo('.animate-stagger-item', 
+				{ opacity: 0, y: 30 },
+				{ 
+					opacity: 1, 
+					y: 0, 
+					duration: 1, 
+					stagger: 0.15,
+					ease: 'power3.out' 
+				}
+			);
+		};
+
+		// Mouse Movements Spotlight Update
+		if (mainElement) {
+			window.addEventListener('mousemove', (e) => {
+				const rect = mainElement.getBoundingClientRect();
+				const x = e.clientX - rect.left;
+				const y = e.clientY - rect.top;
+				
+				mainElement.style.setProperty('--mouse-x', `${x}px`);
+				mainElement.style.setProperty('--mouse-y', `${y}px`);
+			});
+		}
+
+		// Giant Reveal Text Spotlight Tracking
+		const revealText = document.querySelector('.giant-reveal-text') as HTMLElement | null;
+		if (revealText) {
+			revealText.addEventListener('mousemove', (e) => {
+				const rect = revealText.getBoundingClientRect();
+				const x = e.clientX - rect.left;
+				const y = e.clientY - rect.top;
+				revealText.style.setProperty('--text-mouse-x', `${x}px`);
+				revealText.style.setProperty('--text-mouse-y', `${y}px`);
+			});
+
+			revealText.addEventListener('mouseleave', () => {
+				revealText.style.setProperty('--text-mouse-x', `-999px`);
+				revealText.style.setProperty('--text-mouse-y', `-999px`);
+			});
+		}
+	</script>
+</Layout>

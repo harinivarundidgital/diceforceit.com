@@ -1,0 +1,102 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+---
+
+<PageLayout 
+	title="diceforce IT | Terms of Service" 
+	description="Read the Terms of Service for diceforce IT LLC. Understand our conditions, liabilities, and agreements."
+	activePage="none"
+>
+	<div class="max-w-4xl mx-auto w-full flex flex-col gap-12 pt-10 pb-20">
+		<!-- Page Header -->
+		<section class="space-y-4 animate-stagger-item">
+			<div class="inline-flex items-center gap-2 px-3 py-1 border border-white/5 rounded-full bg-white/[0.01]">
+				<span class="font-mono text-[9px] tracking-widest text-cyan-400/80 uppercase">Legal documentation</span>
+			</div>
+			<h1 class="font-syne font-black text-4xl sm:text-5xl md:text-6xl tracking-tighter leading-none text-white select-text">
+				Terms of Service
+			</h1>
+			<p class="text-neutral-500 font-mono text-xs uppercase tracking-widest">
+				Last Updated: July 10, 2026
+			</p>
+		</section>
+
+		<!-- Content Blocks -->
+		<section class="border-t border-white/5 pt-12 space-y-12 animate-stagger-item font-light leading-relaxed text-neutral-300">
+			<!-- Section 1 -->
+			<div class="space-y-4">
+				<h2 class="font-syne font-semibold text-xl sm:text-2xl text-white tracking-tight">
+					1. Agreement to Terms
+				</h2>
+				<p class="text-sm sm:text-base">
+					By accessing or using the services provided by diceforce IT LLC ("diceforce IT", "we", "us", or "our"), you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, you are prohibited from using our services, website, or contacting our teams.
+				</p>
+			</div>
+
+			<!-- Section 2 -->
+			<div class="space-y-4">
+				<h2 class="font-syne font-semibold text-xl sm:text-2xl text-white tracking-tight">
+					2. Intellectual Property Rights
+				</h2>
+				<p class="text-sm sm:text-base">
+					Unless otherwise indicated, all digital assets, designs, code bases, graphics, custom AI agents, fine-tuned models, and logo animations are our proprietary property and are protected by copyright and trademark laws. You are granted a limited license to access the site for informational and professional inquiries.
+				</p>
+			</div>
+
+			<!-- Section 3 -->
+			<div class="space-y-4">
+				<h2 class="font-syne font-semibold text-xl sm:text-2xl text-white tracking-tight">
+					3. User Representation & Inquiries
+				</h2>
+				<p class="text-sm sm:text-base">
+					By submitting inquiries or signing up for our IT Staffing or AI & ML solutions, you represent and warrant that:
+				</p>
+				<ul class="list-disc pl-5 space-y-2 text-sm">
+					<li>All registration and contact information you submit is truthful and accurate.</li>
+					<li>You will maintain the accuracy of such information and promptly update it as necessary.</li>
+					<li>Your use of our neural platforms and studio solutions does not violate any applicable law or regulation.</li>
+				</ul>
+			</div>
+
+			<!-- Section 4 -->
+			<div class="space-y-4">
+				<h2 class="font-syne font-semibold text-xl sm:text-2xl text-white tracking-tight">
+					4. Service Latency & Availability
+				</h2>
+				<p class="text-sm sm:text-base">
+					While we strive to provide reliable custom engineering and staffing coordination, our digital portals may experience latency, neural recalibrations, or maintenance windows. We are not liable for any transmission failures, lost packets, or temporary project delays resulting from external networks.
+				</p>
+			</div>
+
+			<!-- Section 5 -->
+			<div class="space-y-4">
+				<h2 class="font-syne font-semibold text-xl sm:text-2xl text-white tracking-tight">
+					5. Governing Law
+				</h2>
+				<p class="text-sm sm:text-base">
+					These Terms shall be governed by and defined in accordance with the laws of California, United States. diceforce IT LLC and yourself irrevocably consent that the courts of California shall have exclusive jurisdiction to resolve any dispute which may arise in connection with these terms.
+				</p>
+			</div>
+
+			<!-- CTA / Back button -->
+			<div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-6">
+				<p class="text-neutral-500 text-xs">
+					Questions about our terms? Reach out at <a href="mailto:hello@diceforceit.com" class="text-cyan-400 hover:underline">hello@diceforceit.com</a>.
+				</p>
+				
+				<div class="relative group transition-transform duration-500 hover:scale-[1.015]">
+					<div class="absolute -inset-1 bg-gradient-to-r from-[#0377ff] via-[#00deff] to-[#883ae2] rounded-full blur-md opacity-25 group-hover:opacity-60 transition-all duration-500 ease-out"></div>
+					<div class="relative rounded-full p-[1px] overflow-hidden flex items-center justify-center bg-black">
+						<div class="absolute inset-[-200%] bg-[conic-gradient(from_0deg,#0377ff,#00deff,#883ae2,#00deff,#0377ff)] animate-border-spin"></div>
+						<a 
+							href="/home" 
+							class="relative px-8 py-3 bg-black hover:bg-neutral-900 text-white font-mono text-xs font-bold uppercase tracking-widest rounded-full transition-all duration-300 inline-flex items-center justify-center gap-2 cursor-pointer z-10 select-none group-hover:text-[#00deff]"
+						>
+							Back to Experience
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</PageLayout>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Careers_Hero_SVG" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <defs>
+    <linearGradient id="linear-gradient-1" x1="50" y1="50" x2="450" y2="450" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0377ff"/>
+      <stop offset="50%" stop-color="#00deff"/>
+      <stop offset="100%" stop-color="#883ae2"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="150" y1="350" x2="350" y2="150" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="50%" stop-color="#5fffcb"/>
+      <stop offset="100%" stop-color="#7e3fff"/>
+    </linearGradient>
+  </defs>
+  <!-- Background Glow Element (Subtle) -->
+  <g>
+    <!-- Outer dashed circular target rings (thick stroke to generate good particle density) -->
+    <circle cx="250" cy="250" r="210" stroke="url(#linear-gradient-1)" stroke-width="12" stroke-dasharray="30 15 10 15" fill="none" opacity="0.8"/>
+    <circle cx="250" cy="250" r="170" stroke="url(#linear-gradient-2)" stroke-width="6" stroke-dasharray="10 20" fill="none" opacity="0.6"/>
+    
+    <!-- Central 4-pointed Star Compass Needle (filled shape for solid particle core) -->
+    <path fill="url(#linear-gradient-1)" d="M250,75 L285,215 L425,250 L285,285 L250,425 L215,285 L75,250 L215,215 Z" />
+    
+    <!-- Inner concentric ring -->
+    <circle cx="250" cy="250" r="70" stroke="url(#linear-gradient-2)" stroke-width="8" fill="none" />
+    
+    <!-- Central core glowing node -->
+    <circle cx="250" cy="250" r="28" fill="url(#linear-gradient-1)" />
+
+    <!-- Corner destination nodes (representing career opportunities) -->
+    <circle cx="100" cy="100" r="16" fill="url(#linear-gradient-2)" />
+    <circle cx="400" cy="100" r="16" fill="url(#linear-gradient-1)" />
+    <circle cx="400" cy="400" r="16" fill="url(#linear-gradient-2)" />
+    <circle cx="100" cy="400" r="16" fill="url(#linear-gradient-1)" />
+    
+    <!-- Connecting network lines (drawn thick to capture as particles) -->
+    <line x1="100" y1="100" x2="215" y2="215" stroke="url(#linear-gradient-2)" stroke-width="4" opacity="0.5" />
+    <line x1="400" y1="100" x2="285" y2="215" stroke="url(#linear-gradient-1)" stroke-width="4" opacity="0.5" />
+    <line x1="400" y1="400" x2="285" y2="285" stroke="url(#linear-gradient-2)" stroke-width="4" opacity="0.5" />
+    <line x1="100" y1="400" x2="215" y2="285" stroke="url(#linear-gradient-1)" stroke-width="4" opacity="0.5" />
+  </g>
+</svg>

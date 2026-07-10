@@ -1,0 +1,1278 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+---
+
+<PageLayout 
+	title="diceforce IT | Careers | Join the Frontier" 
+	description="We are always seeking deep-learning specialists, MLOps engineers, and interactive developers. Join our remote-first, high-autonomy engineering team."
+	activePage="careers"
+>
+	<div class="max-w-6xl mx-auto w-full flex flex-col gap-16 md:gap-24">
+		
+		<!-- SECTION 1: HERO (2-Column Layout) -->
+		<section class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center animate-stagger-item">
+			<!-- Left Column: Hero Copy -->
+			<div class="lg:col-span-7 space-y-6">
+				<div class="inline-flex items-center gap-2 px-3 py-1 border border-cyan-500/20 rounded-full bg-cyan-950/10">
+					<span class="font-mono text-[9px] tracking-widest text-cyan-400 uppercase">WE ARE HIRING</span>
+				</div>
+				<h1 class="font-syne font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tighter leading-[0.95] text-white select-text text-balance">
+					Shape the frontier<br />
+					of digital systems.
+				</h1>
+				<p class="text-neutral-400 font-light text-base sm:text-lg max-w-xl mt-6 leading-relaxed select-text">
+					We are building the systems, autonomous agents, and scaling platforms of tomorrow. Join a high-autonomy, remote-first team of engineers and designers.
+				</p>
+				<div class="pt-4 flex flex-wrap gap-4">
+					<a href="#positions" class="px-6 py-3 bg-white text-black font-semibold rounded-full hover:bg-white/90 hover:scale-102 transition-all duration-300 text-xs tracking-wider uppercase whitespace-nowrap">
+						View Open Roles
+					</a>
+					<a href="#apply" class="px-6 py-3 border border-white/10 hover:border-white/30 text-white font-semibold rounded-full hover:bg-white/5 transition-all duration-300 text-xs tracking-wider uppercase whitespace-nowrap">
+						General Application
+					</a>
+				</div>
+			</div>
+			<!-- Right Column: Interactive 3D WebGL Particle System -->
+			<div class="lg:col-span-5 relative w-full h-[350px] sm:h-[420px] lg:h-[480px] flex items-center justify-center overflow-hidden">
+				<div class="absolute inset-0 bg-[#00deff]/[0.02] blur-[80px] rounded-full pointer-events-none"></div>
+				<!-- Three.js Canvas Container -->
+				<div id="canvas-container" class="w-full h-full cursor-grab active:cursor-grabbing relative z-10"></div>
+			</div>
+		</section>
+
+		<!-- SECTION 2: CULTURE / BENEFITS (Grid Layout) -->
+		<section class="border-t border-white/5 pt-16 animate-stagger-item">
+			<div class="space-y-4 mb-12">
+				<div class="flex items-center gap-2">
+					<span class="text-[10px] font-mono tracking-widest text-cyan-400/80 uppercase">OUR CULTURE</span>
+				</div>
+				<h2 class="font-syne font-semibold text-2xl sm:text-3xl text-white tracking-tight leading-none select-text">
+					Why work with diceforce IT?
+				</h2>
+				<p class="text-neutral-400 text-sm leading-relaxed max-w-xl select-text font-light">
+					We skip the bureaucracy and focus entirely on building high-performance solutions. Here is what you can expect when you join our team:
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+				<!-- Benefit Card 1 -->
+				<div class="p-6 rounded-2xl border border-white/5 bg-white/[0.01] hover:border-cyan-500/20 hover:bg-white/[0.02] transition-all duration-300 flex flex-col justify-between h-56 group shadow-lg shadow-black/10">
+					<div class="w-10 h-10 rounded-xl bg-cyan-400/5 text-cyan-400 border border-cyan-400/10 flex items-center justify-center group-hover:bg-cyan-400/10 group-hover:border-cyan-400/30 transition-all duration-300">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 002 2h2m.05 0a9 9 0 11-20.94-3.362z" />
+						</svg>
+					</div>
+					<div>
+						<h3 class="font-syne font-medium text-white text-base mb-1 select-text">Remote-First & Async</h3>
+						<p class="text-neutral-400 text-xs leading-relaxed font-light select-text">
+							Work from anywhere. We optimize for flow and uninterrupted blocks of deep focus, not meetings.
+						</p>
+					</div>
+				</div>
+
+				<!-- Benefit Card 2 -->
+				<div class="p-6 rounded-2xl border border-white/5 bg-white/[0.01] hover:border-cyan-500/20 hover:bg-white/[0.02] transition-all duration-300 flex flex-col justify-between h-56 group shadow-lg shadow-black/10">
+					<div class="w-10 h-10 rounded-xl bg-blue-400/5 text-blue-400 border border-blue-400/10 flex items-center justify-center group-hover:bg-blue-400/10 group-hover:border-blue-400/30 transition-all duration-300">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+						</svg>
+					</div>
+					<div>
+						<h3 class="font-syne font-medium text-white text-base mb-1 select-text">High Autonomy</h3>
+						<p class="text-neutral-400 text-xs leading-relaxed font-light select-text">
+							You own your features, architectures, and decisions. We value builders who take complete ownership.
+						</p>
+					</div>
+				</div>
+
+				<!-- Benefit Card 3 -->
+				<div class="p-6 rounded-2xl border border-white/5 bg-white/[0.01] hover:border-cyan-500/20 hover:bg-white/[0.02] transition-all duration-300 flex flex-col justify-between h-56 group shadow-lg shadow-black/10">
+					<div class="w-10 h-10 rounded-xl bg-purple-400/5 text-purple-400 border border-purple-400/10 flex items-center justify-center group-hover:bg-purple-400/10 group-hover:border-purple-400/30 transition-all duration-300">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+						</svg>
+					</div>
+					<div>
+						<h3 class="font-syne font-medium text-white text-base mb-1 select-text">Futuristic Stack</h3>
+						<p class="text-neutral-400 text-xs leading-relaxed font-light select-text">
+							Deploy the latest custom AI agents, write optimized CUDA kernels, use Rust, and design premium Three.js interfaces.
+						</p>
+					</div>
+				</div>
+
+				<!-- Benefit Card 4 -->
+				<div class="p-6 rounded-2xl border border-white/5 bg-white/[0.01] hover:border-cyan-500/20 hover:bg-white/[0.02] transition-all duration-300 flex flex-col justify-between h-56 group shadow-lg shadow-black/10">
+					<div class="w-10 h-10 rounded-xl bg-indigo-400/5 text-indigo-400 border border-indigo-400/10 flex items-center justify-center group-hover:bg-indigo-400/10 group-hover:border-indigo-400/30 transition-all duration-300">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 .364l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+						</svg>
+					</div>
+					<div>
+						<h3 class="font-syne font-medium text-white text-base mb-1 select-text">Cognitive Growth</h3>
+						<p class="text-neutral-400 text-xs leading-relaxed font-light select-text">
+							Work on complex problems like compiler engineering, vector search speeds, and advanced AI-human interfaces.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- SECTION 3: OPEN POSITIONS (Accordion List) -->
+		<section id="positions" class="border-t border-white/5 pt-16 scroll-mt-24 animate-stagger-item">
+			<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
+				<div class="space-y-4">
+					<div class="flex items-center gap-2">
+						<span class="text-[10px] font-mono tracking-widest text-cyan-400/80 uppercase">EXPLORE OPPORTUNITIES</span>
+					</div>
+					<h2 class="font-syne font-semibold text-2xl sm:text-3xl text-white tracking-tight leading-none select-text">
+						Open Positions
+					</h2>
+					<p class="text-neutral-400 text-sm leading-relaxed max-w-xl select-text font-light">
+						Choose a role to view the qualifications, requirements, and apply directly.
+					</p>
+				</div>
+				
+				<!-- Filter Buttons -->
+				<div class="flex items-center gap-2 border border-white/5 rounded-full p-1 bg-black/40 backdrop-blur-md self-start sm:self-auto shrink-0 font-mono text-[10px] tracking-wider uppercase select-none">
+					<button data-filter="all" class="filter-btn px-4 py-1.5 rounded-full text-cyan-400 bg-cyan-500/10 border border-cyan-400/20 transition-all duration-300 cursor-pointer">All</button>
+					<button data-filter="engineering" class="filter-btn px-4 py-1.5 rounded-full text-neutral-400 hover:text-white border border-transparent transition-all duration-300 cursor-pointer">Engineering</button>
+					<button data-filter="design" class="filter-btn px-4 py-1.5 rounded-full text-neutral-400 hover:text-white border border-transparent transition-all duration-300 cursor-pointer">Design</button>
+				</div>
+			</div>
+
+			<!-- Positions Stack -->
+			<div class="space-y-4">
+				<!-- Position 1: AI Systems Engineer -->
+				<div class="job-item border border-white/5 bg-white/[0.01] hover:bg-white/[0.02] backdrop-blur-md rounded-2xl overflow-hidden transition-all duration-300 hover:border-cyan-500/20 shadow-lg shadow-black/20" data-dept="engineering">
+					<!-- Header (Trigger) -->
+					<button class="w-full text-left p-6 sm:p-8 flex items-center justify-between gap-4 cursor-pointer outline-none group/jobbtn">
+						<div class="space-y-2">
+							<div class="flex flex-wrap items-center gap-2.5">
+								<span class="font-mono text-[9px] tracking-widest text-cyan-400 bg-cyan-400/5 border border-cyan-400/10 px-2 py-0.5 rounded uppercase">Engineering</span>
+								<span class="font-mono text-[9px] tracking-widest text-neutral-400 bg-white/[0.02] border border-white/5 px-2 py-0.5 rounded uppercase">Remote</span>
+								<span class="font-mono text-[9px] tracking-widest text-neutral-400 bg-white/[0.02] border border-white/5 px-2 py-0.5 rounded uppercase">Full-Time</span>
+							</div>
+							<h3 class="font-syne font-bold text-lg sm:text-xl text-white group-hover/jobbtn:text-cyan-400 transition-colors select-text">
+								Senior AI Systems Engineer
+							</h3>
+						</div>
+						<!-- Chevron Icon -->
+						<div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center shrink-0 text-neutral-400 group-hover/jobbtn:text-cyan-400 group-hover/jobbtn:border-cyan-500/20 transition-all duration-300 chevron-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+							</svg>
+						</div>
+					</button>
+
+					<!-- Expandable Details -->
+					<div class="job-details hidden border-t border-white/5 bg-[#030307]/40 p-6 sm:p-8 space-y-6">
+						<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+							<div class="lg:col-span-2 space-y-4">
+								<h4 class="font-mono text-xs uppercase tracking-widest text-neutral-400">Role Overview</h4>
+								<p class="text-neutral-400 text-sm leading-relaxed font-light select-text">
+									We are looking for a Senior AI Systems Engineer to design and implement robust, production-grade infrastructure for our custom autonomous agent systems. In this role, you will lead the architecture of high-concurrency event loops, pipeline fine-tuning pipelines, and write interfaces that orchestrate multi-agent operations securely and with minimal latency.
+								</p>
+								<h4 class="font-mono text-xs uppercase tracking-widest text-neutral-400 pt-2">Key Responsibilities</h4>
+								<ul class="space-y-2.5 text-neutral-300 text-sm leading-relaxed font-light select-text">
+									<li class="flex items-start gap-2.5">
+										<span class="w-1.5 h-1.5 rounded-full bg-cyan-500/40 mt-2 shrink-0"></span>
+										<span>Build robust orchestration systems for multiple LLM-based agents.</span>
+									</li>
+									<li class="flex items-start gap-2.5">
+										<span class="w-1.5 h-1.5 rounded-full bg-cyan-500/40 mt-2 shrink-0"></span>
+										<span>Implement fine-tuning and retrieval pipelines utilizing advanced embedding structures and context window management.</span>
+									</li>
+									<li class="flex items-start gap-2.5">
+										<span class="w-1.5 h-1.5 rounded-full bg-cyan-500/40 mt-2 shrink-0"></span>
+										<span>Design fast caching systems for vector search models and database interfaces.</span>
+									</li>
+									<li class="flex items-start gap-2.5">
+										<span class="w-1.5 h-1.5 rounded-full bg-cyan-500/40 mt-2 shrink-0"></span>
+										<span>Collaborate with front-end engineers to expose high-fidelity real-time streaming interfaces.</span>
+									</li>
+								</ul>
+							</div>
+							<div class="space-y-4 lg:border-l lg:border-white/5 lg:pl-8">
+								<h4 class="font-mono text-xs uppercase tracking-widest text-neutral-400">Stack & Requirements</h4>
+								<div class="flex flex-wrap gap-1.5 pt-1">
+									<span class="font-mono text-[10px] text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Python</span>
+									<span class="font-mono text-[10px] text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Rust</span>
+									<span class="font-mono text-[10px] text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Go</span>
+									<span class="font-mono text-[10px] text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">PyTorch</span>
+									<span class="font-mono text-[10px] text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">LangChain</span>
+									<span class="font-mono text-[10px] text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Vector DBs</span>
+								</div>
+								<div class="space-y-3 pt-3">
+									<div>
+										<span class="text-[10px] font-mono text-neutral-500 uppercase block">Experience</span>
+										<span class="text-white text-xs select-text font-medium">5+ years in system engineering</span>
+									</div>
+									<div>
+										<span class="text-[10px] font-mono text-neutral-500 uppercase block">Compensation</span>
+										<span class="text-white text-xs select-text font-medium">Competitive Equity + Competitive Base</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="pt-4 border-t border-white/5 flex">
+							<a href="#apply" data-role="Senior AI Systems Engineer" class="apply-to-job-btn px-6 py-2.5 bg-cyan-400 hover:bg-cyan-300 hover:scale-[1.02] text-black font-mono text-[10px] font-bold uppercase tracking-wider rounded-full transition-all duration-300 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)]">
+								Apply For This Role
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Position 2: MLOps & CUDA Engineer -->
+				<div class="job-item border border-white/5 bg-white/[0.01] hover:bg-white/[0.02] backdrop-blur-md rounded-2xl overflow-hidden transition-all duration-300 hover:border-cyan-500/20 shadow-lg shadow-black/20" data-dept="engineering">
+					<!-- Header (Trigger) -->
+					<button class="w-full text-left p-6 sm:p-8 flex items-center justify-between gap-4 cursor-pointer outline-none group/jobbtn">
+						<div class="space-y-2">
+							<div class="flex flex-wrap items-center gap-2.5">
+								<span class="font-mono text-[9px] tracking-widest text-cyan-400 bg-cyan-400/5 border border-cyan-400/10 px-2 py-0.5 rounded uppercase">Engineering</span>
+								<span class="font-mono text-[9px] tracking-widest text-neutral-400 bg-white/[0.02] border border-white/5 px-2 py-0.5 rounded uppercase">Remote</span>
+								<span class="font-mono text-[9px] tracking-widest text-neutral-400 bg-white/[0.02] border border-white/5 px-2 py-0.5 rounded uppercase">Full-Time</span>
+							</div>
+							<h3 class="font-syne font-bold text-lg sm:text-xl text-white group-hover/jobbtn:text-cyan-400 transition-colors select-text">
+								Staff MLOps & CUDA Engineer
+							</h3>
+						</div>
+						<!-- Chevron Icon -->
+						<div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center shrink-0 text-neutral-400 group-hover/jobbtn:text-cyan-400 group-hover/jobbtn:border-cyan-500/20 transition-all duration-300 chevron-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+							</svg>
+						</div>
+					</button>
+
+					<!-- Expandable Details -->
+					<div class="job-details hidden border-t border-white/5 bg-[#030307]/40 p-6 sm:p-8 space-y-6">
+						<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+							<div class="lg:col-span-2 space-y-4">
+								<h4 class="font-mono text-xs uppercase tracking-widest text-neutral-400">Role Overview</h4>
+								<p class="text-neutral-400 text-sm leading-relaxed font-light select-text">
+									As our Staff MLOps & CUDA Engineer, you will own the deployment speed and optimization of our private model networks. This includes writing custom CUDA kernels to optimize tensor workloads, calibrating distributed pipelines across GPU nodes, and managing automated container orchestration scaling triggers.
+								</p>
+								<h4 class="font-mono text-xs uppercase tracking-widest text-neutral-400 pt-2">Key Responsibilities</h4>
+								<ul class="space-y-2.5 text-neutral-300 text-sm leading-relaxed font-light select-text">
+									<li class="flex items-start gap-2.5">
+										<span class="w-1.5 h-1.5 rounded-full bg-cyan-500/40 mt-2 shrink-0"></span>
+										<span>Write and profile custom CUDA kernels to minimize latency during transformer executions.</span>
+									</li>
+									<li class="flex items-start gap-2.5">
+										<span class="w-1.5 h-1.5 rounded-full bg-cyan-500/40 mt-2 shrink-0"></span>
+										<span>Configure Kubernetes orchestrations to autoscale multi-GPU container deployments.</span>
+									</li>
+									<li class="flex items-start gap-2.5">
+										<span class="w-1.5 h-1.5 rounded-full bg-cyan-500/40 mt-2 shrink-0"></span>
+										<span>Integrate model compilation systems like Triton, TensorRT, or vLLM to scale request throughput.</span>
+									</li>
+									<li class="flex items-start gap-2.5">
+										<span class="w-1.5 h-1.5 rounded-full bg-cyan-500/40 mt-2 shrink-0"></span>
+										<span>Manage telemetry collection pipelines for GPU performance, throttling, and memory bounds.</span>
+									</li>
+								</ul>
+							</div>
+							<div class="space-y-4 lg:border-l lg:border-white/5 lg:pl-8">
+								<h4 class="font-mono text-xs uppercase tracking-widest text-neutral-400">Stack & Requirements</h4>
+								<div class="flex flex-wrap gap-1.5 pt-1">
+									<span class="font-mono text-[10px] text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">CUDA</span>
+									<span class="font-mono text-[10px] text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">C++</span>
+									<span class="font-mono text-[10px] text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Python</span>
+									<span class="font-mono text-[10px] text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">vLLM</span>
+									<span class="font-mono text-[10px] text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Docker</span>
+									<span class="font-mono text-[10px] text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">K8s</span>
+								</div>
+								<div class="space-y-3 pt-3">
+									<div>
+										<span class="text-[10px] font-mono text-neutral-500 uppercase block">Experience</span>
+										<span class="text-white text-xs select-text font-medium">4+ years writing GPU-accelerated code</span>
+									</div>
+									<div>
+										<span class="text-[10px] font-mono text-neutral-500 uppercase block">Compensation</span>
+										<span class="text-white text-xs select-text font-medium">Competitive Base + High Equity options</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="pt-4 border-t border-white/5 flex">
+							<a href="#apply" data-role="Staff MLOps & CUDA Engineer" class="apply-to-job-btn px-6 py-2.5 bg-cyan-400 hover:bg-cyan-300 hover:scale-[1.02] text-black font-mono text-[10px] font-bold uppercase tracking-wider rounded-full transition-all duration-300 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)]">
+								Apply For This Role
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Position 3: Lead Interactive Designer -->
+				<div class="job-item border border-white/5 bg-white/[0.01] hover:bg-white/[0.02] backdrop-blur-md rounded-2xl overflow-hidden transition-all duration-300 hover:border-cyan-500/20 shadow-lg shadow-black/20" data-dept="design">
+					<!-- Header (Trigger) -->
+					<button class="w-full text-left p-6 sm:p-8 flex items-center justify-between gap-4 cursor-pointer outline-none group/jobbtn">
+						<div class="space-y-2">
+							<div class="flex flex-wrap items-center gap-2.5">
+								<span class="font-mono text-[9px] tracking-widest text-purple-400 bg-purple-400/5 border border-purple-400/10 px-2 py-0.5 rounded uppercase">Design</span>
+								<span class="font-mono text-[9px] tracking-widest text-neutral-400 bg-white/[0.02] border border-white/5 px-2 py-0.5 rounded uppercase">Remote</span>
+								<span class="font-mono text-[9px] tracking-widest text-neutral-400 bg-white/[0.02] border border-white/5 px-2 py-0.5 rounded uppercase">Full-Time</span>
+							</div>
+							<h3 class="font-syne font-bold text-lg sm:text-xl text-white group-hover/jobbtn:text-cyan-400 transition-colors select-text">
+								Lead Interactive Designer
+							</h3>
+						</div>
+						<!-- Chevron Icon -->
+						<div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center shrink-0 text-neutral-400 group-hover/jobbtn:text-cyan-400 group-hover/jobbtn:border-cyan-500/20 transition-all duration-300 chevron-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+							</svg>
+						</div>
+					</button>
+
+					<!-- Expandable Details -->
+					<div class="job-details hidden border-t border-white/5 bg-[#030307]/40 p-6 sm:p-8 space-y-6">
+						<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+							<div class="lg:col-span-2 space-y-4">
+								<h4 class="font-mono text-xs uppercase tracking-widest text-neutral-400">Role Overview</h4>
+								<p class="text-neutral-400 text-sm leading-relaxed font-light select-text">
+									We are looking for a Lead Interactive Designer to push the limits of modern web aesthetics and design interfaces that WOW our clients and users. In this role, you will prototype and build stunning web interfaces using Three.js, shaders, SVG animations, and GSAP, ensuring every application feels premium and state of the art.
+								</p>
+								<h4 class="font-mono text-xs uppercase tracking-widest text-neutral-400 pt-2">Key Responsibilities</h4>
+								<ul class="space-y-2.5 text-neutral-300 text-sm leading-relaxed font-light select-text">
+									<li class="flex items-start gap-2.5">
+										<span class="w-1.5 h-1.5 rounded-full bg-cyan-500/40 mt-2 shrink-0"></span>
+										<span>Design user interfaces in Figma with curated, premium typography and color schemes.</span>
+									</li>
+									<li class="flex items-start gap-2.5">
+										<span class="w-1.5 h-1.5 rounded-full bg-cyan-500/40 mt-2 shrink-0"></span>
+										<span>Build interactive 3D WebGL experiences and custom animations using Three.js and GSAP directly in code.</span>
+									</li>
+									<li class="flex items-start gap-2.5">
+										<span class="w-1.5 h-1.5 rounded-full bg-cyan-500/40 mt-2 shrink-0"></span>
+										<span>Ensure absolute responsiveness, accessibility, and high performance across all devices.</span>
+									</li>
+									<li class="flex items-start gap-2.5">
+										<span class="w-1.5 h-1.5 rounded-full bg-cyan-500/40 mt-2 shrink-0"></span>
+										<span>Establish and maintain design tokens and responsive grid system libraries.</span>
+									</li>
+								</ul>
+							</div>
+							<div class="space-y-4 lg:border-l lg:border-white/5 lg:pl-8">
+								<h4 class="font-mono text-xs uppercase tracking-widest text-neutral-400">Stack & Requirements</h4>
+								<div class="flex flex-wrap gap-1.5 pt-1">
+									<span class="font-mono text-[10px] text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Three.js</span>
+									<span class="font-mono text-[10px] text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">GSAP</span>
+									<span class="font-mono text-[10px] text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">WebGL</span>
+									<span class="font-mono text-[10px] text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Figma</span>
+									<span class="font-mono text-[10px] text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">CSS Shaders</span>
+									<span class="font-mono text-[10px] text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Tailwind</span>
+								</div>
+								<div class="space-y-3 pt-3">
+									<div>
+										<span class="text-[10px] font-mono text-neutral-500 uppercase block">Portfolio Required</span>
+										<span class="text-white text-xs select-text font-medium">Showcasing WebGL & motion design work</span>
+									</div>
+									<div>
+										<span class="text-[10px] font-mono text-neutral-500 uppercase block">Compensation</span>
+										<span class="text-white text-xs select-text font-medium">Competitive Salary + Design Equity</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="pt-4 border-t border-white/5 flex">
+							<a href="#apply" data-role="Lead Interactive Designer" class="apply-to-job-btn px-6 py-2.5 bg-cyan-400 hover:bg-cyan-300 hover:scale-[1.02] text-black font-mono text-[10px] font-bold uppercase tracking-wider rounded-full transition-all duration-300 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)]">
+								Apply For This Role
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Position 4: Senior Full-Stack Developer -->
+				<div class="job-item border border-white/5 bg-white/[0.01] hover:bg-white/[0.02] backdrop-blur-md rounded-2xl overflow-hidden transition-all duration-300 hover:border-cyan-500/20 shadow-lg shadow-black/20" data-dept="engineering">
+					<!-- Header (Trigger) -->
+					<button class="w-full text-left p-6 sm:p-8 flex items-center justify-between gap-4 cursor-pointer outline-none group/jobbtn">
+						<div class="space-y-2">
+							<div class="flex flex-wrap items-center gap-2.5">
+								<span class="font-mono text-[9px] tracking-widest text-cyan-400 bg-cyan-400/5 border border-cyan-400/10 px-2 py-0.5 rounded uppercase">Engineering</span>
+								<span class="font-mono text-[9px] tracking-widest text-neutral-400 bg-white/[0.02] border border-white/5 px-2 py-0.5 rounded uppercase">Remote</span>
+								<span class="font-mono text-[9px] tracking-widest text-neutral-400 bg-white/[0.02] border border-white/5 px-2 py-0.5 rounded uppercase">Full-Time</span>
+							</div>
+							<h3 class="font-syne font-bold text-lg sm:text-xl text-white group-hover/jobbtn:text-cyan-400 transition-colors select-text">
+								Senior Full-Stack Developer
+							</h3>
+						</div>
+						<!-- Chevron Icon -->
+						<div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center shrink-0 text-neutral-400 group-hover/jobbtn:text-cyan-400 group-hover/jobbtn:border-cyan-500/20 transition-all duration-300 chevron-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+							</svg>
+						</div>
+					</button>
+
+					<!-- Expandable Details -->
+					<div class="job-details hidden border-t border-white/5 bg-[#030307]/40 p-6 sm:p-8 space-y-6">
+						<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+							<div class="lg:col-span-2 space-y-4">
+								<h4 class="font-mono text-xs uppercase tracking-widest text-neutral-400">Role Overview</h4>
+								<p class="text-neutral-400 text-sm leading-relaxed font-light select-text">
+									We are looking for a Senior Full-Stack Developer to build low-latency interfaces, handle complex API bindings, integrate Postgres and Redis vector stores, and implement beautiful edge-rendered pages with Astro and SSR functions.
+								</p>
+								<h4 class="font-mono text-xs uppercase tracking-widest text-neutral-400 pt-2">Key Responsibilities</h4>
+								<ul class="space-y-2.5 text-neutral-300 text-sm leading-relaxed font-light select-text">
+									<li class="flex items-start gap-2.5">
+										<span class="w-1.5 h-1.5 rounded-full bg-cyan-500/40 mt-2 shrink-0"></span>
+										<span>Develop client dashboards and tooling consoles utilizing Astro, React, and Tailwind.</span>
+									</li>
+									<li class="flex items-start gap-2.5">
+										<span class="w-1.5 h-1.5 rounded-full bg-cyan-500/40 mt-2 shrink-0"></span>
+										<span>Optimize serverless backend endpoints and database schemas.</span>
+									</li>
+									<li class="flex items-start gap-2.5">
+										<span class="w-1.5 h-1.5 rounded-full bg-cyan-500/40 mt-2 shrink-0"></span>
+										<span>Integrate vector storage systems and handle real-time streaming sockets.</span>
+									</li>
+									<li class="flex items-start gap-2.5">
+										<span class="w-1.5 h-1.5 rounded-full bg-cyan-500/40 mt-2 shrink-0"></span>
+										<span>Lead code reviews, write comprehensive tests, and deploy robust build pipelines.</span>
+									</li>
+								</ul>
+							</div>
+							<div class="space-y-4 lg:border-l lg:border-white/5 lg:pl-8">
+								<h4 class="font-mono text-xs uppercase tracking-widest text-neutral-400">Stack & Requirements</h4>
+								<div class="flex flex-wrap gap-1.5 pt-1">
+									<span class="font-mono text-[10px] text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Astro</span>
+									<span class="font-mono text-[10px] text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">TypeScript</span>
+									<span class="font-mono text-[10px] text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">React</span>
+									<span class="font-mono text-[10px] text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Node.js</span>
+									<span class="font-mono text-[10px] text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">PostgreSQL</span>
+									<span class="font-mono text-[10px] text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Tailwind</span>
+								</div>
+								<div class="space-y-3 pt-3">
+									<div>
+										<span class="text-[10px] font-mono text-neutral-500 uppercase block">Experience</span>
+										<span class="text-white text-xs select-text font-medium">5+ years in full-stack architecture</span>
+									</div>
+									<div>
+										<span class="text-[10px] font-mono text-neutral-500 uppercase block">Compensation</span>
+										<span class="text-white text-xs select-text font-medium">Competitive Salary + Performance Incentives</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="pt-4 border-t border-white/5 flex">
+							<a href="#apply" data-role="Senior Full-Stack Developer" class="apply-to-job-btn px-6 py-2.5 bg-cyan-400 hover:bg-cyan-300 hover:scale-[1.02] text-black font-mono text-[10px] font-bold uppercase tracking-wider rounded-full transition-all duration-300 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)]">
+								Apply For This Role
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- SECTION 4: APPLICATION FORM -->
+		<section id="apply" class="border-t border-white/5 pt-16 pb-20 scroll-mt-24 animate-stagger-item">
+			<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+				
+				<!-- Left Column: Form Info -->
+				<div class="lg:col-span-5 space-y-6 lg:pr-4">
+					<div class="space-y-4">
+						<div class="flex items-center gap-2">
+							<span class="text-[10px] font-mono tracking-widest text-cyan-400/80 uppercase">TRANSMISSION STREAM</span>
+						</div>
+						<h2 class="font-syne font-semibold text-2xl sm:text-3xl text-white tracking-tight leading-none select-text">
+							Submit Your Credentials
+						</h2>
+						<p class="text-neutral-400 text-sm leading-relaxed font-light select-text">
+							We keep things simple. Provide your name, contact details, portfolio/repository URL, and upload your resume. Let's build something exceptional.
+						</p>
+					</div>
+
+					<div class="border border-white/5 rounded-2xl p-5 bg-white/[0.01] space-y-4">
+						<div class="flex items-start gap-4">
+							<div class="w-8 h-8 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center shrink-0 border border-cyan-500/20 text-xs font-mono font-bold">1</div>
+							<div class="space-y-1">
+								<span class="text-[10px] font-mono uppercase tracking-widest text-neutral-400 block">Select Position</span>
+								<p class="text-neutral-500 text-xs select-text font-light">Choose one of the active positions above or submit a general application.</p>
+							</div>
+						</div>
+						<div class="flex items-start gap-4">
+							<div class="w-8 h-8 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center shrink-0 border border-cyan-500/20 text-xs font-mono font-bold">2</div>
+							<div class="space-y-1">
+								<span class="text-[10px] font-mono uppercase tracking-widest text-neutral-400 block">Fast Telemetry Check</span>
+								<p class="text-neutral-500 text-xs select-text font-light">We review applications asynchronously within 48 hours.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Right Column: Submission Form -->
+				<div class="lg:col-span-7">
+					<div class="relative bg-neutral-950/40 backdrop-blur-xl border border-white/10 rounded-3xl p-6 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden group/form">
+						<!-- Atmospheric Glow Decoration -->
+						<div class="absolute -top-40 -right-40 w-80 h-80 bg-[#00deff]/10 rounded-full blur-[60px] pointer-events-none transition-all duration-700 group-hover/form:bg-[#00deff]/15"></div>
+						<div class="absolute -bottom-40 -left-40 w-80 h-80 bg-[#883ae2]/10 rounded-full blur-[60px] pointer-events-none transition-all duration-700 group-hover/form:bg-[#883ae2]/15"></div>
+
+						<div class="relative min-h-[480px] z-10">
+							<form id="apply-form" class="space-y-6">
+								<!-- Position Dropdown -->
+								<div class="space-y-2">
+									<label for="apply_position" class="block font-mono text-xs uppercase tracking-widest text-neutral-300">Target Position</label>
+									<div class="relative rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] focus-within:border-cyan-500/50 focus-within:bg-white/[0.04] transition-all duration-300">
+										<select 
+											id="apply_position" 
+											name="position" 
+											class="w-full bg-transparent text-sm sm:text-base text-white outline-none py-3 px-4 pr-10 appearance-none cursor-pointer border-none focus:ring-0"
+										>
+											<option value="general" class="bg-neutral-950 text-white">General Application / Other</option>
+											<option value="ai_systems" class="bg-neutral-950 text-white">Senior AI Systems Engineer</option>
+											<option value="mlops" class="bg-neutral-950 text-white">Staff MLOps & CUDA Engineer</option>
+											<option value="design" class="bg-neutral-950 text-white">Lead Interactive Designer</option>
+											<option value="full_stack" class="bg-neutral-950 text-white">Senior Full-Stack Developer</option>
+										</select>
+										<div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-neutral-400">
+											<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+												<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+											</svg>
+										</div>
+									</div>
+								</div>
+
+								<!-- Name & Email -->
+								<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+									<div class="space-y-2">
+										<label for="apply_name" class="block font-mono text-xs uppercase tracking-widest text-neutral-300">Your name</label>
+										<div class="relative rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] focus-within:border-cyan-500/50 focus-within:bg-white/[0.04] transition-all duration-300 px-4 py-2">
+											<input 
+												type="text" 
+												id="apply_name" 
+												name="name" 
+												required 
+												autocomplete="name"
+												placeholder="Tobias Neumann" 
+												class="w-full bg-transparent text-sm sm:text-base text-white placeholder-neutral-500 outline-none py-1 border-none focus:ring-0"
+											/>
+										</div>
+									</div>
+									<div class="space-y-2">
+										<label for="apply_email" class="block font-mono text-xs uppercase tracking-widest text-neutral-300">Email Address</label>
+										<div class="relative rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] focus-within:border-cyan-500/50 focus-within:bg-white/[0.04] transition-all duration-300 px-4 py-2">
+											<input 
+												type="email" 
+												id="apply_email" 
+												name="email" 
+												required 
+												autocomplete="email"
+												placeholder="hello@diceforceit.com" 
+												class="w-full bg-transparent text-sm sm:text-base text-white placeholder-neutral-500 outline-none py-1 border-none focus:ring-0"
+											/>
+										</div>
+									</div>
+								</div>
+
+								<!-- Repository / Portfolio URL -->
+								<div class="space-y-2">
+									<label for="apply_url" class="block font-mono text-xs uppercase tracking-widest text-neutral-300">Portfolio / Github URL</label>
+									<div class="relative rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] focus-within:border-cyan-500/50 focus-within:bg-white/[0.04] transition-all duration-300 px-4 py-2">
+										<input 
+											type="url" 
+											id="apply_url" 
+											name="portfolio_url" 
+											required 
+											placeholder="https://github.com/username" 
+											class="w-full bg-transparent text-sm sm:text-base text-white placeholder-neutral-500 outline-none py-1 border-none focus:ring-0"
+										/>
+									</div>
+								</div>
+
+								<!-- Drag & Drop Resume Upload -->
+								<div class="space-y-2">
+									<label class="block font-mono text-xs uppercase tracking-widest text-neutral-300">Resume / CV (PDF)</label>
+									<div id="drop-zone" class="relative rounded-xl border border-dashed border-white/10 bg-white/[0.01] hover:border-cyan-500/20 hover:bg-white/[0.02] transition-all duration-300 px-6 py-6 text-center cursor-pointer flex flex-col items-center justify-center gap-2 group/drop select-none">
+										<input 
+											type="file" 
+											id="resume-file" 
+											name="resume" 
+											accept=".pdf" 
+											required 
+											class="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-10"
+										/>
+										
+										<!-- File upload empty state -->
+										<div id="upload-empty-state" class="flex flex-col items-center gap-2 pointer-events-none transition-opacity duration-300">
+											<div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-neutral-400 group-hover/drop:text-cyan-400 group-hover/drop:border-cyan-500/20 group-hover/drop:bg-cyan-950/5 transition-all duration-300">
+												<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+													<path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+												</svg>
+											</div>
+											<div class="space-y-1">
+												<p class="text-xs text-neutral-300 font-medium">Drag & drop your PDF resume here, or <span class="text-cyan-400 underline font-semibold">browse</span></p>
+												<p class="text-[10px] text-neutral-500 font-mono">Maximum file size: 5MB</p>
+											</div>
+										</div>
+
+										<!-- File upload active state (hidden initially) -->
+										<div id="upload-active-state" class="hidden flex flex-col items-center gap-3 w-full max-w-sm relative z-20 transition-opacity duration-300">
+											<div class="flex items-center gap-3 p-3 rounded-xl border border-cyan-500/20 bg-cyan-950/10 w-full justify-between">
+												<div class="flex items-center gap-2.5 truncate">
+													<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-cyan-400 shrink-0 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+														<path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+													</svg>
+													<span id="uploaded-file-name" class="font-mono text-xs text-cyan-300 truncate select-text">resume.pdf</span>
+												</div>
+												<button 
+													type="button" 
+													id="remove-file-btn" 
+													class="text-[10px] font-mono font-bold uppercase tracking-widest text-neutral-400 hover:text-red-400 transition-colors px-2 py-1 rounded cursor-pointer z-30"
+												>
+													Remove
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- Cover Letter / Message -->
+								<div class="space-y-2">
+									<label for="apply_message" class="block font-mono text-xs uppercase tracking-widest text-neutral-300">Tell us about yourself</label>
+									<div class="relative rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] focus-within:border-cyan-500/50 focus-within:bg-white/[0.04] transition-all duration-300 px-4 py-3">
+										<textarea 
+											id="apply_message" 
+											name="message" 
+											required 
+											rows="3" 
+											placeholder="What is your favorite system problem? Why do you want to join us?…" 
+											class="w-full bg-transparent text-sm sm:text-base text-white placeholder-neutral-500 outline-none py-1 border-none focus:ring-0 resize-none"
+										></textarea>
+									</div>
+								</div>
+
+								<div class="pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+									<div class="w-full sm:w-auto z-10">
+										<div class="relative group transition-transform duration-500 hover:scale-[1.015] w-full sm:w-auto">
+											<div class="absolute -inset-1 bg-gradient-to-r from-[#0377ff] via-[#00deff] to-[#883ae2] rounded-full blur-md opacity-25 group-hover:opacity-60 transition-all duration-500 ease-out"></div>
+											<div class="relative rounded-full p-[1px] overflow-hidden flex items-center justify-center bg-black shadow-[0_4px_12px_rgba(0,0,0,0.5)] group-hover:shadow-[0_0_20px_rgba(3,119,255,0.4)] transition-all duration-500 w-full sm:w-auto">
+												<div class="absolute inset-[-200%] bg-[conic-gradient(from_0deg,#0377ff,#00deff,#883ae2,#00deff,#0377ff)] animate-border-spin"></div>
+												<button 
+													type="submit" 
+													class="relative w-full sm:w-auto px-10 py-4 bg-black hover:bg-neutral-900 text-white font-mono text-xs font-bold uppercase tracking-widest rounded-full transition-all duration-300 inline-flex items-center justify-center gap-2.5 cursor-pointer z-10 select-none group-hover:text-[#00deff] border-none focus:outline-none"
+												>
+													Submit Application
+												</button>
+											</div>
+										</div>
+									</div>
+									<p class="text-[10px] font-mono text-neutral-500 tracking-wider">
+										By applying, you agree to our <a href="/privacy" class="text-neutral-400 hover:text-white underline transition-colors">Privacy Policy</a>.
+									</p>
+								</div>
+							</form>
+
+							<!-- Success Screen (Hidden by default) -->
+							<div id="success-screen" class="hidden absolute inset-0 bg-neutral-950/95 backdrop-blur-xl flex flex-col items-center justify-center text-center space-y-6 p-6 rounded-3xl z-20 border border-white/10">
+								<div class="relative w-16 h-16 mb-2">
+									<div class="absolute inset-0 rounded-full border border-white/10 bg-white/5 animate-pulse-slow"></div>
+									<div class="absolute inset-2 rounded-full border border-white/20 flex items-center justify-center">
+										<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+											<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+										</svg>
+									</div>
+								</div>
+								<div class="space-y-4 px-6 max-w-md">
+									<h3 class="text-xl font-syne font-bold tracking-tight text-white uppercase select-text">Credentials Received</h3>
+									
+									<!-- Simulated Console -->
+									<div class="bg-black/90 border border-white/10 rounded-lg p-4 font-mono text-[10px] text-left text-neutral-400 space-y-1.5 overflow-hidden h-28 max-w-sm mx-auto shadow-inner">
+										<div class="terminal-line opacity-0">> ANALYZING APPLICANT SIGNATURE… [OK]</div>
+										<div class="terminal-line opacity-0">> VERIFYING UPLOAD INTEGRITY… [100%]</div>
+										<div class="terminal-line opacity-0">> UPLOADING CREDENTIALS CORE… [OK]</div>
+										<div class="terminal-line opacity-0">> INTERFACE HANDSHAKE COMPLETED… [ESTABLISHED]</div>
+									</div>
+									
+									<p class="text-[11px] font-mono text-neutral-400 leading-relaxed select-text mt-2">
+										Your credentials have been successfully loaded. Review latency: <span class="text-white font-bold">48 Hours</span>.
+									</p>
+								</div>
+								<button 
+									id="reset-form-btn" 
+									class="text-[10px] font-mono tracking-widest text-neutral-400 hover:text-white uppercase transition-colors pointer-events-auto cursor-pointer"
+								>
+									Submit Another Profile
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+	</div>
+
+	<!-- Custom style for the spin (matching contact.astro) -->
+	<style>
+		@keyframes border-spin {
+			from { transform: rotate(0deg); }
+			to { transform: rotate(360deg); }
+		}
+		.animate-border-spin {
+			animation: border-spin 3s linear infinite;
+		}
+	</style>
+
+	<!-- Interactive Script -->
+	<script>
+		import * as THREE from 'three';
+		import { gsap } from 'gsap';
+
+		// Accordion Logic
+		const jobBtns = document.querySelectorAll('.job-item button');
+		jobBtns.forEach(btn => {
+			btn.addEventListener('click', () => {
+				const item = btn.parentElement;
+				const details = item?.querySelector('.job-details') as HTMLElement | null;
+				const chevron = btn.querySelector('.chevron-icon svg') as HTMLElement | null;
+
+				if (!details || !item) return;
+
+				const isOpen = !details.classList.contains('hidden');
+
+				// Close all other jobs
+				document.querySelectorAll('.job-item').forEach(otherItem => {
+					if (otherItem !== item) {
+						const otherDetails = otherItem.querySelector('.job-details') as HTMLElement | null;
+						const otherChevron = otherItem.querySelector('.chevron-icon svg') as HTMLElement | null;
+						if (otherDetails && !otherDetails.classList.contains('hidden')) {
+							gsap.to(otherDetails, {
+								height: 0,
+								opacity: 0,
+								duration: 0.3,
+								ease: 'power2.out',
+								onComplete: () => {
+									otherDetails.classList.add('hidden');
+									otherDetails.style.height = '';
+								}
+							});
+							if (otherChevron) otherChevron.style.transform = 'rotate(0deg)';
+						}
+					}
+				});
+
+				// Toggle clicked job
+				if (isOpen) {
+					gsap.to(details, {
+						height: 0,
+						opacity: 0,
+						duration: 0.3,
+						ease: 'power2.out',
+						onComplete: () => {
+							details.classList.add('hidden');
+							details.style.height = '';
+						}
+					});
+					if (chevron) chevron.style.transform = 'rotate(0deg)';
+				} else {
+					details.classList.remove('hidden');
+					const naturalHeight = details.scrollHeight;
+					gsap.fromTo(details, 
+						{ height: 0, opacity: 0 },
+						{ height: naturalHeight, opacity: 1, duration: 0.4, ease: 'power2.out' }
+					);
+					if (chevron) chevron.style.transform = 'rotate(180deg)';
+				}
+			});
+		});
+
+		// Apply button logic inside accordion
+		const applyBtns = document.querySelectorAll('.apply-to-job-btn');
+		const positionSelect = document.getElementById('apply_position') as HTMLSelectElement | null;
+		applyBtns.forEach(btn => {
+			btn.addEventListener('click', (e) => {
+				e.preventDefault();
+				const targetRole = btn.getAttribute('data-role');
+				if (positionSelect && targetRole) {
+					if (targetRole.includes('AI Systems')) {
+						positionSelect.value = 'ai_systems';
+					} else if (targetRole.includes('MLOps')) {
+						positionSelect.value = 'mlops';
+					} else if (targetRole.includes('Interactive Designer')) {
+						positionSelect.value = 'design';
+					} else if (targetRole.includes('Full-Stack')) {
+						positionSelect.value = 'full_stack';
+					}
+				}
+				
+				const applySection = document.getElementById('apply');
+				if (applySection) {
+					applySection.scrollIntoView({ behavior: 'smooth' });
+				}
+			});
+		});
+
+		// Filters Logic
+		const filterBtns = document.querySelectorAll('.filter-btn');
+		filterBtns.forEach(btn => {
+			btn.addEventListener('click', () => {
+				const filter = btn.getAttribute('data-filter');
+				
+				// Update active class
+				filterBtns.forEach(b => {
+					b.classList.remove('text-cyan-400', 'bg-cyan-500/10', 'border-cyan-400/20');
+					b.classList.add('text-neutral-400', 'border-transparent');
+				});
+				btn.classList.remove('text-neutral-400', 'border-transparent');
+				btn.classList.add('text-cyan-400', 'bg-cyan-500/10', 'border-cyan-400/20');
+
+				// Filter items
+				document.querySelectorAll('.job-item').forEach(item => {
+					const dept = item.getAttribute('data-dept');
+					if (filter === 'all' || dept === filter) {
+						gsap.to(item, { display: 'block', opacity: 1, y: 0, duration: 0.3 });
+					} else {
+						gsap.to(item, { display: 'none', opacity: 0, y: 15, duration: 0.3 });
+					}
+				});
+			});
+		});
+
+		// Drag & Drop File Upload UI updates
+		const fileInput = document.getElementById('resume-file') as HTMLInputElement | null;
+		const dropZone = document.getElementById('drop-zone');
+		const emptyState = document.getElementById('upload-empty-state');
+		const activeState = document.getElementById('upload-active-state');
+		const fileNameSpan = document.getElementById('uploaded-file-name');
+		const removeBtn = document.getElementById('remove-file-btn');
+		const canvasContainer = document.getElementById('canvas-container');
+		const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		if (fileInput && dropZone && emptyState && activeState && fileNameSpan && removeBtn) {
+			const handleFile = (file: File) => {
+				fileNameSpan.innerText = file.name;
+				emptyState.classList.add('hidden');
+				activeState.classList.remove('hidden');
+				dropZone.classList.add('border-cyan-500/30', 'bg-cyan-950/5');
+				fileInput.classList.add('hidden');
+			};
+
+			fileInput.addEventListener('change', () => {
+				if (fileInput.files && fileInput.files.length > 0) {
+					handleFile(fileInput.files[0]);
+				}
+			});
+
+			removeBtn.addEventListener('click', (e) => {
+				e.preventDefault();
+				e.stopPropagation(); // Avoid triggering file selection dialog
+				fileInput.value = '';
+				fileInput.classList.remove('hidden');
+				activeState.classList.add('hidden');
+				emptyState.classList.remove('hidden');
+				dropZone.classList.remove('border-cyan-500/30', 'bg-cyan-950/5');
+			});
+
+			// drag and drop triggers
+			dropZone.addEventListener('dragover', (e) => {
+				e.preventDefault();
+				if (!activeState.classList.contains('hidden')) return;
+				dropZone.classList.add('border-cyan-500/50', 'bg-cyan-950/10');
+			});
+
+			dropZone.addEventListener('dragleave', () => {
+				if (!activeState.classList.contains('hidden')) return;
+				dropZone.classList.remove('border-cyan-500/50', 'bg-cyan-950/10');
+			});
+
+			dropZone.addEventListener('drop', (e) => {
+				e.preventDefault();
+				if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+					const file = e.dataTransfer.files[0];
+					if (file.type === 'application/pdf') {
+						fileInput.files = e.dataTransfer.files;
+						handleFile(file);
+					}
+				}
+			});
+		}
+
+		// Application submission sequence
+		const applyForm = document.getElementById('apply-form') as HTMLFormElement | null;
+		const successScreen = document.getElementById('success-screen');
+		const resetFormBtn = document.getElementById('reset-form-btn');
+
+		if (applyForm && successScreen && resetFormBtn) {
+			applyForm.addEventListener('submit', (e) => {
+				e.preventDefault();
+				const submitBtn = applyForm.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+				if (submitBtn) {
+					submitBtn.disabled = true;
+					submitBtn.innerText = 'Compressing Transmission…';
+				}
+
+				gsap.to(applyForm, {
+					opacity: 0,
+					y: -10,
+					duration: 0.4,
+					onComplete: () => {
+						applyForm.classList.add('hidden');
+						successScreen.classList.remove('hidden');
+						successScreen.style.opacity = '0';
+						successScreen.style.transform = 'translateY(10px)';
+
+						gsap.to(successScreen, {
+							opacity: 1,
+							y: 0,
+							duration: 0.5,
+							ease: 'power2.out',
+							onComplete: () => {
+								const lines = successScreen.querySelectorAll('.terminal-line');
+								gsap.to(lines, {
+									opacity: 1,
+									stagger: 0.35,
+									duration: 0.15,
+									ease: 'none'
+								});
+							}
+						});
+					}
+				});
+			});
+
+			resetFormBtn.addEventListener('click', () => {
+				gsap.to(successScreen, {
+					opacity: 0,
+					y: 10,
+					duration: 0.4,
+					onComplete: () => {
+						successScreen.classList.add('hidden');
+						const lines = successScreen.querySelectorAll('.terminal-line');
+						lines.forEach(line => (line as HTMLElement).style.opacity = '0');
+
+						applyForm.reset();
+						if (fileInput && dropZone && emptyState && activeState) {
+							fileInput.value = '';
+							fileInput.classList.remove('hidden');
+							activeState.classList.add('hidden');
+							emptyState.classList.remove('hidden');
+							dropZone.classList.remove('border-cyan-500/30', 'bg-cyan-950/5');
+						}
+
+						applyForm.classList.remove('hidden');
+						applyForm.style.opacity = '0';
+						applyForm.style.transform = 'translateY(-10px)';
+
+						const submitBtn = applyForm.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+						if (submitBtn) {
+							submitBtn.disabled = false;
+							submitBtn.innerText = 'Submit Application';
+						}
+
+						gsap.to(applyForm, {
+							opacity: 1,
+							y: 0,
+							duration: 0.5,
+							ease: 'power2.out'
+						});
+					}
+				});
+			});
+		}
+		// 3. Three.js Interactive Particle SVG Image System
+		let scene: THREE.Scene, 
+			camera: THREE.PerspectiveCamera, 
+			renderer: THREE.WebGLRenderer,
+			geometry: THREE.BufferGeometry,
+			points: THREE.Points,
+			currentScale = 1.0;
+		
+		function initThree() {
+			if (!canvasContainer) return;
+			
+			// Load SVG image as textures/particles
+			const img = new Image();
+			img.crossOrigin = "anonymous";
+			img.src = '/careers-hero.svg';
+			
+			img.onload = () => {
+				const sampleCanvas = document.createElement('canvas');
+				const sWidth = 185;
+				const sHeight = 185;
+				
+				sampleCanvas.width = sWidth;
+				sampleCanvas.height = sHeight;
+				const sCtx = sampleCanvas.getContext('2d');
+				if (!sCtx) return;
+				
+				sCtx.drawImage(img, 0, 0, sWidth, sHeight);
+				const imgData = sCtx.getImageData(0, 0, sWidth, sHeight);
+				const data = imgData.data;
+				
+				const rawParticles = [];
+				
+				for (let y = 0; y < sHeight; y++) {
+					for (let x = 0; x < sWidth; x++) {
+						const idx = (y * sWidth + x) * 4;
+						const r = data[idx];
+						const g = data[idx + 1];
+						const b = data[idx + 2];
+						const a = data[idx + 3];
+						
+						if (a > 60) {
+							const px = ((x / sWidth) - 0.5) * 5.0;
+							const py = -((y / sHeight) - 0.5) * 5.0;
+							const pz = (Math.random() - 0.5) * 0.12;
+							
+							rawParticles.push({
+								x: px,
+								y: py,
+								z: pz,
+								r: r / 255,
+								g: g / 255,
+								b: b / 255
+							});
+						}
+					}
+				}
+				
+				const maxParticles = 3200;
+				let particlesList = [];
+				if (rawParticles.length > maxParticles) {
+					const rawCount = rawParticles.length;
+					for (let i = 0; i < maxParticles; i++) {
+						const index = Math.floor((i / (maxParticles - 1)) * (rawCount - 1));
+						particlesList.push(rawParticles[index]);
+					}
+				} else {
+					particlesList = rawParticles;
+				}
+				
+				setupParticleSystem(particlesList);
+			};
+		}
+
+		function setupParticleSystem(particlesList: any[]) {
+			if (!canvasContainer) return;
+			const width = canvasContainer.clientWidth;
+			const height = canvasContainer.clientHeight || 350;
+			
+			scene = new THREE.Scene();
+			
+			camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 100);
+			camera.position.z = 4.8;
+			
+			renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+			renderer.setSize(width, height);
+			renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+			renderer.domElement.style.display = 'block';
+			canvasContainer.appendChild(renderer.domElement);
+			
+			const count = particlesList.length;
+			const positions = new Float32Array(count * 3);
+			const colors = new Float32Array(count * 3);
+			const originalPositions = new Float32Array(count * 3);
+			const velocities = new Float32Array(count * 3);
+			
+			for (let i = 0; i < count; i++) {
+				const p = particlesList[i];
+				const i3 = i * 3;
+				
+				originalPositions[i3] = p.x;
+				originalPositions[i3 + 1] = p.y;
+				originalPositions[i3 + 2] = p.z;
+				
+				positions[i3] = p.x + (Math.random() - 0.5) * 12;
+				positions[i3 + 1] = p.y + (Math.random() - 0.5) * 12;
+				positions[i3 + 2] = p.z + (Math.random() - 0.5) * 12;
+				
+				colors[i3] = p.r;
+				colors[i3 + 1] = p.g;
+				colors[i3 + 2] = p.b;
+				
+				velocities[i3] = 0;
+				velocities[i3 + 1] = 0;
+				velocities[i3 + 2] = 0;
+			}
+			
+			geometry = new THREE.BufferGeometry();
+			geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+			geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+			
+			const canvas = document.createElement('canvas');
+			canvas.width = 32;
+			canvas.height = 32;
+			const ctx = canvas.getContext('2d');
+			if (ctx) {
+				const gradient = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
+				gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
+				gradient.addColorStop(0.25, 'rgba(255, 255, 255, 0.7)');
+				gradient.addColorStop(0.6, 'rgba(255, 255, 255, 0.15)');
+				gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+				ctx.fillStyle = gradient;
+				ctx.fillRect(0, 0, 32, 32);
+			}
+			const texture = new THREE.CanvasTexture(canvas);
+			
+			const material = new THREE.PointsMaterial({
+				size: 0.085,
+				map: texture,
+				transparent: true,
+				opacity: 0.9,
+				blending: THREE.AdditiveBlending,
+				depthWrite: false,
+				vertexColors: true
+			});
+			
+			points = new THREE.Points(geometry, material);
+			scene.add(points);
+			
+			function adjustScale() {
+				if (!points || !canvasContainer) return;
+				const w = canvasContainer.clientWidth;
+				const h = canvasContainer.clientHeight || 350;
+				const aspect = w / h;
+				
+				if (aspect < 1.0) {
+					currentScale = aspect * 0.95;
+				} else {
+					currentScale = 1.05;
+				}
+				points.scale.set(currentScale, currentScale, currentScale);
+			}
+			
+			adjustScale();
+			
+			const mouse = new THREE.Vector2(-9999, -9999);
+			const mouse3D = new THREE.Vector3(-9999, -9999, 0);
+			const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
+			const raycaster = new THREE.Raycaster();
+			
+			function updateMousePosition(clientX: number, clientY: number) {
+				if (!canvasContainer) return;
+				const rect = canvasContainer.getBoundingClientRect();
+				const x = ((clientX - rect.left) / rect.width) * 2 - 1;
+				const y = -((clientY - rect.top) / rect.height) * 2 + 1;
+				mouse.set(x, y);
+				
+				raycaster.setFromCamera(mouse, camera);
+				raycaster.ray.intersectPlane(plane, mouse3D);
+			}
+			
+			function handleMove(e: MouseEvent) {
+				updateMousePosition(e.clientX, e.clientY);
+			}
+			
+			function handleLeave() {
+				mouse.set(-9999, -9999);
+				mouse3D.set(-9999, -9999, 0);
+			}
+			
+			function handleTouch(e: TouchEvent) {
+				if (e.touches.length > 0) {
+					updateMousePosition(e.touches[0].clientX, e.touches[0].clientY);
+				}
+			}
+			
+			canvasContainer.addEventListener('mousemove', handleMove);
+			canvasContainer.addEventListener('mouseleave', handleLeave);
+			canvasContainer.addEventListener('touchmove', handleTouch);
+			canvasContainer.addEventListener('touchend', handleLeave);
+			
+			const clock = new THREE.Clock();
+			
+			function animate() {
+				requestAnimationFrame(animate);
+				
+				const delta = Math.min(clock.getDelta(), 0.1);
+				const elapsed = clock.getElapsedTime();
+
+				// Rotate the image particles slightly for a premium dynamic feel
+				if (points && !prefersReduced) {
+					points.rotation.y = Math.sin(elapsed * 0.12) * 0.15;
+					points.rotation.x = Math.cos(elapsed * 0.08) * 0.08;
+				}
+
+				const positionsAttr = geometry.attributes.position;
+				const posArray = positionsAttr.array as Float32Array;
+				
+				const mouseRadius = 0.95;
+				const mousePush = 3.5;
+				const springForce = 5.2;
+				const damping = 0.83;
+				
+				for (let i = 0; i < count; i++) {
+					const idx = i * 3;
+					
+					let x = posArray[idx];
+					let y = posArray[idx + 1];
+					let z = posArray[idx + 2];
+					
+					const ox = originalPositions[idx];
+					const oy = originalPositions[idx + 1];
+					const oz = originalPositions[idx + 2];
+					
+					let vx = velocities[idx];
+					let vy = velocities[idx + 1];
+					let vz = velocities[idx + 2];
+					
+					if (mouse.x > -1000 && !prefersReduced) {
+						const localMouseX = mouse3D.x / currentScale;
+						const localMouseY = mouse3D.y / currentScale;
+						const localMouseZ = mouse3D.z / currentScale;
+						
+						const dx = x - localMouseX;
+						const dy = y - localMouseY;
+						const dz = z - localMouseZ;
+						const dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
+						
+						if (dist < mouseRadius) {
+							const pushStrength = (1.0 - dist / mouseRadius) * mousePush;
+							const angleX = dist > 0 ? dx / dist : (Math.random() - 0.5);
+							const angleY = dist > 0 ? dy / dist : (Math.random() - 0.5);
+							const angleZ = dist > 0 ? dz / dist : (Math.random() - 0.5);
+							
+							vx += angleX * pushStrength * delta;
+							vy += angleY * pushStrength * delta;
+							vz += angleZ * pushStrength * delta;
+						}
+					}
+					
+					const sx = (ox - x) * springForce;
+					const sy = (oy - y) * springForce;
+					const sz = (oz - z) * springForce;
+					
+					vx += sx * delta;
+					vy += sy * delta;
+					vz += sz * delta;
+					
+					vx *= damping;
+					vy *= damping;
+					vz *= damping;
+					
+					x += vx;
+					y += vy;
+					z += vz;
+					
+					posArray[idx] = x;
+					posArray[idx + 1] = y;
+					posArray[idx + 2] = z;
+					
+					velocities[idx] = vx;
+					velocities[idx + 1] = vy;
+					velocities[idx + 2] = vz;
+				}
+				
+				positionsAttr.needsUpdate = true;
+				renderer.render(scene, camera);
+			}
+			
+			animate();
+			
+			window.addEventListener('resize', () => {
+				if (!canvasContainer || !renderer || !camera) return;
+				const w = canvasContainer.clientWidth;
+				const h = canvasContainer.clientHeight || 350;
+				
+				camera.aspect = w / h;
+				camera.updateProjectionMatrix();
+				renderer.setSize(w, h);
+				
+				adjustScale();
+			});
+		}
+
+		initThree();
+	</script>
+</PageLayout>
