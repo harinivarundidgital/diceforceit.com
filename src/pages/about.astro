@@ -1,0 +1,418 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+---
+
+<PageLayout 
+	title="diceforce IT | About Us | Cognitive Engineering" 
+	description="We bridge the gap between complex neural architectures and operational workflows. Learn about our core engineering philosophy."
+	activePage="about"
+>
+	<div class="max-w-6xl mx-auto w-full flex flex-col gap-16 md:gap-24 relative">
+		
+		<!-- SECTION 1: ABOUT INTRO (Swiss Editorial Copy + 3 Columns Grid) -->
+		<section class="space-y-12 animate-stagger-item relative z-10">
+			<div class="space-y-4">
+				<div class="inline-flex items-center gap-2 px-3 py-1 border border-white/5 rounded-full bg-white/[0.01]">
+					<span class="font-mono text-[9px] tracking-widest text-cyan-400 uppercase">ABOUT THE CORE</span>
+				</div>
+				<h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight font-syne select-text">
+					Empowering enterprises through <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-500">cognitive engineering.</span>
+				</h1>
+				<p class="text-neutral-400 text-sm sm:text-base max-w-3xl leading-relaxed font-light select-text">
+					We bridge the gap between complex neural architectures and operational workflows. Our team of expert engineers designs and implements high-throughput machine learning pipelines tailored for scalability, robustness, and decision intelligence.
+				</p>
+			</div>
+
+			<!-- Grid of 3 Cards -->
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+				<!-- Card 1 -->
+				<div class="relative group border border-white/5 rounded-xl bg-black/40 backdrop-blur-md p-6 hover:border-white/10 transition-all duration-300">
+					<div class="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center mb-6 text-cyan-400">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+					</div>
+					<h3 class="text-white text-base font-space font-semibold mb-2 select-text">Cognitive Pipelines</h3>
+					<p class="text-neutral-400 text-xs leading-relaxed font-light select-text">
+						End-to-end data processing pipelines optimized for real-time model inference and neural analysis.
+					</p>
+				</div>
+				<!-- Card 2 -->
+				<div class="relative group border border-white/5 rounded-xl bg-black/40 backdrop-blur-md p-6 hover:border-white/10 transition-all duration-300">
+					<div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center mb-6 text-blue-400">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+					</div>
+					<h3 class="text-white text-base font-space font-semibold mb-2 select-text">Autonomous Agents</h3>
+					<p class="text-neutral-400 text-xs leading-relaxed font-light select-text">
+						Intelligent agents that execute complex multi-step workflows, integrating with your existing tool stack.
+					</p>
+				</div>
+				<!-- Card 3 -->
+				<div class="relative group border border-white/5 rounded-xl bg-black/40 backdrop-blur-md p-6 hover:border-white/10 transition-all duration-300">
+					<div class="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center mb-6 text-indigo-400">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"></path><line x1="12" y1="2" x2="12" y2="8"></line><line x1="12" y1="16" x2="12" y2="22"></line></svg>
+					</div>
+					<h3 class="text-white text-base font-space font-semibold mb-2 select-text">Custom Models</h3>
+					<p class="text-neutral-400 text-xs leading-relaxed font-light select-text">
+						Domain-specific LLMs and neural models fine-tuned to your proprietary training datasets.
+					</p>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<!-- SECTION 2: PARTICLES TWO-COLUMN GRID (AI/ML & IT Staffing) -->
+		<section class="relative w-full border-t border-white/5 z-10 animate-stagger-item h-[90vh] min-h-[600px] flex items-center justify-center">
+			<!-- Canvas for Particles covering the entire section background -->
+			<canvas id="about-particles-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
+
+			<div class="relative z-10 w-full max-w-6xl mx-auto px-6 sm:px-12 grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16">
+				
+				<!-- Left Column: AI & ML -->
+				<div id="aiml-content-box" class="relative p-8 md:p-12 transition-all duration-500 group flex flex-col items-center justify-center text-center min-h-[320px]">
+					<div class="space-y-6 flex flex-col items-center">
+						<div class="inline-flex items-center gap-2 px-3 py-1 border border-cyan-500/20 rounded-full bg-cyan-950/20">
+							<span class="font-mono text-[9px] tracking-widest text-cyan-400 uppercase">COGNITIVE PIPELINES</span>
+						</div>
+						<h3 class="font-syne font-semibold text-3xl sm:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-cyan-300 tracking-tight leading-tight select-text group-hover:scale-102 transition-transform duration-500">
+							AI & Machine Learning
+						</h3>
+					</div>
+					
+					<div class="pt-8">
+						<a 
+							href="/services#ai-ml" 
+							class="px-8 py-3.5 bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-semibold rounded-full hover:shadow-[0_0_30px_0_rgba(34,211,238,0.4)] hover:scale-105 transition-all duration-300 text-xs tracking-wider uppercase inline-block whitespace-nowrap"
+						>
+							Explore AI Solutions
+						</a>
+					</div>
+				</div>
+
+				<!-- Right Column: IT Staffing -->
+				<div id="staffing-content-box" class="relative p-8 md:p-12 transition-all duration-500 group flex flex-col items-center justify-center text-center min-h-[320px]">
+					<div class="space-y-6 flex flex-col items-center">
+						<div class="inline-flex items-center gap-2 px-3 py-1 border border-indigo-500/20 rounded-full bg-indigo-950/20">
+							<span class="font-mono text-[9px] tracking-widest text-indigo-400 uppercase">EMBEDDED ENGINEERS</span>
+						</div>
+						<h3 class="font-syne font-semibold text-3xl sm:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-white via-indigo-100 to-indigo-300 tracking-tight leading-tight select-text group-hover:scale-102 transition-transform duration-500">
+							IT Staffing & Teams
+						</h3>
+					</div>
+					
+					<div class="pt-8">
+						<a 
+							href="/services#staffing" 
+							class="px-8 py-3.5 border border-indigo-500/30 hover:border-indigo-500 text-white font-semibold rounded-full hover:bg-indigo-950/20 hover:shadow-[0_0_30px_0_rgba(99,102,241,0.3)] hover:scale-105 transition-all duration-300 text-xs tracking-wider uppercase inline-block whitespace-nowrap"
+						>
+							View Staffing Roster
+						</a>
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+	<!-- Interactive Script -->
+	<script>
+		// About Section Interactive Particle System (Circle Shapes)
+		const aboutCanvas = document.getElementById('about-particles-canvas') as HTMLCanvasElement | null;
+		const aimlBox = document.getElementById('aiml-content-box') as HTMLDivElement | null;
+		const staffingBox = document.getElementById('staffing-content-box') as HTMLDivElement | null;
+
+		if (aboutCanvas && aimlBox && staffingBox) {
+			const ctx = aboutCanvas.getContext('2d');
+			if (ctx) {
+				const particles: any[] = [];
+				const numParticles = 800;
+				let activeHover: 'aiml' | 'staffing' | null = null;
+				let animationFrameId = 0;
+				let shapePoints: {x: number, y: number}[] = [];
+				let canvasCSSWidth = 0;
+				let canvasCSSHeight = 0;
+
+				class Particle {
+					x: number;
+					y: number;
+					vx: number;
+					vy: number;
+					homeX: number;
+					homeY: number;
+					targetX: number;
+					targetY: number;
+					size: number;
+					color: string;
+					alpha: number;
+					baseAlpha: number;
+					angle: number;
+					speed: number;
+					radius: number;
+
+					constructor(w: number, h: number) {
+						this.homeX = Math.random() * w;
+						this.homeY = Math.random() * h;
+						this.x = Math.random() * w;
+						this.y = Math.random() * h;
+						this.vx = 0;
+						this.vy = 0;
+						this.targetX = this.homeX;
+						this.targetY = this.homeY;
+						this.size = Math.random() * 1.5 + 0.8;
+						this.angle = Math.random() * Math.PI * 2;
+						this.speed = Math.random() * 0.02 + 0.005;
+						this.radius = Math.random() * 20 + 8;
+						
+						this.baseAlpha = Math.random() * 0.35 + 0.15;
+						this.alpha = this.baseAlpha;
+						
+						// Nice glowing modern neon colors matching theme
+						const colorChoices = [
+							'34, 211, 238', // cyan
+							'3, 119, 255',  // blue
+							'136, 58, 226', // purple
+						];
+						this.color = colorChoices[Math.floor(Math.random() * colorChoices.length)];
+					}
+
+					update(activeHover: 'aiml' | 'staffing' | null) {
+						if (activeHover === null) {
+							// Ambient drifting motion around home position
+							this.angle += this.speed;
+							const dx = Math.cos(this.angle) * this.radius;
+							const dy = Math.sin(this.angle) * this.radius;
+							this.targetX = this.homeX + dx;
+							this.targetY = this.homeY + dy;
+							this.alpha = this.alpha * 0.95 + this.baseAlpha * 0.05;
+						} else {
+							// Glow brighter when forming targets
+							this.alpha = this.alpha * 0.95 + 0.85 * 0.05;
+						}
+
+						const isMorphing = activeHover !== null;
+						// Critically damped spring parameters for a slow, premium, and perfectly smooth drift with zero bounce
+						const stiffness = isMorphing ? 0.012 : 0.008;
+						const damping = isMorphing ? 0.84 : 0.86;
+
+						const ax = (this.targetX - this.x) * stiffness;
+						const ay = (this.targetY - this.y) * stiffness;
+
+						this.vx = (this.vx + ax) * damping;
+						this.vy = (this.vy + ay) * damping;
+
+						this.x += this.vx;
+						this.y += this.vy;
+					}
+
+					draw(c: CanvasRenderingContext2D) {
+						c.beginPath();
+						c.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+						c.fillStyle = `rgba(${this.color}, ${this.alpha})`;
+						c.fill();
+					}
+				}
+
+				// Resizing logic
+				const resizeAboutCanvas = () => {
+					const rect = aboutCanvas.getBoundingClientRect();
+					const dpr = window.devicePixelRatio || 1;
+					
+					canvasCSSWidth = rect.width;
+					canvasCSSHeight = rect.height;
+					
+					aboutCanvas.width = rect.width * dpr;
+					aboutCanvas.height = rect.height * dpr;
+					
+					ctx.resetTransform();
+					ctx.scale(dpr, dpr);
+					
+					// Re-initialize particles base positions based on new size in CSS pixels
+					if (particles.length === 0) {
+						for (let i = 0; i < numParticles; i++) {
+							particles.push(new Particle(rect.width, rect.height));
+						}
+					} else {
+						particles.forEach(p => {
+							p.homeX = Math.random() * rect.width;
+							p.homeY = Math.random() * rect.height;
+						});
+					}
+					
+					// If hovered, recompute shape points
+					if (activeHover !== null) {
+						updateTargets();
+					}
+				};
+
+				// Generate the text/shape points wrapping the hovered content box
+				const getTargetPoints = (): {x: number, y: number}[] => {
+					const pointsList: {x: number, y: number}[] = [];
+					const rect = aboutCanvas.getBoundingClientRect();
+					
+					const offscreen = document.createElement('canvas');
+					offscreen.width = rect.width;
+					offscreen.height = rect.height;
+					const oCtx = offscreen.getContext('2d');
+					if (!oCtx) return [];
+
+					oCtx.clearRect(0, 0, offscreen.width, offscreen.height);
+
+					const contentBox = activeHover === 'aiml' ? aimlBox : staffingBox;
+					if (!contentBox) return [];
+					const contentRect = contentBox.getBoundingClientRect();
+
+					const left = contentRect.left - rect.left;
+					const right = contentRect.right - rect.left;
+					const top = contentRect.top - rect.top;
+					const bottom = contentRect.bottom - rect.top;
+					const centerY = (top + bottom) / 2;
+					const height = contentRect.height;
+
+					if (activeHover === 'aiml') {
+						// Responsive font size: cap based on container height, canvas height, and container width
+						const fontSize = Math.max(80, Math.min(height * 0.95, offscreen.height - 40, (right - left) * 0.65));
+						oCtx.font = `600 ${fontSize}px "JetBrains Mono", Courier, monospace`;
+						oCtx.fillStyle = '#ffffff';
+						oCtx.textAlign = 'center';
+						oCtx.textBaseline = 'middle';
+
+						// Measure character width to prevent clipping/overflowing on the edges
+						const braceWidth = oCtx.measureText('{').width;
+						const halfBrace = braceWidth / 2;
+
+						// Offset for braces placement
+						const braceOffset = Math.max(20, fontSize * 0.06);
+						
+						// Calculate X positions defensively to avoid clipping on narrow screens
+						const leftBraceX = Math.max(halfBrace + 12, left - braceOffset);
+						const rightBraceX = Math.min(offscreen.width - halfBrace - 12, right + braceOffset);
+						
+						// Draw '{' to the left of the container
+						oCtx.fillText('{', leftBraceX, centerY);
+
+						// Draw '}' to the right of the container
+						oCtx.fillText('}', rightBraceX, centerY);
+					} else if (activeHover === 'staffing') {
+						const centerX = (left + right) / 2;
+						const width = right - left;
+						
+						const numCircles = 6;
+						const smallCircleRadius = 75; // 150px diameter
+
+						// Calculate a radius that wraps around the content beautifully (decreased radius to reduce spacing)
+						const baseRadius = Math.max(width / 2.2, height / 2) + 24;
+						
+						// Prevent the circles from extending outside the canvas boundaries
+						const maxRadius = Math.min(centerX, offscreen.width - centerX, centerY, offscreen.height - centerY) - 15 - smallCircleRadius;
+						const radius = Math.max(45, Math.min(baseRadius, maxRadius));
+
+						// Draw 6 large circles in a circular layout around the content
+						oCtx.lineWidth = 6;
+						oCtx.strokeStyle = '#ffffff';
+
+						for (let i = 0; i < numCircles; i++) {
+							// Space circles evenly, starting at 12 o'clock (straight up)
+							const angle = (i / numCircles) * Math.PI * 2 - Math.PI / 2;
+							const cx = centerX + Math.cos(angle) * radius;
+							const cy = centerY + Math.sin(angle) * radius;
+
+							oCtx.beginPath();
+							oCtx.arc(cx, cy, smallCircleRadius, 0, Math.PI * 2);
+							oCtx.stroke();
+						}
+					}
+
+					// Read pixel data
+					const imgData = oCtx.getImageData(0, 0, offscreen.width, offscreen.height);
+					const data = imgData.data;
+					const step = 6; // Sampling step matching bold strokes/lines
+
+					for (let y = 0; y < offscreen.height; y += step) {
+						for (let x = 0; x < offscreen.width; x += step) {
+							const idx = (y * offscreen.width + x) * 4;
+							const alpha = data[idx + 3];
+							if (alpha > 40) {
+								pointsList.push({ x, y });
+							}
+						}
+					}
+
+					return pointsList;
+				};
+
+				const updateTargets = () => {
+					shapePoints = getTargetPoints();
+					if (shapePoints.length > 0) {
+						for (let i = 0; i < particles.length; i++) {
+							const p = particles[i];
+							// Assign targets sequentially around the circles or shapes
+							const target = shapePoints[i % shapePoints.length];
+							// Add a tiny random offset so they look like a glowing nebula
+							p.targetX = target.x + (Math.random() - 0.5) * 6;
+							p.targetY = target.y + (Math.random() - 0.5) * 6;
+						}
+					}
+				};
+
+				const resetTargets = () => {
+					particles.forEach(p => {
+						p.targetX = p.homeX;
+						p.targetY = p.homeY;
+					});
+				};
+
+				// Listeners
+				aimlBox.addEventListener('mouseenter', () => {
+					activeHover = 'aiml';
+					updateTargets();
+				});
+
+				aimlBox.addEventListener('mouseleave', () => {
+					activeHover = null;
+					resetTargets();
+				});
+
+				staffingBox.addEventListener('mouseenter', () => {
+					activeHover = 'staffing';
+					updateTargets();
+				});
+
+				staffingBox.addEventListener('mouseleave', () => {
+					activeHover = null;
+					resetTargets();
+				});
+
+				// Loop
+				const runLoop = () => {
+					ctx.clearRect(0, 0, canvasCSSWidth, canvasCSSHeight);
+					
+					particles.forEach(p => {
+						p.update(activeHover);
+						p.draw(ctx);
+					});
+
+					animationFrameId = requestAnimationFrame(runLoop);
+				};
+
+				// Initialize
+				resizeAboutCanvas();
+				window.addEventListener('resize', resizeAboutCanvas);
+				
+				// Intersection Observer to stop animation when section is out of viewport (performance optimization)
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							if (!animationFrameId) {
+								animationFrameId = requestAnimationFrame(runLoop);
+							}
+						} else {
+							if (animationFrameId) {
+								cancelAnimationFrame(animationFrameId);
+								animationFrameId = 0;
+							}
+						}
+					});
+				}, { threshold: 0.01 });
+
+				observer.observe(aboutCanvas.parentElement || aboutCanvas);
+			}
+		}
+	</script>
+</PageLayout>
