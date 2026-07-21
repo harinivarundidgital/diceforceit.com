@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="IT_Staffing_Hero_SVG" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <defs>
+    <linearGradient id="staffing-grad-1" x1="0" y1="0" x2="500" y2="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00deff"/>
+      <stop offset="40%" stop-color="#0377ff"/>
+      <stop offset="100%" stop-color="#883ae2"/>
+    </linearGradient>
+    <linearGradient id="staffing-grad-2" x1="500" y1="0" x2="0" y2="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#5fffcb"/>
+      <stop offset="60%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#7e3fff"/>
+    </linearGradient>
+  </defs>
+
+  <g>
+    <!-- Outer Squad Alignment Orbit Ring -->
+    <circle cx="250" cy="250" r="220" stroke="url(#staffing-grad-1)" stroke-width="10" stroke-dasharray="25 15 8 15" fill="none" opacity="0.85"/>
+    <circle cx="250" cy="250" r="185" stroke="url(#staffing-grad-2)" stroke-width="6" stroke-dasharray="12 18" fill="none" opacity="0.7"/>
+
+    <!-- Central DiceForce Staffing Hub (Hexagonal Core) -->
+    <polygon points="250,150 325,195 325,285 250,330 175,285 175,195" fill="url(#staffing-grad-1)" opacity="0.9" />
+    <circle cx="250" cy="240" r="45" fill="url(#staffing-grad-2)" />
+    
+    <!-- 5 Embedded Engineer Squad Nodes (AI, Cloud, DevOps, Microservices, RAG) -->
+    <!-- Node 1: Top AI/ML Lead -->
+    <circle cx="250" cy="80" r="26" fill="url(#staffing-grad-2)" />
+    <line x1="250" y1="106" x2="250" y2="150" stroke="url(#staffing-grad-1)" stroke-width="8" />
+
+    <!-- Node 2: Top Right - Azure AI & Cloud Architect -->
+    <circle cx="410" cy="180" r="24" fill="url(#staffing-grad-1)" />
+    <line x1="390" y1="192" x2="325" y2="215" stroke="url(#staffing-grad-2)" stroke-width="8" />
+
+    <!-- Node 3: Bottom Right - DevOps & Infrastructure Specialist -->
+    <circle cx="370" cy="370" r="24" fill="url(#staffing-grad-2)" />
+    <line x1="352" y1="354" x2="300" y2="310" stroke="url(#staffing-grad-1)" stroke-width="8" />
+
+    <!-- Node 4: Bottom Left - Microservices & Distributed Developer -->
+    <circle cx="130" cy="370" r="24" fill="url(#staffing-grad-1)" />
+    <line x1="148" y1="354" x2="200" y2="310" stroke="url(#staffing-grad-2)" stroke-width="8" />
+
+    <!-- Node 5: Top Left - Prompt Engineering & RAG Specialist -->
+    <circle cx="90" cy="180" r="24" fill="url(#staffing-grad-2)" />
+    <line x1="110" y1="192" x2="175" y2="215" stroke="url(#staffing-grad-1)" stroke-width="8" />
+
+    <!-- Outer Node Interconnecting Bridges (Squad Collaboration Network) -->
+    <line x1="250" y1="80" x2="410" y2="180" stroke="url(#staffing-grad-1)" stroke-width="5" opacity="0.6" />
+    <line x1="410" y1="180" x2="370" y2="370" stroke="url(#staffing-grad-2)" stroke-width="5" opacity="0.6" />
+    <line x1="370" y1="370" x2="130" y2="370" stroke="url(#staffing-grad-1)" stroke-width="5" opacity="0.6" />
+    <line x1="130" y1="370" x2="90" y2="180" stroke="url(#staffing-grad-2)" stroke-width="5" opacity="0.6" />
+    <line x1="90" y1="180" x2="250" y2="80" stroke="url(#staffing-grad-1)" stroke-width="5" opacity="0.6" />
+
+    <!-- Inner Core Pulse Rings -->
+    <circle cx="250" cy="240" r="95" stroke="url(#staffing-grad-1)" stroke-width="6" fill="none" opacity="0.8" />
+  </g>
+</svg>

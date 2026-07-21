@@ -33,10 +33,18 @@
   --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
   --shadow-neon: 0 0 20px rgba(0, 222, 255, 0.25);
   
-  /* Typography */
+  /* Typography Scale */
   --font-heading: "Instrument Sans", "Inter", -apple-system, sans-serif;
   --font-body: "Inter", -apple-system, sans-serif;
   --font-code: "JetBrains Mono", monospace;
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 30px;
+  --font-size-4xl: 36px;
   
   /* Layout Grid Columns */
   --col-inputs-width: 320px;

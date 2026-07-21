@@ -22,7 +22,7 @@ const { title, description, id, themeClass = "theme-green" } = Astro.props;
             </svg>
           </slot>
         </div>
-        <span class="eai-action-title font-bold text-[0.78rem]">{title}</span>
+        <span class="eai-action-title font-bold text-xs">{title}</span>
       </div>
 
       <div class="eai-action-arrow" aria-hidden="true">
@@ -32,6 +32,6 @@ const { title, description, id, themeClass = "theme-green" } = Astro.props;
         </svg>
       </div>
     </div>
-    {description && <p class="text-[0.63rem] text-white/50 font-light leading-tight pl-8">{description}</p>}
+    {description && <p class="text-xs text-white/50 font-light leading-tight pl-8">{description}</p>}
   </div>
 </div>
