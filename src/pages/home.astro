@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import EnterpriseAIVisual from '../components/EnterpriseAI/EnterpriseAIVisual.astro';
+import Footer from '../components/Footer.astro';
 ---
 
 <Layout title="diceforce IT | AI & Machine Learning Solutions">
@@ -357,30 +358,8 @@ import EnterpriseAIVisual from '../components/EnterpriseAI/EnterpriseAIVisual.as
 			</div>
 		</section>
 
-		<!-- FOOTER SECTION (Modern design style in dark theme) -->
-		<footer class="w-full border-t border-white/5 bg-[#050505] relative z-10 py-10 px-6 sm:px-12 md:px-20 lg:px-32">
-			<div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-				<!-- Brand identity -->
-				<a href="/home" class="flex items-center gap-2">
-					<img src="/diceforceITlogo_.gif" alt="diceforce IT Logo" class="w-8 h-8 object-contain" width="32" height="32" />
-					<span class="text-xs font-space tracking-[0.3em] text-shimmer uppercase font-bold leading-none">diceforce IT</span>
-				</a>
-
-				<!-- Minimalist Footer Navigation -->
-				<div class="flex flex-wrap justify-center gap-x-8 gap-y-2 text-xs font-mono text-white/30">
-					<span class="hover:text-white/60 transition-colors cursor-default">About Us</span>
-					<span class="hover:text-white/60 transition-colors cursor-default">Services</span>
-					<span class="hover:text-white/60 transition-colors cursor-default">Staffing</span>
-					<span class="hover:text-white/60 transition-colors cursor-default">Careers</span>
-					<span class="hover:text-white/60 transition-colors cursor-default">Privacy</span>
-				</div>
-
-				<!-- Copyright Details -->
-				<div class="text-xs font-mono text-white/20 text-center md:text-right">
-					© 2026 diceforce IT. All rights reserved.
-				</div>
-			</div>
-		</footer>
+		<!-- FOOTER SECTION -->
+		<Footer />
 
 	</main>
 </Layout>
