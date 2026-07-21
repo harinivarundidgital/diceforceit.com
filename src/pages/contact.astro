@@ -4,7 +4,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 
 <PageLayout 
 	title="diceforce IT | Contact | Let's Talk" 
-	description="Thinking about your next move? Let's discuss how diceforce IT can help make it real. Reach out to our design, engineering, and staffing teams."
+	description="Ready to fix your engineering bottlenecks? Contact diceforce IT for AI ML solutions, custom software, digital transformation, IT consulting, and dedicated engineering staffing."
 	activePage="contact"
 >
 	<div class="max-w-6xl mx-auto w-full flex flex-col gap-12">
@@ -14,11 +14,11 @@ import PageLayout from '../layouts/PageLayout.astro';
 			<!-- Left Column: Hero Copy -->
 			<div class="lg:col-span-7 space-y-6">
 				<h1 class="font-syne font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tighter leading-[0.95] text-white select-text text-balance">
-					Thinking about<br class="hidden sm:inline" />
-					your next move?
+					Ready To Fix Your<br class="hidden sm:inline" />
+					Engineering Bottlenecks.
 				</h1>
 				<p class="text-neutral-400 font-light text-base sm:text-lg max-w-xl mt-6 leading-relaxed select-text">
-					Let’s discuss how diceforce IT can help make it real. Reach out to our design, engineering, and staffing teams.
+					Tell us where it hurts, and we are ready to plug the gaps by helping you with high-pressure launch, drowning in technical debt, or finding developers who can actually pass a code review.
 				</p>
 			</div>
 			<!-- Right Column: Interactive Particles (Loaded from SVG) -->
@@ -37,13 +37,13 @@ import PageLayout from '../layouts/PageLayout.astro';
 				<div class="lg:col-span-5 space-y-8 lg:pr-4">
 					<div class="space-y-4">
 						<div class="flex items-center gap-2">
-							<span class="text-xs font-mono tracking-widest text-cyan-400/80 uppercase">Direct Communication</span>
+							<span class="text-xs font-mono tracking-widest text-cyan-400/80 uppercase">Take Your Next Step</span>
 						</div>
 						<h2 class="font-syne font-semibold text-2xl sm:text-3xl text-white tracking-tight leading-none select-text">
-							Get in touch directly
+							Visit Us Directly
 						</h2>
 						<p class="text-neutral-400 text-sm leading-relaxed select-text font-light">
-							Whether you have a specific project in mind, need technical staffing support, or just want to explore possibilities, we're here to help.
+							Don’t want to waste any more time taking the next step to growth? Let's talk directly at our office space, and to your utmost comfort.
 						</p>
 					</div>
 
@@ -59,7 +59,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 									</svg>
 								</div>
 								<div class="space-y-1">
-									<span class="text-xs font-mono tracking-widest text-neutral-500 uppercase block group-hover/item:text-cyan-400 transition-colors">Office Location</span>
+									<span class="text-xs font-mono tracking-widest text-neutral-500 uppercase block group-hover/item:text-cyan-400 transition-colors">Address</span>
 									<p class="text-neutral-300 text-sm leading-relaxed select-text font-light">
 										diceforce IT LLC.<br />
 										567 Sunset Blvd, Suite 501<br />
@@ -90,7 +90,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 								</svg>
 							</div>
 							<div class="space-y-1">
-								<span class="text-xs font-mono tracking-widest text-neutral-500 uppercase block group-hover/item:text-cyan-400 transition-colors">Email Address</span>
+								<span class="text-xs font-mono tracking-widest text-neutral-500 uppercase block group-hover/item:text-cyan-400 transition-colors">Email</span>
 								<a href="mailto:hello@diceforceit.com" class="text-neutral-300 hover:text-white transition-colors block select-text font-mono text-sm sm:text-base">
 									hello@diceforceit.com
 								</a>
@@ -105,8 +105,10 @@ import PageLayout from '../layouts/PageLayout.astro';
 								</svg>
 							</div>
 							<div class="space-y-1">
-								<span class="text-xs font-mono tracking-widest text-neutral-500 uppercase block group-hover/item:text-cyan-400 transition-colors">Phone Number</span>
-								<span class="text-neutral-300 font-mono text-sm sm:text-base block select-text">(310) 555-0165</span>
+								<span class="text-xs font-mono tracking-widest text-neutral-500 uppercase block group-hover/item:text-cyan-400 transition-colors">Phone</span>
+								<a href="tel:+13105550165" class="text-neutral-300 hover:text-white transition-colors block select-text font-mono text-sm sm:text-base">
+									(310) 555-0165
+								</a>
 							</div>
 						</div>
 					</div>
@@ -123,54 +125,67 @@ import PageLayout from '../layouts/PageLayout.astro';
 						<!-- Card Header -->
 						<div class="space-y-3 mb-8 relative z-10">
 							<div class="flex items-center gap-2">
-								<span class="text-xs font-mono tracking-widest text-cyan-400/80 uppercase">Secure Channel</span>
+								<span class="text-xs font-mono tracking-widest text-cyan-400/80 uppercase">Let us help you</span>
 							</div>
 							<h2 class="font-syne font-semibold text-2xl sm:text-3xl text-white tracking-tight leading-none select-text">
-								Send a message
+								Write to us
 							</h2>
 							<p class="text-neutral-400 text-sm select-text font-light">
-								Configure your inquiry and our team will get back to you shortly.
+								Send us your concern and let us get in touch with you.
 							</p>
 						</div>
 
 						<div class="relative min-h-[460px] z-10">
 							<!-- Contact Form -->
 							<form id="contact-form" class="space-y-6">
-								<!-- 1. Inquiry Type (Dropdown selection) -->
-								<div class="space-y-2">
-									<label for="inquiry_type" class="block font-mono text-xs uppercase tracking-widest text-neutral-300">Inquiry Type</label>
-									<div class="relative rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] focus-within:border-cyan-500/50 focus-within:bg-white/[0.04] transition-all duration-300">
-										<select 
-											id="inquiry_type" 
-											name="inquiry_type" 
-											class="w-full bg-transparent text-sm sm:text-base text-white outline-none py-3 px-4 pr-10 appearance-none cursor-pointer border-none focus:ring-0"
-										>
-											<option value="ai_ml" class="bg-neutral-950 text-white">AI & ML Solutions (Custom models & systems)</option>
-											<option value="staffing" class="bg-neutral-950 text-white">IT Staffing (Embed dedicated specialists)</option>
-											<option value="general" class="bg-neutral-950 text-white">General Inquiry (Other questions & topics)</option>
-										</select>
-										<!-- Custom Chevron Icon -->
-										<div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-neutral-400">
-											<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-												<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-											</svg>
-										</div>
-									</div>
-								</div>
-
-								<!-- 2. Name & Company -->
+								<!-- 1. Name & Phone -->
 								<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
 									<!-- Name -->
 									<div class="space-y-2">
-										<label for="name" class="block font-mono text-xs uppercase tracking-widest text-neutral-300">Your name</label>
+										<label for="name" class="block font-mono text-xs uppercase tracking-widest text-neutral-300">Name</label>
 										<div class="relative rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] focus-within:border-cyan-500/50 focus-within:bg-white/[0.04] transition-all duration-300 px-4 py-2 flex items-center">
 											<input 
-												(type="text")
+												type="text" 
 												id="name" 
 												name="name" 
 												required 
 												autocomplete="name"
-												placeholder="e.g. Tobias Neumann…" 
+												placeholder="Your full name…" 
+												class="w-full bg-transparent text-sm sm:text-base text-white placeholder-neutral-500 outline-none py-1 border-none focus:ring-0"
+											/>
+										</div>
+									</div>
+									<!-- Phone -->
+									<div class="space-y-2">
+										<label for="phone" class="block font-mono text-xs uppercase tracking-widest text-neutral-300">Phone</label>
+										<div class="relative rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] focus-within:border-cyan-500/50 focus-within:bg-white/[0.04] transition-all duration-300 px-4 py-2 flex items-center">
+											<input 
+												type="tel" 
+												id="phone" 
+												name="phone" 
+												required 
+												autocomplete="tel"
+												placeholder="Phone number…" 
+												class="w-full bg-transparent text-sm sm:text-base text-white placeholder-neutral-500 outline-none py-1 border-none focus:ring-0"
+											/>
+										</div>
+									</div>
+								</div>
+
+								<!-- 2. Email & Company -->
+								<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+									<!-- Email -->
+									<div class="space-y-2">
+										<label for="email" class="block font-mono text-xs uppercase tracking-widest text-neutral-300">Email</label>
+										<div class="relative rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] focus-within:border-cyan-500/50 focus-within:bg-white/[0.04] transition-all duration-300 px-4 py-2 flex items-center">
+											<input 
+												type="email" 
+												id="email" 
+												name="email" 
+												required 
+												autocomplete="email"
+												spellcheck="false"
+												placeholder="e.g. hello@diceforceit.com…" 
 												class="w-full bg-transparent text-sm sm:text-base text-white placeholder-neutral-500 outline-none py-1 border-none focus:ring-0"
 											/>
 										</div>
@@ -185,33 +200,45 @@ import PageLayout from '../layouts/PageLayout.astro';
 												name="company" 
 												required 
 												autocomplete="organization"
-												placeholder="e.g. diceforce IT…" 
+												placeholder="Your company name…" 
 												class="w-full bg-transparent text-sm sm:text-base text-white placeholder-neutral-500 outline-none py-1 border-none focus:ring-0"
 											/>
 										</div>
 									</div>
 								</div>
 
-								<!-- 3. Email -->
+								<!-- 3. Enquiry type (Dropdown selection) -->
 								<div class="space-y-2">
-									<label for="email" class="block font-mono text-xs uppercase tracking-widest text-neutral-300">Email</label>
-									<div class="relative rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] focus-within:border-cyan-500/50 focus-within:bg-white/[0.04] transition-all duration-300 px-4 py-2 flex items-center">
-										<input 
-											type="email" 
-											id="email" 
-											name="email" 
-											required 
-											autocomplete="email"
-											spellcheck="false"
-											placeholder="e.g. hello@diceforceit.com…" 
-											class="w-full bg-transparent text-sm sm:text-base text-white placeholder-neutral-500 outline-none py-1 border-none focus:ring-0"
-										/>
+									<label for="enquiry_type" class="block font-mono text-xs uppercase tracking-widest text-neutral-300">Enquiry type</label>
+									<div class="relative rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] focus-within:border-cyan-500/50 focus-within:bg-white/[0.04] transition-all duration-300">
+										<select 
+											id="enquiry_type" 
+											name="enquiry_type" 
+											class="w-full bg-transparent text-sm sm:text-base text-white outline-none py-3 px-4 pr-10 appearance-none cursor-pointer border-none focus:ring-0"
+										>
+											<option value="ai_ml" class="bg-neutral-950 text-white">AI ML Solutions (Custom Models & Intelligent Systems)</option>
+											<option value="ai_transformation" class="bg-neutral-950 text-white">AI Transformation (Enterprise AI Strategy & Adoption)</option>
+											<option value="ai_product" class="bg-neutral-950 text-white">AI Product Engineering (AI-Powered Software & Platforms)</option>
+											<option value="custom_software" class="bg-neutral-950 text-white">Custom Software Development (Web, Mobile & Enterprise Applications)</option>
+											<option value="platform_eng" class="bg-neutral-950 text-white">Platform Engineering (Cloud, DevOps & Infrastructure Modernization)</option>
+											<option value="enterprise_mod" class="bg-neutral-950 text-white">Enterprise Application Modernization (Legacy System Transformation)</option>
+											<option value="it_consulting" class="bg-neutral-950 text-white">IT Consulting Services (Technology Advisory & Solution Architecture)</option>
+											<option value="team_aug" class="bg-neutral-950 text-white">Engineering Team Augmentation (Dedicated AI & Software Engineering Squads)</option>
+											<option value="it_staffing" class="bg-neutral-950 text-white">IT Staffing Services (Temporary, Permanent & Temp-to-Hire Staffing)</option>
+											<option value="tech_partner" class="bg-neutral-950 text-white">Technology Partnership (Long-Term Engineering & Innovation Support)</option>
+										</select>
+										<!-- Custom Chevron Icon -->
+										<div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-neutral-400">
+											<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+												<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+											</svg>
+										</div>
 									</div>
 								</div>
 
-								<!-- 4. Interactive selection pills for Skills/Capabilities -->
+								<!-- 4. Select Your Interest Area -->
 								<div class="space-y-2 relative">
-									<label class="block font-mono text-xs uppercase tracking-widest text-neutral-300">Select Areas of Interest</label>
+									<label class="block font-mono text-xs uppercase tracking-widest text-neutral-300">Select Your Interest Area</label>
 									
 									<!-- Dropdown Trigger Button -->
 									<button 
@@ -219,7 +246,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 										id="interests-dropdown-trigger"
 										class="w-full flex items-center justify-between bg-white/[0.02] border border-white/10 rounded-xl px-4 py-3 text-sm sm:text-base text-neutral-400 hover:bg-white/[0.04] transition-all duration-300 cursor-pointer outline-none focus:border-cyan-500/50"
 									>
-										<span id="interests-trigger-text" class="truncate select-none">Select areas of interest…</span>
+										<span id="interests-trigger-text" class="truncate select-none">Select your interest area…</span>
 										<!-- Custom Chevron Icon -->
 										<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-neutral-400 transition-transform duration-300 pointer-events-none" id="interests-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 											<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
@@ -229,58 +256,43 @@ import PageLayout from '../layouts/PageLayout.astro';
 									<!-- Dropdown Content Card (Floating) -->
 									<div 
 										id="interests-dropdown-content"
-										class="hidden absolute z-30 left-0 right-0 mt-2 bg-neutral-950/98 backdrop-blur-xl border border-white/10 rounded-2xl p-5 shadow-2xl space-y-4 max-h-72 overflow-y-auto"
+										class="hidden absolute z-30 left-0 right-0 mt-2 bg-neutral-950/98 backdrop-blur-xl border border-white/10 rounded-2xl p-5 shadow-2xl space-y-3 max-h-72 overflow-y-auto"
 									>
-										<!-- AI & ML Group -->
-										<div id="pills-ai-ml" class="space-y-3 transition-opacity duration-300">
-											<span class="block font-mono text-xs text-cyan-400/80 uppercase tracking-widest font-semibold">AI & ML Solutions</span>
-											<div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-												<label class="relative flex items-center gap-3 px-4 py-2.5 border border-white/10 rounded-xl cursor-pointer bg-white/[0.02] hover:border-cyan-400/30 hover:bg-cyan-950/20 transition-all duration-300 select-none text-xs font-mono text-neutral-300">
-													<input type="checkbox" name="services" value="llms_agents" class="w-3.5 h-3.5 rounded border-white/20 bg-transparent text-cyan-500 focus:ring-0 focus:ring-offset-0 cursor-pointer" />
-													<span>LLMs & Agents</span>
-												</label>
-												<label class="relative flex items-center gap-3 px-4 py-2.5 border border-white/10 rounded-xl cursor-pointer bg-white/[0.02] hover:border-cyan-400/30 hover:bg-cyan-950/20 transition-all duration-300 select-none text-xs font-mono text-neutral-300">
-													<input type="checkbox" name="services" value="fine_tuning" class="w-3.5 h-3.5 rounded border-white/20 bg-transparent text-cyan-500 focus:ring-0 focus:ring-offset-0 cursor-pointer" />
-													<span>Fine-Tuning</span>
-												</label>
-												<label class="relative flex items-center gap-3 px-4 py-2.5 border border-white/10 rounded-xl cursor-pointer bg-white/[0.02] hover:border-cyan-400/30 hover:bg-cyan-950/20 transition-all duration-300 select-none text-xs font-mono text-neutral-300">
-													<input type="checkbox" name="services" value="vector_db" class="w-3.5 h-3.5 rounded border-white/20 bg-transparent text-cyan-500 focus:ring-0 focus:ring-offset-0 cursor-pointer" />
-													<span>Vector DBs</span>
-												</label>
-											</div>
-										</div>
-
-										<!-- Staffing Group -->
-										<div id="pills-staffing" class="space-y-3 transition-opacity duration-300">
-											<span class="block font-mono text-xs text-cyan-400/80 uppercase tracking-widest font-semibold">IT Staffing Roles</span>
-											<div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-												<label class="relative flex items-center gap-3 px-4 py-2.5 border border-white/10 rounded-xl cursor-pointer bg-white/[0.02] hover:border-cyan-400/30 hover:bg-cyan-950/20 transition-all duration-300 select-none text-xs font-mono text-neutral-300">
-													<input type="checkbox" name="services" value="ai_researchers" class="w-3.5 h-3.5 rounded border-white/20 bg-transparent text-cyan-500 focus:ring-0 focus:ring-offset-0 cursor-pointer" />
-													<span>AI Researchers</span>
-												</label>
-												<label class="relative flex items-center gap-3 px-4 py-2.5 border border-white/10 rounded-xl cursor-pointer bg-white/[0.02] hover:border-cyan-400/30 hover:bg-cyan-950/20 transition-all duration-300 select-none text-xs font-mono text-neutral-300">
-													<input type="checkbox" name="services" value="mlops" class="w-3.5 h-3.5 rounded border-white/20 bg-transparent text-cyan-500 focus:ring-0 focus:ring-offset-0 cursor-pointer" />
-													<span>MLOps Engineers</span>
-												</label>
-												<label class="relative flex items-center gap-3 px-4 py-2.5 border border-white/10 rounded-xl cursor-pointer bg-white/[0.02] hover:border-cyan-400/30 hover:bg-cyan-950/20 transition-all duration-300 select-none text-xs font-mono text-neutral-300">
-													<input type="checkbox" name="services" value="backend" class="w-3.5 h-3.5 rounded border-white/20 bg-transparent text-cyan-500 focus:ring-0 focus:ring-offset-0 cursor-pointer" />
-													<span>Backend Pioneers</span>
-												</label>
-											</div>
+										<div class="grid grid-cols-1 gap-2">
+											<label class="relative flex items-center gap-3 px-4 py-2.5 border border-white/10 rounded-xl cursor-pointer bg-white/[0.02] hover:border-cyan-400/30 hover:bg-cyan-950/20 transition-all duration-300 select-none text-xs font-mono text-neutral-300">
+												<input type="checkbox" name="services" value="ai_engineering" class="w-3.5 h-3.5 rounded border-white/20 bg-transparent text-cyan-500 focus:ring-0 focus:ring-offset-0 cursor-pointer" />
+												<span>AI Engineering & Intelligent Automation</span>
+											</label>
+											<label class="relative flex items-center gap-3 px-4 py-2.5 border border-white/10 rounded-xl cursor-pointer bg-white/[0.02] hover:border-cyan-400/30 hover:bg-cyan-950/20 transition-all duration-300 select-none text-xs font-mono text-neutral-300">
+												<input type="checkbox" name="services" value="custom_software" class="w-3.5 h-3.5 rounded border-white/20 bg-transparent text-cyan-500 focus:ring-0 focus:ring-offset-0 cursor-pointer" />
+												<span>Custom Software & Product Development</span>
+											</label>
+											<label class="relative flex items-center gap-3 px-4 py-2.5 border border-white/10 rounded-xl cursor-pointer bg-white/[0.02] hover:border-cyan-400/30 hover:bg-cyan-950/20 transition-all duration-300 select-none text-xs font-mono text-neutral-300">
+												<input type="checkbox" name="services" value="digital_transformation" class="w-3.5 h-3.5 rounded border-white/20 bg-transparent text-cyan-500 focus:ring-0 focus:ring-offset-0 cursor-pointer" />
+												<span>Digital Transformation & Enterprise Modernization</span>
+											</label>
+											<label class="relative flex items-center gap-3 px-4 py-2.5 border border-white/10 rounded-xl cursor-pointer bg-white/[0.02] hover:border-cyan-400/30 hover:bg-cyan-950/20 transition-all duration-300 select-none text-xs font-mono text-neutral-300">
+												<input type="checkbox" name="services" value="it_consulting" class="w-3.5 h-3.5 rounded border-white/20 bg-transparent text-cyan-500 focus:ring-0 focus:ring-offset-0 cursor-pointer" />
+												<span>IT Consulting & Technology Advisory</span>
+											</label>
+											<label class="relative flex items-center gap-3 px-4 py-2.5 border border-white/10 rounded-xl cursor-pointer bg-white/[0.02] hover:border-cyan-400/30 hover:bg-cyan-950/20 transition-all duration-300 select-none text-xs font-mono text-neutral-300">
+												<input type="checkbox" name="services" value="engineering_staffing" class="w-3.5 h-3.5 rounded border-white/20 bg-transparent text-cyan-500 focus:ring-0 focus:ring-offset-0 cursor-pointer" />
+												<span>Engineering Staffing & Dedicated Teams</span>
+											</label>
 										</div>
 									</div>
 								</div>
 
-								<!-- 5. Message -->
+								<!-- 5. Describe your query -->
 								<div class="space-y-2">
-									<label for="message" class="block font-mono text-xs uppercase tracking-widest text-neutral-300">Your message</label>
+									<label for="message" class="block font-mono text-xs uppercase tracking-widest text-neutral-300">Describe your query</label>
 									<div class="relative rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] focus-within:border-cyan-500/50 focus-within:bg-white/[0.04] transition-all duration-300 px-4 py-3">
 										<textarea 
 											id="message" 
 											name="message" 
 											required 
 											rows="4" 
-											placeholder="e.g. We need dedicated MLOps support for a custom LLM pipeline…" 
+											placeholder="Tell us about your project or concern…" 
 											class="w-full bg-transparent text-sm sm:text-base text-white placeholder-neutral-500 outline-none py-1 border-none focus:ring-0 resize-none"
 										></textarea>
 									</div>
@@ -302,7 +314,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 													type="submit" 
 													class="relative w-full sm:w-auto px-10 py-4 bg-black hover:bg-neutral-900 text-white font-mono text-xs font-bold uppercase tracking-widest rounded-full transition-all duration-300 inline-flex items-center justify-center gap-2.5 cursor-pointer z-10 select-none group-hover:text-[#00deff] border-none focus:outline-none"
 												>
-													Submit Inquiry
+													Send
 												</button>
 											</div>
 										</div>
@@ -363,9 +375,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 		const contactForm = document.getElementById('contact-form') as HTMLFormElement | null;
 		const successScreen = document.getElementById('success-screen');
 		const resetFormBtn = document.getElementById('reset-form-btn');
-		const inquirySelect = document.getElementById('inquiry_type') as HTMLSelectElement | null;
-		const pillsAiMl = document.getElementById('pills-ai-ml');
-		const pillsStaffing = document.getElementById('pills-staffing');
+		const inquirySelect = document.getElementById('enquiry_type') as HTMLSelectElement | null;
 		const dropdownTrigger = document.getElementById('interests-dropdown-trigger');
 		const dropdownContent = document.getElementById('interests-dropdown-content');
 		const dropdownChevron = document.getElementById('interests-chevron');
@@ -373,27 +383,6 @@ import PageLayout from '../layouts/PageLayout.astro';
 		const checkboxes = document.querySelectorAll('#interests-dropdown-content input[type="checkbox"]') as NodeListOf<HTMLInputElement>;
 		const canvasContainer = document.getElementById('canvas-container');
 		const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-		// 1. Interactive Form Inquiry Filter
-		const updateInquiryGroups = () => {
-			if (!inquirySelect) return;
-			
-			const type = inquirySelect.value;
-			if (type === 'ai_ml') {
-				gsap.to(pillsAiMl, { opacity: 1, duration: 0.4 });
-				gsap.to(pillsStaffing, { opacity: 0.25, duration: 0.4 });
-			} else if (type === 'staffing') {
-				gsap.to(pillsAiMl, { opacity: 0.25, duration: 0.4 });
-				gsap.to(pillsStaffing, { opacity: 1, duration: 0.4 });
-			} else {
-				gsap.to([pillsAiMl, pillsStaffing], { opacity: 0.6, duration: 0.4 });
-			}
-		};
-		
-		if (inquirySelect) {
-			inquirySelect.addEventListener('change', updateInquiryGroups);
-		}
-		updateInquiryGroups();
 
 		// Custom Multi-select Dropdown for Areas of Interest
 		if (dropdownTrigger && dropdownContent && dropdownChevron) {
@@ -425,7 +414,6 @@ import PageLayout from '../layouts/PageLayout.astro';
 			const selected: string[] = [];
 			checkboxes.forEach((cb) => {
 				if (cb.checked) {
-					// Get the label text
 					const labelSpan = cb.nextElementSibling as HTMLSpanElement | null;
 					if (labelSpan) {
 						selected.push(labelSpan.innerText.trim());
@@ -434,7 +422,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 			});
 
 			if (selected.length === 0) {
-				triggerText.innerText = 'Select areas of interest…';
+				triggerText.innerText = 'Select your interest area…';
 				triggerText.classList.remove('text-cyan-400');
 				triggerText.classList.add('text-neutral-400');
 			} else {
@@ -449,7 +437,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 		});
 		updateTriggerText();
 
-		// 2. Form Submission Animation (Simulated Terminal Output)
+		// Form Submission Animation (Simulated Terminal Output)
 		if (contactForm && successScreen && resetFormBtn) {
 			contactForm.addEventListener('submit', (e) => {
 				e.preventDefault();
@@ -505,7 +493,6 @@ import PageLayout from '../layouts/PageLayout.astro';
 						lines.forEach(l => (l as HTMLElement).style.opacity = '0');
 						
 						contactForm.reset();
-						updateInquiryGroups();
 						updateTriggerText();
 						contactForm.classList.remove('hidden');
 						contactForm.style.opacity = '0';
@@ -514,7 +501,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 						const submitBtn = contactForm.querySelector('button[type="submit"]') as HTMLButtonElement | null;
 						if (submitBtn) {
 							submitBtn.disabled = false;
-							submitBtn.innerText = 'Submit Inquiry';
+							submitBtn.innerText = 'Send';
 						}
 
 						gsap.to(contactForm, {
