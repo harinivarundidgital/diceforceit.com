@@ -1,0 +1,36 @@
+---
+/* ParticleLayer.astro - Floating background particles & ambient stars */
+---
+
+<div class="absolute inset-0 pointer-events-none z-1 overflow-hidden" aria-hidden="true">
+  <!-- CSS Particle Canvas Overlay -->
+  <div class="eai-particles-container absolute inset-0">
+    <div class="particle p-1" style="top: 15%; left: 20%; animation-delay: 0s;"></div>
+    <div class="particle p-2" style="top: 45%; left: 80%; animation-delay: 1.5s;"></div>
+    <div class="particle p-3" style="top: 75%; left: 35%; animation-delay: 3s;"></div>
+    <div class="particle p-1" style="top: 25%; left: 65%; animation-delay: 2s;"></div>
+    <div class="particle p-2" style="top: 85%; left: 70%; animation-delay: 4s;"></div>
+    <div class="particle p-3" style="top: 60%; left: 15%; animation-delay: 2.5s;"></div>
+    <div class="particle p-1" style="top: 35%; left: 90%; animation-delay: 0.8s;"></div>
+  </div>
+</div>
+
+<style>
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    background: #00deff;
+    box-shadow: 0 0 10px #00deff, 0 0 20px #22d3ee;
+    opacity: 0.4;
+    animation: particleFloat 8s ease-in-out infinite alternate;
+  }
+  .p-1 { width: 3px; height: 3px; }
+  .p-2 { width: 4px; height: 4px; background: #a855f7; box-shadow: 0 0 10px #a855f7; }
+  .p-3 { width: 2px; height: 2px; }
+
+  @keyframes particleFloat {
+    0% { transform: translateY(0px) translateX(0px); opacity: 0.2; }
+    50% { opacity: 0.7; }
+    100% { transform: translateY(-40px) translateX(20px); opacity: 0.3; }
+  }
+</style>

@@ -1,0 +1,17 @@
+---
+/* BackgroundEffects.astro - Animated radial light glows and background gradients */
+---
+
+<div class="absolute inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
+  <!-- Deep ambient navy background gradient -->
+  <div class="absolute inset-0 bg-gradient-to-b from-[#050816] via-[#070c24] to-[#040612]"></div>
+
+  <!-- Radial glowing light 1 (Cyan/Neon Blue top center) -->
+  <div class="absolute top-[10%] left-[30%] w-[500px] h-[500px] rounded-full bg-[#00deff]/[0.06] blur-[130px] animate-ambient-light"></div>
+
+  <!-- Radial glowing light 2 (Purple bottom right) -->
+  <div class="absolute bottom-[15%] right-[20%] w-[600px] h-[600px] rounded-full bg-[#883ae2]/[0.07] blur-[150px] animate-ambient-light" style="animation-delay: 3s;"></div>
+
+  <!-- Soft vignette border mask -->
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_40%,rgba(5,8,22,0.85)_100%)]"></div>
+</div>

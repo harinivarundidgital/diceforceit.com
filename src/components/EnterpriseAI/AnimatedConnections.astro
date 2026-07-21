@@ -1,0 +1,146 @@
+---
+/* AnimatedConnections.astro - SVG Backdrop with animated neon circuit connections and directional flow arrows */
+---
+
+<svg class="eai-svg-connections" id="eai-svg-overlay" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <!-- Neon Gradient Definition -->
+    <linearGradient id="neonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00deff" stop-opacity="0.85" />
+      <stop offset="50%" stop-color="#a855f7" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0.85" />
+    </linearGradient>
+
+    <!-- Cyan Glow Filter -->
+    <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Flow Direction Arrowhead Marker -->
+    <marker id="flowArrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#00deff" />
+    </marker>
+  </defs>
+
+  <!-- Container for dynamically calculated SVG connection paths -->
+  <g id="eai-connection-paths-group">
+    <!-- SVG Paths dynamically generated via client script -->
+  </g>
+</svg>
+
+<script>
+  // Dynamic client-side calculation of SVG curves linking cards to central engine with directional markers
+  function updateConnections() {
+    const overlay = document.getElementById('eai-svg-overlay');
+    const group = document.getElementById('eai-connection-paths-group');
+    const center = document.getElementById('core-engine-center');
+    
+    if (!overlay || !group || !center) return;
+
+    const overlayRect = overlay.getBoundingClientRect();
+    const centerRect = center.getBoundingClientRect();
+    
+    const centerX = centerRect.left + centerRect.width / 2 - overlayRect.left;
+    const centerY = centerRect.top + centerRect.height / 2 - overlayRect.top;
+
+    let pathsHTML = '';
+
+    // 1. Connect Input cards ➔ Left Capability Flank / Central Engine
+    const inputCards = document.querySelectorAll('.eai-input-card');
+    const leftCaps = document.querySelectorAll('.eai-cap-left');
+
+    inputCards.forEach((card, idx) => {
+      if (idx % 3 !== 0 && idx !== 0) return; // Sample key inputs to avoid clutter
+      const rect = card.getBoundingClientRect();
+      const startX = rect.right - overlayRect.left;
+      const startY = rect.top + rect.height / 2 - overlayRect.top;
+      
+      const targetCap = leftCaps[Math.min(Math.floor(idx / 3), leftCaps.length - 1)];
+      let endX = centerX - 120;
+      let endY = centerY;
+
+      if (targetCap) {
+        const capRect = targetCap.getBoundingClientRect();
+        endX = capRect.left - overlayRect.left;
+        endY = capRect.top + capRect.height / 2 - overlayRect.top;
+      }
+
+      const controlX1 = startX + (endX - startX) * 0.5;
+      const controlX2 = startX + (endX - startX) * 0.5;
+
+      pathsHTML += `<path class="eai-svg-path" d="M ${startX} ${startY} C ${controlX1} ${startY}, ${controlX2} ${endY}, ${endX} ${endY}" marker-end="url(#flowArrow)" filter="url(#neonGlow)" />`;
+    });
+
+    // 2. Connect Left Capabilities ➔ Core Engine Center
+    leftCaps.forEach((cap) => {
+      const capRect = cap.getBoundingClientRect();
+      const startX = capRect.right - overlayRect.left;
+      const startY = capRect.top + capRect.height / 2 - overlayRect.top;
+      const endX = centerRect.left - overlayRect.left;
+      const endY = centerY;
+
+      pathsHTML += `<path class="eai-svg-path" d="M ${startX} ${startY} Q ${(startX + endX)/2} ${startY}, ${endX} ${endY}" marker-end="url(#flowArrow)" filter="url(#neonGlow)" />`;
+    });
+
+    // 3. Connect Core Engine Center ➔ Right Capabilities
+    const rightCaps = document.querySelectorAll('.eai-cap-right');
+    rightCaps.forEach((cap) => {
+      const capRect = cap.getBoundingClientRect();
+      const startX = centerRect.right - overlayRect.left;
+      const startY = centerY;
+      const endX = capRect.left - overlayRect.left;
+      const endY = capRect.top + capRect.height / 2 - overlayRect.top;
+
+      pathsHTML += `<path class="eai-svg-path" d="M ${startX} ${startY} Q ${(startX + endX)/2} ${endY}, ${endX} ${endY}" marker-end="url(#flowArrow)" filter="url(#neonGlow)" />`;
+    });
+
+    // 4. Connect Right Capabilities ➔ Output Cards
+    const outputCards = document.querySelectorAll('.eai-output-card');
+    rightCaps.forEach((cap, idx) => {
+      const capRect = cap.getBoundingClientRect();
+      const startX = capRect.right - overlayRect.left;
+      const startY = capRect.top + capRect.height / 2 - overlayRect.top;
+      
+      const targetOutput = outputCards[idx * 2];
+      if (targetOutput) {
+        const outRect = targetOutput.getBoundingClientRect();
+        const endX = outRect.left - overlayRect.left;
+        const endY = outRect.top + outRect.height / 2 - overlayRect.top;
+
+        pathsHTML += `<path class="eai-svg-path" d="M ${startX} ${startY} C ${(startX + endX)/2} ${startY}, ${(startX + endX)/2} ${endY}, ${endX} ${endY}" marker-end="url(#flowArrow)" filter="url(#neonGlow)" />`;
+      }
+    });
+
+    // 5. Connect Output cards ➔ Action Cards
+    const actionCards = document.querySelectorAll('.eai-action-card');
+    actionCards.forEach((card, idx) => {
+      if (idx % 2 !== 0) return;
+      const rect = card.getBoundingClientRect();
+      const endX = rect.left - overlayRect.left;
+      const endY = rect.top + rect.height / 2 - overlayRect.top;
+      
+      const prevOutput = outputCards[idx];
+      if (prevOutput) {
+        const outRect = prevOutput.getBoundingClientRect();
+        const startX = outRect.right - overlayRect.left;
+        const startY = outRect.top + outRect.height / 2 - overlayRect.top;
+
+        pathsHTML += `<path class="eai-svg-path" d="M ${startX} ${startY} Q ${(startX + endX)/2} ${startY}, ${endX} ${endY}" marker-end="url(#flowArrow)" filter="url(#neonGlow)" />`;
+      }
+    });
+
+    group.innerHTML = pathsHTML;
+  }
+
+  // Recalculate on load and window resize
+  if (typeof window !== 'undefined') {
+    (window as any).updateConnections = updateConnections;
+    window.addEventListener('load', updateConnections);
+    window.addEventListener('resize', updateConnections);
+    setTimeout(updateConnections, 250);
+  }
+</script>

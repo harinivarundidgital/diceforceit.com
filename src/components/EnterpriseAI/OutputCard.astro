@@ -1,0 +1,32 @@
+---
+/* OutputCard.astro - Glass card for Intelligent Outputs with distinct theme color */
+interface Props {
+  title: string;
+  description: string;
+  id: string;
+  themeClass?: string;
+}
+
+const { title, description, id, themeClass = "theme-purple" } = Astro.props;
+---
+
+<div class={`eai-glass-card eai-output-card group ${themeClass}`} id={`output-card-${id}`} tabIndex={0} aria-label={`${title}: ${description}`}>
+  <div class="eai-output-header justify-between">
+    <div class="flex items-center gap-2">
+      <div class="eai-card-icon">
+        <slot name="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+            <polyline points="16 7 22 7 22 13"></polyline>
+          </svg>
+        </slot>
+      </div>
+      <span class="eai-output-title font-bold">{title}</span>
+    </div>
+    
+    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="eai-arrow-icon opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
+      <line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline>
+    </svg>
+  </div>
+  <p class="eai-output-desc">{description}</p>
+</div>

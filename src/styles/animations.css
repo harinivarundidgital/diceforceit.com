@@ -1,0 +1,174 @@
+/* Keyframe Animations for Enterprise AI Architecture Visual */
+
+/* Concentric Ring Rotations */
+@keyframes spin-cw {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes spin-ccw {
+  0% { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Continuous Engine Breathing & Pulse */
+@keyframes engine-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 40px rgba(0, 222, 255, 0.3), inset 0 0 20px rgba(0, 222, 255, 0.2);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 0 85px rgba(0, 222, 255, 0.65), inset 0 0 40px rgba(168, 85, 247, 0.45);
+  }
+}
+
+@keyframes engine-core-glow {
+  0%, 100% {
+    opacity: 0.85;
+    filter: drop-shadow(0 0 15px #00deff);
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 35px #a855f7);
+  }
+}
+
+/* Glass Sweep Light Line */
+@keyframes glass-sweep {
+  0% {
+    transform: translateX(-150%) rotate(25deg);
+  }
+  100% {
+    transform: translateX(250%) rotate(25deg);
+  }
+}
+
+/* SVG Line Dashoffset Animation (Flowing Neon Signals) */
+@keyframes stroke-flow {
+  from {
+    stroke-dashoffset: 80;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes stroke-pulse {
+  0%, 100% {
+    stroke-opacity: 0.45;
+    stroke-width: 1.5;
+  }
+  50% {
+    stroke-opacity: 1;
+    stroke-width: 2.8;
+  }
+}
+
+/* Active Highlight SVG Path Glow */
+@keyframes active-path-flow {
+  0% {
+    stroke-dashoffset: 100;
+    stroke-opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    stroke-opacity: 1;
+  }
+}
+
+/* Floating Capability Cards (Slow 5-8s Smooth Float) */
+@keyframes float-1 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-7px) rotate(0.5deg); }
+}
+
+@keyframes float-2 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(-0.5deg); }
+}
+
+@keyframes float-3 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(0.3deg); }
+}
+
+/* Capsule & Hallucination Border Glow Pulse */
+@keyframes border-glow-pulse {
+  0%, 100% {
+    border-color: rgba(0, 222, 255, 0.3);
+    box-shadow: 0 0 15px rgba(0, 222, 255, 0.15);
+  }
+  50% {
+    border-color: rgba(168, 85, 247, 0.65);
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
+  }
+}
+
+/* Telemetry Status Ping */
+@keyframes telemetry-ping {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(34, 211, 238, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(34, 211, 238, 0);
+  }
+}
+
+/* Ambient Radial Light Movement */
+@keyframes ambient-light-move {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(30px, -20px) scale(1.15);
+    opacity: 0.5;
+  }
+}
+
+/* Icon Pulse Effect */
+@keyframes icon-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+/* Fade In Sequential */
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  .animate-spin-cw,
+  .animate-spin-ccw,
+  .animate-engine-pulse,
+  .animate-float-1,
+  .animate-float-2,
+  .animate-float-3,
+  .animate-border-glow,
+  .animate-stroke-flow,
+  .animate-ambient-light {
+    animation: none !important;
+    transform: none !important;
+  }
+}

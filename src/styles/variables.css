@@ -1,0 +1,46 @@
+/* Enterprise AI Architecture CSS Variables & Design System Tokens */
+:root {
+  /* Color Palette */
+  --bg-deep-navy: #050816;
+  --bg-dark-card: rgba(10, 16, 38, 0.65);
+  --bg-card-hover: rgba(18, 28, 65, 0.85);
+  
+  --neon-blue: #00deff;
+  --neon-blue-glow: rgba(0, 222, 255, 0.35);
+  --blue-primary: #0377ff;
+  
+  --cyan-bright: #22d3ee;
+  --cyan-glow: rgba(34, 211, 238, 0.35);
+  
+  --purple-neon: #a855f7;
+  --purple-dark: #883ae2;
+  --purple-glow: rgba(168, 85, 247, 0.35);
+  
+  --green-neon: #10b981;
+  --green-glow: rgba(16, 185, 129, 0.35);
+  
+  --orange-neon: #ff6b00;
+  --orange-glow: rgba(255, 107, 0, 0.35);
+  
+  /* Text Colors */
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-muted: rgba(255, 255, 255, 0.45);
+  
+  /* Borders & Glassmorphic Accents */
+  --border-glass: rgba(255, 255, 255, 0.08);
+  --border-glass-bright: rgba(0, 222, 255, 0.3);
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  --shadow-neon: 0 0 20px rgba(0, 222, 255, 0.25);
+  
+  /* Typography */
+  --font-heading: "Instrument Sans", "Inter", -apple-system, sans-serif;
+  --font-body: "Inter", -apple-system, sans-serif;
+  --font-code: "JetBrains Mono", monospace;
+  
+  /* Layout Grid Columns */
+  --col-inputs-width: 320px;
+  --col-core-width: 1fr;
+  --col-outputs-width: 340px;
+  --col-actions-width: 260px;
+}

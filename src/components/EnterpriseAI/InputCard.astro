@@ -1,0 +1,30 @@
+---
+/* InputCard.astro - Stacked glass card for Enterprise Inputs */
+interface Props {
+  title: string;
+  count: string;
+  id: string;
+}
+
+const { title, count, id } = Astro.props;
+---
+
+<div class="eai-glass-card eai-input-card group" id={`input-card-${id}`} tabIndex={0} aria-label={`${title} (${count})`}>
+  <div class="eai-input-left">
+    <div class="eai-card-icon" aria-hidden="true">
+      <slot name="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+        </svg>
+      </slot>
+    </div>
+    <span class="eai-card-label">{title}</span>
+  </div>
+  
+  <div class="flex items-center gap-2">
+    <span class="eai-badge-count">{count}</span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-400 opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
+      <line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline>
+    </svg>
+  </div>
+</div>

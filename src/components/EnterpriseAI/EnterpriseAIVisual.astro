@@ -1,0 +1,220 @@
+---
+import BackgroundEffects from './BackgroundEffects.astro';
+import ParticleLayer from './ParticleLayer.astro';
+import GridOverlay from './GridOverlay.astro';
+import DataFabric from './DataFabric.astro';
+import InputPanel from './InputPanel.astro';
+import CoreEngine from './CoreEngine.astro';
+import OutputPanel from './OutputPanel.astro';
+import ActionPanel from './ActionPanel.astro';
+import AnimatedConnections from './AnimatedConnections.astro';
+---
+
+<section id="enterprise-ai-architecture" class="relative w-full min-h-screen flex flex-col justify-center items-center py-16 px-4 sm:px-6 md:px-10 overflow-hidden bg-[#050816] text-white select-none">
+  <!-- Background Layers -->
+  <BackgroundEffects />
+  <ParticleLayer />
+  <GridOverlay />
+
+  <!-- Animated SVG Connections Background Canvas -->
+  <AnimatedConnections />
+
+  <!-- Main Content Layer -->
+  <div class="relative z-20 max-w-[1720px] mx-auto flex flex-col items-center">
+    
+    <!-- Section Title & Header -->
+    <div class="text-center space-y-2 mb-4 max-w-3xl mx-auto animate-fade-in-up">
+      <div class="inline-flex items-center gap-2 px-3 py-1 border border-cyan-500/20 rounded-full bg-cyan-950/20 backdrop-blur-md">
+        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+        <span class="font-mono text-[10px] tracking-widest text-cyan-400 uppercase font-semibold">ENTERPRISE ARCHITECTURE</span>
+      </div>
+      
+      <h2 class="font-syne text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-none">
+        Autonomous <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500">Agentic Intelligence</span> Core
+      </h2>
+      
+      <p class="text-white/60 text-sm sm:text-base font-light max-w-2xl mx-auto leading-relaxed">
+        Real-time cognitive orchestration connecting enterprise data feeds, neural engine capability models, grounded hallucination guardrails, and automated actions.
+      </p>
+    </div>
+
+    <!-- Live System Telemetry Header Bar -->
+    <div class="eai-telemetry-bar" aria-label="System Telemetry Status">
+      <div class="eai-telemetry-item">
+        <span class="eai-status-dot"></span>
+        <span>SYSTEM STATUS: <strong class="text-emerald-400">ONLINE</strong></span>
+      </div>
+      <div class="eai-telemetry-item hidden sm:flex">
+        <span>THROUGHPUT: <strong class="text-cyan-400">4.8 GB/s</strong></span>
+      </div>
+      <div class="eai-telemetry-item hidden md:flex">
+        <span class="eai-drag-hint-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/>
+            <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v6"/>
+            <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/>
+            <path d="M18 8a2 2 0 0 1 2 2v4a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.83l1.17 1.17V6a2 2 0 0 1 4 0v5"/>
+          </svg>
+          <span>Grab & Drag Cards to Reposition</span>
+        </span>
+      </div>
+      <div class="eai-telemetry-item flex items-center gap-2">
+        <button id="trigger-signal-pulse-btn" class="eai-pulse-btn" aria-label="Trigger Neural Pulse Simulation">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+          <span>Pulse Engine</span>
+        </button>
+        <button id="reset-cards-layout-btn" class="eai-pulse-btn !bg-white/5 hover:!bg-white/10 !border-white/20" aria-label="Reset Draggable Cards Layout">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+            <path d="M3 3v5h5"/>
+          </svg>
+          <span>Reset</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Glowing Unified Data Fabric Capsule -->
+    <DataFabric />
+
+    <!-- 4-Column Responsive Architecture Grid -->
+    <div class="eai-main-grid w-full">
+      <!-- Section 1: Enterprise Inputs -->
+      <InputPanel />
+
+      <!-- Section 2: Agentic Intelligence Core (Centerpiece) -->
+      <CoreEngine />
+
+      <!-- Section 3: Intelligent Outputs -->
+      <OutputPanel />
+
+      <!-- Section 4: Actions Taken -->
+      <ActionPanel />
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Mouse Spotlight Tracker
+    const cards = document.querySelectorAll('.eai-glass-card, .eai-capability-card');
+    cards.forEach((card) => {
+      card.addEventListener('mousemove', (e: Event) => {
+        const mouseEvent = e as MouseEvent;
+        const rect = (card as HTMLElement).getBoundingClientRect();
+        const x = mouseEvent.clientX - rect.left;
+        const y = mouseEvent.clientY - rect.top;
+        
+        (card as HTMLElement).style.setProperty('--mouse-x', `${x}px`);
+        (card as HTMLElement).style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+
+    // 2. Real-Time Pointer Drag Engine for Cards
+    cards.forEach((card) => {
+      let isDragging = false;
+      let startX = 0;
+      let startY = 0;
+      let currentX = 0;
+      let currentY = 0;
+
+      // Extract existing inline transform matrix offset
+      const getTranslateValues = (element: HTMLElement) => {
+        const style = window.getComputedStyle(element);
+        const matrix = new WebKitCSSMatrix(style.transform);
+        return { x: matrix.m41, y: matrix.m42 };
+      };
+
+      card.addEventListener('pointerdown', (e: Event) => {
+        const pe = e as PointerEvent;
+        // Ignore if clicking clickable links or buttons inside
+        if ((pe.target as HTMLElement).tagName === 'BUTTON' || (pe.target as HTMLElement).tagName === 'A') return;
+        
+        isDragging = true;
+        (card as HTMLElement).setPointerCapture(pe.pointerId);
+        card.classList.add('is-dragging');
+
+        const initial = getTranslateValues(card as HTMLElement);
+        startX = pe.clientX - initial.x;
+        startY = pe.clientY - initial.y;
+      });
+
+      card.addEventListener('pointermove', (e: Event) => {
+        if (!isDragging) return;
+        const pe = e as PointerEvent;
+        currentX = pe.clientX - startX;
+        currentY = pe.clientY - startY;
+
+        (card as HTMLElement).style.transform = `translate3d(${currentX}px, ${currentY}px, 0px) scale(1.04)`;
+
+        // Recalculate SVG connection lines live during drag
+        if ((window as any).updateConnections) {
+          (window as any).updateConnections();
+        }
+      });
+
+      const stopDrag = (e: Event) => {
+        if (!isDragging) return;
+        const pe = e as PointerEvent;
+        isDragging = false;
+        try {
+          (card as HTMLElement).releasePointerCapture(pe.pointerId);
+        } catch (_) {}
+        card.classList.remove('is-dragging');
+        (card as HTMLElement).style.transform = `translate3d(${currentX}px, ${currentY}px, 0px)`;
+        
+        if ((window as any).updateConnections) {
+          (window as any).updateConnections();
+        }
+      };
+
+      card.addEventListener('pointerup', stopDrag);
+      card.addEventListener('pointercancel', stopDrag);
+    });
+
+    // 3. Reset Draggable Cards Layout Button
+    const resetBtn = document.getElementById('reset-cards-layout-btn');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        cards.forEach((card) => {
+          (card as HTMLElement).style.transform = '';
+        });
+        if ((window as any).updateConnections) {
+          setTimeout(() => (window as any).updateConnections(), 100);
+        }
+      });
+    }
+
+    // 4. Signal Flow Pulse Simulation Button
+    const pulseBtn = document.getElementById('trigger-signal-pulse-btn');
+    const engineCenter = document.getElementById('core-engine-center');
+    const svgPaths = document.querySelectorAll('.eai-svg-path');
+
+    const firePulse = () => {
+      if (engineCenter) {
+        engineCenter.style.transform = 'scale(1.15)';
+        engineCenter.style.boxShadow = '0 0 100px #00deff, inset 0 0 50px #a855f7';
+        setTimeout(() => {
+          engineCenter.style.transform = '';
+          engineCenter.style.boxShadow = '';
+        }, 600);
+      }
+
+      svgPaths.forEach((path) => {
+        path.classList.add('is-active');
+        setTimeout(() => {
+          path.classList.remove('is-active');
+        }, 1200);
+      });
+    };
+
+    if (pulseBtn) {
+      pulseBtn.addEventListener('click', firePulse);
+    }
+    if (engineCenter) {
+      engineCenter.addEventListener('click', firePulse);
+    }
+  });
+</script>

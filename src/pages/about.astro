@@ -79,7 +79,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 					
 					<div class="pt-8">
 						<a 
-							href="/services#ai-ml" 
+							href="/animl#ai-ml" 
 							class="px-8 py-3.5 bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-semibold rounded-full hover:shadow-[0_0_30px_0_rgba(34,211,238,0.4)] hover:scale-105 transition-all duration-300 text-xs tracking-wider uppercase inline-block whitespace-nowrap"
 						>
 							Explore AI Solutions
@@ -100,7 +100,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 					
 					<div class="pt-8">
 						<a 
-							href="/services#staffing" 
+							href="/animl#staffing" 
 							class="px-8 py-3.5 border border-indigo-500/30 hover:border-indigo-500 text-white font-semibold rounded-full hover:bg-indigo-950/20 hover:shadow-[0_0_30px_0_rgba(99,102,241,0.3)] hover:scale-105 transition-all duration-300 text-xs tracking-wider uppercase inline-block whitespace-nowrap"
 						>
 							View Staffing Roster
@@ -157,7 +157,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 						this.targetY = this.homeY;
 						this.size = Math.random() * 1.5 + 0.8;
 						this.angle = Math.random() * Math.PI * 2;
-						this.speed = Math.random() * 0.02 + 0.005;
+						this.speed = Math.random() * 0.01 + 0.003;
 						this.radius = Math.random() * 20 + 8;
 						
 						this.baseAlpha = Math.random() * 0.35 + 0.15;
@@ -180,16 +180,16 @@ import PageLayout from '../layouts/PageLayout.astro';
 							const dy = Math.sin(this.angle) * this.radius;
 							this.targetX = this.homeX + dx;
 							this.targetY = this.homeY + dy;
-							this.alpha = this.alpha * 0.95 + this.baseAlpha * 0.05;
+							this.alpha = this.alpha * 0.97 + this.baseAlpha * 0.03;
 						} else {
 							// Glow brighter when forming targets
-							this.alpha = this.alpha * 0.95 + 0.85 * 0.05;
+							this.alpha = this.alpha * 0.97 + 0.85 * 0.03;
 						}
 
 						const isMorphing = activeHover !== null;
-						// Critically damped spring parameters for a slow, premium, and perfectly smooth drift with zero bounce
-						const stiffness = isMorphing ? 0.012 : 0.008;
-						const damping = isMorphing ? 0.84 : 0.86;
+						// Critically damped spring parameters for a slower, premium, and perfectly smooth drift with zero bounce
+						const stiffness = isMorphing ? 0.004 : 0.0025;
+						const damping = isMorphing ? 0.88 : 0.90;
 
 						const ax = (this.targetX - this.x) * stiffness;
 						const ay = (this.targetY - this.y) * stiffness;

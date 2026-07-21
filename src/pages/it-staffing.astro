@@ -1,0 +1,192 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+---
+
+<PageLayout 
+	title="diceforce IT | IT Staffing & Teams | Elite Embedded Engineers" 
+	description="Scale your technical capacity with fully-integrated senior developer squads. We maintain an active roster of rigorously vetted, high-autonomy engineers."
+	activePage="it-staffing"
+>
+	<div class="max-w-6xl mx-auto w-full flex flex-col gap-16 md:gap-24">
+		
+		<!-- SECTION 1: HERO -->
+		<section class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center animate-stagger-item">
+			<div class="lg:col-span-8 space-y-6">
+				<div class="inline-flex items-center gap-2 px-3 py-1 border border-indigo-500/20 rounded-full bg-indigo-950/10">
+					<span class="font-mono text-[9px] tracking-widest text-indigo-400 uppercase">EMBEDDED ENGINEERS</span>
+				</div>
+				<h1 class="font-syne font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tighter leading-[0.95] text-white select-text text-balance">
+					Elite engineering.<br />
+					On demand.
+				</h1>
+				<p class="text-neutral-400 font-light text-base sm:text-lg max-w-2xl mt-6 leading-relaxed select-text">
+					Skip the months of recruiting. We match and integrate high-autonomy, senior-level developers directly into your standups, repositories, and workflows within days.
+				</p>
+				<div class="pt-4 flex flex-wrap gap-4">
+					<a href="#roster" class="px-6 py-3 bg-white text-black font-semibold rounded-full hover:bg-white/90 hover:scale-102 transition-all duration-300 text-xs tracking-wider uppercase whitespace-nowrap">
+						View Roster Types
+					</a>
+					<a href="/contact" class="px-6 py-3 border border-white/10 hover:border-white/30 text-white font-semibold rounded-full hover:bg-white/5 transition-all duration-300 text-xs tracking-wider uppercase whitespace-nowrap">
+						Request Talent Squad
+					</a>
+				</div>
+			</div>
+			<div class="lg:col-span-4 relative flex items-center justify-center min-h-[300px]">
+				<!-- Elegant Glowing Visual Structure (SVG / CSS) -->
+				<div class="absolute w-72 h-72 rounded-full bg-indigo-500/[0.04] blur-[80px] pointer-events-none"></div>
+				<div class="relative w-full aspect-square max-w-[280px] border border-white/5 rounded-2xl bg-white/[0.01] p-6 flex flex-col justify-between overflow-hidden shadow-2xl shadow-indigo-500/5 group">
+					<div class="absolute -right-20 -top-20 w-48 h-48 bg-indigo-500/[0.02] rounded-full blur-3xl group-hover:bg-indigo-500/[0.05] transition-all duration-500"></div>
+					<div class="flex items-center justify-between">
+						<div class="w-10 h-10 rounded-xl bg-indigo-400/5 text-indigo-400 border border-indigo-400/10 flex items-center justify-center">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+							</svg>
+						</div>
+						<div class="flex items-center gap-1.5 bg-green-500/10 px-2 py-0.5 border border-green-500/20 rounded">
+							<span class="w-1.5 h-1.5 bg-green-400 rounded-full animate-ping"></span>
+							<span class="font-mono text-[9px] text-green-400 uppercase tracking-widest font-semibold">Active Roster</span>
+						</div>
+					</div>
+					<div class="space-y-2 mt-8">
+						<div class="text-[10px] font-mono text-neutral-500 uppercase">CALIBRATION ENGINE</div>
+						<div class="font-syne font-bold text-white text-lg">Integrated Squads</div>
+						<p class="text-neutral-400 text-xs font-light leading-relaxed">
+							Pre-vetted professionals ready to build your core software systems, machine learning modules, and distributed pipelines.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- SECTION 2: ROSTER TYPES -->
+		<section id="roster" class="border-t border-white/5 pt-16 scroll-mt-24 animate-stagger-item">
+			<div class="space-y-4 mb-12">
+				<div class="flex items-center gap-2">
+					<span class="text-[10px] font-mono tracking-widest text-indigo-400 uppercase">01 RIGOROUS SELECTION</span>
+				</div>
+				<h2 class="font-syne font-semibold text-2xl sm:text-3xl text-white tracking-tight leading-none select-text">
+					Specialized Developer Squads
+				</h2>
+				<p class="text-neutral-400 text-sm leading-relaxed max-w-2xl select-text font-light">
+					We bypass traditional recruiters to match you directly with specialists in deep learning, hardware orchestration, backend architectures, and secure compliance systems.
+				</p>
+			</div>
+
+			<!-- Roster Grid -->
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+				<!-- Roster Card 1 -->
+				<div class="p-8 rounded-2xl border border-white/5 bg-white/[0.01] hover:border-indigo-500/20 hover:bg-white/[0.02] transition-all duration-300 flex flex-col justify-between min-h-[260px] group shadow-lg shadow-black/10">
+					<div class="flex items-center justify-between">
+						<span class="font-mono text-[10px] text-cyan-400 bg-cyan-950/20 px-2.5 py-1 border border-cyan-500/10 rounded uppercase">AI & DL Researchers</span>
+						<span class="w-2.5 h-2.5 rounded-full bg-cyan-400/85 animate-pulse"></span>
+					</div>
+					<div class="mt-8">
+						<h3 class="font-syne font-medium text-white text-base mb-2 select-text">Deep Learning Specialists</h3>
+						<p class="text-neutral-400 text-xs leading-relaxed font-light select-text mb-4">
+							Engineers who understand token mechanics, embedding models, custom alignment strategies, and specialized architecture adaptations.
+						</p>
+						<div class="flex flex-wrap gap-1.5">
+							<span class="font-mono text-[9px] text-neutral-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Transformers</span>
+							<span class="font-mono text-[9px] text-neutral-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded">PyTorch</span>
+							<span class="font-mono text-[9px] text-neutral-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded">fine-tuning</span>
+						</div>
+					</div>
+				</div>
+
+				<!-- Roster Card 2 -->
+				<div class="p-8 rounded-2xl border border-white/5 bg-white/[0.01] hover:border-indigo-500/20 hover:bg-white/[0.02] transition-all duration-300 flex flex-col justify-between min-h-[260px] group shadow-lg shadow-black/10">
+					<div class="flex items-center justify-between">
+						<span class="font-mono text-[10px] text-blue-400 bg-blue-950/20 px-2.5 py-1 border border-blue-500/10 rounded uppercase">MLOps & CUDA</span>
+						<span class="w-2.5 h-2.5 rounded-full bg-blue-400/85 animate-pulse"></span>
+					</div>
+					<div class="mt-8">
+						<h3 class="font-syne font-medium text-white text-base mb-2 select-text">Performance Pioneers</h3>
+						<p class="text-neutral-400 text-xs leading-relaxed font-light select-text mb-4">
+							Hardware-level profiles experienced in custom CUDA kernel profiling, low-latency deployment serving, Kubernetes orchestration, and GPU autoscaling.
+						</p>
+						<div class="flex flex-wrap gap-1.5">
+							<span class="font-mono text-[9px] text-neutral-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded">CUDA</span>
+							<span class="font-mono text-[9px] text-neutral-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Kubernetes</span>
+							<span class="font-mono text-[9px] text-neutral-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Triton</span>
+						</div>
+					</div>
+				</div>
+
+				<!-- Roster Card 3 -->
+				<div class="p-8 rounded-2xl border border-white/5 bg-white/[0.01] hover:border-indigo-500/20 hover:bg-white/[0.02] transition-all duration-300 flex flex-col justify-between min-h-[260px] group shadow-lg shadow-black/10">
+					<div class="flex items-center justify-between">
+						<span class="font-mono text-[10px] text-purple-400 bg-purple-950/20 px-2.5 py-1 border border-purple-500/10 rounded uppercase">Backend & Systems</span>
+						<span class="w-2.5 h-2.5 rounded-full bg-purple-400/85 animate-pulse"></span>
+					</div>
+					<div class="mt-8">
+						<h3 class="font-syne font-medium text-white text-base mb-2 select-text">Distributed Pioneers</h3>
+						<p class="text-neutral-400 text-xs leading-relaxed font-light select-text mb-4">
+							Systems developers writing highly concurrent Go/Rust engines, designing scalable API layers, and setting up highly-indexed vector storage databases.
+						</p>
+						<div class="flex flex-wrap gap-1.5">
+							<span class="font-mono text-[9px] text-neutral-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Go/Rust</span>
+							<span class="font-mono text-[9px] text-neutral-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded">PostgreSQL</span>
+							<span class="font-mono text-[9px] text-neutral-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded">APIs</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- SECTION 3: INTEGRATION METHODOLOGY -->
+		<section class="border-t border-white/5 pt-16 scroll-mt-24 animate-stagger-item">
+			<div class="bg-white/[0.01] border border-white/5 rounded-3xl p-8 sm:p-10 relative overflow-hidden">
+				<div class="absolute -right-40 -top-40 w-96 h-96 bg-indigo-500/[0.03] rounded-full blur-[90px] pointer-events-none"></div>
+				<h3 class="font-syne font-semibold text-lg text-white mb-8">How We Embed Engineers</h3>
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+					<div class="space-y-3">
+						<div class="w-8 h-8 rounded-lg bg-cyan-400/5 text-cyan-400 border border-cyan-400/10 flex items-center justify-center font-mono text-xs font-bold">1</div>
+						<h4 class="text-white text-sm font-space font-medium select-text">Architecture Alignment</h4>
+						<p class="text-neutral-500 text-xs leading-relaxed font-light select-text">
+							We review your stack, repository structures, and exact developer requirements with our engineering leads.
+						</p>
+					</div>
+					<div class="space-y-3">
+						<div class="w-8 h-8 rounded-lg bg-blue-400/5 text-blue-400 border border-blue-400/10 flex items-center justify-center font-mono text-xs font-bold">2</div>
+						<h4 class="text-white text-sm font-space font-medium select-text">Candidate Selection</h4>
+						<p class="text-neutral-500 text-xs leading-relaxed font-light select-text">
+							We select matching engineers from our roster, presenting candidate summaries and technical profiles within 48 hours.
+						</p>
+					</div>
+					<div class="space-y-3">
+						<div class="w-8 h-8 rounded-lg bg-purple-400/5 text-purple-400 border border-purple-400/10 flex items-center justify-center font-mono text-xs font-bold">3</div>
+						<h4 class="text-white text-sm font-space font-medium select-text">Repository Integration</h4>
+						<p class="text-neutral-500 text-xs leading-relaxed font-light select-text">
+							Engineers join your Slack channels and GitHub repositories, submitting their first pull request within 72 hours.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- SECTION 4: CALLOUT -->
+		<section class="border-t border-white/5 pt-16 pb-20 animate-stagger-item">
+			<div class="relative bg-neutral-950/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8 sm:p-12 md:p-16 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden group/cta">
+				<!-- Decor -->
+				<div class="absolute -top-40 -left-40 w-96 h-96 bg-[#00deff]/10 rounded-full blur-[80px] pointer-events-none group-hover/cta:bg-[#00deff]/12 transition-all duration-500"></div>
+				<div class="absolute -bottom-40 -right-40 w-96 h-96 bg-[#883ae2]/10 rounded-full blur-[80px] pointer-events-none group-hover/cta:bg-[#883ae2]/12 transition-all duration-500"></div>
+				
+				<div class="space-y-4 max-w-xl relative z-10">
+					<div class="inline-flex items-center gap-2 px-3 py-1 border border-white/5 rounded-full bg-white/[0.01]">
+						<span class="font-mono text-[9px] tracking-widest text-indigo-400 uppercase">CAPACITY EXPANSION</span>
+					</div>
+					<h2 class="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight leading-tight font-syne select-text">
+						Embed senior talent this week.
+					</h2>
+					<p class="text-white/40 text-xs sm:text-sm font-light leading-relaxed select-text">
+						Bring on dedicated technical specialists who function seamlessly as members of your native engineering team. Let's discuss your project timelines.
+					</p>
+				</div>
+				<a href="/contact" class="relative z-10 px-8 py-3.5 bg-white text-black font-semibold rounded-full hover:bg-white/90 hover:scale-102 transition-all duration-300 text-xs tracking-wider uppercase whitespace-nowrap">
+					Request Roster Vetting
+				</a>
+			</div>
+		</section>
+
+	</div>
+</PageLayout>

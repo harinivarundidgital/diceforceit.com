@@ -1,0 +1,75 @@
+---
+import ActionCard from './ActionCard.astro';
+
+const actions = [
+  { id: 'tasks', title: 'Create Tasks', description: 'Auto-create tasks & assign owners', icon: 'check-square', theme: 'theme-purple' },
+  { id: 'emails', title: 'Send Emails', description: 'Draft & send contextual emails', icon: 'send', theme: 'theme-blue' },
+  { id: 'meetings', title: 'Schedule Meetings', description: 'Book meetings with relevant stakeholders', icon: 'calendar', theme: 'theme-green' },
+  { id: 'crm', title: 'Update CRM / ERP', description: 'Update records across systems', icon: 'database', theme: 'theme-gold' },
+  { id: 'reports', title: 'Generate Reports', description: 'Executive ready reports', icon: 'file-bar-chart', theme: 'theme-orange' },
+  { id: 'alerts', title: 'Trigger Alerts', description: 'Notify the right people instantly', icon: 'bell', theme: 'theme-magenta' },
+  { id: 'workflows', title: 'Execute Workflows', description: 'End-to-end process automation', icon: 'play-circle', theme: 'theme-cyan' },
+  { id: 'learn', title: 'Learn & Improve', description: 'Continuous learning & model improvement', icon: 'refresh-cw', theme: 'theme-teal' },
+];
+---
+
+<div class="eai-panel-actions flex flex-col h-full" aria-label="Section 4 Actions Taken">
+  <div class="eai-panel-title">
+    <div class="flex items-center gap-2">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-emerald-400">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+        <polyline points="22 4 12 14.01 9 11.01"/>
+      </svg>
+      <span class="font-bold uppercase tracking-wider text-xs">ACTIONS TAKEN</span>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-1.5">
+    {actions.map((item) => (
+      <ActionCard title={item.title} description={item.description} id={item.id} themeClass={item.theme}>
+        <slot name="icon" slot="icon">
+          {item.icon === 'check-square' && (
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+            </svg>
+          )}
+          {item.icon === 'send' && (
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+          )}
+          {item.icon === 'calendar' && (
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+          )}
+          {item.icon === 'database' && (
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+            </svg>
+          )}
+          {item.icon === 'file-bar-chart' && (
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="16" y1="18" x2="16" y2="10"/><line x1="8" y1="18" x2="8" y2="15"/>
+            </svg>
+          )}
+          {item.icon === 'bell' && (
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+            </svg>
+          )}
+          {item.icon === 'play-circle' && (
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/>
+            </svg>
+          )}
+          {item.icon === 'refresh-cw' && (
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+            </svg>
+          )}
+        </slot>
+      </ActionCard>
+    ))}
+  </div>
+</div>
