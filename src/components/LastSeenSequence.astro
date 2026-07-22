@@ -1,0 +1,330 @@
+---
+---
+
+<!-- Section 3: Scroll-driven Image Sequence Animation (Last Seen) -->
+<section id="last-seen-sequence" class="relative z-10 w-full lastseen-scroll-container">
+	<!-- Sticky Frame Container -->
+	<div class="sticky-lastseen-frame flex items-center justify-center relative overflow-hidden bg-[#030303]">
+		
+		<!-- Canvas for Image Sequence -->
+		<canvas id="lastseen-sequence-canvas" class="absolute inset-0 w-full h-full object-cover pointer-events-none z-0 bg-[#030303]"></canvas>
+		
+		<!-- Ambient background glows -->
+		<div class="absolute inset-0 bg-gradient-to-b from-[#030303]/80 via-transparent to-[#030303]/80 z-10 pointer-events-none"></div>
+		<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-cyan-500/[0.03] blur-[150px] pointer-events-none z-10"></div>
+
+		<!-- Narrative Text Layers (Scroll-driven Overlay) -->
+		<div class="absolute inset-0 z-20 flex items-center justify-center pointer-events-none px-6 md:px-12">
+			
+			<!-- Slide 1 -->
+			<div id="lastseen-slide-1" class="absolute flex flex-col items-center justify-center text-center max-w-4xl mx-auto space-y-6 transition-all duration-300">
+				<div class="inline-flex items-center gap-2 px-3.5 py-1 border border-cyan-500/20 rounded-full bg-cyan-500/10 backdrop-blur-md">
+					<span class="font-mono text-xs tracking-widest text-cyan-400 uppercase font-semibold">03 COGNITIVE EVOLUTION</span>
+				</div>
+				<h2 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-tight font-syne">
+					The Next Frontier of <br />
+					<span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-400 font-extrabold">Intelligence.</span>
+				</h2>
+				<p class="text-white/60 text-sm sm:text-lg max-w-2xl font-light leading-relaxed font-sans">
+					Observing autonomous workflows and deep neural architectures operating in real-time environments.
+				</p>
+			</div>
+
+			<!-- Slide 2 -->
+			<div id="lastseen-slide-2" class="absolute flex flex-col items-center justify-center text-center max-w-4xl mx-auto space-y-6 opacity-0 translate-y-12 transition-all duration-300 pointer-events-none">
+				<div class="inline-flex items-center gap-2 px-3.5 py-1 border border-purple-500/20 rounded-full bg-purple-500/10 backdrop-blur-md">
+					<span class="font-mono text-xs tracking-widest text-purple-400 uppercase font-semibold">04 ADVANCED SYNTHESIS</span>
+				</div>
+				<h2 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-tight font-syne">
+					Continuous Learning, <br />
+					<span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-400 to-pink-500 font-extrabold">Unbounded Scale.</span>
+				</h2>
+				<p class="text-white/60 text-sm sm:text-lg max-w-2xl font-light leading-relaxed font-sans">
+					Real-time inference and model adaptation across distributed enterprise networks.
+				</p>
+			</div>
+
+			<!-- Slide 3 -->
+			<div id="lastseen-slide-3" class="absolute flex flex-col items-center justify-center text-center max-w-4xl mx-auto space-y-6 opacity-0 translate-y-12 transition-all duration-300 pointer-events-none">
+				<div class="inline-flex items-center gap-2 px-3.5 py-1 border border-emerald-500/20 rounded-full bg-emerald-500/10 backdrop-blur-md">
+					<span class="font-mono text-xs tracking-widest text-emerald-400 uppercase font-semibold">05 SYSTEM SINGULARITY</span>
+				</div>
+				<h2 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-tight font-syne">
+					Empowering <br />
+					<span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 font-extrabold">Human Ambition.</span>
+				</h2>
+				<p class="text-white/60 text-sm sm:text-lg max-w-2xl font-light leading-relaxed font-sans">
+					Bridging human creativity with state-of-the-art cognitive compute capabilities.
+				</p>
+			</div>
+
+		</div>
+
+		<!-- Bottom Progress Line -->
+		<div class="absolute bottom-0 left-0 w-full h-[2px] bg-white/5 z-30">
+			<div id="lastseen-progress-bar" class="h-full w-0 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 transition-all duration-150"></div>
+		</div>
+
+	</div>
+</section>
+
+<style>
+	.lastseen-scroll-container {
+		position: relative;
+		width: 100%;
+		height: 380vh;
+	}
+	.sticky-lastseen-frame {
+		position: -webkit-sticky;
+		position: sticky;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100vh;
+		height: 100dvh;
+		overflow: hidden;
+		z-index: 10;
+		background-color: #030303;
+		will-change: transform;
+	}
+</style>
+
+<script>
+	const canvas = document.getElementById('lastseen-sequence-canvas') as HTMLCanvasElement | null;
+	const progressBar = document.getElementById('lastseen-progress-bar') as HTMLDivElement | null;
+	const container = document.getElementById('last-seen-sequence') as HTMLDivElement | null;
+	
+	const slide1 = document.getElementById('lastseen-slide-1') as HTMLDivElement | null;
+	const slide2 = document.getElementById('lastseen-slide-2') as HTMLDivElement | null;
+	const slide3 = document.getElementById('lastseen-slide-3') as HTMLDivElement | null;
+
+	if (canvas && container) {
+		const ctx = canvas.getContext('2d');
+		if (ctx) {
+			const totalFrames = 394; // 000 to 393
+			const images: HTMLImageElement[] = [];
+			
+			let currentFrame = 0;
+			let targetFrame = 0;
+			const ease = 0.09;
+			let lastDrawnFrame = -1;
+
+			// Path generator for "Last scenes000.jpg" to "Last scenes393.jpg"
+			const getFramePath = (index: number): string => {
+				const pad = String(index).padStart(3, '0');
+				return `/lastseen/Last scenes${pad}.jpg`;
+			};
+
+			// Build progressive load order (keyframes first for instant response)
+			const loadOrder: number[] = [];
+			loadOrder.push(0);
+			// Keyframes every 10 frames
+			for (let i = 10; i < totalFrames; i += 10) {
+				loadOrder.push(i);
+			}
+			// Remaining frames
+			const loadedSet = new Set(loadOrder);
+			for (let i = 0; i < totalFrames; i++) {
+				if (!loadedSet.has(i)) {
+					loadOrder.push(i);
+				}
+			}
+
+			// Draw image covering the canvas while maintaining aspect ratio
+			const drawImageCover = (context: CanvasRenderingContext2D, img: HTMLImageElement) => {
+				const canvasEl = context.canvas;
+				const imgRatio = img.width / img.height;
+				const canvasRatio = canvasEl.width / canvasEl.height;
+				let drawWidth, drawHeight, x, y;
+
+				if (canvasRatio > imgRatio) {
+					drawWidth = canvasEl.width;
+					drawHeight = canvasEl.width / imgRatio;
+					x = 0;
+					y = (canvasEl.height - drawHeight) / 2;
+				} else {
+					drawWidth = canvasEl.height * imgRatio;
+					drawHeight = canvasEl.height;
+					x = (canvasEl.width - drawWidth) / 2;
+					y = 0;
+				}
+
+				context.clearRect(0, 0, canvasEl.width, canvasEl.height);
+				context.drawImage(img, x, y, drawWidth, drawHeight);
+			};
+
+			// Render current frame with fallback to nearest available loaded frame
+			const drawFrame = (index: number) => {
+				if (index === lastDrawnFrame) return;
+
+				let img = images[index];
+				if (!img) {
+					let step = 1;
+					while (step < totalFrames) {
+						if (index - step >= 0 && images[index - step]) {
+							img = images[index - step];
+							break;
+						}
+						if (index + step < totalFrames && images[index + step]) {
+							img = images[index + step];
+							break;
+						}
+						step++;
+					}
+				}
+
+				if (img && img.complete && img.naturalWidth !== 0) {
+					drawImageCover(ctx, img);
+					lastDrawnFrame = index;
+				}
+			};
+
+			// Resize Canvas to fit container with high DPI resolution
+			const resizeCanvas = () => {
+				const width = canvas.clientWidth || window.innerWidth;
+				const height = canvas.clientHeight || window.innerHeight;
+				canvas.width = width * window.devicePixelRatio;
+				canvas.height = height * window.devicePixelRatio;
+				drawFrame(Math.round(currentFrame));
+			};
+
+			window.addEventListener('resize', resizeCanvas);
+
+			// Handle scroll position relative to container
+			const handleScroll = () => {
+				const rect = container.getBoundingClientRect();
+				const totalScrollHeight = container.offsetHeight - window.innerHeight;
+				
+				if (totalScrollHeight <= 0) return;
+
+				const rawProgress = -rect.top / totalScrollHeight;
+				const progress = Math.max(0, Math.min(1, rawProgress));
+				
+				targetFrame = progress * (totalFrames - 1);
+				
+				if (progressBar) {
+					progressBar.style.width = `${progress * 100}%`;
+				}
+
+				// Animate slide text overlays according to scroll progress
+				// Slide 1: 0% to 30%
+				if (slide1) {
+					if (progress < 0.30) {
+						const factor = progress / 0.30;
+						slide1.style.opacity = `${1 - factor}`;
+						slide1.style.transform = `translateY(${-factor * 30}px)`;
+					} else {
+						slide1.style.opacity = '0';
+						slide1.style.transform = 'translateY(-30px)';
+					}
+				}
+
+				// Slide 2: 30% to 65%
+				if (slide2) {
+					if (progress >= 0.30 && progress < 0.65) {
+						let factor = 0;
+						let ty = 0;
+						if (progress < 0.47) {
+							// Fade in
+							factor = (progress - 0.30) / 0.17;
+							ty = 30 * (1 - factor);
+							slide2.style.opacity = `${factor}`;
+							slide2.style.transform = `translateY(${ty}px)`;
+						} else {
+							// Fade out
+							factor = (progress - 0.47) / 0.18;
+							ty = -30 * factor;
+							slide2.style.opacity = `${1 - factor}`;
+							slide2.style.transform = `translateY(${ty}px)`;
+						}
+					} else {
+						slide2.style.opacity = '0';
+						slide2.style.transform = progress < 0.30 ? 'translateY(30px)' : 'translateY(-30px)';
+					}
+				}
+
+				// Slide 3: 65% to 98%
+				if (slide3) {
+					if (progress >= 0.65 && progress <= 1.0) {
+						let factor = 0;
+						let ty = 0;
+						if (progress < 0.82) {
+							// Fade in
+							factor = (progress - 0.65) / 0.17;
+							ty = 30 * (1 - factor);
+							slide3.style.opacity = `${factor}`;
+							slide3.style.transform = `translateY(${ty}px)`;
+						} else {
+							// Fade out near end
+							factor = (progress - 0.82) / 0.18;
+							ty = -30 * factor;
+							slide3.style.opacity = `${1 - factor}`;
+							slide3.style.transform = `translateY(${ty}px)`;
+						}
+					} else {
+						slide3.style.opacity = '0';
+						slide3.style.transform = 'translateY(30px)';
+					}
+				}
+			};
+
+			window.addEventListener('scroll', handleScroll, { passive: true });
+
+			// Smooth animation update loop
+			const updateAnimation = () => {
+				const diff = targetFrame - currentFrame;
+				if (Math.abs(diff) < 0.01) {
+					currentFrame = targetFrame;
+				} else {
+					currentFrame += diff * ease;
+				}
+				drawFrame(Math.round(currentFrame));
+				requestAnimationFrame(updateAnimation);
+			};
+
+			// Preload first frame immediately
+			const firstImg = new Image();
+			firstImg.src = getFramePath(0);
+			firstImg.onload = () => {
+				images[0] = firstImg;
+				resizeCanvas();
+				drawFrame(0);
+			};
+
+			// Start background queue loader
+			let queueIndex = 0;
+			const loadNextFromQueue = () => {
+				if (queueIndex >= loadOrder.length) return;
+				const currentIdx = queueIndex++;
+				const frameIdx = loadOrder[currentIdx];
+
+				if (images[frameIdx]) {
+					loadNextFromQueue();
+					return;
+				}
+
+				const img = new Image();
+				img.src = getFramePath(frameIdx);
+				img.onload = () => {
+					images[frameIdx] = img;
+					if (Math.round(currentFrame) === frameIdx) {
+						drawFrame(frameIdx);
+					}
+					loadNextFromQueue();
+				};
+				img.onerror = () => {
+					loadNextFromQueue();
+				};
+			};
+
+			// Trigger queue loading in chunks
+			loadNextFromQueue();
+			loadNextFromQueue();
+			loadNextFromQueue();
+
+			// Start animation loop
+			requestAnimationFrame(updateAnimation);
+			handleScroll();
+		}
+	}
+</script>
