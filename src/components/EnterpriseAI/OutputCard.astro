@@ -10,10 +10,9 @@ interface Props {
 const { title, id, themeClass = "theme-purple" } = Astro.props;
 ---
 
-<div class={`eai-glass-card eai-output-card group flex items-center justify-center text-center p-3.5 bg-[#080d22]/85 border border-white/10 rounded-xl hover:border-purple-400/50 hover:bg-[#0d1233]/95 transition-all duration-300 shadow-sm hover:shadow-[0_0_20px_rgba(168,85,247,0.25)] ${themeClass}`} id={`output-card-${id}`} tabIndex={0} aria-label={`Output: ${title}`}>
-  <div class="flex items-center justify-center text-center gap-2.5">
-    <span class="w-1.5 h-1.5 rounded-full bg-purple-400 opacity-60 group-hover:opacity-100 group-hover:scale-125 transition-all"></span>
-    <div class="eai-card-icon group-hover:scale-110 transition-transform">
+<div class={`eai-glass-card eai-output-card group flex items-center justify-center text-center p-3.5 bg-[#080d22]/85 border border-white/10 rounded-xl hover:border-purple-400/50 hover:bg-[#0d1233]/95 transition-all duration-300 shadow-sm hover:shadow-[0_0_20px_rgba(168,85,247,0.25)] w-full ${themeClass}`} id={`output-card-${id}`} tabIndex={0} aria-label={`Output: ${title}`}>
+  <div class="flex items-center justify-center text-center gap-2.5 w-full">
+    <div class="eai-card-icon group-hover:scale-110 transition-transform shrink-0">
       <slot name="icon">
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>

@@ -12,9 +12,8 @@ const isLeft = posClass.includes('left');
 const isRight = posClass.includes('right');
 ---
 
-<div class={`eai-capability-card ${posClass}`} id={`cap-card-${id}`} tabIndex={0} aria-label={`Capability: ${title}`}>
-  <div class="flex items-center justify-center text-center gap-2.5 px-4 py-2.5 bg-[#080d22]/90 border border-cyan-500/30 rounded-xl shadow-[0_0_15px_rgba(0,222,255,0.1)] backdrop-blur-xl hover:border-cyan-400 hover:shadow-[0_0_25px_rgba(0,222,255,0.25)] transition-all duration-300 group">
-    <span class={`w-2 h-2 rounded-full shrink-0 animate-pulse ${isLeft ? 'bg-cyan-400' : isRight ? 'bg-purple-400' : 'bg-emerald-400'}`}></span>
-    <span class="font-bold text-xs tracking-wider text-white group-hover:text-cyan-300 transition-colors truncate text-center">{title}</span>
+<div class={`eai-capability-card w-full min-w-[210px] ${posClass}`} id={`cap-card-${id}`} tabIndex={0} aria-label={`Capability: ${title}`}>
+  <div class="w-full flex items-center justify-center text-center gap-2.5 px-4 py-2.5 bg-[#080d22]/90 border border-cyan-500/30 rounded-xl shadow-[0_0_15px_rgba(0,222,255,0.1)] backdrop-blur-xl hover:border-cyan-400 hover:shadow-[0_0_25px_rgba(0,222,255,0.25)] transition-all duration-300 group">
+    <span class="font-bold text-xs tracking-wider text-white group-hover:text-cyan-300 transition-colors text-center">{title}</span>
   </div>
 </div>

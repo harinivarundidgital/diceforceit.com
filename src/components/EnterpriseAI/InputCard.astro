@@ -9,17 +9,16 @@ interface Props {
 const { title, count, id } = Astro.props;
 ---
 
-<div class="eai-glass-card eai-input-card group flex items-center justify-center text-center p-3 bg-[#080d22]/85 border border-white/10 rounded-xl hover:border-cyan-400/50 hover:bg-[#0c1433]/95 transition-all duration-300 shadow-sm hover:shadow-[0_0_20px_rgba(0,222,255,0.2)]" id={`input-card-${id}`} tabIndex={0} aria-label={`${title} (${count})`}>
-  <div class="eai-input-left flex items-center justify-center text-center gap-2.5 flex-wrap sm:flex-nowrap">
-    <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 opacity-60 group-hover:opacity-100 group-hover:scale-125 transition-all"></span>
-    <div class="eai-card-icon text-cyan-400 group-hover:scale-110 transition-transform" aria-hidden="true">
+<div class="eai-glass-card eai-input-card group flex items-center justify-between text-center p-3.5 bg-[#080d22]/85 border border-white/10 rounded-xl hover:border-cyan-400/50 hover:bg-[#0c1433]/95 transition-all duration-300 shadow-sm hover:shadow-[0_0_20px_rgba(0,222,255,0.2)] w-full" id={`input-card-${id}`} tabIndex={0} aria-label={`${title} (${count})`}>
+  <div class="eai-input-left flex items-center justify-center text-center gap-2.5 w-full">
+    <div class="eai-card-icon text-cyan-400 group-hover:scale-110 transition-transform shrink-0" aria-hidden="true">
       <slot name="icon">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
         </svg>
       </slot>
     </div>
-    <span class="eai-card-label text-xs font-semibold text-white/90 group-hover:text-cyan-300 transition-colors text-center">{title}</span>
-    <span class="eai-badge-count font-mono text-[11px] px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-cyan-400 font-medium group-hover:bg-cyan-950/60 group-hover:border-cyan-500/40 transition-all ml-1">{count}</span>
+    <span class="eai-card-label text-xs font-semibold text-white/90 group-hover:text-cyan-300 transition-colors text-center flex-1">{title}</span>
+    <span class="eai-badge-count font-mono text-[11px] px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-cyan-400 font-medium group-hover:bg-cyan-950/60 group-hover:border-cyan-500/40 transition-all ml-1 shrink-0">{count}</span>
   </div>
 </div>

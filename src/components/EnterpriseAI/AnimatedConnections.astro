@@ -69,7 +69,7 @@
       const endX = fRect.left + fRect.width / 2 - overlayRect.left;
       const endY = fRect.top - overlayRect.top;
 
-      pathsHTML += `<path class="eai-svg-path" data-stage="0" d="M ${startX} ${startY} Q ${startX} ${(startY + endY)/2}, ${endX} ${endY}" marker-start="url(#flowCircleCyan)" marker-end="url(#flowCircleCyan)" filter="url(#neonGlow)" />`;
+      pathsHTML += `<path class="eai-svg-path" data-stage="0" d="M ${startX} ${startY} Q ${startX} ${(startY + endY)/2}, ${endX} ${endY}" filter="url(#neonGlow)" />`;
     }
 
     // Stage 1: Data Fabric Capsule ➔ Enterprise Input Cards
@@ -85,7 +85,7 @@
         const endY = rect.top - overlayRect.top;
         const controlY = startY + (endY - startY) * 0.5;
 
-        pathsHTML += `<path class="eai-svg-path" data-stage="1" d="M ${startX} ${startY} C ${startX} ${controlY}, ${endX} ${controlY}, ${endX} ${endY}" marker-start="url(#flowCircleCyan)" marker-end="url(#flowCircleCyan)" filter="url(#neonGlow)" />`;
+        pathsHTML += `<path class="eai-svg-path" data-stage="1" d="M ${startX} ${startY} C ${startX} ${controlY}, ${endX} ${controlY}, ${endX} ${endY}" filter="url(#neonGlow)" />`;
       });
     }
 
@@ -105,7 +105,7 @@
         const controlX1 = startX + (endX - startX) * 0.5;
         const controlX2 = startX + (endX - startX) * 0.5;
 
-        pathsHTML += `<path class="eai-svg-path" data-stage="2" d="M ${startX} ${startY} C ${controlX1} ${startY}, ${controlX2} ${endY}, ${endX} ${endY}" marker-start="url(#flowCircleCyan)" marker-end="url(#flowCircleCyan)" filter="url(#neonGlow)" />`;
+        pathsHTML += `<path class="eai-svg-path" data-stage="2" d="M ${startX} ${startY} C ${controlX1} ${startY}, ${controlX2} ${endY}, ${endX} ${endY}" filter="url(#neonGlow)" />`;
       }
     });
 
@@ -117,7 +117,7 @@
       const endX = centerRect.left - overlayRect.left;
       const endY = centerY;
 
-      pathsHTML += `<path class="eai-svg-path" data-stage="3" d="M ${startX} ${startY} Q ${(startX + endX)/2} ${startY}, ${endX} ${endY}" marker-start="url(#flowCircleCyan)" marker-end="url(#flowCirclePurple)" filter="url(#neonGlow)" />`;
+      pathsHTML += `<path class="eai-svg-path" data-stage="3" d="M ${startX} ${startY} Q ${(startX + endX)/2} ${startY}, ${endX} ${endY}" filter="url(#neonGlow)" />`;
     });
 
     // Stage 4: Core Engine Center ➔ Hallucination Control Layer
@@ -129,7 +129,7 @@
       const endX = hRect.left + hRect.width / 2 - overlayRect.left;
       const endY = hRect.top - overlayRect.top;
 
-      pathsHTML += `<path class="eai-svg-path" data-stage="4" d="M ${startX} ${startY} L ${endX} ${endY}" marker-start="url(#flowCirclePurple)" marker-end="url(#flowCircleCyan)" filter="url(#neonGlow)" />`;
+      pathsHTML += `<path class="eai-svg-path" data-stage="4" d="M ${startX} ${startY} L ${endX} ${endY}" filter="url(#neonGlow)" />`;
     }
 
     // Stage 5: Core Engine Center ➔ Right Capabilities
@@ -141,7 +141,7 @@
       const endX = capRect.left - overlayRect.left;
       const endY = capRect.top + capRect.height / 2 - overlayRect.top;
 
-      pathsHTML += `<path class="eai-svg-path" data-stage="5" d="M ${startX} ${startY} Q ${(startX + endX)/2} ${endY}, ${endX} ${endY}" marker-start="url(#flowCirclePurple)" marker-end="url(#flowCirclePurple)" filter="url(#neonGlow)" />`;
+      pathsHTML += `<path class="eai-svg-path" data-stage="5" d="M ${startX} ${startY} Q ${(startX + endX)/2} ${endY}, ${endX} ${endY}" filter="url(#neonGlow)" />`;
     });
 
     // Stage 6: Right Capabilities ➔ Intelligent Outputs
@@ -161,7 +161,7 @@
           const controlX1 = startX + (endX - startX) * 0.5;
           const controlX2 = startX + (endX - startX) * 0.5;
 
-          pathsHTML += `<path class="eai-svg-path" data-stage="6" d="M ${startX} ${startY} C ${controlX1} ${startY}, ${controlX2} ${endY}, ${endX} ${endY}" marker-start="url(#flowCirclePurple)" marker-end="url(#flowCirclePurple)" filter="url(#neonGlow)" />`;
+          pathsHTML += `<path class="eai-svg-path" data-stage="6" d="M ${startX} ${startY} C ${controlX1} ${startY}, ${controlX2} ${endY}, ${endX} ${endY}" filter="url(#neonGlow)" />`;
         }
       });
     });
@@ -178,7 +178,7 @@
         const endX = actRect.left + actRect.width * 0.75 - overlayRect.left;
         const endY = actRect.top - overlayRect.top;
 
-        pathsHTML += `<path class="eai-svg-path" data-stage="7" d="M ${startX} ${startY} C ${startX} ${(startY + endY)/2}, ${endX} ${(startY + endY)/2}, ${endX} ${endY}" marker-start="url(#flowCirclePurple)" marker-end="url(#flowCircleEmerald)" filter="url(#neonGlow)" />`;
+        pathsHTML += `<path class="eai-svg-path" data-stage="7" d="M ${startX} ${startY} C ${startX} ${(startY + endY)/2}, ${endX} ${(startY + endY)/2}, ${endX} ${endY}" filter="url(#neonGlow)" />`;
       }
     });
 
