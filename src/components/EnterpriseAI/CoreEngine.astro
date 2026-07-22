@@ -3,80 +3,79 @@ import CapabilityCard from './CapabilityCard.astro';
 import HallucinationLayer from './HallucinationLayer.astro';
 
 const leftCapabilities = [
-  { id: 'nlp', title: 'NLP & UNDERSTANDING', desc: 'Extracts meaning from unstructured data' },
-  { id: 'entity', title: 'ENTITY & RELATIONSHIP RECOGNITION', desc: 'Maps people, companies, events & relationships' },
-  { id: 'graph', title: 'KNOWLEDGE GRAPH BUILDER', desc: 'Creates a connected digital representation' },
+  { id: 'nlp', title: 'NLP & Understanding' },
+  { id: 'graph', title: 'Knowledge Graph Engine' },
 ];
 
 const rightCapabilities = [
-  { id: 'opportunity', title: 'OPPORTUNITY DISCOVERY', desc: 'Finds hidden opportunities & patterns' },
-  { id: 'prediction', title: 'PREDICTION & FORECASTING', desc: 'Predicts outcomes, probabilities & impacts' },
-  { id: 'decision', title: 'DECISION RECOMMENDATION', desc: 'Recommends the best next actions' },
+  { id: 'prediction', title: 'Predictive Forecasting' },
+  { id: 'decision', title: 'Decision Recommendation' },
 ];
-
-const bottomCapability = { id: 'risk', title: 'RISK & ANOMALY DETECTION', desc: 'Identifies risks, gaps & red flags' };
 ---
 
-<div class="eai-panel-core eai-core-container flex flex-col items-center justify-between relative w-full h-full border border-cyan-500/20 rounded-2xl p-4 bg-gradient-to-b from-cyan-950/10 via-black/40 to-purple-950/10 shadow-[0_0_40px_rgba(0,222,255,0.05)]" aria-label="Section 2 Agentic Intelligence Core">
-  
+<div class="eai-panel-core eai-core-container flex flex-col items-center justify-between relative w-full h-full p-0 bg-transparent border-0 shadow-none" aria-label="Section 2 Agentic Intelligence Core">
+  <!-- Aligned Header matching Columns 1, 3, and 4 -->
+  <div class="eai-panel-title w-full flex items-center justify-center text-center">
+    <div class="flex items-center justify-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+      <span class="font-bold tracking-wider text-xs text-cyan-300 text-center">Agentic Intelligence Core</span>
+    </div>
+  </div>
+
   <!-- Outer Stage: Left Capabilities | Center Circular Core Engine | Right Capabilities -->
-  <div class="eai-engine-stage w-full flex flex-col md:flex-row items-center justify-between gap-3 relative z-20">
+  <div class="eai-engine-stage w-full flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 lg:gap-16 relative z-20 my-auto py-8 px-4 sm:px-6">
     
     <!-- Left Capability Flank -->
-    <div class="eai-cap-flank flex flex-col gap-2.5 w-full md:w-auto items-stretch md:items-end z-25">
+    <div class="eai-cap-flank flex flex-col gap-6 md:gap-8 w-full md:w-auto items-center text-center z-25">
       {leftCapabilities.map((cap) => (
-        <CapabilityCard title={cap.title} desc={cap.desc} posClass="eai-cap-left" id={cap.id} />
+        <CapabilityCard title={cap.title} posClass="eai-cap-left" id={cap.id} />
       ))}
     </div>
 
-    <!-- Centerpiece Circular Engine (Perfectly Center Aligned & Enhanced) -->
-    <div class="eai-engine-circle-wrapper shrink-0 my-4 md:my-0 mx-auto" id="core-engine-center" tabIndex={0} aria-label="Context Intelligence Engine: Click to simulate neural signal transmission">
+    <!-- Centerpiece Circular Engine (Enhanced Gap & Breathing Room) -->
+    <div class="eai-engine-circle-wrapper shrink-0 my-6 md:my-0 mx-auto md:mx-8" id="core-engine-center" tabIndex={0} aria-label="Context Intelligence Engine: Click to simulate neural signal transmission">
       <!-- Concentric Rings -->
       <div class="eai-ring-halo"></div>
       <div class="eai-ring-outer"></div>
       <div class="eai-ring-mid"></div>
       <div class="eai-ring-inner"></div>
 
-      <!-- Center Content Container (Centered Vertically and Horizontally) -->
+      <!-- Center Content Container -->
       <div class="eai-engine-center-content">
-        <!-- Brand Logo Icon Frame -->
-        <div class="eai-engine-icon-glow flex items-center justify-center relative w-12 h-12 mb-1.5 mx-auto rounded-full bg-cyan-500/10 border border-cyan-400/30 p-1.5 shadow-[0_0_20px_rgba(0,222,255,0.5)]">
-          <img 
-            src="/diceforceITlogo_.gif" 
-            alt="diceforce IT Logo Icon" 
-            class="w-full h-full object-contain filter drop-shadow-[0_0_10px_rgba(0,222,255,0.9)]"
-            width="40"
-            height="40"
-          />
+        <!-- Rotating Brain SVG Frame -->
+        <div class="eai-brain-icon-wrapper flex items-center justify-center relative w-9 h-9 mb-1 mx-auto rounded-full bg-cyan-500/10 border border-cyan-400/30 shadow-[0_0_15px_rgba(0,222,255,0.6)]">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-400 animate-spin-slow filter drop-shadow-[0_0_6px_rgba(0,222,255,0.9)]">
+            <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/>
+            <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/>
+            <path d="M15 13a3 3 0 1 0-6 0"/>
+            <path d="M12 5v13"/>
+          </svg>
         </div>
 
-        <!-- Engine Title (Center Aligned) -->
-        <span class="eai-engine-title font-syne uppercase tracking-wider font-extrabold text-center block leading-tight">
-          CONTEXT<br/>INTELLIGENCE<br/>ENGINE
+        <!-- Engine Title (Title Case) -->
+        <span class="eai-engine-title font-syne tracking-wider font-extrabold text-center block leading-tight text-[11px] text-white">
+          Context<br/>Intelligence<br/>Engine
         </span>
 
         <!-- Telemetry Status Subtext -->
         <div class="eai-engine-telemetry text-center mt-1">
-          <span class="text-xs font-mono tracking-widest text-cyan-400 font-semibold uppercase">● NEURAL MATRIX ONLINE ●</span>
+          <span class="text-[9px] font-mono tracking-widest text-cyan-400 font-semibold">● Matrix Online ●</span>
         </div>
       </div>
     </div>
 
     <!-- Right Capability Flank -->
-    <div class="eai-cap-flank flex flex-col gap-2.5 w-full md:w-auto items-stretch md:items-start z-25">
+    <div class="eai-cap-flank flex flex-col gap-6 md:gap-8 w-full md:w-auto items-center text-center z-25">
       {rightCapabilities.map((cap) => (
-        <CapabilityCard title={cap.title} desc={cap.desc} posClass="eai-cap-right" id={cap.id} />
+        <CapabilityCard title={cap.title} posClass="eai-cap-right" id={cap.id} />
       ))}
     </div>
 
   </div>
 
-  <!-- Bottom Capability Card -->
-  <div class="w-full flex justify-center my-2 z-25">
-    <CapabilityCard title={bottomCapability.title} desc={bottomCapability.desc} posClass="eai-cap-bottom" id={bottomCapability.id} />
-  </div>
-
   <!-- Hallucination Control Layer below center -->
-  <HallucinationLayer />
+  <div class="w-full pt-4 mt-2">
+    <HallucinationLayer />
+  </div>
 
 </div>

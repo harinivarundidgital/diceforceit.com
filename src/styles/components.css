@@ -36,7 +36,6 @@
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
   background: linear-gradient(90deg, var(--neon-blue), var(--cyan-bright));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -132,16 +131,16 @@
   gap: 0.3rem;
 }
 
-/* Main Four Column Grid Layout - Dense Single-Fold Grid */
+/* Three-Column Architecture Grid Layout */
 .eai-main-grid {
   display: grid;
-  grid-template-columns: 260px minmax(440px, 1fr) 280px 210px;
-  gap: 1rem;
-  max-width: 1720px;
+  grid-template-columns: 310px minmax(500px, 1fr) 340px;
+  gap: 2rem;
+  max-width: 1680px;
   margin: 0 auto;
   position: relative;
   z-index: 20;
-  align-items: start;
+  align-items: stretch;
 }
 
 /* Panel Containers & Dividers */
@@ -152,33 +151,18 @@
   height: 100%;
 }
 
-/* Responsive Grid Adjustments */
+/* Responsive 3-Column Grid Adjustments */
 @media (max-width: 1440px) {
   .eai-main-grid {
-    grid-template-columns: 240px minmax(380px, 1fr) 260px 190px;
-    gap: 0.75rem;
-  }
-}
-
-@media (max-width: 1200px) {
-  .eai-main-grid {
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: 
-      "inputs core"
-      "outputs actions";
+    grid-template-columns: 280px minmax(420px, 1fr) 310px;
     gap: 1.5rem;
   }
-  .eai-panel-inputs { grid-area: inputs; }
-  .eai-panel-core { grid-area: core; }
-  .eai-panel-outputs { grid-area: outputs; }
-  .eai-panel-actions { grid-area: actions; }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1120px) {
   .eai-main-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
   }
 }
 
@@ -189,13 +173,13 @@
   font-weight: 700;
   letter-spacing: 0.02em;
   color: var(--text-primary);
-  height: 32px;
-  margin-bottom: 0.75rem;
+  height: 36px;
+  margin-bottom: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 0.35rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .eai-title-count-badge {
@@ -215,15 +199,12 @@
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 8px;
-  padding: 0.45rem 0.7rem;
+  border-radius: 12px;
+  padding: 0.7rem 0.9rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
   position: relative;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-  cursor: grab;
-  user-select: none;
-  touch-action: none;
 }
 
 .eai-glass-card::before {
@@ -264,14 +245,60 @@
   opacity: 1;
 }
 
-/* Draggable Active State */
-.eai-glass-card.is-dragging, .eai-capability-card.is-dragging {
+/* Draggable Inner Cards (Section headings .eai-panel-title are non-draggable) */
+.eai-glass-card, 
+.eai-capability-card, 
+.eai-data-fabric-capsule, 
+#eai-user-input-container, 
+#core-engine-center, 
+.eai-hallucination-card {
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+}
+
+.is-dragging {
   cursor: grabbing !important;
   z-index: 100 !important;
-  scale: 1.05 !important;
-  border-color: var(--neon-blue) !important;
+  scale: 1.04 !important;
+  border-color: #00deff !important;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 222, 255, 0.6) !important;
   transition: none !important;
+}
+
+/* Step-by-Step Flow Active Highlight Effects */
+.eai-step-active-cyan {
+  box-shadow: 0 0 35px rgba(0, 222, 255, 0.85), 0 0 15px rgba(0, 222, 255, 0.4), inset 0 0 15px rgba(0, 222, 255, 0.3) !important;
+  border-color: #00deff !important;
+  transform: scale(1.05) !important;
+  z-index: 50 !important;
+  transition: all 0.3s ease !important;
+}
+
+.eai-step-active-purple {
+  box-shadow: 0 0 35px rgba(168, 85, 247, 0.85), 0 0 15px rgba(168, 85, 247, 0.4), inset 0 0 15px rgba(168, 85, 247, 0.3) !important;
+  border-color: #c084fc !important;
+  transform: scale(1.05) !important;
+  z-index: 50 !important;
+  transition: all 0.3s ease !important;
+}
+
+.eai-step-active-emerald {
+  box-shadow: 0 0 35px rgba(52, 211, 153, 0.85), 0 0 15px rgba(52, 211, 153, 0.4), inset 0 0 15px rgba(52, 211, 153, 0.3) !important;
+  border-color: #34d399 !important;
+  transform: scale(1.05) !important;
+  z-index: 50 !important;
+  transition: all 0.3s ease !important;
+}
+
+/* SVG Path Active Line Highlights */
+.eai-svg-path.is-stage-active {
+  stroke: #00deff !important;
+  stroke-width: 3.5px !important;
+  stroke-dasharray: 8 4 !important;
+  animation: stroke-flow 0.5s linear infinite !important;
+  filter: drop-shadow(0 0 12px #00deff) !important;
+  stroke-opacity: 1 !important;
 }
 
 /* Color Themes for Outputs & Actions (Matching Reference Diagram) */
@@ -402,8 +429,8 @@
 
 .eai-engine-circle-wrapper {
   position: relative;
-  width: 190px;
-  height: 190px;
+  width: 145px;
+  height: 145px;
   border-radius: 50%;
   display: flex;
   flex-direction: column;
@@ -413,6 +440,19 @@
   margin: 0 auto;
   cursor: pointer;
   box-sizing: border-box;
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 12s linear infinite;
 }
 
 .eai-ring-halo {

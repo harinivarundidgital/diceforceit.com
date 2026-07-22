@@ -1,0 +1,93 @@
+---
+/* UserInputBar.astro - Sleek, Minimal & Clear User Input Field */
+---
+
+<div class="w-full max-w-3xl mx-auto mb-6 z-30 relative animate-fade-in-up" id="eai-user-input-container">
+  <div class="relative bg-[#080d22]/90 backdrop-blur-xl rounded-xl p-3 border border-cyan-500/30 shadow-[0_0_25px_rgba(0,222,255,0.15)] flex flex-col gap-2.5">
+    
+    <!-- Input & Button Row -->
+    <div class="flex items-center gap-2">
+      <div class="relative flex-1 flex items-center">
+        <div class="absolute left-3.5 text-cyan-400 pointer-events-none">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+          </svg>
+        </div>
+        <input 
+          type="text" 
+          id="eai-user-prompt-input"
+          value="Analyze Q3 enterprise revenue & trigger retention workflows" 
+          placeholder="Enter prompt or query for AI agent..." 
+          class="w-full pl-10 pr-3 py-2 bg-black/60 border border-white/10 rounded-lg text-xs sm:text-sm text-white placeholder-white/40 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/50 transition-all font-sans"
+        />
+      </div>
+
+      <button 
+        id="eai-execute-user-input-btn" 
+        class="px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-xs rounded-lg transition-all shadow-[0_0_15px_rgba(0,222,255,0.3)] flex items-center gap-1.5 shrink-0 cursor-pointer active:scale-95"
+      >
+        <span id="eai-btn-text">Run Agent</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Quick Prompt Chips -->
+    <div class="flex items-center gap-1.5 overflow-x-auto text-[11px]">
+      <span class="text-white/40 font-mono text-[10px] shrink-0">Sample:</span>
+      <button class="eai-prompt-chip whitespace-nowrap px-2.5 py-0.5 rounded-md bg-white/5 border border-white/10 hover:border-cyan-400/40 hover:bg-cyan-950/40 text-white/70 hover:text-cyan-300 transition-all text-[11px] cursor-pointer">
+        Financial Audit
+      </button>
+      <button class="eai-prompt-chip whitespace-nowrap px-2.5 py-0.5 rounded-md bg-white/5 border border-white/10 hover:border-cyan-400/40 hover:bg-cyan-950/40 text-white/70 hover:text-cyan-300 transition-all text-[11px] cursor-pointer">
+        Compliance Risk
+      </button>
+      <button class="eai-prompt-chip whitespace-nowrap px-2.5 py-0.5 rounded-md bg-white/5 border border-white/10 hover:border-cyan-400/40 hover:bg-cyan-950/40 text-white/70 hover:text-cyan-300 transition-all text-[11px] cursor-pointer">
+        Q4 Forecast
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const input = document.getElementById('eai-user-prompt-input') as HTMLInputElement;
+    const btn = document.getElementById('eai-execute-user-input-btn');
+    const btnText = document.getElementById('eai-btn-text');
+    const chips = document.querySelectorAll('.eai-prompt-chip');
+
+    const triggerUserExecution = () => {
+      if (btnText) {
+        btnText.textContent = 'Executing...';
+        setTimeout(() => {
+          btnText.textContent = 'Run Agent';
+        }, 3600);
+      }
+      if ((window as any).runAgentFlowAnimation) {
+        (window as any).runAgentFlowAnimation();
+      } else {
+        const pulseBtn = document.getElementById('trigger-signal-pulse-btn');
+        if (pulseBtn) pulseBtn.click();
+      }
+    };
+
+    if (btn) btn.addEventListener('click', triggerUserExecution);
+    if (input) {
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') triggerUserExecution();
+      });
+    }
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        if (input && chip.textContent) {
+          input.value = chip.textContent.trim();
+          triggerUserExecution();
+        }
+      });
+    });
+  });
+</script>
+
