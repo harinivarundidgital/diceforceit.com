@@ -24,25 +24,7 @@ import AnimatedConnections from './AnimatedConnections.astro';
   <div class="relative z-20 max-w-[1720px] mx-auto flex flex-col items-center">
     
     <!-- Live System Telemetry Header Bar -->
-    <div class="eai-telemetry-bar" aria-label="System Telemetry Status">
-      <div class="eai-telemetry-item">
-        <span class="eai-status-dot"></span>
-        <span>SYSTEM STATUS: <strong class="text-emerald-400">ONLINE</strong></span>
-      </div>
-      <div class="eai-telemetry-item hidden sm:flex">
-        <span>THROUGHPUT: <strong class="text-cyan-400">4.8 GB/s</strong></span>
-      </div>
-      <div class="eai-telemetry-item hidden md:flex">
-        <span class="eai-drag-hint-badge">
-          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/>
-            <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v6"/>
-            <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/>
-            <path d="M18 8a2 2 0 0 1 2 2v4a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.83l1.17 1.17V6a2 2 0 0 1 4 0v5"/>
-          </svg>
-          <span>Drag Cards to Reposition</span>
-        </span>
-      </div>
+    <div class="eai-telemetry-bar justify-end" aria-label="System Telemetry Status">
       <div class="eai-telemetry-item flex items-center gap-2">
         <button id="trigger-signal-pulse-btn" class="eai-pulse-btn" aria-label="Trigger Neural Pulse Simulation">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

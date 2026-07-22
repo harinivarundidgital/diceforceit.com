@@ -63,16 +63,15 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 0.75rem;
   width: 100%;
-  max-width: 1720px;
-  margin: 0 auto 1rem auto;
-  padding: 0.45rem 1rem;
-  background: rgba(8, 12, 28, 0.8);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 10px;
+  max-width: 1680px;
+  margin: 0 auto 0.75rem auto;
+  padding: 0;
+  background: transparent;
+  backdrop-filter: none;
+  border: none;
   font-family: var(--font-code);
   font-size: 0.68rem;
   color: var(--text-secondary);
@@ -179,7 +178,7 @@
   align-items: center;
   justify-content: space-between;
   padding-bottom: 0.4rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: none;
 }
 
 .eai-title-count-badge {
