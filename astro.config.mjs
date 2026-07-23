@@ -8,6 +8,11 @@ export default defineConfig({
   adapter: cloudflare(),
   vite: {
     plugins: [tailwindcss()],
+    server: {
+      watch: {
+        ignored: ['**/public/home-hero/**', '**/public/lastseen/**']
+      }
+    }
   },
 });
 

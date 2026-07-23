@@ -390,7 +390,7 @@ import Footer from '../components/Footer.astro';
 	if (canvas && scrollContainer) {
 		const ctx = canvas.getContext('2d');
 		if (ctx) {
-			const totalFrames = 265;
+			const totalFrames = 180;
 			const images: HTMLImageElement[] = [];
 			let loadedCount = 0;
 			
@@ -401,8 +401,8 @@ import Footer from '../components/Footer.astro';
 
 			// Path generator
 			const getFramePath = (index: number): string => {
-				const pad = String(index).padStart(5, '0');
-				return `/home-hero/DiceForce IT-video/DiceForce IT-video_${pad}.png`;
+				const frameNum = 1000 + index;
+				return `/home-hero/scene 1_${frameNum}.jpg`;
 			};
 
 			// Build the progressive load order (keyframes first, then details)
@@ -604,7 +604,7 @@ import Footer from '../components/Footer.astro';
 
 			// Preload loading queue variables
 			let keyframesLoaded = 0;
-			const totalKeyframes = 27; // 27 keyframes where frameIdx % 10 === 0
+			const totalKeyframes = Math.ceil(totalFrames / 10); // 18 keyframes where frameIdx % 10 === 0
 
 			let queueIndex = 1;
 			const loadNextFromQueue = () => {

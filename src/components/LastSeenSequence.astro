@@ -101,7 +101,7 @@
 	if (canvas && container) {
 		const ctx = canvas.getContext('2d');
 		if (ctx) {
-			const totalFrames = 394; // 000 to 393
+			const totalFrames = 599;
 			const images: HTMLImageElement[] = [];
 			
 			let currentFrame = 0;
@@ -109,10 +109,10 @@
 			const ease = 0.09;
 			let lastDrawnFrame = -1;
 
-			// Path generator for "Last scenes000.jpg" to "Last scenes393.jpg"
+			// Path generator for "Last scenes 2007.jpg" to "Last scenes 2605.jpg"
 			const getFramePath = (index: number): string => {
-				const pad = String(index).padStart(3, '0');
-				return `/lastseen/Last scenes${pad}.jpg`;
+				const frameNum = 2007 + index;
+				return `/lastseen/Last scenes ${frameNum}.jpg`;
 			};
 
 			// Build progressive load order (keyframes first for instant response)
