@@ -447,6 +447,8 @@ import PageLayout from '../layouts/PageLayout.astro';
 		const contactForm = document.getElementById('contact-form') as HTMLFormElement | null;
 		const successScreen = document.getElementById('success-screen');
 		const resetFormBtn = document.getElementById('reset-form-btn');
+		const canvasContainer = document.getElementById('canvas-container');
+		const prefersReduced = typeof window !== 'undefined' ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false;
 		// Enquiry Type Custom Dropdown Logic
 		const enquiryHiddenInput = document.getElementById('enquiry_type') as HTMLInputElement | null;
 		const enquiryTrigger = document.getElementById('enquiry-dropdown-trigger');
@@ -616,7 +618,8 @@ import PageLayout from '../layouts/PageLayout.astro';
 						lines.forEach(l => (l as HTMLElement).style.opacity = '0');
 						
 						contactForm.reset();
-						updateTriggerText();
+						if (enquiryTriggerText) enquiryTriggerText.innerText = 'Select inquiry topic...';
+						updateInterestPills();
 						contactForm.classList.remove('hidden');
 						contactForm.style.opacity = '0';
 						contactForm.style.transform = 'translateY(-10px)';
@@ -651,10 +654,9 @@ import PageLayout from '../layouts/PageLayout.astro';
 			
 			// Load SVG image as textures/particles
 			const img = new Image();
-			img.crossOrigin = "anonymous";
 			img.src = '/contact-hero.svg';
 			
-			img.onload = () => {
+			const processImage = () => {
 				const sampleCanvas = document.createElement('canvas');
 				const sWidth = 180;
 				const sHeight = Math.round(180 * (738.36 / 767.7));
@@ -662,36 +664,61 @@ import PageLayout from '../layouts/PageLayout.astro';
 				sampleCanvas.width = sWidth;
 				sampleCanvas.height = sHeight;
 				const sCtx = sampleCanvas.getContext('2d');
-				if (!sCtx) return;
+				const rawParticles: any[] = [];
 				
-				sCtx.drawImage(img, 0, 0, sWidth, sHeight);
-				const imgData = sCtx.getImageData(0, 0, sWidth, sHeight);
-				const data = imgData.data;
-				
-				const rawParticles = [];
-				
-				for (let y = 0; y < sHeight; y++) {
-					for (let x = 0; x < sWidth; x++) {
-						const idx = (y * sWidth + x) * 4;
-						const r = data[idx];
-						const g = data[idx + 1];
-						const b = data[idx + 2];
-						const a = data[idx + 3];
+				if (sCtx) {
+					try {
+						sCtx.drawImage(img, 0, 0, sWidth, sHeight);
+						const imgData = sCtx.getImageData(0, 0, sWidth, sHeight);
+						const data = imgData.data;
 						
-						if (a > 60) {
-							const px = ((x / sWidth) - 0.5) * 5.0;
-							const py = -((y / sHeight) - 0.5) * 5.0 * (sHeight / sWidth);
-							const pz = (Math.random() - 0.5) * 0.12;
-							
-							rawParticles.push({
-								x: px,
-								y: py,
-								z: pz,
-								r: r / 255,
-								g: g / 255,
-								b: b / 255
-							});
+						for (let y = 0; y < sHeight; y++) {
+							for (let x = 0; x < sWidth; x++) {
+								const idx = (y * sWidth + x) * 4;
+								const r = data[idx];
+								const g = data[idx + 1];
+								const b = data[idx + 2];
+								const a = data[idx + 3];
+								
+								if (a > 60) {
+									const px = ((x / sWidth) - 0.5) * 5.0;
+									const py = -((y / sHeight) - 0.5) * 5.0 * (sHeight / sWidth);
+									const pz = (Math.random() - 0.5) * 0.12;
+									
+									rawParticles.push({
+										x: px,
+										y: py,
+										z: pz,
+										r: r / 255,
+										g: g / 255,
+										b: b / 255
+									});
+								}
+							}
 						}
+					} catch (e) {
+						console.warn('Particle SVG rasterization failed, falling back to shape generation:', e);
+					}
+				}
+				
+				// Fallback if image rasterization produced no particles
+				if (rawParticles.length === 0) {
+					for (let i = 0; i < 2400; i++) {
+						const angle = Math.random() * Math.PI * 2;
+						const radius = 0.4 + Math.sqrt(Math.random()) * 1.8;
+						const px = Math.cos(angle) * radius;
+						const py = Math.sin(angle) * radius * 0.9;
+						const pz = (Math.random() - 0.5) * 0.15;
+						
+						const t = Math.random();
+						rawParticles.push({
+							x: px,
+							y: py,
+							z: pz,
+							r: 0.14 + t * 0.3,
+							g: 0.82 + t * 0.18,
+							b: 0.98 - t * 0.2
+						});
 					}
 				}
 				
@@ -709,6 +736,16 @@ import PageLayout from '../layouts/PageLayout.astro';
 				
 				setupParticleSystem(particlesList);
 			};
+
+			if (img.complete && img.naturalWidth !== 0) {
+				processImage();
+			} else {
+				img.onload = processImage;
+				img.onerror = () => {
+					console.warn('Could not load /contact-hero.svg, creating fallback particles.');
+					processImage();
+				};
+			}
 		}
 
 		function setupParticleSystem(particlesList: any[]) {
@@ -844,6 +881,13 @@ import PageLayout from '../layouts/PageLayout.astro';
 				requestAnimationFrame(animate);
 				
 				const delta = Math.min(clock.getDelta(), 0.1);
+				const elapsed = clock.getElapsedTime();
+
+				if (points && !prefersReduced) {
+					points.rotation.y = Math.sin(elapsed * 0.12) * 0.15;
+					points.rotation.x = Math.cos(elapsed * 0.08) * 0.08;
+				}
+
 				const positionsAttr = geometry.attributes.position;
 				const posArray = positionsAttr.array as Float32Array;
 				
