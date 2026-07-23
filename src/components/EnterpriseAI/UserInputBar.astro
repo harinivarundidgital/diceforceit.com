@@ -1,5 +1,5 @@
 ---
-/* UserInputBar.astro - Sleek, Minimal & Clear User Input Field */
+/* UserInputBar.astro - Sleek, Minimal & Clear User Input Field with Interactive Voice Input Waves */
 ---
 
 <div class="w-full max-w-3xl mx-auto mb-6 z-30 relative animate-fade-in-up" id="eai-user-input-container">
@@ -8,23 +8,60 @@
     <!-- Input & Button Row -->
     <div class="flex items-center gap-2">
       <div class="relative flex-1 flex items-center">
-        <div class="absolute left-3.5 text-cyan-400 pointer-events-none">
+        <!-- Sparkle Icon Left -->
+        <div class="absolute left-3.5 text-cyan-400 pointer-events-none z-10">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
           </svg>
         </div>
+
+        <!-- Input Field -->
         <input 
           type="text" 
           id="eai-user-prompt-input"
           value="Analyze Q3 enterprise revenue & trigger retention workflows" 
           placeholder="Enter prompt or query for AI agent..." 
-          class="w-full pl-10 pr-3 py-2 bg-black/60 border border-white/10 rounded-lg text-xs sm:text-sm text-white placeholder-white/40 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/50 transition-all font-sans"
+          class="w-full pl-10 pr-36 sm:pr-40 py-2.5 bg-black/60 border border-white/10 rounded-lg text-xs sm:text-sm text-white placeholder-white/40 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/50 transition-all font-sans"
         />
+
+        <!-- Voice Input Waves Element (Embedded in Input Field) -->
+        <div class="absolute right-2.5 flex items-center gap-1 z-10">
+          <button 
+            id="eai-voice-input-btn" 
+            type="button" 
+            aria-label="Activate Voice Input" 
+            title="Click for Voice Input Waves"
+            class="group/mic flex items-center gap-1.5 px-2 sm:px-2.5 py-1 rounded-md bg-cyan-950/40 hover:bg-cyan-900/60 border border-cyan-500/30 hover:border-cyan-400 text-cyan-400 hover:text-cyan-300 transition-all duration-300 cursor-pointer select-none"
+          >
+            <!-- Microphone Icon -->
+            <div class="relative flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-cyan-400 group-hover/mic:scale-110 transition-transform" id="eai-mic-icon">
+                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                <line x1="12" x2="12" y1="19" y2="22"></line>
+              </svg>
+              <!-- Active Pulse Ring -->
+              <span id="eai-mic-pulse" class="hidden absolute inset-0 -m-1 rounded-full bg-cyan-400/40 animate-ping"></span>
+            </div>
+
+            <!-- Voice Wave Bars Container -->
+            <div class="eai-voice-waves-container flex items-center gap-[2.5px] h-3.5 px-0.5" id="eai-voice-waves">
+              <span class="voice-wave-bar bar-1"></span>
+              <span class="voice-wave-bar bar-2"></span>
+              <span class="voice-wave-bar bar-3"></span>
+              <span class="voice-wave-bar bar-4"></span>
+              <span class="voice-wave-bar bar-5"></span>
+            </div>
+
+            <span id="eai-voice-status-text" class="hidden text-[10px] font-mono tracking-wider text-cyan-300 uppercase font-semibold pl-0.5">Listening</span>
+          </button>
+        </div>
       </div>
 
+      <!-- Execute Button -->
       <button 
         id="eai-execute-user-input-btn" 
-        class="px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-xs rounded-lg transition-all shadow-[0_0_15px_rgba(0,222,255,0.3)] flex items-center gap-1.5 shrink-0 cursor-pointer active:scale-95"
+        class="px-4 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-xs rounded-lg transition-all shadow-[0_0_15px_rgba(0,222,255,0.3)] flex items-center gap-1.5 shrink-0 cursor-pointer active:scale-95"
       >
         <span id="eai-btn-text">Run Agent</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -51,12 +88,95 @@
   </div>
 </div>
 
+<style>
+  /* Voice Input Waves CSS Styling */
+  .voice-wave-bar {
+    display: inline-block;
+    width: 2.5px;
+    height: 100%;
+    border-radius: 9999px;
+    background: linear-gradient(to top, #00deff, #883ae2);
+    transform-origin: bottom;
+    transition: background 0.3s ease, filter 0.3s ease;
+  }
+
+  /* Idle Voice Wave Ambient Pulse */
+  .eai-voice-waves-container .bar-1 { height: 35%; animation: voice-wave-idle 1.4s ease-in-out infinite 0s; }
+  .eai-voice-waves-container .bar-2 { height: 75%; animation: voice-wave-idle 1.4s ease-in-out infinite 0.2s; }
+  .eai-voice-waves-container .bar-3 { height: 100%; animation: voice-wave-idle 1.4s ease-in-out infinite 0.4s; }
+  .eai-voice-waves-container .bar-4 { height: 60%; animation: voice-wave-idle 1.4s ease-in-out infinite 0.15s; }
+  .eai-voice-waves-container .bar-5 { height: 80%; animation: voice-wave-idle 1.4s ease-in-out infinite 0.35s; }
+
+  @keyframes voice-wave-idle {
+    0%, 100% { transform: scaleY(0.4); opacity: 0.5; }
+    50% { transform: scaleY(0.9); opacity: 0.95; }
+  }
+
+  /* Active Voice Wave Dynamic Equalizer Bouncing */
+  .eai-voice-waves-container.is-listening .bar-1 { 
+    animation: voice-wave-active 0.45s ease-in-out infinite alternate 0s; 
+    background: linear-gradient(to top, #00deff, #10b981);
+  }
+  .eai-voice-waves-container.is-listening .bar-2 { 
+    animation: voice-wave-active 0.38s ease-in-out infinite alternate 0.12s; 
+    background: linear-gradient(to top, #38bdf8, #a855f7);
+  }
+  .eai-voice-waves-container.is-listening .bar-3 { 
+    animation: voice-wave-active 0.52s ease-in-out infinite alternate 0.05s; 
+    background: linear-gradient(to top, #818cf8, #ec4899);
+  }
+  .eai-voice-waves-container.is-listening .bar-4 { 
+    animation: voice-wave-active 0.4s ease-in-out infinite alternate 0.22s; 
+    background: linear-gradient(to top, #34d399, #00deff);
+  }
+  .eai-voice-waves-container.is-listening .bar-5 { 
+    animation: voice-wave-active 0.48s ease-in-out infinite alternate 0.08s; 
+    background: linear-gradient(to top, #00deff, #6366f1);
+  }
+
+  @keyframes voice-wave-active {
+    0% { 
+      transform: scaleY(0.2); 
+      opacity: 0.7; 
+    }
+    100% { 
+      transform: scaleY(1.4); 
+      opacity: 1; 
+      filter: drop-shadow(0 0 6px #00deff);
+    }
+  }
+
+  /* Active Listening Voice Button Glow */
+  .eai-voice-btn-active {
+    background-color: rgba(6, 182, 212, 0.25) !important;
+    border-color: rgba(34, 211, 238, 0.8) !important;
+    color: #38bdf8 !important;
+    box-shadow: 0 0 15px rgba(0, 222, 255, 0.4);
+  }
+</style>
+
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const input = document.getElementById('eai-user-prompt-input') as HTMLInputElement;
     const btn = document.getElementById('eai-execute-user-input-btn');
     const btnText = document.getElementById('eai-btn-text');
     const chips = document.querySelectorAll('.eai-prompt-chip');
+
+    const voiceBtn = document.getElementById('eai-voice-input-btn');
+    const voiceWaves = document.getElementById('eai-voice-waves');
+    const micPulse = document.getElementById('eai-mic-pulse');
+    const voiceStatusText = document.getElementById('eai-voice-status-text');
+
+    let isListening = false;
+    let speechRecognition: any = null;
+    let typingInterval: any = null;
+
+    const sampleVoicePrompts = [
+      "Optimize neural cluster throughput and route to active agents",
+      "Detect hallucination anomalies in RAG pipeline output",
+      "Analyze Q3 enterprise revenue & trigger retention workflows"
+    ];
+    let promptIndex = 0;
 
     const triggerUserExecution = () => {
       if (btnText) {
@@ -72,6 +192,95 @@
         if (pulseBtn) pulseBtn.click();
       }
     };
+
+    const stopListeningState = () => {
+      isListening = false;
+      if (voiceWaves) voiceWaves.classList.remove('is-listening');
+      if (voiceBtn) voiceBtn.classList.remove('eai-voice-btn-active');
+      if (micPulse) micPulse.classList.add('hidden');
+      if (voiceStatusText) voiceStatusText.classList.add('hidden');
+      if (typingInterval) clearInterval(typingInterval);
+      if (speechRecognition) {
+        try { speechRecognition.stop(); } catch (_) {}
+      }
+    };
+
+    const startListeningState = () => {
+      isListening = true;
+      if (voiceWaves) voiceWaves.classList.add('is-listening');
+      if (voiceBtn) voiceBtn.classList.add('eai-voice-btn-active');
+      if (micPulse) micPulse.classList.remove('hidden');
+      if (voiceStatusText) voiceStatusText.classList.remove('hidden');
+
+      // Check Web Speech API support
+      const SpeechRec = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+      if (SpeechRec) {
+        try {
+          if (!speechRecognition) {
+            speechRecognition = new SpeechRec();
+            speechRecognition.continuous = false;
+            speechRecognition.interimResults = true;
+
+            speechRecognition.onresult = (event: any) => {
+              const transcript = Array.from(event.results)
+                .map((result: any) => result[0])
+                .map((result: any) => result.transcript)
+                .join('');
+              if (input && transcript) {
+                input.value = transcript;
+              }
+            };
+
+            speechRecognition.onend = () => {
+              stopListeningState();
+              triggerUserExecution();
+            };
+
+            speechRecognition.onerror = () => {
+              fallbackSimulatedDictation();
+            };
+          }
+          speechRecognition.start();
+        } catch (_) {
+          fallbackSimulatedDictation();
+        }
+      } else {
+        fallbackSimulatedDictation();
+      }
+    };
+
+    const fallbackSimulatedDictation = () => {
+      if (!input) return;
+      input.value = "";
+      const targetPrompt = sampleVoicePrompts[promptIndex % sampleVoicePrompts.length];
+      promptIndex++;
+
+      let charIdx = 0;
+      if (typingInterval) clearInterval(typingInterval);
+
+      typingInterval = setInterval(() => {
+        if (charIdx < targetPrompt.length) {
+          input.value += targetPrompt.charAt(charIdx);
+          charIdx++;
+        } else {
+          clearInterval(typingInterval);
+          setTimeout(() => {
+            stopListeningState();
+            triggerUserExecution();
+          }, 600);
+        }
+      }, 35);
+    };
+
+    if (voiceBtn) {
+      voiceBtn.addEventListener('click', () => {
+        if (isListening) {
+          stopListeningState();
+        } else {
+          startListeningState();
+        }
+      });
+    }
 
     if (btn) btn.addEventListener('click', triggerUserExecution);
     if (input) {
@@ -90,4 +299,5 @@
     });
   });
 </script>
+
 

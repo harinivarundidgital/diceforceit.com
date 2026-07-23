@@ -61,17 +61,8 @@
   z-index: 3;
 }
 
-/* Brilliant-style grid lines and diamond shapes at intersections */
 .grid-overlay {
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M 40 0 L 40 80 M 0 40 L 80 40' stroke='rgba(255, 255, 255, 0.045)' stroke-width='1'/%3E%3Cpolygon points='40,38 42,40 40,42 38,40' fill='rgba(255, 255, 255, 0.35)' stroke='rgba(255, 255, 255, 0.15)' stroke-width='0.5'/%3E%3C/svg%3E");
-  background-size: 80px 80px;
-  background-position: center center;
-  pointer-events: none;
-  z-index: 2;
-  mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 90%);
-  -webkit-mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 90%);
+  display: none;
 }
 
 /* Keyframe Animations */
