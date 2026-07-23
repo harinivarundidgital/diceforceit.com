@@ -8,6 +8,9 @@ export default defineConfig({
   adapter: cloudflare(),
   vite: {
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      exclude: ['@astrojs/compiler', 'astro'],
+    },
     server: {
       watch: {
         ignored: ['**/public/home-hero/**', '**/public/lastseen/**']

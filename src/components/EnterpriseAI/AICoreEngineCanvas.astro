@@ -1,0 +1,460 @@
+---
+/* AICoreEngineCanvas.astro - Futuristic 3D AI Intelligence Core Centerpiece */
+---
+
+<div 
+  class="eai-engine-circle-wrapper shrink-0 my-6 md:my-0 mx-auto relative cursor-pointer select-none group" 
+  id="core-engine-center" 
+  tabIndex={0} 
+  aria-label="Context Intelligence Engine: Click to simulate neural signal transmission"
+>
+  <!-- Pure 3D WebGL Canvas (No background, No borders) -->
+  <canvas id="ai-core-3d-canvas" class="w-full h-full block relative z-10 pointer-events-none rounded-full bg-transparent"></canvas>
+</div>
+
+<style>
+  .eai-engine-circle-wrapper {
+    width: 270px;
+    height: 270px;
+    position: relative;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @media (max-width: 1280px) {
+    .eai-engine-circle-wrapper {
+      width: 240px;
+      height: 240px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .eai-engine-circle-wrapper {
+      width: 220px;
+      height: 220px;
+    }
+  }
+
+  @keyframes spin-ultra-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .animate-spin-ultra-slow {
+    animation: spin-ultra-slow 40s linear infinite;
+  }
+</style>
+
+<script>
+  import * as THREE from 'three';
+
+  function initAICore3D() {
+    const canvas = document.getElementById('ai-core-3d-canvas') as HTMLCanvasElement;
+    const container = document.getElementById('core-engine-center');
+    if (!canvas || !container) return;
+
+    // Dimensions
+    let width = container.clientWidth || 270;
+    let height = container.clientHeight || 270;
+
+    // THREE.js Scene, Camera, Renderer
+    const scene = new THREE.Scene();
+
+    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
+    camera.position.set(0, 0, 11);
+
+    const renderer = new THREE.WebGLRenderer({
+      canvas: canvas,
+      alpha: true,
+      antialias: true,
+      powerPreference: 'high-performance',
+      precision: 'highp'
+    });
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    // Master Group for 3D AI Core
+    const coreGroup = new THREE.Group();
+    scene.add(coreGroup);
+
+    // --- COLOR PALETTE DEFINITION ---
+    // Electric Cyan (#45F5FF) -> Bright Aqua (#53E8FF) -> Azure Blue (#4C8DFF) -> Indigo (#6A5CFF) -> Violet (#8B5CFF)
+    const PALETTE_HEX = ['#45F5FF', '#53E8FF', '#4C8DFF', '#6A5CFF', '#8B5CFF'];
+    const PALETTE_COLORS = PALETTE_HEX.map(hex => new THREE.Color(hex));
+
+    function getGradientColor(t: number): THREE.Color {
+      const normalizedT = ((t % 1) + 1) % 1;
+      const count = PALETTE_COLORS.length;
+      const scaled = normalizedT * (count - 1);
+      const index = Math.floor(scaled);
+      const nextIndex = Math.min(index + 1, count - 1);
+      const factor = scaled - index;
+      return PALETTE_COLORS[index].clone().lerp(PALETTE_COLORS[nextIndex], factor);
+    }
+
+    // --- LIGHTING ---
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambientLight);
+
+    const cyanLight = new THREE.PointLight(0x45F5FF, 4, 15);
+    cyanLight.position.set(5, 5, 5);
+    scene.add(cyanLight);
+
+    const violetLight = new THREE.PointLight(0x8B5CFF, 4, 15);
+    violetLight.position.set(-5, -5, 5);
+    scene.add(violetLight);
+
+    const centerGlowLight = new THREE.PointLight(0x53E8FF, 5, 8);
+    centerGlowLight.position.set(0, 0, 0);
+    scene.add(centerGlowLight);
+
+    // --- 1. TWO LARGE INTERSECTING OUTER RINGS ---
+    // Ring 1 (Tilted Clockwise Rotation)
+    const ringRadius = 3.6;
+    const ringTubeRadius = 0.022;
+    const ringRadialSegments = 32;
+    const ringTubularSegments = 200;
+
+    const ringGeometry1 = new THREE.TorusGeometry(ringRadius, ringTubeRadius, ringRadialSegments, ringTubularSegments);
+    
+    // Apply vertex colors gradient to Ring 1
+    const ringColors1: number[] = [];
+    const posAttr1 = ringGeometry1.attributes.position;
+    for (let i = 0; i < posAttr1.count; i++) {
+      const u = (i % ringTubularSegments) / ringTubularSegments;
+      const col = getGradientColor(u);
+      ringColors1.push(col.r, col.g, col.b);
+    }
+    ringGeometry1.setAttribute('color', new THREE.Float32BufferAttribute(ringColors1, 3));
+
+    const ringMaterial = new THREE.MeshStandardMaterial({
+      vertexColors: true,
+      roughness: 0.15,
+      metalness: 0.85,
+      emissive: new THREE.Color('#45F5FF'),
+      emissiveIntensity: 0.45,
+      transparent: true,
+      opacity: 0.95
+    });
+
+    const ring1 = new THREE.Mesh(ringGeometry1, ringMaterial);
+    ring1.rotation.x = Math.PI / 3;
+    ring1.rotation.y = Math.PI / 6;
+    coreGroup.add(ring1);
+
+    // Ring 2 (Opposite Inclination Counter-Clockwise Rotation)
+    const ringGeometry2 = new THREE.TorusGeometry(ringRadius * 0.98, ringTubeRadius, ringRadialSegments, ringTubularSegments);
+    const ringColors2: number[] = [];
+    for (let i = 0; i < posAttr1.count; i++) {
+      const u = (i % ringTubularSegments) / ringTubularSegments;
+      const col = getGradientColor((u + 0.5) % 1);
+      ringColors2.push(col.r, col.g, col.b);
+    }
+    ringGeometry2.setAttribute('color', new THREE.Float32BufferAttribute(ringColors2, 3));
+
+    const ring2 = new THREE.Mesh(ringGeometry2, ringMaterial.clone());
+    ring2.rotation.x = -Math.PI / 3;
+    ring2.rotation.y = -Math.PI / 6;
+    coreGroup.add(ring2);
+
+    // Thin vector wireframe halo rings for high precision aesthetic
+    const haloGeom1 = new THREE.RingGeometry(ringRadius - 0.05, ringRadius + 0.05, 128);
+    const haloMat1 = new THREE.MeshBasicMaterial({
+      color: 0x45F5FF,
+      side: THREE.DoubleSide,
+      transparent: true,
+      opacity: 0.25,
+      blending: THREE.AdditiveBlending
+    });
+    const halo1 = new THREE.Mesh(haloGeom1, haloMat1);
+    ring1.add(halo1);
+
+    const halo2 = new THREE.Mesh(haloGeom1, haloMat1.clone());
+    ring2.add(halo2);
+
+
+    // --- 2. CENTRAL 3D ENTANGLED ORBITAL STRUCTURE ---
+    // Morphing 3D Knot Parametric Curve
+    const KNOT_POINTS = 360;
+    const knotPositions = new Float32Array(KNOT_POINTS * 3);
+    const knotColors = new Float32Array(KNOT_POINTS * 3);
+
+    // Populate initial knot colors according to logo gradient
+    for (let i = 0; i < KNOT_POINTS; i++) {
+      const u = i / KNOT_POINTS;
+      const c = getGradientColor(u);
+      knotColors[i * 3] = c.r;
+      knotColors[i * 3 + 1] = c.g;
+      knotColors[i * 3 + 2] = c.b;
+    }
+
+    const knotGeometry = new THREE.BufferGeometry();
+    knotGeometry.setAttribute('position', new THREE.BufferAttribute(knotPositions, 3));
+    knotGeometry.setAttribute('color', new THREE.BufferAttribute(knotColors, 3));
+
+    // Dynamic parametric formula calculation function
+    function updateKnotPoints(time: number) {
+      const posArray = knotGeometry.attributes.position.array as Float32Array;
+      const R = 1.95;
+      const r = 0.75;
+      
+      for (let i = 0; i < KNOT_POINTS; i++) {
+        const u = (i / KNOT_POINTS) * Math.PI * 4; // 2 loops
+        
+        // Evolving 3D entangled Lissajous-Torus topology equation
+        const morphX = Math.sin(time * 0.8 + u * 2) * 0.22;
+        const morphY = Math.cos(time * 0.6 + u * 3) * 0.22;
+        const morphZ = Math.sin(time * 0.9 + u * 1.5) * 0.28;
+
+        const x = (R + (r + morphX) * Math.cos(3 * u)) * Math.cos(2 * u);
+        const y = (R + (r + morphY) * Math.cos(3 * u)) * Math.sin(2 * u);
+        const z = (r + morphZ) * Math.sin(3 * u) + Math.cos(5 * u + time * 0.5) * 0.3;
+
+        posArray[i * 3] = x;
+        posArray[i * 3 + 1] = y;
+        posArray[i * 3 + 2] = z;
+      }
+      knotGeometry.attributes.position.needsUpdate = true;
+    }
+    updateKnotPoints(0);
+
+    // Main Knot Line with glowing additive blending
+    const knotLineMaterial = new THREE.LineBasicMaterial({
+      vertexColors: true,
+      linewidth: 2,
+      transparent: true,
+      opacity: 0.95,
+      blending: THREE.AdditiveBlending
+    });
+    const knotLine = new THREE.LineLoop(knotGeometry, knotLineMaterial);
+    coreGroup.add(knotLine);
+
+    // Inner Secondary Entangled Knot (Counter-Morphing Core)
+    const innerKnotPositions = new Float32Array(KNOT_POINTS * 3);
+    const innerKnotColors = new Float32Array(KNOT_POINTS * 3);
+    for (let i = 0; i < KNOT_POINTS; i++) {
+      const u = i / KNOT_POINTS;
+      const c = getGradientColor((u + 0.3) % 1);
+      innerKnotColors[i * 3] = c.r;
+      innerKnotColors[i * 3 + 1] = c.g;
+      innerKnotColors[i * 3 + 2] = c.b;
+    }
+    const innerKnotGeometry = new THREE.BufferGeometry();
+    innerKnotGeometry.setAttribute('position', new THREE.BufferAttribute(innerKnotPositions, 3));
+    innerKnotGeometry.setAttribute('color', new THREE.BufferAttribute(innerKnotColors, 3));
+
+    function updateInnerKnotPoints(time: number) {
+      const posArray = innerKnotGeometry.attributes.position.array as Float32Array;
+      const R = 1.35;
+      const r = 0.55;
+      
+      for (let i = 0; i < KNOT_POINTS; i++) {
+        const u = (i / KNOT_POINTS) * Math.PI * 4;
+        const morphX = Math.cos(time * 0.7 - u * 2) * 0.18;
+        const morphY = Math.sin(time * 0.9 - u * 3) * 0.18;
+
+        const x = (R + (r + morphX) * Math.cos(4 * u)) * Math.cos(3 * u);
+        const y = (R + (r + morphY) * Math.cos(4 * u)) * Math.sin(3 * u);
+        const z = (r + morphX) * Math.sin(4 * u);
+
+        posArray[i * 3] = x;
+        posArray[i * 3 + 1] = y;
+        posArray[i * 3 + 2] = z;
+      }
+      innerKnotGeometry.attributes.position.needsUpdate = true;
+    }
+    updateInnerKnotPoints(0);
+
+    const innerKnotLine = new THREE.LineLoop(innerKnotGeometry, knotLineMaterial.clone());
+    coreGroup.add(innerKnotLine);
+
+    // Glowing Central Spherical Intelligence Nucleus
+    const nucleusGeometry = new THREE.IcosahedronGeometry(0.7, 4);
+    const nucleusMaterial = new THREE.MeshStandardMaterial({
+      color: 0x45F5FF,
+      emissive: 0x53E8FF,
+      emissiveIntensity: 0.9,
+      roughness: 0.1,
+      metalness: 0.9,
+      wireframe: true,
+      transparent: true,
+      opacity: 0.65
+    });
+    const nucleus = new THREE.Mesh(nucleusGeometry, nucleusMaterial);
+    coreGroup.add(nucleus);
+
+    // --- 3. ORBITING PARTICLES & NEURAL PULSE SIGNALS ---
+    const PARTICLE_COUNT = 60;
+    const particlePositions = new Float32Array(PARTICLE_COUNT * 3);
+    const particleColors = new Float32Array(PARTICLE_COUNT * 3);
+    const particleSizes = new Float32Array(PARTICLE_COUNT);
+
+    // Custom Particle Sprite Texture (Glowing Soft Circle)
+    const particleCanvas = document.createElement('canvas');
+    particleCanvas.width = 64;
+    particleCanvas.height = 64;
+    const pCtx = particleCanvas.getContext('2d')!;
+    const radGradient = pCtx.createRadialGradient(32, 32, 0, 32, 32, 32);
+    radGradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
+    radGradient.addColorStop(0.3, 'rgba(83, 232, 255, 0.8)');
+    radGradient.addColorStop(0.7, 'rgba(106, 92, 255, 0.3)');
+    radGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+    pCtx.fillStyle = radGradient;
+    pCtx.fillRect(0, 0, 64, 64);
+
+    const particleTexture = new THREE.CanvasTexture(particleCanvas);
+
+    const particleGeometry = new THREE.BufferGeometry();
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      const u = i / PARTICLE_COUNT;
+      const c = getGradientColor(u);
+      particleColors[i * 3] = c.r;
+      particleColors[i * 3 + 1] = c.g;
+      particleColors[i * 3 + 2] = c.b;
+      particleSizes[i] = 0.18 + Math.random() * 0.15;
+    }
+    particleGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+    particleGeometry.setAttribute('color', new THREE.BufferAttribute(particleColors, 3));
+
+    const particleMaterial = new THREE.PointsMaterial({
+      size: 0.35,
+      map: particleTexture,
+      transparent: true,
+      opacity: 0.9,
+      vertexColors: true,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false
+    });
+    const particleSystem = new THREE.Points(particleGeometry, particleMaterial);
+    coreGroup.add(particleSystem);
+
+    // Particle orbits parameters
+    const particleOrbitData = Array.from({ length: PARTICLE_COUNT }, (_, i) => ({
+      speed: 0.4 + (i % 5) * 0.15,
+      offset: (i / PARTICLE_COUNT) * Math.PI * 2,
+      ringChoice: i % 3 // 0: Ring1, 1: Ring2, 2: Entangled Knot
+    }));
+
+    function updateParticles(time: number) {
+      const posArray = particleGeometry.attributes.position.array as Float32Array;
+
+      particleOrbitData.forEach((p, idx) => {
+        const angle = time * p.speed + p.offset;
+        let x = 0, y = 0, z = 0;
+
+        if (p.ringChoice === 0) {
+          // Orbit Ring 1
+          const rX = ringRadius * Math.cos(angle);
+          const rY = ringRadius * Math.sin(angle);
+          // Apply Ring 1 tilt transformation
+          x = rX * Math.cos(Math.PI / 6) - rY * Math.sin(Math.PI / 6) * Math.sin(Math.PI / 3);
+          y = rY * Math.cos(Math.PI / 3);
+          z = rX * Math.sin(Math.PI / 6) + rY * Math.cos(Math.PI / 6) * Math.sin(Math.PI / 3);
+        } else if (p.ringChoice === 1) {
+          // Orbit Ring 2
+          const rX = ringRadius * 0.98 * Math.cos(-angle);
+          const rY = ringRadius * 0.98 * Math.sin(-angle);
+          x = rX * Math.cos(-Math.PI / 6) - rY * Math.sin(-Math.PI / 6) * Math.sin(-Math.PI / 3);
+          y = rY * Math.cos(-Math.PI / 3);
+          z = rX * Math.sin(-Math.PI / 6) + rY * Math.cos(-Math.PI / 6) * Math.sin(-Math.PI / 3);
+        } else {
+          // Orbit along central 3D entangled knot curve
+          const u = angle * 2;
+          x = (1.95 + 0.75 * Math.cos(3 * u)) * Math.cos(2 * u);
+          y = (1.95 + 0.75 * Math.cos(3 * u)) * Math.sin(2 * u);
+          z = 0.75 * Math.sin(3 * u);
+        }
+
+        posArray[idx * 3] = x;
+        posArray[idx * 3 + 1] = y;
+        posArray[idx * 3 + 2] = z;
+      });
+
+      particleGeometry.attributes.position.needsUpdate = true;
+    }
+
+    // --- 4. PARALLAX & CURSOR INTERACTION ---
+    let targetRotationX = 0;
+    let targetRotationY = 0;
+    let currentRotationX = 0;
+    let currentRotationY = 0;
+
+    const onMouseMove = (e: MouseEvent) => {
+      const rect = container.getBoundingClientRect();
+      const mouseX = (e.clientX - rect.left) / rect.width - 0.5;
+      const mouseY = (e.clientY - rect.top) / rect.height - 0.5;
+      targetRotationY = mouseX * 0.45;
+      targetRotationX = mouseY * 0.45;
+    };
+
+    window.addEventListener('mousemove', onMouseMove);
+
+    // --- 5. RENDER LOOP ---
+    const clock = new THREE.Clock();
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      const elapsedTime = clock.getElapsedTime();
+
+      // Outer rings opposite rotations
+      ring1.rotation.z = elapsedTime * 0.25;
+      ring2.rotation.z = -elapsedTime * 0.25;
+
+      // Update morphing central 3D entangled knots
+      updateKnotPoints(elapsedTime);
+      updateInnerKnotPoints(elapsedTime);
+
+      // Rotating inner nucleus
+      nucleus.rotation.x = elapsedTime * 0.4;
+      nucleus.rotation.y = elapsedTime * 0.6;
+
+      // Update orbiting particles & signal pulses
+      updateParticles(elapsedTime);
+
+      // Subtle 1-2% breathing scaling
+      const breathScale = 1.0 + 0.018 * Math.sin(elapsedTime * 1.8);
+      coreGroup.scale.set(breathScale, breathScale, breathScale);
+
+      // Smooth mouse parallax lerp
+      currentRotationX += (targetRotationX - currentRotationX) * 0.05;
+      currentRotationY += (targetRotationY - currentRotationY) * 0.05;
+
+      coreGroup.rotation.x = currentRotationX;
+      coreGroup.rotation.y = currentRotationY;
+
+      // Render Scene
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    // --- 6. RESPONSIVE RESIZE LISTENER ---
+    const onResize = () => {
+      if (!container || !canvas) return;
+      width = container.clientWidth || 270;
+      height = container.clientHeight || 270;
+
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+
+      renderer.setSize(width, height);
+    };
+
+    window.addEventListener('resize', onResize);
+  }
+
+  // Initialize on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAICore3D);
+  } else {
+    initAICore3D();
+  }
+</script>
