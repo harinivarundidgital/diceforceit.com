@@ -2,17 +2,18 @@
 // Reusable Footer Component
 ---
 
-<footer class="relative w-full pt-28 pb-32 mt-0 overflow-hidden bg-[#020205]/40 backdrop-blur-md px-6 sm:px-12 md:px-16">
+<footer id="main-footer" class="relative w-full pt-28 pb-32 mt-0 overflow-hidden bg-[#020205]/40 backdrop-blur-md px-6 sm:px-12 md:px-16">
 	<!-- Atmospheric Radial Glow behind Moon -->
-	<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[450px] bg-[radial-gradient(ellipse_at_bottom,rgba(34,211,238,0.30)_0%,rgba(3,119,255,0.20)_40%,rgba(136,58,226,0.10)_65%,transparent_85%)] blur-[70px] pointer-events-none z-0 animate-moon-aura"></div>
+	<div id="footer-glow" class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[450px] bg-[radial-gradient(ellipse_at_bottom,rgba(34,211,238,0.30)_0%,rgba(3,119,255,0.20)_40%,rgba(136,58,226,0.10)_65%,transparent_85%)] blur-[70px] pointer-events-none z-0 animate-moon-aura will-change-transform"></div>
 
-	<!-- Footer Background Image with Moon Edge Drop-Shadow Glow -->
-	<div class="absolute inset-x-0 bottom-0 w-full h-full z-0 pointer-events-none overflow-hidden">
+	<!-- Footer Background Image with Moon Edge Drop-Shadow Glow & Parallax -->
+	<div id="footer-bg-container" class="absolute inset-x-0 -bottom-[10%] w-full h-[120%] z-0 pointer-events-none overflow-hidden">
 		<img 
+			id="footer-bg-img"
 			src="/footerbackground.png" 
 			alt="" 
 			aria-hidden="true"
-			class="w-full h-full object-cover object-bottom opacity-95 mix-blend-screen" 
+			class="w-full h-full object-cover object-bottom opacity-95 mix-blend-screen will-change-transform transition-transform duration-200 ease-out" 
 			style="mix-blend-mode: screen; object-position: bottom;"
 		/>
 	</div>
@@ -165,9 +166,9 @@
 		</div>
 	</div>
 
-	<!-- Giant bold text logo at the very bottom -->
-	<div class="w-full mt-24 pt-12 relative z-10 pointer-events-auto select-none">
-		<h2 class="giant-reveal-text text-[12vw] sm:text-[15vw] lg:text-[220px] font-extrabold tracking-[12px] mr-[-12px] uppercase leading-none font-syne select-none text-center cursor-default translate-x-[30px]">
+	<!-- Giant bold text logo at the very bottom with parallax transform -->
+	<div class="w-full mt-24 pt-12 relative z-10 pointer-events-auto select-none overflow-hidden">
+		<h2 class="giant-reveal-text text-[12vw] sm:text-[15vw] lg:text-[220px] font-extrabold tracking-[12px] mr-[-12px] uppercase leading-none font-syne select-none text-center cursor-default translate-x-[30px] will-change-transform transition-transform duration-100 ease-out">
 			DICEFORCE IT
 		</h2>
 	</div>
@@ -177,12 +178,12 @@
 	/* Moon Edge Glow Aura Animation */
 	@keyframes moon-aura-pulse {
 		0%, 100% {
-			opacity: 0.7;
+			opacity: 0.75;
 			transform: translateX(-50%) scale(1);
 		}
 		50% {
 			opacity: 1;
-			transform: translateX(-50%) scale(1.04);
+			transform: translateX(-50%) scale(1.05);
 		}
 	}
 	.animate-moon-aura {
@@ -192,21 +193,102 @@
 	/* Giant reveal text spotlight effect */
 	.giant-reveal-text {
 		background-image: radial-gradient(
-			220px circle at var(--text-mouse-x, -999px) var(--text-mouse-y, -999px),
+			260px circle at var(--text-mouse-x, -999px) var(--text-mouse-y, -999px),
 			rgba(255, 255, 255, 1) 0%,
-			rgba(0, 222, 255, 0.8) 35%,
-			rgba(3, 119, 255, 0.3) 65%,
-			rgba(255, 255, 255, 0.06) 100%
+			rgba(0, 222, 255, 0.85) 35%,
+			rgba(3, 119, 255, 0.35) 65%,
+			rgba(255, 255, 255, 0.08) 100%
 		);
 		background-clip: text;
 		-webkit-background-clip: text;
 		color: transparent;
-		transition: background-image 0.1s ease-out;
+		transition: background-image 0.15s ease-out;
+	}
+
+	/* Smooth Parallax Element Transitions */
+	#footer-bg-img, #footer-glow, .giant-reveal-text {
+		transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 	}
 </style>
 
 <script>
-	// Giant Reveal Text Spotlight Tracking
+	// Multi-layer Physics-Damped Parallax & Spotlight Interactive Controls
+	const footer = document.getElementById('main-footer');
+	const footerBgImg = document.getElementById('footer-bg-img');
+	const footerGlow = document.getElementById('footer-glow');
+	const giantText = document.querySelector('.giant-reveal-text') as HTMLElement | null;
+
+	if (footer) {
+		let targetBgY = 0, currentBgY = 0;
+		let targetGlowY = 0, currentGlowY = 0;
+		let targetTextY = 0, currentTextY = 0;
+		let targetMouseX = 0, currentMouseX = 0;
+		let targetMouseY = 0, currentMouseY = 0;
+		let isInView = false;
+
+		// Calculate target values from scroll position
+		const calculateScrollTargets = () => {
+			const rect = footer.getBoundingClientRect();
+			const windowHeight = window.innerHeight;
+
+			if (rect.top < windowHeight && rect.bottom > 0) {
+				isInView = true;
+				const totalRange = windowHeight + rect.height;
+				const currentPos = windowHeight - rect.top;
+				const progress = Math.min(Math.max(currentPos / totalRange, 0), 1);
+
+				targetBgY = (progress - 0.5) * -65;  // Smooth background shift
+				targetGlowY = (progress - 0.5) * -30; // Smooth glow shift
+				targetTextY = (1 - progress) * 18;    // Text elevation shift
+			} else {
+				isInView = false;
+			}
+		};
+
+		// 60FPS Physics Damping Loop
+		const renderLoop = () => {
+			if (isInView) {
+				const lerpFactor = 0.08; // Smooth momentum damping
+				currentBgY += (targetBgY - currentBgY) * lerpFactor;
+				currentGlowY += (targetGlowY - currentGlowY) * lerpFactor;
+				currentTextY += (targetTextY - currentTextY) * lerpFactor;
+				currentMouseX += (targetMouseX - currentMouseX) * lerpFactor;
+				currentMouseY += (targetMouseY - currentMouseY) * lerpFactor;
+
+				if (footerBgImg) {
+					footerBgImg.style.transform = `translate3d(${currentMouseX * -20}px, ${currentBgY + currentMouseY * -14}px, 0) scale(1.06)`;
+				}
+				if (footerGlow) {
+					footerGlow.style.transform = `translate3d(-50%, ${currentGlowY}px, 0)`;
+				}
+				if (giantText) {
+					giantText.style.transform = `translate3d(30px, ${currentTextY}px, 0)`;
+				}
+			}
+			requestAnimationFrame(renderLoop);
+		};
+
+		// Scroll Event Listener
+		window.addEventListener('scroll', calculateScrollTargets, { passive: true });
+
+		// Mouse Movement Spatial Parallax
+		footer.addEventListener('mousemove', (e) => {
+			const rect = footer.getBoundingClientRect();
+			targetMouseX = (e.clientX - rect.left) / rect.width - 0.5;
+			targetMouseY = (e.clientY - rect.top) / rect.height - 0.5;
+		});
+
+		footer.addEventListener('mouseleave', () => {
+			targetMouseX = 0;
+			targetMouseY = 0;
+		});
+
+		// Initialize calculations and start rendering loop
+		calculateScrollTargets();
+		requestAnimationFrame(renderLoop);
+	}
+
+	// Giant Reveal Text Spotlight Mouse Tracking
 	const revealTexts = document.querySelectorAll('.giant-reveal-text');
 	revealTexts.forEach((element) => {
 		const revealText = element as HTMLElement;
