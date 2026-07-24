@@ -85,8 +85,8 @@
     scene.add(coreGroup);
 
     // --- COLOR PALETTE DEFINITION ---
-    // Electric Cyan (#45F5FF) -> Bright Aqua (#53E8FF) -> Azure Blue (#4C8DFF) -> Indigo (#6A5CFF) -> Violet (#8B5CFF)
-    const PALETTE_HEX = ['#45F5FF', '#53E8FF', '#4C8DFF', '#6A5CFF', '#8B5CFF'];
+    // Aqua Mint (#5FFFCC) -> Electric Cyan (#00DEFF) -> Sky Blue (#1FBFFF) -> Royal Blue (#2563EB) -> Deep Electric Blue (#1266FF)
+    const PALETTE_HEX = ['#5FFFCC', '#00DEFF', '#1FBFFF', '#2563EB', '#1266FF'];
     const PALETTE_COLORS = PALETTE_HEX.map(hex => new THREE.Color(hex));
 
     function getGradientColor(t: number): THREE.Color {
@@ -103,15 +103,15 @@
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
     scene.add(ambientLight);
 
-    const cyanLight = new THREE.PointLight(0x45F5FF, 4, 15);
+    const cyanLight = new THREE.PointLight(0x5FFFCC, 4, 15);
     cyanLight.position.set(5, 5, 5);
     scene.add(cyanLight);
 
-    const violetLight = new THREE.PointLight(0x8B5CFF, 4, 15);
-    violetLight.position.set(-5, -5, 5);
-    scene.add(violetLight);
+    const blueLight = new THREE.PointLight(0x1266FF, 4, 15);
+    blueLight.position.set(-5, -5, 5);
+    scene.add(blueLight);
 
-    const centerGlowLight = new THREE.PointLight(0x53E8FF, 5, 8);
+    const centerGlowLight = new THREE.PointLight(0x00DEFF, 5, 8);
     centerGlowLight.position.set(0, 0, 0);
     scene.add(centerGlowLight);
 
@@ -380,21 +380,8 @@
       particleGeometry.attributes.position.needsUpdate = true;
     }
 
-    // --- 4. PARALLAX & CURSOR INTERACTION ---
-    let targetRotationX = 0;
-    let targetRotationY = 0;
-    let currentRotationX = 0;
-    let currentRotationY = 0;
-
-    const onMouseMove = (e: MouseEvent) => {
-      const rect = container.getBoundingClientRect();
-      const mouseX = (e.clientX - rect.left) / rect.width - 0.5;
-      const mouseY = (e.clientY - rect.top) / rect.height - 0.5;
-      targetRotationY = mouseX * 0.45;
-      targetRotationX = mouseY * 0.45;
-    };
-
-    window.addEventListener('mousemove', onMouseMove);
+    // --- 4. SMOOTH CONTINUOUS 3D AUTO ROTATION ---
+    // Core group auto-rotates smoothly in 3D without cursor dependency
 
     // --- 5. RENDER LOOP ---
     const clock = new THREE.Clock();
@@ -423,12 +410,9 @@
       const breathScale = 1.0 + 0.018 * Math.sin(elapsedTime * 1.8);
       coreGroup.scale.set(breathScale, breathScale, breathScale);
 
-      // Smooth mouse parallax lerp
-      currentRotationX += (targetRotationX - currentRotationX) * 0.05;
-      currentRotationY += (targetRotationY - currentRotationY) * 0.05;
-
-      coreGroup.rotation.x = currentRotationX;
-      coreGroup.rotation.y = currentRotationY;
+      // Smooth continuous 3D auto-rotation for the master core group
+      coreGroup.rotation.y = elapsedTime * 0.35;
+      coreGroup.rotation.x = Math.sin(elapsedTime * 0.25) * 0.15;
 
       // Render Scene
       renderer.render(scene, camera);

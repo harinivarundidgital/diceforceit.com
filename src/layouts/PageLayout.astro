@@ -1,6 +1,7 @@
 ---
 import Layout from './Layout.astro';
 import Footer from '../components/Footer.astro';
+import WhatsAppWidget from '../components/WhatsAppWidget.astro';
 
 interface Props {
 	title?: string;
@@ -26,7 +27,7 @@ const {
 		<!-- Centered soft radial glows using logo colors (slow CSS drifting) -->
 		<div class="absolute top-[10%] left-[-5%] w-[600px] h-[600px] rounded-full bg-[#00deff]/[0.12] blur-[130px] animate-drift-slow"></div>
 		<div class="absolute bottom-[10%] right-[-5%] w-[700px] h-[700px] rounded-full bg-[#0377ff]/[0.12] blur-[150px] animate-drift-medium"></div>
-		<div class="absolute top-[40%] right-[15%] w-[550px] h-[550px] rounded-full bg-[#883ae2]/[0.10] blur-[120px] animate-drift-slow"></div>
+		<div class="absolute top-[40%] right-[15%] w-[550px] h-[550px] rounded-full bg-[#1266ff]/[0.10] blur-[120px] animate-drift-slow"></div>
 		
 		<!-- High-fidelity background grid overlay -->
 		<div class="absolute inset-0 grid-overlay-home opacity-40"></div>
@@ -225,6 +226,9 @@ const {
 
 	<!-- FOOTER -->
 	<Footer />
+
+	<!-- FLOATING WHATSAPP WIDGET -->
+	<WhatsAppWidget />
 
 	<!-- Inject CSS details -->
 	<style>

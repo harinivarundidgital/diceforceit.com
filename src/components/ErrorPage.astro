@@ -1,0 +1,259 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+interface Props {
+	code?: string | number;
+	badge?: string;
+	titleLine1?: string;
+	highlightWord?: string;
+	titleLine2?: string;
+	description?: string;
+	imageSrc?: string;
+	imageAlt?: string;
+	primaryButtonText?: string;
+	primaryButtonHref?: string;
+	secondaryButtonText?: string;
+	secondaryButtonHref?: string;
+}
+
+const {
+	code = "404",
+	badge = "ERROR 404 // SIGNAL LOST",
+	titleLine1 = "Route",
+	highlightWord = "Null",
+	titleLine2 = "Page Not Found",
+	description = "The neural path or server resource you requested does not exist, has moved, or is temporarily unreachable.",
+	imageSrc = "/error-404-icon.png",
+	imageAlt = "3D Error Graphic",
+	primaryButtonText = "Return to Core Interface",
+	primaryButtonHref = "/home",
+	secondaryButtonText = "Retry Connection",
+	secondaryButtonHref = "",
+} = Astro.props;
+
+const pageTitle = `diceforce IT | Error ${code} - ${highlightWord} ${titleLine2}`;
+---
+
+<Layout title={pageTitle} description={description}>
+	<main class="glow-bg w-full min-h-screen h-dvh flex flex-col justify-center items-center px-4 pt-20 sm:pt-24 pb-16 relative overflow-x-hidden overflow-y-auto select-none">
+		<!-- Interactive Mouse Spotlight Glow -->
+		<div class="mouse-spotlight"></div>
+		
+		<!-- Top Header logo (positioned absolutely at top) -->
+		<header class="absolute top-0 left-0 w-full px-6 sm:px-12 h-20 flex items-center justify-between z-40 animate-fade-in">
+			<div class="max-w-7xl mx-auto w-full h-full flex items-center justify-between">
+				<a href="/home" class="group flex items-center gap-3 transition-opacity duration-300 hover:opacity-90">
+					<span class="text-sm sm:text-base font-space tracking-[0.3em] text-shimmer uppercase font-bold leading-none">
+						diceforce IT
+					</span>
+				</a>
+				
+				<!-- Header status code pill -->
+				<div class="px-3 py-1 border border-cyan-500/25 rounded-full bg-cyan-500/10 backdrop-blur-md hidden sm:flex items-center gap-2">
+					<span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+					<span class="font-mono text-xs font-semibold tracking-wider text-cyan-300 uppercase">SYS_STATUS: {code}</span>
+				</div>
+			</div>
+		</header>
+
+		<!-- Main Center Section (perfectly centered vertically and horizontally) -->
+		<div class="relative flex flex-col justify-center items-center gap-5 sm:gap-6 md:gap-7 z-30 max-w-4xl mx-auto text-center my-auto">
+			
+			<!-- Badge Pill -->
+			<div class="animate-fade-in inline-flex items-center gap-2 px-3.5 py-1.5 border border-cyan-500/20 rounded-full bg-cyan-500/5 backdrop-blur-sm">
+				<span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span>
+				<span class="font-mono text-xs tracking-widest text-cyan-400 uppercase font-semibold">{badge}</span>
+			</div>
+
+			<!-- Heading -->
+			<div class="space-y-2 animate-fade-in animation-delay-200">
+				<h1 class="font-syne font-semibold tracking-tight text-white leading-[1.1] text-balance">
+					<span class="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
+						{titleLine1} <span class="text-shimmer font-semibold inline-block">{highlightWord}</span>
+					</span>
+					<span class="block text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white/40 mt-1 sm:mt-2 font-normal">
+						{titleLine2}
+					</span>
+				</h1>
+				<p class="text-neutral-400 font-sans font-light text-sm sm:text-base max-w-lg mx-auto leading-relaxed pt-1 text-balance">
+					{description}
+				</p>
+			</div>
+
+			<!-- Center Illustration (3D Visual element) -->
+			<div class="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 mx-auto animate-float animate-fade-in animation-delay-400 perspective-container my-1">
+				<!-- Outer glow behind graphic -->
+				<div class="absolute inset-0 bg-[#0377ff]/20 rounded-full filter blur-[56px] opacity-75 animate-pulse-slow"></div>
+				
+				<!-- Tilt element wrapper -->
+				<div class="w-full h-full tilt-element relative z-10 flex items-center justify-center">
+					<!-- Cinematic 3D Error Illustration -->
+					<img 
+						src={imageSrc} 
+						alt={imageAlt} 
+						width="320"
+						height="320"
+						class="w-full h-full object-contain pointer-events-none select-none scale-105 rounded-3xl"
+						loading="eager"
+						fetchpriority="high"
+						onerror="this.onerror=null; this.src='/glowing-hand-icon.png';"
+					/>
+				</div>
+
+				<!-- Subtle shadow block underneath to fade it to black -->
+				<div class="absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-t from-black to-transparent z-20 pointer-events-none"></div>
+			</div>
+
+			<!-- Action Buttons -->
+			<div class="animate-fade-in animation-delay-500 z-40 flex flex-col sm:flex-row items-center gap-4 pt-1">
+				<!-- Primary Launch/Home Button -->
+				<div class="relative group transition-transform duration-500 hover:scale-[1.015]">
+					<!-- Outer atmospheric soft glow using logo colors -->
+					<div class="absolute -inset-1 bg-gradient-to-r from-[#0377ff] via-[#00deff] to-[#883ae2] rounded-full blur-md opacity-30 group-hover:opacity-75 transition-all duration-500 ease-out"></div>
+					
+					<!-- Rounded container that clips the rotating border gradient -->
+					<div class="relative rounded-full p-[1px] overflow-hidden flex items-center justify-center bg-black shadow-[0_4px_12px_rgba(0,0,0,0.5)] group-hover:shadow-[0_0_20px_rgba(3,119,255,0.4)] transition-all duration-500">
+						<!-- Rotating gradient element with logo colors -->
+						<div class="absolute inset-[-200%] bg-[conic-gradient(from_0deg,#0377ff,#00deff,#883ae2,#00deff,#0377ff)] animate-border-spin"></div>
+						
+						<!-- Main Button Link -->
+						<a 
+							href={primaryButtonHref} 
+							class="relative px-8 py-3.5 bg-black hover:bg-neutral-900 text-white font-semibold rounded-full transition-all duration-300 inline-flex items-center gap-2.5 text-sm font-sans tracking-wide cursor-pointer z-10 select-none group-hover:text-[#00deff]"
+						>
+							{primaryButtonText}
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+						</a>
+					</div>
+				</div>
+
+				<!-- Secondary Action Button (if provided) -->
+				{secondaryButtonText && (
+					<button 
+						id="secondary-action-btn"
+						data-href={secondaryButtonHref}
+						class="px-7 py-3.5 rounded-full border border-white/15 bg-white/5 hover:bg-white/10 text-white/90 hover:text-white text-sm font-medium transition-all duration-300 backdrop-blur-md cursor-pointer flex items-center gap-2 hover:border-white/30"
+					>
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"></path><path d="M16 16h5v5"></path></svg>
+						{secondaryButtonText}
+					</button>
+				)}
+			</div>
+
+		</div>
+
+		<!-- Giant bold text logo with cinematic half-reveal from bottom -->
+		<footer class="absolute bottom-0 left-0 w-full overflow-hidden pointer-events-none select-none z-10 reveal-mask">
+			<div class="animate-reveal-up animation-delay-600">
+				<h2 class="text-[8vw] sm:text-[9vw] lg:text-[110px] font-extrabold tracking-[10px] mr-[-10px] text-white uppercase leading-none font-syne select-none text-center">
+					diceforce IT
+				</h2>
+			</div>
+		</footer>
+	</main>
+
+	<!-- Inject inline CSS for dot animations & spotlight -->
+	<style>
+		@keyframes dot-fade {
+			0%, 100% { opacity: 0.2; }
+			50% { opacity: 1; }
+		}
+		.dot-1 { animation: dot-fade 1.4s infinite 0s; }
+		.dot-2 { animation: dot-fade 1.4s infinite 0.2s; }
+		.dot-3 { animation: dot-fade 1.4s infinite 0.4s; }
+
+		/* Custom slow, smooth spin for the button border gradient */
+		@keyframes border-spin {
+			from {
+				transform: rotate(0deg);
+			}
+			to {
+				transform: rotate(360deg);
+			}
+		}
+		.animate-border-spin {
+			animation: border-spin 3s linear infinite;
+		}
+
+		/* Mouse Spotlight effect */
+		.mouse-spotlight {
+			position: absolute;
+			inset: 0;
+			background: radial-gradient(
+				600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+				rgba(79, 125, 255, 0.09) 0%,
+				transparent 75%
+			);
+			pointer-events: none;
+			z-index: 1;
+			transition: background 0.3s ease-out;
+		}
+
+		/* Hovering over the page increases interactive glow slightly */
+		body:hover .mouse-spotlight {
+			background: radial-gradient(
+				700px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+				rgba(79, 125, 255, 0.11) 0%,
+				transparent 75%
+			);
+		}
+
+		/* 3D Perspective and Tilt transition rules */
+		.perspective-container {
+			perspective: 1200px;
+		}
+		.tilt-element {
+			transform-style: preserve-3d;
+			transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+		}
+	</style>
+
+	<script>
+		// Follow cursor for glowing spotlight effect & 3D tilt
+		const mainElement = document.querySelector('main');
+		const tiltElement = document.querySelector('.tilt-element');
+		
+		if (mainElement && tiltElement) {
+			window.addEventListener('mousemove', (e) => {
+				const rect = mainElement.getBoundingClientRect();
+				const x = e.clientX - rect.left;
+				const y = e.clientY - rect.top;
+				
+				// Update spotlight custom properties
+				mainElement.style.setProperty('--mouse-x', `${x}px`);
+				mainElement.style.setProperty('--mouse-y', `${y}px`);
+
+				// Parallax 3D tilt calculation
+				const centerX = rect.width / 2;
+				const centerY = rect.height / 2;
+				const percentX = (x - centerX) / centerX; // Range -1 to 1
+				const percentY = (y - centerY) / centerY; // Range -1 to 1
+
+				const maxTilt = 8; // Max rotation in degrees
+				const tiltX = (percentY * maxTilt * -1).toFixed(2); // Rotate around X axis
+				const tiltY = (percentX * maxTilt).toFixed(2);      // Rotate around Y axis
+
+				// Apply 3D rotation and a subtle zoom on hover
+				(tiltElement as HTMLElement).style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.02, 1.02, 1.02)`;
+			});
+
+			// Reset smooth rotation to zero when mouse leaves the page
+			document.addEventListener('mouseleave', () => {
+				(tiltElement as HTMLElement).style.transform = 'rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+			});
+		}
+
+		// Handle secondary button reload/navigation
+		const secondaryBtn = document.getElementById('secondary-action-btn');
+		if (secondaryBtn) {
+			secondaryBtn.addEventListener('click', () => {
+				const targetHref = secondaryBtn.getAttribute('data-href');
+				if (targetHref && targetHref.length > 0) {
+					window.location.href = targetHref;
+				} else {
+					window.location.reload();
+				}
+			});
+		}
+	</script>
+</Layout>

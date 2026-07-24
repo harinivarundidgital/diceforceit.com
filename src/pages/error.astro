@@ -1,0 +1,85 @@
+---
+import ErrorPage from '../components/ErrorPage.astro';
+
+// Optional server/prerender config for query string handling
+export const prerender = false;
+
+const code = Astro.url.searchParams.get('code') || '404';
+
+const errorConfigs: Record<string, {
+	badge: string;
+	titleLine1: string;
+	highlightWord: string;
+	titleLine2: string;
+	description: string;
+	imageSrc: string;
+	primaryButtonText: string;
+	secondaryButtonText: string;
+}> = {
+	'404': {
+		badge: "ERROR 404 // TRANSMISSION LOST",
+		titleLine1: "Route",
+		highlightWord: "Null",
+		titleLine2: "Page Not Found",
+		description: "The neural route or webpage you requested does not exist, has been moved, or is unreachable in the active namespace.",
+		imageSrc: "/error-404-icon.png",
+		primaryButtonText: "Return to Core Interface",
+		secondaryButtonText: "Reload Route"
+	},
+	'503': {
+		badge: "ERROR 503 // SERVICE STANDBY",
+		titleLine1: "System",
+		highlightWord: "Calibrating",
+		titleLine2: "Service Temporarily Unavailable",
+		description: "Our servers are currently undergoing scheduled upgrades or high performance optimization. Normal operations will resume shortly.",
+		imageSrc: "/error-503-icon.png",
+		primaryButtonText: "Return to Core Interface",
+		secondaryButtonText: "Retry Connection"
+	},
+	'500': {
+		badge: "ERROR 500 // SYSTEM CRITICAL",
+		titleLine1: "Server",
+		highlightWord: "Anomaly",
+		titleLine2: "Internal Gateway Exception",
+		description: "An unexpected neural processing error occurred on our server cluster. Our engineering diagnostics team has been automatically notified.",
+		imageSrc: "/error-500-icon.png",
+		primaryButtonText: "Return to Core Interface",
+		secondaryButtonText: "Try Again"
+	},
+	'502': {
+		badge: "ERROR 502 // BAD GATEWAY",
+		titleLine1: "Gateway",
+		highlightWord: "Unresponsive",
+		titleLine2: "Upstream Relay Interrupted",
+		description: "The edge server received an invalid response from the upstream server while attempting to fulfill your request.",
+		imageSrc: "/error-500-icon.png",
+		primaryButtonText: "Return to Core Interface",
+		secondaryButtonText: "Reconnect"
+	}
+};
+
+const currentConfig = errorConfigs[code] || {
+	badge: `ERROR ${code} // SYSTEM NOTICE`,
+	titleLine1: "System",
+	highlightWord: `Error ${code}`,
+	titleLine2: "Unexpected Response Received",
+	description: "An unhandled condition was encountered during request processing. Please return to the primary page.",
+	imageSrc: "/error-404-icon.png",
+	primaryButtonText: "Return to Core Interface",
+	secondaryButtonText: "Reload Page"
+};
+---
+
+<ErrorPage 
+	code={code}
+	badge={currentConfig.badge}
+	titleLine1={currentConfig.titleLine1}
+	highlightWord={currentConfig.highlightWord}
+	titleLine2={currentConfig.titleLine2}
+	description={currentConfig.description}
+	imageSrc={currentConfig.imageSrc}
+	imageAlt={`Error ${code} 3D Graphic`}
+	primaryButtonText={currentConfig.primaryButtonText}
+	primaryButtonHref="/home"
+	secondaryButtonText={currentConfig.secondaryButtonText}
+/>

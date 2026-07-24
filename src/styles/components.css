@@ -98,7 +98,7 @@
   align-items: center;
   gap: 0.35rem;
   padding: 0.25rem 0.7rem;
-  background: linear-gradient(90deg, rgba(0, 222, 255, 0.15), rgba(168, 85, 247, 0.15));
+  background: linear-gradient(90deg, rgba(0, 222, 255, 0.15), rgba(31, 191, 255, 0.15));
   border: 1px solid rgba(0, 222, 255, 0.35);
   border-radius: 6px;
   color: #ffffff;
@@ -110,7 +110,7 @@
 }
 
 .eai-pulse-btn:hover {
-  background: linear-gradient(90deg, rgba(0, 222, 255, 0.3), rgba(168, 85, 247, 0.3));
+  background: linear-gradient(90deg, rgba(0, 222, 255, 0.3), rgba(31, 191, 255, 0.3));
   border-color: var(--neon-blue);
   box-shadow: 0 0 12px rgba(0, 222, 255, 0.4);
   transform: translateY(-1px);
@@ -275,16 +275,16 @@
 }
 
 .eai-step-active-purple {
-  box-shadow: 0 0 35px rgba(168, 85, 247, 0.85), 0 0 15px rgba(168, 85, 247, 0.4), inset 0 0 15px rgba(168, 85, 247, 0.3) !important;
-  border-color: #c084fc !important;
+  box-shadow: 0 0 35px rgba(31, 191, 255, 0.85), 0 0 15px rgba(31, 191, 255, 0.4), inset 0 0 15px rgba(31, 191, 255, 0.3) !important;
+  border-color: #1fbfff !important;
   transform: scale(1.05) !important;
   z-index: 50 !important;
   transition: all 0.3s ease !important;
 }
 
 .eai-step-active-emerald {
-  box-shadow: 0 0 35px rgba(52, 211, 153, 0.85), 0 0 15px rgba(52, 211, 153, 0.4), inset 0 0 15px rgba(52, 211, 153, 0.3) !important;
-  border-color: #34d399 !important;
+  box-shadow: 0 0 35px rgba(95, 255, 203, 0.85), 0 0 15px rgba(95, 255, 203, 0.4), inset 0 0 15px rgba(95, 255, 203, 0.3) !important;
+  border-color: #5fffcc !important;
   transform: scale(1.05) !important;
   z-index: 50 !important;
   transition: all 0.3s ease !important;
@@ -293,69 +293,78 @@
 /* SVG Path Active Line Highlights */
 .eai-svg-path.is-stage-active {
   stroke: #00deff !important;
-  stroke-width: 3.5px !important;
-  stroke-dasharray: 8 4 !important;
+  stroke-width: 2.2px !important;
+  stroke-linecap: round !important;
+  stroke-dasharray: 2px 7px !important;
   animation: stroke-flow 0.5s linear infinite !important;
-  filter: drop-shadow(0 0 12px #00deff) !important;
+  filter: drop-shadow(0 0 10px #00deff) !important;
   stroke-opacity: 1 !important;
 }
 
-/* Color Themes for Outputs & Actions (Matching Reference Diagram) */
+/* Color Themes for Outputs & Actions (Strict Brand Cyan & Blue Palette) */
 .theme-purple {
-  border-color: rgba(168, 85, 247, 0.3);
-  background: rgba(168, 85, 247, 0.04);
+  border-color: rgba(31, 191, 255, 0.3);
+  background: rgba(31, 191, 255, 0.04);
 }
-.theme-purple:hover { border-color: rgba(168, 85, 247, 0.6); box-shadow: 0 6px 25px rgba(168, 85, 247, 0.25); }
-.theme-purple .eai-card-icon, .theme-purple .eai-output-title, .theme-purple .eai-action-title { color: #c084fc; }
+.theme-purple:hover { border-color: rgba(31, 191, 255, 0.6); box-shadow: 0 6px 25px rgba(31, 191, 255, 0.25); }
+.theme-purple .eai-card-icon { color: #1fbfff; }
+.theme-purple .eai-output-title, .theme-purple .eai-action-title { color: #ffffff; }
 
 .theme-blue {
-  border-color: rgba(59, 130, 246, 0.3);
-  background: rgba(59, 130, 246, 0.04);
+  border-color: rgba(18, 102, 255, 0.3);
+  background: rgba(18, 102, 255, 0.04);
 }
-.theme-blue:hover { border-color: rgba(59, 130, 246, 0.6); box-shadow: 0 6px 25px rgba(59, 130, 246, 0.25); }
-.theme-blue .eai-card-icon, .theme-blue .eai-output-title, .theme-blue .eai-action-title { color: #60a5fa; }
+.theme-blue:hover { border-color: rgba(18, 102, 255, 0.6); box-shadow: 0 6px 25px rgba(18, 102, 255, 0.25); }
+.theme-blue .eai-card-icon { color: #1266ff; }
+.theme-blue .eai-output-title, .theme-blue .eai-action-title { color: #ffffff; }
 
 .theme-green {
-  border-color: rgba(16, 185, 129, 0.3);
-  background: rgba(16, 185, 129, 0.04);
+  border-color: rgba(95, 255, 203, 0.3);
+  background: rgba(95, 255, 203, 0.04);
 }
-.theme-green:hover { border-color: rgba(16, 185, 129, 0.6); box-shadow: 0 6px 25px rgba(16, 185, 129, 0.25); }
-.theme-green .eai-card-icon, .theme-green .eai-output-title, .theme-green .eai-action-title { color: #34d399; }
+.theme-green:hover { border-color: rgba(95, 255, 203, 0.6); box-shadow: 0 6px 25px rgba(95, 255, 203, 0.25); }
+.theme-green .eai-card-icon { color: #5fffcc; }
+.theme-green .eai-output-title, .theme-green .eai-action-title { color: #ffffff; }
 
 .theme-gold {
-  border-color: rgba(234, 179, 8, 0.3);
-  background: rgba(234, 179, 8, 0.04);
+  border-color: rgba(0, 222, 255, 0.3);
+  background: rgba(0, 222, 255, 0.04);
 }
-.theme-gold:hover { border-color: rgba(234, 179, 8, 0.6); box-shadow: 0 6px 25px rgba(234, 179, 8, 0.25); }
-.theme-gold .eai-card-icon, .theme-gold .eai-output-title, .theme-gold .eai-action-title { color: #facc15; }
+.theme-gold:hover { border-color: rgba(0, 222, 255, 0.6); box-shadow: 0 6px 25px rgba(0, 222, 255, 0.25); }
+.theme-gold .eai-card-icon { color: #00deff; }
+.theme-gold .eai-output-title, .theme-gold .eai-action-title { color: #ffffff; }
 
 .theme-orange {
-  border-color: rgba(249, 115, 22, 0.3);
-  background: rgba(249, 115, 22, 0.04);
+  border-color: rgba(37, 99, 235, 0.3);
+  background: rgba(37, 99, 235, 0.04);
 }
-.theme-orange:hover { border-color: rgba(249, 115, 22, 0.6); box-shadow: 0 6px 25px rgba(249, 115, 22, 0.25); }
-.theme-orange .eai-card-icon, .theme-orange .eai-output-title, .theme-orange .eai-action-title { color: #fb923c; }
+.theme-orange:hover { border-color: rgba(37, 99, 235, 0.6); box-shadow: 0 6px 25px rgba(37, 99, 235, 0.25); }
+.theme-orange .eai-card-icon { color: #2563eb; }
+.theme-orange .eai-output-title, .theme-orange .eai-action-title { color: #ffffff; }
 
 .theme-magenta {
-  border-color: rgba(236, 72, 153, 0.3);
-  background: rgba(236, 72, 153, 0.04);
+  border-color: rgba(31, 191, 255, 0.3);
+  background: rgba(31, 191, 255, 0.04);
 }
-.theme-magenta:hover { border-color: rgba(236, 72, 153, 0.6); box-shadow: 0 6px 25px rgba(236, 72, 153, 0.25); }
-.theme-magenta .eai-card-icon, .theme-magenta .eai-output-title, .theme-magenta .eai-action-title { color: #f472b6; }
+.theme-magenta:hover { border-color: rgba(31, 191, 255, 0.6); box-shadow: 0 6px 25px rgba(31, 191, 255, 0.25); }
+.theme-magenta .eai-card-icon { color: #1fbfff; }
+.theme-magenta .eai-output-title, .theme-magenta .eai-action-title { color: #ffffff; }
 
 .theme-cyan {
-  border-color: rgba(6, 182, 212, 0.3);
-  background: rgba(6, 182, 212, 0.04);
+  border-color: rgba(0, 222, 255, 0.3);
+  background: rgba(0, 222, 255, 0.04);
 }
-.theme-cyan:hover { border-color: rgba(6, 182, 212, 0.6); box-shadow: 0 6px 25px rgba(6, 182, 212, 0.25); }
-.theme-cyan .eai-card-icon, .theme-cyan .eai-output-title, .theme-cyan .eai-action-title { color: #22d3ee; }
+.theme-cyan:hover { border-color: rgba(0, 222, 255, 0.6); box-shadow: 0 6px 25px rgba(0, 222, 255, 0.25); }
+.theme-cyan .eai-card-icon { color: #00deff; }
+.theme-cyan .eai-output-title, .theme-cyan .eai-action-title { color: #ffffff; }
 
 .theme-teal {
-  border-color: rgba(20, 184, 166, 0.3);
-  background: rgba(20, 184, 166, 0.04);
+  border-color: rgba(95, 255, 203, 0.3);
+  background: rgba(95, 255, 203, 0.04);
 }
-.theme-teal:hover { border-color: rgba(20, 184, 166, 0.6); box-shadow: 0 6px 25px rgba(20, 184, 166, 0.25); }
-.theme-teal .eai-card-icon, .theme-teal .eai-output-title, .theme-teal .eai-action-title { color: #2dd4bf; }
+.theme-teal:hover { border-color: rgba(95, 255, 203, 0.6); box-shadow: 0 6px 25px rgba(95, 255, 203, 0.25); }
+.theme-teal .eai-card-icon { color: #5fffcc; }
+.theme-teal .eai-output-title, .theme-teal .eai-action-title { color: #ffffff; }
 
 /* Input Card Specifics */
 .eai-input-card {
@@ -563,12 +572,17 @@
   width: 100%;
   max-width: 440px;
   margin-top: 0.85rem;
+  margin-left: auto;
+  margin-right: auto;
   background: rgba(10, 16, 38, 0.85);
-  border: 1px solid rgba(168, 85, 247, 0.35);
+  border: 1px solid rgba(0, 222, 255, 0.35);
   border-radius: 10px;
   padding: 0.5rem 0.75rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   gap: 0.4rem;
   animation: border-glow-pulse 5s ease-in-out infinite;
   z-index: 25;
@@ -663,16 +677,18 @@
 .eai-svg-path {
   fill: none;
   stroke: url(#neonGradient);
-  stroke-width: 1.5;
-  stroke-dasharray: 8 12;
+  stroke-width: 1.15px;
+  stroke-linecap: round;
+  stroke-dasharray: 2px 8px;
   animation: stroke-flow 3s linear infinite, stroke-pulse 4s ease-in-out infinite;
   transition: stroke 0.25s ease, stroke-width 0.25s ease;
 }
 
 .eai-svg-path.is-active {
   stroke: #00deff;
-  stroke-width: 2.8;
-  stroke-dasharray: 12 6;
-  filter: drop-shadow(0 0 10px #00deff);
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-dasharray: 2px 6px;
+  filter: drop-shadow(0 0 8px #00deff);
   animation: stroke-flow 1s linear infinite;
 }

@@ -176,7 +176,7 @@ import AnimatedConnections from './AnimatedConnections.astro';
       const resetTelemetry = () => {
         if (statusText) {
           statusText.textContent = 'ONLINE';
-          statusText.className = 'text-emerald-400';
+          statusText.className = 'text-cyan-400';
         }
       };
 
@@ -188,8 +188,8 @@ import AnimatedConnections from './AnimatedConnections.astro';
       };
 
       const clearHighlights = () => {
-        document.querySelectorAll('.eai-step-active-cyan, .eai-step-active-purple, .eai-step-active-emerald').forEach(el => {
-          el.classList.remove('eai-step-active-cyan', 'eai-step-active-purple', 'eai-step-active-emerald');
+        document.querySelectorAll('.eai-step-active-cyan').forEach(el => {
+          el.classList.remove('eai-step-active-cyan');
         });
         document.querySelectorAll('.eai-svg-path').forEach(path => {
           path.classList.remove('is-stage-active');
@@ -226,7 +226,7 @@ import AnimatedConnections from './AnimatedConnections.astro';
           status: 'STEP 4/7: AGENTIC INTELLIGENCE CORE REASONING...',
           elements: ['.eai-cap-left', '#core-engine-center'],
           paths: ['3'],
-          activeClass: 'eai-step-active-purple'
+          activeClass: 'eai-step-active-cyan'
         },
         {
           delay: 2000,
@@ -240,14 +240,14 @@ import AnimatedConnections from './AnimatedConnections.astro';
           status: 'STEP 6/7: GENERATING INTELLIGENT OUTPUTS...',
           elements: ['.eai-cap-right', '.eai-output-card'],
           paths: ['5', '6'],
-          activeClass: 'eai-step-active-purple'
+          activeClass: 'eai-step-active-cyan'
         },
         {
           delay: 3000,
           status: 'STEP 7/7: EXECUTING AUTOMATED WORKFLOWS...',
           elements: ['.eai-action-card'],
           paths: ['7'],
-          activeClass: 'eai-step-active-emerald'
+          activeClass: 'eai-step-active-cyan'
         }
       ];
 
@@ -256,7 +256,7 @@ import AnimatedConnections from './AnimatedConnections.astro';
           clearHighlights();
           setTelemetryStatus(
             step.status, 
-            step.activeClass.includes('emerald') ? 'text-emerald-400' : step.activeClass.includes('purple') ? 'text-purple-400' : 'text-cyan-400'
+            'text-cyan-400'
           );
 
           step.elements.forEach(selector => {
@@ -276,10 +276,10 @@ import AnimatedConnections from './AnimatedConnections.astro';
       // Final Completion Celebration Pulse (3600ms)
       setTimeout(() => {
         clearHighlights();
-        setTelemetryStatus('EXECUTION COMPLETE (8ms)', 'text-emerald-400 font-bold');
+        setTelemetryStatus('EXECUTION COMPLETE (8ms)', 'text-cyan-400 font-bold');
 
         document.querySelectorAll('.eai-glass-card, .eai-capability-card, #core-engine-center, .eai-data-fabric-capsule').forEach(el => {
-          el.classList.add('eai-step-active-emerald');
+          el.classList.add('eai-step-active-cyan');
         });
 
         setTimeout(() => {

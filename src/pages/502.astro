@@ -1,0 +1,17 @@
+---
+import ErrorPage from '../components/ErrorPage.astro';
+---
+
+<ErrorPage 
+	code="502"
+	badge="ERROR 502 // BAD GATEWAY"
+	titleLine1="Gateway"
+	highlightWord="Unresponsive"
+	titleLine2="Upstream Relay Interrupted"
+	description="The edge server received an invalid response from the upstream server while attempting to fulfill your request."
+	imageSrc="/error-500-icon.png"
+	imageAlt="502 Bad Gateway Error 3D Graphic"
+	primaryButtonText="Return to Core Interface"
+	primaryButtonHref="/home"
+	secondaryButtonText="Reconnect"
+/>

@@ -106,10 +106,33 @@ import PageLayout from '../layouts/PageLayout.astro';
 							</div>
 							<div class="space-y-1">
 								<span class="text-xs font-mono tracking-widest text-neutral-500 uppercase block group-hover/item:text-cyan-400 transition-colors">Phone</span>
-								<a href="tel:+13105550165" class="text-neutral-300 hover:text-white transition-colors block select-text font-mono text-sm sm:text-base">
-									(310) 555-0165
+								<a href="tel:+19727102714" class="text-neutral-300 hover:text-white transition-colors block select-text font-mono text-sm sm:text-base">
+									+1 (972) 710-2714
 								</a>
 							</div>
+						</div>
+
+						<!-- WhatsApp Direct Chat Card -->
+						<div class="flex items-center justify-between p-5 rounded-2xl border border-emerald-500/20 bg-emerald-950/[0.1] hover:border-emerald-500/40 hover:bg-emerald-950/[0.2] transition-all duration-300 group/wa">
+							<div class="flex items-center gap-4">
+								<div class="flex items-center justify-center w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 group-hover/wa:scale-105 transition-all duration-300 shrink-0">
+									<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+										<path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+									</svg>
+								</div>
+								<div class="space-y-0.5">
+									<span class="text-xs font-mono tracking-widest text-emerald-400 uppercase block font-semibold">WhatsApp Direct</span>
+									<span class="text-neutral-300 font-mono text-xs block">+1 (972) 710-2714</span>
+								</div>
+							</div>
+							<a 
+								href="https://wa.me/19727102714?text=Hello%20Diceforce%20IT%20Team%2C%20I'd%20like%20to%20get%20in%20touch." 
+								target="_blank" 
+								rel="noopener noreferrer"
+								class="px-3.5 py-1.5 rounded-lg bg-emerald-500 text-black font-mono text-xs font-bold uppercase hover:bg-emerald-400 transition-colors shadow-[0_0_12px_rgba(37,211,102,0.3)] shrink-0"
+							>
+								Chat Now
+							</a>
 						</div>
 					</div>
 				</div>
@@ -144,7 +167,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 									<!-- Name -->
 									<div class="space-y-2">
 										<label for="name" class="font-mono text-[11px] uppercase tracking-widest text-neutral-300 font-medium flex items-center gap-1.5">
-											<span class="w-1 h-1 rounded-full bg-cyan-400"></span> Name
+											Name
 										</label>
 										<div class="relative rounded-2xl border border-white/10 bg-white/[0.025] hover:bg-white/[0.04] focus-within:border-cyan-400 focus-within:ring-2 focus-within:ring-cyan-400/20 focus-within:bg-black/40 transition-all duration-300 px-4 py-2.5 flex items-center gap-3 group/input">
 											<svg class="w-4 h-4 text-neutral-500 group-focus-within/input:text-cyan-400 transition-colors shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
@@ -164,7 +187,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 									<!-- Phone -->
 									<div class="space-y-2">
 										<label for="phone" class="font-mono text-[11px] uppercase tracking-widest text-neutral-300 font-medium flex items-center gap-1.5">
-											<span class="w-1 h-1 rounded-full bg-cyan-400"></span> Phone
+											Phone
 										</label>
 										<div class="relative rounded-2xl border border-white/10 bg-white/[0.025] hover:bg-white/[0.04] focus-within:border-cyan-400 focus-within:ring-2 focus-within:ring-cyan-400/20 focus-within:bg-black/40 transition-all duration-300 px-4 py-2.5 flex items-center gap-3 group/input">
 											<svg class="w-4 h-4 text-neutral-500 group-focus-within/input:text-cyan-400 transition-colors shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
@@ -188,7 +211,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 									<!-- Email -->
 									<div class="space-y-2">
 										<label for="email" class="font-mono text-[11px] uppercase tracking-widest text-neutral-300 font-medium flex items-center gap-1.5">
-											<span class="w-1 h-1 rounded-full bg-cyan-400"></span> Email
+											Email
 										</label>
 										<div class="relative rounded-2xl border border-white/10 bg-white/[0.025] hover:bg-white/[0.04] focus-within:border-cyan-400 focus-within:ring-2 focus-within:ring-cyan-400/20 focus-within:bg-black/40 transition-all duration-300 px-4 py-2.5 flex items-center gap-3 group/input">
 											<svg class="w-4 h-4 text-neutral-500 group-focus-within/input:text-cyan-400 transition-colors shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
@@ -209,7 +232,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 									<!-- Company -->
 									<div class="space-y-2">
 										<label for="company" class="font-mono text-[11px] uppercase tracking-widest text-neutral-300 font-medium flex items-center gap-1.5">
-											<span class="w-1 h-1 rounded-full bg-cyan-400"></span> Company
+											Company
 										</label>
 										<div class="relative rounded-2xl border border-white/10 bg-white/[0.025] hover:bg-white/[0.04] focus-within:border-cyan-400 focus-within:ring-2 focus-within:ring-cyan-400/20 focus-within:bg-black/40 transition-all duration-300 px-4 py-2.5 flex items-center gap-3 group/input">
 											<svg class="w-4 h-4 text-neutral-500 group-focus-within/input:text-cyan-400 transition-colors shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
@@ -231,7 +254,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 								<!-- 3. Enquiry type (Custom Dropdown selection) -->
 								<div class="space-y-2 relative">
 									<label class="font-mono text-[11px] uppercase tracking-widest text-neutral-300 font-medium flex items-center gap-1.5">
-										<span class="w-1 h-1 rounded-full bg-cyan-400"></span> Enquiry type
+										Enquiry type
 									</label>
 									<input type="hidden" name="enquiry_type" id="enquiry_type" value="ai_ml" />
 									<button 
@@ -301,7 +324,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 								<!-- 4. Select Your Interest Area (Custom Multi-select Dropdown) -->
 								<div class="space-y-2 relative">
 									<label class="font-mono text-[11px] uppercase tracking-widest text-neutral-300 font-medium flex items-center gap-1.5">
-										<span class="w-1 h-1 rounded-full bg-cyan-400"></span> Select Your Interest Area
+										Select Your Interest Area
 									</label>
 									
 									<!-- Dropdown Trigger Button with Pill Badges -->
@@ -362,7 +385,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 								<!-- 5. Describe your query -->
 								<div class="space-y-2">
 									<label for="message" class="font-mono text-[11px] uppercase tracking-widest text-neutral-300 font-medium flex items-center gap-1.5">
-										<span class="w-1 h-1 rounded-full bg-cyan-400"></span> Describe your query
+										Describe your query
 									</label>
 									<div class="relative rounded-2xl border border-white/10 bg-white/[0.025] hover:bg-white/[0.04] focus-within:border-cyan-400 focus-within:ring-2 focus-within:ring-cyan-400/20 focus-within:bg-black/40 transition-all duration-300 px-4 py-3 flex items-start gap-3 group/input">
 										<svg class="w-4 h-4 text-neutral-500 group-focus-within/input:text-cyan-400 transition-colors shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
@@ -381,15 +404,25 @@ import PageLayout from '../layouts/PageLayout.astro';
 
 								<div class="pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 									<div class="w-full sm:w-auto z-10">
-										<button 
-											type="submit" 
-											class="group relative w-full sm:w-auto px-10 py-4 bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 text-black font-syne text-xs font-bold uppercase tracking-widest rounded-full hover:shadow-[0_0_35px_rgba(34,211,238,0.5)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 inline-flex items-center justify-center gap-3 cursor-pointer z-10 select-none"
-										>
-											<span>Send Message</span>
-											<svg class="w-4 h-4 text-black group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-												<path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-											</svg>
-										</button>
+										<div class="relative group transition-transform duration-500 hover:scale-[1.015] w-full sm:w-auto">
+											<!-- Outer atmospheric soft glow using logo colors -->
+											<div class="absolute -inset-1 bg-gradient-to-r from-[#0377ff] via-[#00deff] to-[#883ae2] rounded-full blur-md opacity-25 group-hover:opacity-60 transition-all duration-500 ease-out"></div>
+											
+											<!-- Rounded container that clips the rotating border gradient -->
+											<div class="relative rounded-full p-[1px] overflow-hidden flex items-center justify-center bg-black shadow-[0_4px_12px_rgba(0,0,0,0.5)] group-hover:shadow-[0_0_20px_rgba(3,119,255,0.4)] transition-all duration-500 w-full sm:w-auto">
+												<!-- Rotating gradient element with logo colors -->
+												<div class="absolute inset-[-200%] bg-[conic-gradient(from_0deg,#0377ff,#00deff,#883ae2,#00deff,#0377ff)] animate-border-spin"></div>
+												
+												<!-- Main Button -->
+												<button 
+													type="submit" 
+													class="relative w-full sm:w-auto px-10 py-4 bg-black hover:bg-neutral-900 text-white font-syne text-xs font-bold uppercase tracking-widest rounded-full transition-all duration-300 inline-flex items-center justify-center gap-2.5 cursor-pointer z-10 select-none group-hover:text-[#00deff] border-none focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+												>
+													<span>Send</span>
+													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-white group-hover:text-[#00deff] group-hover:translate-x-1 transition-all duration-300"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+												</button>
+											</div>
+										</div>
 									</div>
 									<p class="text-xs font-mono text-neutral-500 tracking-wider">
 										By submitting, you agree to our <a href="/terms" class="text-neutral-400 hover:text-white underline transition-colors">Terms of Service</a>.
@@ -570,7 +603,12 @@ import PageLayout from '../layouts/PageLayout.astro';
 				const submitBtn = contactForm.querySelector('button[type="submit"]') as HTMLButtonElement | null;
 				if (submitBtn) {
 					submitBtn.disabled = true;
-					submitBtn.innerText = 'Routing Transmission…';
+					const btnText = submitBtn.querySelector('span');
+					if (btnText) {
+						btnText.innerText = 'Routing Transmission…';
+					} else {
+						submitBtn.innerText = 'Routing Transmission…';
+					}
 				}
 
 				// Animate form fields fade-out
@@ -627,7 +665,12 @@ import PageLayout from '../layouts/PageLayout.astro';
 						const submitBtn = contactForm.querySelector('button[type="submit"]') as HTMLButtonElement | null;
 						if (submitBtn) {
 							submitBtn.disabled = false;
-							submitBtn.innerText = 'Send';
+							const btnText = submitBtn.querySelector('span');
+							if (btnText) {
+								btnText.innerText = 'Send';
+							} else {
+								submitBtn.innerText = 'Send';
+							}
 						}
 
 						gsap.to(contactForm, {

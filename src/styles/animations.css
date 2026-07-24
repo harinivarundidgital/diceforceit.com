@@ -19,7 +19,7 @@
   }
   50% {
     transform: scale(1.06);
-    box-shadow: 0 0 85px rgba(0, 222, 255, 0.65), inset 0 0 40px rgba(168, 85, 247, 0.45);
+    box-shadow: 0 0 85px rgba(0, 222, 255, 0.65), inset 0 0 40px rgba(31, 191, 255, 0.45);
   }
 }
 
@@ -30,7 +30,7 @@
   }
   50% {
     opacity: 1;
-    filter: drop-shadow(0 0 35px #a855f7);
+    filter: drop-shadow(0 0 35px #1fbfff);
   }
 }
 
@@ -57,11 +57,11 @@
 @keyframes stroke-pulse {
   0%, 100% {
     stroke-opacity: 0.45;
-    stroke-width: 1.5;
+    stroke-width: 1.1;
   }
   50% {
-    stroke-opacity: 1;
-    stroke-width: 2.8;
+    stroke-opacity: 0.9;
+    stroke-width: 1.4;
   }
 }
 
@@ -100,8 +100,8 @@
     box-shadow: 0 0 15px rgba(0, 222, 255, 0.15);
   }
   50% {
-    border-color: rgba(168, 85, 247, 0.65);
-    box-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
+    border-color: rgba(31, 191, 255, 0.65);
+    box-shadow: 0 0 30px rgba(31, 191, 255, 0.4);
   }
 }
 
@@ -157,6 +157,20 @@
   }
 }
 
+/* Custom slow, smooth spin for the button border gradient */
+@keyframes border-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-border-spin {
+  animation: border-spin 3s linear infinite;
+}
+
 /* Reduced Motion Override */
 @media (prefers-reduced-motion: reduce) {
   .animate-spin-cw,
@@ -167,8 +181,10 @@
   .animate-float-3,
   .animate-border-glow,
   .animate-stroke-flow,
-  .animate-ambient-light {
+  .animate-ambient-light,
+  .animate-border-spin {
     animation: none !important;
     transform: none !important;
   }
 }
+

@@ -1,0 +1,17 @@
+---
+import ErrorPage from '../components/ErrorPage.astro';
+---
+
+<ErrorPage 
+	code="500"
+	badge="ERROR 500 // SYSTEM CRITICAL"
+	titleLine1="Server"
+	highlightWord="Anomaly"
+	titleLine2="Internal Gateway Exception"
+	description="An unexpected neural processing error occurred on our server cluster. Our engineering diagnostics team has been automatically notified."
+	imageSrc="/error-500-icon.png"
+	imageAlt="500 Internal Server Error 3D Crystal Core Graphic"
+	primaryButtonText="Return to Core Interface"
+	primaryButtonHref="/home"
+	secondaryButtonText="Try Again"
+/>

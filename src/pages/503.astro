@@ -1,0 +1,17 @@
+---
+import ErrorPage from '../components/ErrorPage.astro';
+---
+
+<ErrorPage 
+	code="503"
+	badge="ERROR 503 // SERVICE STANDBY"
+	titleLine1="System"
+	highlightWord="Calibrating"
+	titleLine2="Service Temporarily Unavailable"
+	description="Our servers are currently undergoing scheduled upgrades or high performance optimization. Normal operations will resume shortly."
+	imageSrc="/error-503-icon.png"
+	imageAlt="503 Service Maintenance 3D Matrix Graphic"
+	primaryButtonText="Return to Core Interface"
+	primaryButtonHref="/home"
+	secondaryButtonText="Retry Connection"
+/>

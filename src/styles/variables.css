@@ -1,26 +1,31 @@
 /* Enterprise AI Architecture CSS Variables & Design System Tokens */
 :root {
-  /* Color Palette */
+  /* Brand Color Palette - Strictly Cyan & Blue */
   --bg-deep-navy: #050816;
   --bg-dark-card: rgba(10, 16, 38, 0.65);
   --bg-card-hover: rgba(18, 28, 65, 0.85);
   
   --neon-blue: #00deff;
   --neon-blue-glow: rgba(0, 222, 255, 0.35);
-  --blue-primary: #0377ff;
+  --blue-primary: #1266ff;
+  --blue-azure: #2563eb;
+  --blue-ocean: #1fbfff;
+  --blue-glow: rgba(18, 102, 255, 0.35);
   
-  --cyan-bright: #22d3ee;
-  --cyan-glow: rgba(34, 211, 238, 0.35);
+  --cyan-bright: #5fffcc;
+  --cyan-electric: #00deff;
+  --cyan-glow: rgba(95, 255, 203, 0.35);
   
-  --purple-neon: #a855f7;
-  --purple-dark: #883ae2;
-  --purple-glow: rgba(168, 85, 247, 0.35);
+  /* Unified Brand Theme Remappings (Ensuring 100% Brand Consistency) */
+  --purple-neon: #1fbfff;
+  --purple-dark: #1266ff;
+  --purple-glow: rgba(31, 191, 255, 0.35);
   
-  --green-neon: #10b981;
-  --green-glow: rgba(16, 185, 129, 0.35);
+  --green-neon: #5fffcc;
+  --green-glow: rgba(95, 255, 203, 0.35);
   
-  --orange-neon: #ff6b00;
-  --orange-glow: rgba(255, 107, 0, 0.35);
+  --orange-neon: #00deff;
+  --orange-glow: rgba(0, 222, 255, 0.35);
   
   /* Text Colors */
   --text-primary: #ffffff;
