@@ -2,6 +2,7 @@
 import Layout from './Layout.astro';
 import Footer from '../components/Footer.astro';
 import WhatsAppWidget from '../components/WhatsAppWidget.astro';
+import Header from '../components/Header.astro';
 
 interface Props {
 	title?: string;
@@ -11,8 +12,8 @@ interface Props {
 }
 
 const {
-	title = "diceforce IT | Let's Talk",
-	description = "Thinking about your next move? Let's discuss how diceforce IT can help make it real. Reach out to our design, engineering, and staffing teams.",
+	title = "Diceforce IT | Let's Talk",
+	description = "Thinking about your next move? Let's discuss how Diceforce IT can help make it real. Reach out to our design, engineering, and staffing teams.",
 	activePage = 'none',
 	showPreloader = true
 } = Astro.props;
@@ -33,168 +34,8 @@ const {
 		<div class="absolute inset-0 grid-overlay-home opacity-40"></div>
 	</div>
 
-	<!-- Floating Header Navigation -->
-	<header id="main-header" class="fixed top-6 left-0 right-0 z-50 w-full flex justify-center transition-all duration-500 ease-out opacity-0 -translate-y-10 pointer-events-none">
-		<div class="w-[92%] max-w-6xl relative backdrop-blur-lg bg-black/60 border border-white/10 rounded-full px-8 py-2 flex items-center justify-between shadow-[0_4px_30px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.05)] z-50">
-			
-			<!-- Brand Logo & Link -->
-			<a href="/home" class="flex items-center gap-3 group relative z-10 pointer-events-auto shrink-0 transition-colors">
-				<img src="/diceforceITlogo_.gif" alt="diceforce IT Logo" class="w-12 h-12 object-contain filter drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]" width="48" height="48" />
-				<span class="text-[18px] font-space tracking-[0.25em] text-cyan-400 uppercase font-extrabold leading-none group-hover:text-white transition-colors">diceforce</span>
-			</a>
-			
-			<!-- Navigation Links (Right Aligned) -->
-			<nav class="hidden md:flex items-center gap-6 relative z-25 pointer-events-auto">
-				<!-- Home -->
-				{activePage === 'home' ? (
-					<a href="/home" class="inline-flex items-center justify-center text-[18px] font-mono tracking-widest text-cyan-400 transition-colors uppercase py-1 px-2">
-						<span class="text-cyan-400 opacity-100 mr-1">[</span>
-						<span>Home</span>
-						<span class="text-cyan-400 opacity-100 ml-1">]</span>
-					</a>
-				) : (
-					<a href="/home" class="inline-flex items-center justify-center text-[18px] font-mono tracking-widest text-white/60 hover:text-cyan-400 transition-colors uppercase py-1 px-2 group/link">
-						<span class="text-cyan-400 opacity-0 group-hover/link:opacity-100 transition-[opacity,transform] duration-200 mr-1 translate-x-1 group-hover/link:translate-x-0">[</span>
-						<span>Home</span>
-						<span class="text-cyan-400 opacity-0 group-hover/link:opacity-100 transition-[opacity,transform] duration-200 ml-1 -translate-x-1 group-hover/link:translate-x-0">]</span>
-					</a>
-				)}
-				
-				<!-- Company Dropdown Group -->
-				<div class="relative group/dropdown py-1 flex items-center justify-center">
-					{activePage === 'about' || activePage === 'careers' ? (
-						<a href="/about" class="inline-flex items-center justify-center text-[18px] font-mono tracking-widest text-cyan-400 transition-colors uppercase py-1 px-2 gap-1 group/link">
-							<span class="text-cyan-400 opacity-100 mr-1">[</span>
-							<span>Company</span>
-							<span class="text-cyan-400 opacity-100 ml-1">]</span>
-							<svg class="w-4 h-4 text-cyan-400 transition-[color,transform] group-hover/dropdown:rotate-180 duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-								<polyline points="6 9 12 15 18 9"></polyline>
-							</svg>
-						</a>
-					) : (
-						<a href="/about" class="inline-flex items-center justify-center text-[18px] font-mono tracking-widest text-white/60 hover:text-cyan-400 transition-colors uppercase py-1 px-2 gap-1 group/link">
-							<span class="text-cyan-400 opacity-0 group-hover/link:opacity-100 transition-[opacity,transform] duration-200 mr-1 translate-x-1 group-hover/link:translate-x-0">[</span>
-							<span>Company</span>
-							<span class="text-cyan-400 opacity-0 group-hover/link:opacity-100 transition-[opacity,transform] duration-200 ml-1 -translate-x-1 group-hover/link:translate-x-0">]</span>
-							<svg class="w-4 h-4 text-white/40 group-hover/dropdown:text-cyan-400 transition-[color,transform] group-hover/dropdown:rotate-180 duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-								<polyline points="6 9 12 15 18 9"></polyline>
-							</svg>
-						</a>
-					)}
-					
-					<!-- Dropdown Menu Box (Two Column Grid) -->
-					<div class="absolute top-full left-1/2 -translate-x-1/2 pt-2.5 opacity-0 invisible group-hover/dropdown:opacity-100 group-hover/dropdown:visible transition-[opacity,visibility] duration-300 w-[32rem] pointer-events-none group-hover/dropdown:pointer-events-auto z-50">
-						<div class="backdrop-blur-md bg-black/95 border border-white/10 rounded-xl p-3 shadow-2xl grid grid-cols-2 gap-3">
-							<a href="/about" class="flex flex-col gap-1 p-3 rounded-lg border border-white/5 bg-white/[0.02] hover:border-cyan-400/30 hover:bg-cyan-500/[0.05] transition-all duration-300 group/dropitem text-left font-sans">
-								<div class="flex items-center gap-1">
-									<span class="text-cyan-400 opacity-0 group-hover/dropitem:opacity-100 transition-[opacity,transform] duration-200 -translate-x-1 group-hover/dropitem:translate-x-0 font-mono text-xs">[</span>
-									<span class="text-[16px] font-mono uppercase tracking-widest text-neutral-300 group-hover:text-cyan-400 transition-colors font-bold">About</span>
-									<span class="text-cyan-400 opacity-0 group-hover/dropitem:opacity-100 transition-[opacity,transform] duration-200 translate-x-1 group-hover/dropitem:translate-x-0 font-mono text-xs">]</span>
-								</div>
-								<p class="text-[15px] text-neutral-400 group-hover:text-neutral-300 transition-colors font-light leading-snug font-sans">
-									Our mission, vision, and core engineering philosophy.
-								</p>
-							</a>
-							<a href="/careers" class="flex flex-col gap-1 p-3 rounded-lg border border-white/5 bg-white/[0.02] hover:border-cyan-400/30 hover:bg-cyan-500/[0.05] transition-all duration-300 group/dropitem text-left font-sans">
-								<div class="flex items-center gap-1">
-									<span class="text-cyan-400 opacity-0 group-hover/dropitem:opacity-100 transition-[opacity,transform] duration-200 -translate-x-1 group-hover/dropitem:translate-x-0 font-mono text-xs">[</span>
-									<span class="text-[16px] font-mono uppercase tracking-widest text-neutral-300 group-hover:text-cyan-400 transition-colors font-bold">Career</span>
-									<span class="text-cyan-400 opacity-0 group-hover/dropitem:opacity-100 transition-[opacity,transform] duration-200 translate-x-1 group-hover/dropitem:translate-x-0 font-mono text-xs">]</span>
-								</div>
-								<p class="text-[15px] text-neutral-400 group-hover:text-neutral-300 transition-colors font-light leading-snug font-sans">
-									Explore open opportunities and build the future with us.
-								</p>
-							</a>
-						</div>
-					</div>
-				</div>
-
-				<!-- Services Dropdown Group -->
-				<div class="relative group/dropdown py-1 flex items-center justify-center">
-					{activePage === 'ai-ml' || activePage === 'it-staffing' ? (
-						<a href="/ai-ml" class="inline-flex items-center justify-center text-[18px] font-mono tracking-widest text-cyan-400 transition-colors uppercase py-1 px-2 gap-1 group/link">
-							<span class="text-cyan-400 opacity-100 mr-1">[</span>
-							<span>Services</span>
-							<span class="text-cyan-400 opacity-100 ml-1">]</span>
-							<svg class="w-4 h-4 text-cyan-400 transition-[color,transform] group-hover/dropdown:rotate-180 duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-								<polyline points="6 9 12 15 18 9"></polyline>
-							</svg>
-						</a>
-					) : (
-						<a href="/ai-ml" class="inline-flex items-center justify-center text-[18px] font-mono tracking-widest text-white/60 hover:text-cyan-400 transition-colors uppercase py-1 px-2 gap-1 group/link">
-							<span class="text-cyan-400 opacity-0 group-hover/link:opacity-100 transition-[opacity,transform] duration-200 mr-1 translate-x-1 group-hover/link:translate-x-0">[</span>
-							<span>Services</span>
-							<span class="text-cyan-400 opacity-0 group-hover/link:opacity-100 transition-[opacity,transform] duration-200 ml-1 -translate-x-1 group-hover/link:translate-x-0">]</span>
-							<svg class="w-4 h-4 text-white/40 group-hover/dropdown:text-cyan-400 transition-[color,transform] group-hover/dropdown:rotate-180 duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-								<polyline points="6 9 12 15 18 9"></polyline>
-							</svg>
-						</a>
-					)}
-					
-					<!-- Dropdown Menu Box (Two Column Grid) -->
-					<div class="absolute top-full left-1/2 -translate-x-1/2 pt-2.5 opacity-0 invisible group-hover/dropdown:opacity-100 group-hover/dropdown:visible transition-[opacity,visibility] duration-300 w-[32rem] pointer-events-none group-hover/dropdown:pointer-events-auto z-50">
-						<div class="backdrop-blur-md bg-black/95 border border-white/10 rounded-xl p-3 shadow-2xl grid grid-cols-2 gap-3">
-							<a href="/ai-ml" class="flex flex-col gap-1 p-3 rounded-lg border border-white/5 bg-white/[0.02] hover:border-cyan-400/30 hover:bg-cyan-500/[0.05] transition-all duration-300 group/dropitem text-left">
-								<div class="flex items-center gap-1">
-									<span class="text-cyan-400 opacity-0 group-hover/dropitem:opacity-100 transition-[opacity,transform] duration-200 -translate-x-1 group-hover/dropitem:translate-x-0 font-mono text-xs">[</span>
-									<span class="text-[16px] font-mono uppercase tracking-widest text-neutral-300 group-hover:text-cyan-400 transition-colors font-bold">Ai ML</span>
-									<span class="text-cyan-400 opacity-0 group-hover/dropitem:opacity-100 transition-[opacity,transform] duration-200 translate-x-1 group-hover/dropitem:translate-x-0 font-mono text-xs">]</span>
-								</div>
-								<p class="text-[15px] text-neutral-400 group-hover:text-neutral-300 transition-colors font-light leading-snug font-sans">
-									Custom neural models & cognitive pipelines.
-								</p>
-							</a>
-							<a href="/it-staffing" class="flex flex-col gap-1 p-3 rounded-lg border border-white/5 bg-white/[0.02] hover:border-cyan-400/30 hover:bg-cyan-500/[0.05] transition-all duration-300 group/dropitem text-left">
-								<div class="flex items-center gap-1">
-									<span class="text-cyan-400 opacity-0 group-hover/dropitem:opacity-100 transition-[opacity,transform] duration-200 -translate-x-1 group-hover/dropitem:translate-x-0 font-mono text-xs">[</span>
-									<span class="text-[16px] font-mono uppercase tracking-widest text-neutral-300 group-hover:text-cyan-400 transition-colors font-bold">IT Staffing</span>
-									<span class="text-cyan-400 opacity-0 group-hover/dropitem:opacity-100 transition-[opacity,transform] duration-200 translate-x-1 group-hover/dropitem:translate-x-0 font-mono text-xs">]</span>
-								</div>
-								<p class="text-[15px] text-neutral-400 group-hover:text-neutral-300 transition-colors font-light leading-snug font-sans">
-									Elite embedded machine learning & dev squads.
-								</p>
-							</a>
-						</div>
-					</div>
-				</div>
-				
-				<!-- Contact -->
-				{activePage === 'contact' ? (
-					<a href="/contact" class="inline-flex items-center justify-center text-[18px] font-mono tracking-widest text-cyan-400 transition-colors uppercase py-1 px-2">
-						<span class="text-cyan-400 opacity-100 mr-1">[</span>
-						<span>Contact</span>
-						<span class="text-cyan-400 opacity-100 ml-1">]</span>
-					</a>
-				) : (
-					<a href="/contact" class="inline-flex items-center justify-center text-[18px] font-mono tracking-widest text-white/60 hover:text-cyan-400 transition-colors uppercase py-1 px-2 group/link">
-						<span class="text-cyan-400 opacity-0 group-hover/link:opacity-100 transition-[opacity,transform] duration-200 mr-1 translate-x-1 group-hover/link:translate-x-0">[</span>
-						<span>Contact</span>
-						<span class="text-cyan-400 opacity-0 group-hover/link:opacity-100 transition-[opacity,transform] duration-200 ml-1 -translate-x-1 group-hover/link:translate-x-0">]</span>
-					</a>
-				)}
-			</nav>
-
-			<!-- Mobile Menu Button -->
-			<button id="mobile-menu-btn" aria-label="Toggle Navigation Menu" class="md:hidden relative z-50 p-2 text-cyan-400 hover:text-white transition-colors focus:outline-none pointer-events-auto">
-				<svg id="hamburger-icon" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-					<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-				</svg>
-				<svg id="close-icon" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-					<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-				</svg>
-			</button>
-		</div>
-
-		<!-- Mobile Menu Overlay -->
-		<div id="mobile-menu-overlay" class="fixed inset-0 z-40 bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center gap-6 text-center transition-all duration-300 opacity-0 pointer-events-none md:hidden">
-			<a href="/home" class="text-xl font-mono tracking-widest text-white hover:text-cyan-400 uppercase py-2">Home</a>
-			<a href="/about" class="text-xl font-mono tracking-widest text-white hover:text-cyan-400 uppercase py-2">About Us</a>
-			<a href="/careers" class="text-xl font-mono tracking-widest text-white hover:text-cyan-400 uppercase py-2">Careers</a>
-			<a href="/ai-ml" class="text-xl font-mono tracking-widest text-white hover:text-cyan-400 uppercase py-2">AI & Machine Learning</a>
-			<a href="/it-staffing" class="text-xl font-mono tracking-widest text-white hover:text-cyan-400 uppercase py-2">IT Staffing</a>
-			<a href="/contact" class="text-xl font-mono tracking-widest text-white hover:text-cyan-400 uppercase py-2">Contact Us</a>
-		</div>
-	</header>
+	<!-- Floating Header Navigation Component -->
+	<Header activePage={activePage} />
 
 	<!-- High-fidelity Preloader Overlay -->
 	{showPreloader && (
@@ -202,11 +43,11 @@ const {
 			<div class="flex flex-col items-center gap-6">
 				<!-- Glowing Logo -->
 				<div class="relative w-16 h-16">
-					<img src="/diceforceITlogo_.gif" alt="diceforce IT Logo" class="w-full h-full object-contain" />
+					<img src="/diceforceITlogo_.gif" alt="Diceforce IT Logo" class="w-full h-full object-contain" />
 					<div class="absolute inset-[-4px] rounded-full border border-cyan-500/20 border-t-cyan-400 animate-spin duration-1000"></div>
 				</div>
 				<div class="text-center space-y-2">
-					<div class="font-space text-xs tracking-[0.3em] text-white/80 uppercase">DiceForce IT</div>
+					<div class="font-space text-xs tracking-[0.3em] text-white/80 uppercase">Diceforce IT</div>
 					<div class="font-mono text-xs text-white/40 uppercase tracking-widest">
 						Calibrating Neural Interface… <span id="loading-progress-text">0%</span>
 					</div>
@@ -220,7 +61,7 @@ const {
 	)}
 
 	<!-- Main Layout Layer (Swiss Minimalist Editorial Style) -->
-	<main class="relative z-20 w-full min-h-screen text-white font-sans flex flex-col items-center px-6 sm:px-12 md:px-16 pt-36 pb-0 pointer-events-auto select-auto">
+	<main class="relative z-20 w-full min-h-screen text-white font-sans flex flex-col items-center px-4 sm:px-8 md:px-16 pt-28 sm:pt-36 pb-0 pointer-events-auto select-auto overflow-x-clip">
 		<slot />
 	</main>
 
@@ -407,38 +248,6 @@ const {
 				
 				mainElement.style.setProperty('--mouse-x', `${x}px`);
 				mainElement.style.setProperty('--mouse-y', `${y}px`);
-			});
-		}
-
-		// Mobile Menu Handling
-		const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-		const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-		const hamburgerIcon = document.getElementById('hamburger-icon');
-		const closeIcon = document.getElementById('close-icon');
-
-		if (mobileMenuBtn && mobileMenuOverlay) {
-			mobileMenuBtn.addEventListener('click', () => {
-				const isOpen = mobileMenuOverlay.classList.contains('opacity-100');
-				if (isOpen) {
-					mobileMenuOverlay.classList.remove('opacity-100', 'pointer-events-auto');
-					mobileMenuOverlay.classList.add('opacity-0', 'pointer-events-none');
-					hamburgerIcon?.classList.remove('hidden');
-					closeIcon?.classList.add('hidden');
-				} else {
-					mobileMenuOverlay.classList.remove('opacity-0', 'pointer-events-none');
-					mobileMenuOverlay.classList.add('opacity-100', 'pointer-events-auto');
-					hamburgerIcon?.classList.add('hidden');
-					closeIcon?.classList.remove('hidden');
-				}
-			});
-
-			mobileMenuOverlay.querySelectorAll('a').forEach(link => {
-				link.addEventListener('click', () => {
-					mobileMenuOverlay.classList.remove('opacity-100', 'pointer-events-auto');
-					mobileMenuOverlay.classList.add('opacity-0', 'pointer-events-none');
-					hamburgerIcon?.classList.remove('hidden');
-					closeIcon?.classList.add('hidden');
-				});
 			});
 		}
 	</script>
