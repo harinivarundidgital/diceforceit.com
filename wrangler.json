@@ -3,6 +3,8 @@
   "name": "diceforceit-com",
   "compatibility_date": "2026-07-21",
   "assets": {
-    "directory": "./dist"
+    "directory": "./dist/client",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
   }
 }

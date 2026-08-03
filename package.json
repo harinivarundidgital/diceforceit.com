@@ -10,6 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "deploy": "astro build && wrangler deploy",
+    "deploy:pages": "astro build && wrangler pages deploy dist/client --project-name diceforceit-com",
     "astro": "astro"
   },
   "dependencies": {
