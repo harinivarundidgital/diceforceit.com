@@ -6,5 +6,11 @@
     "directory": "./dist/client",
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
-  }
+  },
+  "kv_namespaces": [
+    {
+      "binding": "SESSION",
+      "id": "bd014daacf604963817d05466a7502dd"
+    }
+  ]
 }

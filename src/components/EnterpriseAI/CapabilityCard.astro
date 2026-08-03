@@ -2,18 +2,20 @@
 /* CapabilityCard.astro - Floating capability card with icon and title matching reference diagram */
 interface Props {
   title: string;
+  shortTitle?: string;
   desc?: string;
   posClass: string;
   id: string;
 }
 
-const { title, posClass, id } = Astro.props;
-const isLeft = posClass.includes('left');
-const isRight = posClass.includes('right');
+const { title, shortTitle, posClass, id } = Astro.props;
 ---
 
-<div class={`eai-capability-card w-full max-w-[280px] sm:w-auto ${posClass}`} id={`cap-card-${id}`} tabIndex={0} aria-label={`Capability: ${title}`}>
+<div class={`eai-capability-card w-full max-w-[260px] sm:max-w-[280px] sm:w-auto ${posClass}`} id={`cap-card-${id}`} tabIndex={0} aria-label={`Capability: ${title}`}>
   <div class="w-full flex items-center justify-center text-center gap-2 sm:gap-2.5 px-3 sm:px-4 py-2 sm:py-2.5 bg-[#080d22]/90 border border-cyan-500/30 rounded-xl shadow-[0_0_15px_rgba(0,222,255,0.1)] backdrop-blur-xl hover:border-cyan-400 hover:shadow-[0_0_25px_rgba(0,222,255,0.25)] transition-all duration-300 group">
-    <span class="font-bold text-[11px] sm:text-xs tracking-wider text-white group-hover:text-white transition-colors text-center truncate">{title}</span>
+    <span class="font-bold text-[11px] sm:text-xs tracking-wider text-white group-hover:text-white transition-colors text-center truncate">
+      <span class="hidden sm:inline">{title}</span>
+      <span class="inline sm:hidden">{shortTitle || title}</span>
+    </span>
   </div>
 </div>

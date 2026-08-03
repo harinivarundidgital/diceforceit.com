@@ -2,10 +2,10 @@
 import ActionCard from './ActionCard.astro';
 
 const actions = [
-  { id: 'workflows', title: 'Execute Workflows', description: 'End-to-end process automation', icon: 'play-circle', theme: 'theme-cyan' },
-  { id: 'crm', title: 'Update CRM & ERP', description: 'Update records across systems', icon: 'database', theme: 'theme-blue' },
-  { id: 'alerts', title: 'Trigger Smart Alerts', description: 'Notify the right people instantly', icon: 'bell', theme: 'theme-cyan' },
-  { id: 'meetings', title: 'Schedule & Dispatch', description: 'Book meetings with relevant stakeholders', icon: 'calendar', theme: 'theme-blue' },
+  { id: 'workflows', title: 'Execute Workflows', shortTitle: 'Workflows', description: 'End-to-end process automation', icon: 'play-circle', theme: 'theme-cyan' },
+  { id: 'crm', title: 'Update CRM & ERP', shortTitle: 'CRM & ERP', description: 'Update records across systems', icon: 'database', theme: 'theme-blue' },
+  { id: 'alerts', title: 'Trigger Smart Alerts', shortTitle: 'Smart Alerts', description: 'Notify the right people instantly', icon: 'bell', theme: 'theme-cyan' },
+  { id: 'meetings', title: 'Schedule & Dispatch', shortTitle: 'Scheduling', description: 'Book meetings with relevant stakeholders', icon: 'calendar', theme: 'theme-blue' },
 ];
 ---
 
@@ -22,7 +22,7 @@ const actions = [
 
   <div class="flex flex-col gap-3.5 my-auto">
     {actions.map((item) => (
-      <ActionCard title={item.title} description={item.description} id={item.id} themeClass={item.theme}>
+      <ActionCard title={item.title} shortTitle={item.shortTitle} description={item.description} id={item.id} themeClass={item.theme}>
         <slot name="icon" slot="icon">
           {item.icon === 'play-circle' && (
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

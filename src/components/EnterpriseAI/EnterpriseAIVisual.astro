@@ -107,6 +107,8 @@ import AnimatedConnections from './AnimatedConnections.astro';
 
       card.addEventListener('pointerdown', (e: Event) => {
         const pe = e as PointerEvent;
+        // Disable drag on touch pointers or small screen sizes (< 820px) to prevent accidental card displacement and overlapping while touch-scrolling
+        if (pe.pointerType === 'touch' || window.innerWidth < 820) return;
         const targetTag = (pe.target as HTMLElement).tagName;
         if (targetTag === 'BUTTON' || targetTag === 'A' || targetTag === 'INPUT') return;
         

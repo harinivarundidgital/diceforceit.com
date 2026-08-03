@@ -2,14 +2,15 @@
 /* InputCard.astro - Stacked glass card for Enterprise Inputs */
 interface Props {
   title: string;
+  shortTitle?: string;
   count: string;
   id: string;
 }
 
-const { title, count, id } = Astro.props;
+const { title, shortTitle, count, id } = Astro.props;
 ---
 
-<div class="eai-glass-card eai-input-card group flex items-center justify-between text-center p-3 sm:p-3.5 bg-[#080d22]/85 border border-white/10 rounded-xl hover:border-cyan-400/50 hover:bg-[#0c1433]/95 transition-all duration-300 shadow-sm hover:shadow-[0_0_20px_rgba(0,222,255,0.2)] w-full" id={`input-card-${id}`} tabIndex={0} aria-label={`${title} (${count})`}>
+<div class="eai-glass-card eai-input-card group flex items-center justify-between text-center p-2.5 sm:p-3.5 bg-[#080d22]/85 border border-white/10 rounded-xl hover:border-cyan-400/50 hover:bg-[#0c1433]/95 transition-all duration-300 shadow-sm hover:shadow-[0_0_20px_rgba(0,222,255,0.2)] w-full" id={`input-card-${id}`} tabIndex={0} aria-label={`${title} (${count})`}>
   <div class="eai-input-left flex items-center justify-between text-center gap-2 sm:gap-2.5 w-full min-w-0">
     <div class="flex items-center gap-2 min-w-0 overflow-hidden">
       <div class="eai-card-icon text-cyan-400 group-hover:scale-110 transition-transform shrink-0" aria-hidden="true">
@@ -19,7 +20,10 @@ const { title, count, id } = Astro.props;
           </svg>
         </slot>
       </div>
-      <span class="eai-card-label text-[11px] sm:text-xs font-semibold text-white group-hover:text-white transition-colors text-left truncate">{title}</span>
+      <span class="eai-card-label text-[11px] sm:text-xs font-semibold text-white group-hover:text-white transition-colors text-left truncate">
+        <span class="hidden sm:inline">{title}</span>
+        <span class="inline sm:hidden">{shortTitle || title}</span>
+      </span>
     </div>
     <span class="eai-badge-count font-mono text-[10px] sm:text-[11px] px-1.5 sm:px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-white font-medium group-hover:bg-cyan-950/60 group-hover:border-cyan-500/40 transition-all shrink-0 ml-1">{count}</span>
   </div>

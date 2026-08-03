@@ -2,11 +2,11 @@
 import InputCard from './InputCard.astro';
 
 const inputs = [
-  { id: 'docs', title: 'Knowledge & Contracts', count: '300K+', icon: 'file-text' },
-  { id: 'crm', title: 'CRM & Financial Data', count: '350K+', icon: 'dollar-sign' },
-  { id: 'emails', title: 'Emails & Communications', count: '250K+', icon: 'mail' },
-  { id: 'market', title: 'Real-Time APIs & Feeds', count: '1M+', icon: 'globe' },
-  { id: 'cloud', title: 'Cloud & Infrastructure', count: '3M+', icon: 'cloud' },
+  { id: 'docs', title: 'Knowledge & Contracts', shortTitle: 'Knowledge & Contracts', count: '300K+', icon: 'file-text' },
+  { id: 'crm', title: 'CRM & Financial Data', shortTitle: 'CRM & Finance', count: '350K+', icon: 'dollar-sign' },
+  { id: 'emails', title: 'Emails & Communications', shortTitle: 'Emails & Comms', count: '250K+', icon: 'mail' },
+  { id: 'market', title: 'Real-Time APIs & Feeds', shortTitle: 'Real-Time APIs', count: '1M+', icon: 'globe' },
+  { id: 'cloud', title: 'Cloud & Infrastructure', shortTitle: 'Cloud Infra', count: '3M+', icon: 'cloud' },
 ];
 ---
 
@@ -24,7 +24,7 @@ const inputs = [
 
   <div class="flex flex-col gap-3.5 my-auto">
     {inputs.map((item) => (
-      <InputCard title={item.title} count={item.count} id={item.id}>
+      <InputCard title={item.title} shortTitle={item.shortTitle} count={item.count} id={item.id}>
         <slot name="icon" slot="icon">
           {item.icon === 'mail' && (
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

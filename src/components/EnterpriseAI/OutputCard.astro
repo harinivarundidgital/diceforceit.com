@@ -2,15 +2,16 @@
 /* OutputCard.astro - Glass card for Intelligent Outputs with distinct theme color */
 interface Props {
   title: string;
+  shortTitle?: string;
   description?: string;
   id: string;
   themeClass?: string;
 }
 
-const { title, id, themeClass = "theme-blue" } = Astro.props;
+const { title, shortTitle, id, themeClass = "theme-blue" } = Astro.props;
 ---
 
-<div class={`eai-glass-card eai-output-card group flex items-center justify-center text-center p-3 sm:p-3.5 bg-[#080d22]/85 border border-white/10 rounded-xl hover:border-cyan-400/50 hover:bg-[#0d1233]/95 transition-all duration-300 shadow-sm hover:shadow-[0_0_20px_rgba(0,222,255,0.25)] w-full ${themeClass}`} id={`output-card-${id}`} tabIndex={0} aria-label={`Output: ${title}`}>
+<div class={`eai-glass-card eai-output-card group flex items-center justify-center text-center p-2.5 sm:p-3.5 bg-[#080d22]/85 border border-white/10 rounded-xl hover:border-cyan-400/50 hover:bg-[#0d1233]/95 transition-all duration-300 shadow-sm hover:shadow-[0_0_20px_rgba(0,222,255,0.25)] w-full ${themeClass}`} id={`output-card-${id}`} tabIndex={0} aria-label={`Output: ${title}`}>
   <div class="flex items-center justify-center text-center gap-2 sm:gap-2.5 w-full min-w-0">
     <div class="eai-card-icon group-hover:scale-110 transition-transform shrink-0">
       <slot name="icon">
@@ -20,6 +21,9 @@ const { title, id, themeClass = "theme-blue" } = Astro.props;
         </svg>
       </slot>
     </div>
-    <span class="eai-output-title font-bold text-[11px] sm:text-xs text-white group-hover:text-white transition-colors text-center truncate">{title}</span>
+    <span class="eai-output-title font-bold text-[11px] sm:text-xs text-white group-hover:text-white transition-colors text-center truncate">
+      <span class="hidden sm:inline">{title}</span>
+      <span class="inline sm:hidden">{shortTitle || title}</span>
+    </span>
   </div>
 </div>

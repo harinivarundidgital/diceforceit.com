@@ -2,7 +2,7 @@
 /* HallucinationLayer.astro - Guardrail glass card below core engine */
 ---
 
-<div class="eai-hallucination-card flex flex-col sm:flex-row items-center justify-center text-center gap-2 sm:gap-3 p-2.5 sm:p-3 bg-[#080d22]/85 border border-white/10 rounded-xl mx-auto w-full max-w-[440px]" role="region" aria-label="Hallucination Control Layer">
+<div class="eai-hallucination-card flex flex-col sm:flex-row items-center justify-center text-center gap-2 sm:gap-3 p-2 sm:p-3 bg-[#080d22]/85 border border-white/10 rounded-xl mx-auto w-full max-w-[440px]" role="region" aria-label="Hallucination Control Layer">
   <div class="eai-hallucination-header flex items-center justify-center gap-1.5 shrink-0">
     <div class="eai-shield-icon flex items-center justify-center">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -10,13 +10,16 @@
         <path d="m9 12 2 2 4-4"/>
       </svg>
     </div>
-    <span class="eai-hallucination-title font-bold text-[11px] sm:text-xs text-center">Hallucination Control Layer</span>
+    <span class="eai-hallucination-title font-bold text-[11px] sm:text-xs text-center">
+      <span class="hidden sm:inline">Hallucination Control Layer</span>
+      <span class="inline sm:hidden">Hallucination Control</span>
+    </span>
   </div>
 
   <div class="eai-hallucination-badges text-[10px] sm:text-xs text-white font-mono flex items-center justify-center text-center flex-wrap gap-1 sm:gap-1.5 mt-0.5 sm:mt-0">
     <span class="px-1.5 py-0.5 rounded bg-white/5 border border-white/10">Validation</span>
     <span class="px-1.5 py-0.5 rounded bg-white/5 border border-white/10">Verification</span>
-    <span class="px-1.5 py-0.5 rounded bg-white/5 border border-white/10">Confidence Scoring</span>
-    <span class="px-1.5 py-0.5 rounded bg-white/5 border border-white/10">Human-in-the-Loop</span>
+    <span class="px-1.5 py-0.5 rounded bg-white/5 border border-white/10">Confidence</span>
+    <span class="px-1.5 py-0.5 rounded bg-white/5 border border-white/10 hidden sm:inline">Human-in-the-Loop</span>
   </div>
 </div>

@@ -2,10 +2,10 @@
 import OutputCard from './OutputCard.astro';
 
 const outputs = [
-  { id: 'insights', title: 'Actionable Insights', description: 'Real-time insights with context & impact', icon: 'zap', theme: 'theme-cyan' },
-  { id: 'opportunity', title: 'Opportunity Intelligence', description: 'High probability opportunities with win strategy', icon: 'trending-up', theme: 'theme-blue' },
-  { id: 'risk-comp', title: 'Risk & Compliance Alerts', description: 'Risks, issues & compliance gaps identified', icon: 'shield-alert', theme: 'theme-cyan' },
-  { id: 'predictive', title: 'Predictive Analytics & Answers', description: 'Forecasts for revenue, costs, timelines', icon: 'bar-chart-3', theme: 'theme-blue' },
+  { id: 'insights', title: 'Actionable Insights', shortTitle: 'Action Insights', description: 'Real-time insights with context & impact', icon: 'zap', theme: 'theme-cyan' },
+  { id: 'opportunity', title: 'Opportunity Intelligence', shortTitle: 'Opportunities', description: 'High probability opportunities with win strategy', icon: 'trending-up', theme: 'theme-blue' },
+  { id: 'risk-comp', title: 'Risk & Compliance Alerts', shortTitle: 'Risk & Compliance', description: 'Risks, issues & compliance gaps identified', icon: 'shield-alert', theme: 'theme-cyan' },
+  { id: 'predictive', title: 'Predictive Analytics & Answers', shortTitle: 'Predictive Analytics', description: 'Forecasts for revenue, costs, timelines', icon: 'bar-chart-3', theme: 'theme-blue' },
 ];
 ---
 
@@ -21,7 +21,7 @@ const outputs = [
 
   <div class="flex flex-col gap-3.5 my-auto">
     {outputs.map((item) => (
-      <OutputCard title={item.title} description={item.description} id={item.id} themeClass={item.theme}>
+      <OutputCard title={item.title} shortTitle={item.shortTitle} description={item.description} id={item.id} themeClass={item.theme}>
         <slot name="icon" slot="icon">
           {item.icon === 'zap' && (
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
