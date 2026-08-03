@@ -13,7 +13,6 @@ import PageLayout from '../layouts/PageLayout.astro';
 		<section class="space-y-8 animate-stagger-item relative z-10 pt-4 md:pt-8">
 			<div class="space-y-6">
 				<div class="inline-flex items-center gap-2 px-3.5 py-1.5 border border-cyan-500/20 rounded-full bg-cyan-950/20 backdrop-blur-md">
-					<span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
 					<span class="font-mono text-xs tracking-widest text-cyan-400 uppercase font-semibold">Welcome to Diceforce IT</span>
 				</div>
 				
@@ -28,23 +27,10 @@ import PageLayout from '../layouts/PageLayout.astro';
 
 			<!-- CTA Buttons -->
 			<div class="flex flex-wrap items-center gap-4 pt-2">
-				<a 
-					href="#contact-form" 
-					class="px-8 py-4 bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-bold rounded-full hover:shadow-[0_0_35px_0_rgba(34,211,238,0.5)] hover:scale-105 transition-all duration-300 text-xs sm:text-sm tracking-wider uppercase inline-flex items-center gap-2"
-				>
-					<span>Talk to an AI Expert</span>
+				<a href="#achieve" class="btn-primary">
+					<span>Explore Our Services</span>
 					<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-					</svg>
-				</a>
-				
-				<a 
-					href="#achieve" 
-					class="px-8 py-4 border border-white/15 hover:border-cyan-400/40 text-white font-semibold rounded-full bg-white/[0.03] hover:bg-white/[0.08] hover:shadow-[0_0_30px_0_rgba(255,255,255,0.1)] hover:scale-105 transition-all duration-300 text-xs sm:text-sm tracking-wider uppercase inline-flex items-center gap-2"
-				>
-					<span>Explore Our Services</span>
-					<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-						<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
 					</svg>
 				</a>
 			</div>
@@ -138,33 +124,91 @@ import PageLayout from '../layouts/PageLayout.astro';
 				</div>
 			</div>
 
-			<!-- Our Expertise Badges/Grid -->
-			<div class="space-y-6 pt-6">
-				<div class="flex items-center gap-2">
-					<span class="font-mono text-xs tracking-widest text-cyan-400 uppercase">[ CORE CAPABILITIES ]</span>
+			<!-- Our Expertise Redesigned Grid -->
+			<div class="space-y-6 pt-10 border-t border-white/10">
+				<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+					<div class="space-y-2">
+						<div class="inline-flex items-center gap-2 px-3 py-1 border border-cyan-500/20 rounded-full bg-cyan-950/20">
+							<span class="font-mono text-xs tracking-widest text-cyan-400 uppercase font-semibold">CORE CAPABILITIES</span>
+						</div>
+						<h3 class="text-3xl sm:text-4xl font-extrabold font-syne text-white tracking-tight">
+							Our Expertise
+						</h3>
+					</div>
+					<p class="text-neutral-400 text-xs sm:text-sm max-w-md font-light leading-relaxed">
+						Specialized engineering domains powering enterprise-grade cognitive systems and scalable platforms.
+					</p>
 				</div>
-				<h3 class="text-2xl sm:text-3xl font-bold font-syne text-white">Our Expertise</h3>
 				
-				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-					<div class="p-5 rounded-2xl border border-white/5 bg-white/[0.01] hover:border-cyan-400/40 hover:bg-cyan-400/[0.04] transition-all duration-300 flex items-center gap-3 group">
-						<span class="w-2.5 h-2.5 rounded-full bg-cyan-400 group-hover:scale-125 transition-transform"></span>
-						<span class="text-white font-space text-sm font-semibold">Enterprise AI</span>
+				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-5 pt-2">
+					<!-- Expertise Card 1: Enterprise AI -->
+					<div class="relative p-6 rounded-2xl border border-white/10 bg-[#080c16]/80 backdrop-blur-md hover:border-cyan-400/50 hover:bg-[#0c1322] transition-all duration-500 group flex flex-col justify-between hover:-translate-y-1.5 shadow-lg hover:shadow-cyan-500/10 overflow-hidden">
+						<div class="space-y-4">
+							<div class="w-10 h-10 rounded-xl bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center text-cyan-300 group-hover:bg-cyan-400 group-hover:text-black transition-all duration-300">
+								<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+								</svg>
+							</div>
+							<h4 class="text-white font-syne text-base font-bold group-hover:text-cyan-300 transition-colors leading-snug">
+								Enterprise AI
+							</h4>
+						</div>
 					</div>
-					<div class="p-5 rounded-2xl border border-white/5 bg-white/[0.01] hover:border-blue-400/40 hover:bg-blue-400/[0.04] transition-all duration-300 flex items-center gap-3 group">
-						<span class="w-2.5 h-2.5 rounded-full bg-blue-400 group-hover:scale-125 transition-transform"></span>
-						<span class="text-white font-space text-sm font-semibold">Agentic AI</span>
+
+					<!-- Expertise Card 2: Agentic AI -->
+					<div class="relative p-6 rounded-2xl border border-white/10 bg-[#080c16]/80 backdrop-blur-md hover:border-cyan-400/50 hover:bg-[#0c1322] transition-all duration-500 group flex flex-col justify-between hover:-translate-y-1.5 shadow-lg hover:shadow-cyan-500/10 overflow-hidden">
+						<div class="space-y-4">
+							<div class="w-10 h-10 rounded-xl bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center text-cyan-300 group-hover:bg-cyan-400 group-hover:text-black transition-all duration-300">
+								<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+								</svg>
+							</div>
+							<h4 class="text-white font-syne text-base font-bold group-hover:text-cyan-300 transition-colors leading-snug">
+								Agentic AI
+							</h4>
+						</div>
 					</div>
-					<div class="p-5 rounded-2xl border border-white/5 bg-white/[0.01] hover:border-cyan-400/40 hover:bg-cyan-400/[0.04] transition-all duration-300 flex items-center gap-3 group">
-						<span class="w-2.5 h-2.5 rounded-full bg-cyan-400 group-hover:scale-125 transition-transform"></span>
-						<span class="text-white font-space text-sm font-semibold">Intelligent Enterprises</span>
+
+					<!-- Expertise Card 3: Intelligent Enterprises -->
+					<div class="relative p-6 rounded-2xl border border-white/10 bg-[#080c16]/80 backdrop-blur-md hover:border-cyan-400/50 hover:bg-[#0c1322] transition-all duration-500 group flex flex-col justify-between hover:-translate-y-1.5 shadow-lg hover:shadow-cyan-500/10 overflow-hidden">
+						<div class="space-y-4">
+							<div class="w-10 h-10 rounded-xl bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center text-cyan-300 group-hover:bg-cyan-400 group-hover:text-black transition-all duration-300">
+								<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+								</svg>
+							</div>
+							<h4 class="text-white font-syne text-base font-bold group-hover:text-cyan-300 transition-colors leading-snug">
+								Intelligent Enterprises
+							</h4>
+						</div>
 					</div>
-					<div class="p-5 rounded-2xl border border-white/5 bg-white/[0.01] hover:border-blue-400/40 hover:bg-blue-400/[0.04] transition-all duration-300 flex items-center gap-3 group">
-						<span class="w-2.5 h-2.5 rounded-full bg-blue-400 group-hover:scale-125 transition-transform"></span>
-						<span class="text-white font-space text-sm font-semibold">AI Engineering Excellence</span>
+
+					<!-- Expertise Card 4: AI Engineering Excellence -->
+					<div class="relative p-6 rounded-2xl border border-white/10 bg-[#080c16]/80 backdrop-blur-md hover:border-cyan-400/50 hover:bg-[#0c1322] transition-all duration-500 group flex flex-col justify-between hover:-translate-y-1.5 shadow-lg hover:shadow-cyan-500/10 overflow-hidden">
+						<div class="space-y-4">
+							<div class="w-10 h-10 rounded-xl bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center text-cyan-300 group-hover:bg-cyan-400 group-hover:text-black transition-all duration-300">
+								<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+								</svg>
+							</div>
+							<h4 class="text-white font-syne text-base font-bold group-hover:text-cyan-300 transition-colors leading-snug">
+								AI Engineering Excellence
+							</h4>
+						</div>
 					</div>
-					<div class="p-5 rounded-2xl border border-white/5 bg-white/[0.01] hover:border-cyan-400/40 hover:bg-cyan-400/[0.04] transition-all duration-300 flex items-center gap-3 group">
-						<span class="w-2.5 h-2.5 rounded-full bg-cyan-400 group-hover:scale-125 transition-transform"></span>
-						<span class="text-white font-space text-sm font-semibold">Responsible AI</span>
+
+					<!-- Expertise Card 5: Responsible AI -->
+					<div class="relative p-6 rounded-2xl border border-white/10 bg-[#080c16]/80 backdrop-blur-md hover:border-cyan-400/50 hover:bg-[#0c1322] transition-all duration-500 group flex flex-col justify-between hover:-translate-y-1.5 shadow-lg hover:shadow-cyan-500/10 overflow-hidden">
+						<div class="space-y-4">
+							<div class="w-10 h-10 rounded-xl bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center text-cyan-300 group-hover:bg-cyan-400 group-hover:text-black transition-all duration-300">
+								<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+								</svg>
+							</div>
+							<h4 class="text-white font-syne text-base font-bold group-hover:text-cyan-300 transition-colors leading-snug">
+								Responsible AI
+							</h4>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -503,11 +547,8 @@ import PageLayout from '../layouts/PageLayout.astro';
 				</div>
 
 				<div>
-					<a 
-						href="#contact-form" 
-						class="px-8 py-3.5 bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-semibold rounded-full hover:shadow-[0_0_30px_0_rgba(34,211,238,0.4)] hover:scale-105 transition-all duration-300 text-xs tracking-wider uppercase inline-block whitespace-nowrap"
-					>
-						Request A Call
+					<a href="#contact-form" class="btn-primary">
+						<span>Request A Call</span>
 					</a>
 				</div>
 			</div>
@@ -573,21 +614,28 @@ import PageLayout from '../layouts/PageLayout.astro';
 		</section>
 
 		<!-- SECTION 10: BANNER CTA -->
-		<section class="relative rounded-3xl overflow-hidden border border-cyan-500/30 bg-gradient-to-r from-cyan-950/40 via-blue-950/40 to-blue-900/30 p-10 sm:p-16 backdrop-blur-xl text-center space-y-6">
-			<div class="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-transparent pointer-events-none"></div>
+		<section class="relative rounded-3xl overflow-hidden border border-white/10 bg-[#080c16]/90 backdrop-blur-xl p-10 sm:p-16 text-center space-y-6 shadow-2xl hover:border-cyan-500/30 transition-all duration-500 group">
+			<!-- Glowing Background Orbs -->
+			<div class="absolute -top-32 -left-32 w-72 h-72 bg-cyan-500/15 rounded-full blur-[100px] pointer-events-none group-hover:bg-cyan-500/25 transition-all duration-700"></div>
+			<div class="absolute -bottom-32 -right-32 w-72 h-72 bg-blue-500/15 rounded-full blur-[100px] pointer-events-none group-hover:bg-blue-500/25 transition-all duration-700"></div>
+			<div class="absolute inset-0 bg-gradient-to-r from-cyan-500/[0.03] via-blue-500/[0.05] to-transparent pointer-events-none"></div>
+
 			<div class="relative z-10 max-w-3xl mx-auto space-y-6">
-				<h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold font-syne text-white tracking-tight">
-					Let's Engineer What's Next
+				<div class="inline-flex items-center gap-2 px-3 py-1 border border-cyan-500/20 rounded-full bg-cyan-950/30 backdrop-blur-md">
+					<span class="font-mono text-xs tracking-widest text-cyan-400 uppercase font-semibold">GET STARTED</span>
+				</div>
+				<h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold font-syne text-white tracking-tight leading-tight">
+					Let's Engineer <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-100 to-cyan-300">What's Next</span>
 				</h2>
-				<p class="text-neutral-300 text-base sm:text-lg font-light leading-relaxed select-text">
+				<p class="text-neutral-300 text-base sm:text-lg font-light leading-relaxed select-text max-w-2xl mx-auto">
 					Diceforce IT is ready to help transform your vision into production-ready technology.
 				</p>
-				<div class="pt-4">
-					<a 
-						href="#contact-form" 
-						class="px-10 py-4 bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-bold rounded-full hover:shadow-[0_0_40px_0_rgba(34,211,238,0.5)] hover:scale-105 transition-all duration-300 text-xs sm:text-sm tracking-wider uppercase inline-block"
-					>
-						Schedule a Consultation
+				<div class="pt-4 flex justify-center">
+					<a href="#contact-form" class="btn-primary">
+						<span>Schedule a Consultation</span>
+						<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+						</svg>
 					</a>
 				</div>
 			</div>
@@ -739,24 +787,47 @@ import PageLayout from '../layouts/PageLayout.astro';
 							<!-- Form Status Notification -->
 							<div id="form-status-msg" class="hidden p-3 rounded-xl border text-xs font-mono tracking-wide"></div>
 
-							<!-- Submit Button -->
+							<!-- Submit Button with Multi-stage Interactive Animation -->
 							<div class="pt-2">
-								<div class="relative group transition-transform duration-500 hover:scale-[1.015] w-full">
+								<div id="about-submit-wrapper" class="relative group transition-all duration-500 hover:scale-[1.015] active:scale-[0.98] w-full">
 									<!-- Outer atmospheric soft glow using logo colors -->
-									<div class="absolute -inset-1 bg-gradient-to-r from-[#0377ff] via-[#00deff] to-[#883ae2] rounded-full blur-md opacity-25 group-hover:opacity-60 transition-all duration-500 ease-out"></div>
+									<div id="about-btn-glow" class="absolute -inset-1 bg-gradient-to-r from-[#0377ff] via-[#00deff] to-[#883ae2] rounded-full blur-md opacity-25 group-hover:opacity-75 group-hover:blur-lg transition-all duration-500 ease-out"></div>
 									
 									<!-- Rounded container that clips the rotating border gradient -->
-									<div class="relative rounded-full p-[1px] overflow-hidden flex items-center justify-center bg-black shadow-[0_4px_12px_rgba(0,0,0,0.5)] group-hover:shadow-[0_0_20px_rgba(3,119,255,0.4)] transition-all duration-500 w-full">
+									<div class="relative rounded-full p-[1px] overflow-hidden flex items-center justify-center bg-black shadow-[0_4px_12px_rgba(0,0,0,0.5)] group-hover:shadow-[0_0_25px_rgba(0,222,255,0.4)] transition-all duration-500 w-full">
 										<!-- Rotating gradient element with logo colors -->
 										<div class="absolute inset-[-200%] bg-[conic-gradient(from_0deg,#0377ff,#00deff,#883ae2,#00deff,#0377ff)] animate-border-spin"></div>
 										
+										<!-- Shimmer / Glare Highlight overlay on hover -->
+										<div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out pointer-events-none z-20"></div>
+
 										<!-- Main Button -->
 										<button 
 											type="submit" 
-											class="relative w-full px-8 py-3.5 bg-black hover:bg-neutral-900 text-white font-syne text-xs font-extrabold uppercase tracking-widest rounded-full transition-all duration-300 inline-flex items-center justify-center gap-2.5 cursor-pointer z-10 select-none group-hover:text-[#00deff] border-none focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+											id="about-submit-btn"
+											class="relative w-full px-8 py-3.5 bg-black hover:bg-neutral-950 text-white font-syne text-xs font-extrabold uppercase tracking-widest rounded-full transition-all duration-300 inline-flex items-center justify-center gap-2.5 cursor-pointer z-10 select-none border-none focus:outline-none disabled:cursor-not-allowed overflow-hidden group-hover:text-[#00deff]"
 										>
-											<span>Send Message</span>
-											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-white group-hover:text-[#00deff] group-hover:translate-x-1 transition-all duration-300"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+											<span id="about-btn-text" class="transition-all duration-300 font-extrabold tracking-widest">Send Message</span>
+											
+											<!-- Icon Container -->
+											<span class="relative w-4 h-4 flex items-center justify-center shrink-0">
+												<!-- Default Paper Plane / Send Icon -->
+												<svg id="about-btn-icon-send" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-white group-hover:text-[#00deff] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300 absolute inset-0 transform">
+													<line x1="22" y1="2" x2="11" y2="13"></line>
+													<polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+												</svg>
+
+												<!-- Loading Spinner Icon -->
+												<svg id="about-btn-icon-loader" class="w-4 h-4 text-cyan-400 animate-spin absolute inset-0 opacity-0 scale-50 transition-all duration-300 pointer-events-none" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+													<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3"></circle>
+													<path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+												</svg>
+
+												<!-- Success Checkmark Icon -->
+												<svg id="about-btn-icon-check" class="w-4 h-4 text-emerald-400 absolute inset-0 opacity-0 scale-50 transition-all duration-300 pointer-events-none" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+													<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+												</svg>
+											</span>
 										</button>
 									</div>
 								</div>
@@ -845,30 +916,93 @@ import PageLayout from '../layouts/PageLayout.astro';
 
 	<!-- Interactive Scripts -->
 	<script>
-		// Form Handling
+		// Form Handling with Interactive Multi-Stage Button Animation
 		const queryForm = document.getElementById('about-query-form') as HTMLFormElement | null;
 		const statusMsg = document.getElementById('form-status-msg') as HTMLDivElement | null;
+		const submitBtn = document.getElementById('about-submit-btn') as HTMLButtonElement | null;
+		const btnText = document.getElementById('about-btn-text') as HTMLSpanElement | null;
+		const iconSend = document.getElementById('about-btn-icon-send') as SVGElement | null;
+		const iconLoader = document.getElementById('about-btn-icon-loader') as SVGElement | null;
+		const iconCheck = document.getElementById('about-btn-icon-check') as SVGElement | null;
+		const btnGlow = document.getElementById('about-btn-glow') as HTMLDivElement | null;
 
-		if (queryForm && statusMsg) {
+		if (queryForm && statusMsg && submitBtn) {
 			queryForm.addEventListener('submit', (e) => {
 				e.preventDefault();
-				const submitBtn = queryForm.querySelector('button[type="submit"]') as HTMLButtonElement | null;
-				if (submitBtn) {
-					submitBtn.disabled = true;
-					const btnText = submitBtn.querySelector('span');
-					if (btnText) btnText.innerText = 'Sending…';
+
+				// Disable submit button during animation sequence
+				submitBtn.disabled = true;
+
+				// Stage 1: Fly out paper plane icon & show loader with "Sending..."
+				if (iconSend) {
+					iconSend.classList.add('translate-x-8', '-translate-y-8', 'opacity-0', 'scale-50');
+					iconSend.classList.remove('group-hover:translate-x-0.5', 'group-hover:-translate-y-0.5');
 				}
-				statusMsg.classList.remove('hidden', 'border-red-500/30', 'bg-red-950/30', 'text-red-400');
-				statusMsg.classList.add('border-cyan-500/30', 'bg-cyan-950/30', 'text-cyan-400');
-				statusMsg.textContent = 'Thank you for reaching out! Your query has been received. Our team will get back to you shortly.';
-				queryForm.reset();
+
+				if (btnText) {
+					btnText.textContent = 'Sending...';
+					btnText.classList.add('text-cyan-300');
+				}
+
+				if (iconLoader) {
+					iconLoader.classList.remove('opacity-0', 'scale-50', 'pointer-events-none');
+					iconLoader.classList.add('opacity-100', 'scale-100');
+				}
+
+				if (btnGlow) {
+					btnGlow.classList.add('opacity-90', 'blur-xl');
+				}
+
+				// Simulate query transmission delay
 				setTimeout(() => {
-					if (submitBtn) {
-						submitBtn.disabled = false;
-						const btnText = submitBtn.querySelector('span');
-						if (btnText) btnText.innerText = 'Send Message';
+					// Stage 2: Hide loader & show success checkmark with "Message Sent!"
+					if (iconLoader) {
+						iconLoader.classList.remove('opacity-100', 'scale-100');
+						iconLoader.classList.add('opacity-0', 'scale-50', 'pointer-events-none');
 					}
-				}, 3000);
+
+					if (iconCheck) {
+						iconCheck.classList.remove('opacity-0', 'scale-50', 'pointer-events-none');
+						iconCheck.classList.add('opacity-100', 'scale-100');
+					}
+
+					if (btnText) {
+						btnText.textContent = 'Message Sent!';
+						btnText.classList.remove('text-cyan-300');
+						btnText.classList.add('text-emerald-400');
+					}
+
+					// Reveal styled notification box
+					statusMsg.classList.remove('hidden', 'border-red-500/30', 'bg-red-950/30', 'text-red-400');
+					statusMsg.classList.add('border-emerald-500/30', 'bg-emerald-950/30', 'text-emerald-400');
+					statusMsg.textContent = 'Thank you for reaching out! Your query has been received. Our team will get back to you shortly.';
+					
+					queryForm.reset();
+
+					// Stage 3: Reset back to initial state after 3.5s
+					setTimeout(() => {
+						if (iconCheck) {
+							iconCheck.classList.remove('opacity-100', 'scale-100');
+							iconCheck.classList.add('opacity-0', 'scale-50', 'pointer-events-none');
+						}
+
+						if (iconSend) {
+							iconSend.classList.remove('translate-x-8', '-translate-y-8', 'opacity-0', 'scale-50');
+							iconSend.classList.add('group-hover:translate-x-0.5', 'group-hover:-translate-y-0.5');
+						}
+
+						if (btnText) {
+							btnText.textContent = 'Send Message';
+							btnText.classList.remove('text-emerald-400', 'text-cyan-300');
+						}
+
+						if (btnGlow) {
+							btnGlow.classList.remove('opacity-90', 'blur-xl');
+						}
+
+						submitBtn.disabled = false;
+					}, 3500);
+				}, 1200);
 			});
 		}
 

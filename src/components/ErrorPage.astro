@@ -132,10 +132,10 @@ const pageTitle = `Diceforce IT | Error ${code} - ${highlightWord} ${titleLine2}
 					<button 
 						id="secondary-action-btn"
 						data-href={secondaryButtonHref}
-						class="px-7 py-3.5 rounded-full border border-white/15 bg-white/5 hover:bg-white/10 text-white/90 hover:text-white text-sm font-medium transition-all duration-300 backdrop-blur-md cursor-pointer flex items-center gap-2 hover:border-white/30"
+						class="btn-secondary"
 					>
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"></path><path d="M16 16h5v5"></path></svg>
-						{secondaryButtonText}
+						<span>{secondaryButtonText}</span>
 					</button>
 				)}
 			</div>
@@ -143,9 +143,9 @@ const pageTitle = `Diceforce IT | Error ${code} - ${highlightWord} ${titleLine2}
 		</div>
 
 		<!-- Giant bold text logo with cinematic half-reveal from bottom -->
-		<footer class="absolute bottom-0 left-0 w-full overflow-hidden pointer-events-none select-none z-10 reveal-mask">
-			<div class="animate-reveal-up animation-delay-600">
-				<h2 class="text-[8vw] sm:text-[9vw] lg:text-[110px] font-extrabold tracking-[10px] mr-[-10px] text-white uppercase leading-none font-syne select-none text-center">
+		<footer class="absolute bottom-0 left-0 w-full overflow-hidden pointer-events-none select-none z-10 reveal-mask max-w-full flex justify-center items-center">
+			<div class="animate-reveal-up animation-delay-600 w-full flex justify-center">
+				<h2 class="text-[8vw] sm:text-[9vw] lg:text-[110px] font-extrabold tracking-[10px] mr-[-10px] text-white uppercase leading-none font-syne select-none text-center whitespace-nowrap max-w-full overflow-hidden">
 					Diceforce IT
 				</h2>
 			</div>

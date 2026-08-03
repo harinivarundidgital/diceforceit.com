@@ -17,7 +17,7 @@ const { activePage = 'none' } = Astro.props;
 		</a>
 		
 		<!-- Navigation Links (Desktop Right Aligned) -->
-		<nav class="hidden md:flex items-center gap-6 relative z-25 pointer-events-auto">
+		<nav class="hidden min-[1180px]:flex items-center gap-6 relative z-25 pointer-events-auto">
 			<!-- Home -->
 			{activePage === 'home' ? (
 				<a href="/home" class="inline-flex items-center justify-center text-[16px] font-mono tracking-widest text-cyan-400 transition-colors uppercase py-1 px-2">
@@ -152,7 +152,7 @@ const { activePage = 'none' } = Astro.props;
 			id="mobile-menu-btn" 
 			aria-label="Open Navigation Menu" 
 			onclick="window.toggleMobileMenu(event)"
-			class="md:hidden relative z-[60] p-2.5 -mr-1.5 text-cyan-400 hover:text-white transition-colors focus:outline-none pointer-events-auto flex items-center justify-center cursor-pointer active:scale-95"
+			class="min-[1180px]:hidden relative z-[60] p-2.5 -mr-1.5 text-cyan-400 hover:text-white transition-colors focus:outline-none pointer-events-auto flex items-center justify-center cursor-pointer active:scale-95"
 		>
 			<svg id="hamburger-icon" class="w-7 h-7 transition-transform duration-300 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
 				<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
@@ -164,7 +164,7 @@ const { activePage = 'none' } = Astro.props;
 <!-- Mobile Menu Overlay (Full-screen fixed layer) -->
 <div 
 	id="mobile-menu-overlay" 
-	class="fixed inset-0 z-[100] bg-[#030308]/98 backdrop-blur-2xl hidden flex-col justify-between transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none md:hidden overflow-y-auto max-h-[100dvh] pt-24 pb-8 px-6"
+	class="fixed inset-0 z-[100] bg-[#030308]/98 backdrop-blur-2xl hidden flex-col justify-between transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none min-[1180px]:hidden overflow-y-auto max-h-[100dvh] pt-24 pb-8 px-6"
 >
 	<!-- Dedicated Top Header Bar inside Overlay with Explicit CLOSE Option -->
 	<div class="absolute top-4 left-0 right-0 z-[110] w-full flex justify-center px-4 sm:px-6 pointer-events-auto">

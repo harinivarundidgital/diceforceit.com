@@ -57,6 +57,22 @@
 
     let pathsHTML = '';
 
+    const isMobile = window.innerWidth < 820;
+
+    const makeCurve = (startX: number, startY: number, endX: number, endY: number, stage: number) => {
+      const midY = (startY + endY) / 2;
+      return `<path class="eai-svg-path" data-stage="${stage}" d="M ${startX.toFixed(1)} ${startY.toFixed(1)} Q ${startX.toFixed(1)} ${midY.toFixed(1)}, ${endX.toFixed(1)} ${endY.toFixed(1)}" filter="url(#neonGlow)" />`;
+    };
+
+    const makeLine = (startX: number, startY: number, endX: number, endY: number, stage: number) => {
+      return `<path class="eai-svg-path" data-stage="${stage}" d="M ${startX.toFixed(1)} ${startY.toFixed(1)} L ${endX.toFixed(1)} ${endY.toFixed(1)}" filter="url(#neonGlow)" />`;
+    };
+
+    const makeCubic = (startX: number, startY: number, endX: number, endY: number, stage: number) => {
+      const cX = startX + (endX - startX) * 0.5;
+      return `<path class="eai-svg-path" data-stage="${stage}" d="M ${startX.toFixed(1)} ${startY.toFixed(1)} C ${cX.toFixed(1)} ${startY.toFixed(1)}, ${cX.toFixed(1)} ${endY.toFixed(1)}, ${endX.toFixed(1)} ${endY.toFixed(1)}" filter="url(#neonGlow)" />`;
+    };
+
     // Stage 0: User Input Bar ➔ Data Fabric Capsule
     const userInput = document.getElementById('eai-user-prompt-input');
     const dataFabric = document.querySelector('.eai-data-fabric-capsule');
@@ -69,7 +85,7 @@
       const endX = fRect.left + fRect.width / 2 - overlayRect.left;
       const endY = fRect.top - overlayRect.top;
 
-      pathsHTML += `<path class="eai-svg-path" data-stage="0" d="M ${startX} ${startY} Q ${startX} ${(startY + endY)/2}, ${endX} ${endY}" filter="url(#neonGlow)" />`;
+      pathsHTML += makeCurve(startX, startY, endX, endY, 0);
     }
 
     // Stage 1: Data Fabric Capsule ➔ Enterprise Input Cards
@@ -79,108 +95,184 @@
       const startX = fRect.left + fRect.width / 2 - overlayRect.left;
       const startY = fRect.bottom - overlayRect.top;
 
-      inputCards.forEach((card) => {
-        const rect = card.getBoundingClientRect();
+      if (isMobile) {
+        const firstCard = inputCards[0];
+        const rect = firstCard.getBoundingClientRect();
         const endX = rect.left + rect.width / 2 - overlayRect.left;
         const endY = rect.top - overlayRect.top;
-        const controlY = startY + (endY - startY) * 0.5;
-
-        pathsHTML += `<path class="eai-svg-path" data-stage="1" d="M ${startX} ${startY} C ${startX} ${controlY}, ${endX} ${controlY}, ${endX} ${endY}" filter="url(#neonGlow)" />`;
-      });
+        pathsHTML += makeLine(startX, startY, endX, endY, 1);
+      } else {
+        inputCards.forEach((card) => {
+          const rect = card.getBoundingClientRect();
+          const endX = rect.left + rect.width / 2 - overlayRect.left;
+          const endY = rect.top - overlayRect.top;
+          const controlY = startY + (endY - startY) * 0.5;
+          pathsHTML += `<path class="eai-svg-path" data-stage="1" d="M ${startX.toFixed(1)} ${startY.toFixed(1)} C ${startX.toFixed(1)} ${controlY.toFixed(1)}, ${endX.toFixed(1)} ${controlY.toFixed(1)}, ${endX.toFixed(1)} ${endY.toFixed(1)}" filter="url(#neonGlow)" />`;
+        });
+      }
     }
 
     // Stage 2: Enterprise Inputs ➔ Left Capabilities
     const leftCaps = document.querySelectorAll('.eai-cap-left');
-    inputCards.forEach((card, idx) => {
-      const rect = card.getBoundingClientRect();
-      const startX = rect.right - overlayRect.left;
-      const startY = rect.top + rect.height / 2 - overlayRect.top;
-      
-      const targetCap = leftCaps[idx < 2 ? 0 : 1] || leftCaps[0];
-      if (targetCap) {
+    if (isMobile) {
+      const lastInput = inputCards[inputCards.length - 1];
+      const targetCap = leftCaps[0];
+      if (lastInput && targetCap) {
+        const inRect = lastInput.getBoundingClientRect();
         const capRect = targetCap.getBoundingClientRect();
-        const endX = capRect.left - overlayRect.left;
-        const endY = capRect.top + capRect.height / 2 - overlayRect.top;
-
-        const controlX1 = startX + (endX - startX) * 0.5;
-        const controlX2 = startX + (endX - startX) * 0.5;
-
-        pathsHTML += `<path class="eai-svg-path" data-stage="2" d="M ${startX} ${startY} C ${controlX1} ${startY}, ${controlX2} ${endY}, ${endX} ${endY}" filter="url(#neonGlow)" />`;
+        const startX = inRect.left + inRect.width / 2 - overlayRect.left;
+        const startY = inRect.bottom - overlayRect.top;
+        const endX = capRect.left + capRect.width / 2 - overlayRect.left;
+        const endY = capRect.top - overlayRect.top;
+        pathsHTML += makeLine(startX, startY, endX, endY, 2);
       }
-    });
-
-    // Stage 3: Left Capabilities ➔ Core Engine Center
-    leftCaps.forEach((cap) => {
-      const capRect = cap.getBoundingClientRect();
-      const startX = capRect.right - overlayRect.left;
-      const startY = capRect.top + capRect.height / 2 - overlayRect.top;
-      const endX = centerRect.left - overlayRect.left;
-      const endY = centerY;
-
-      pathsHTML += `<path class="eai-svg-path" data-stage="3" d="M ${startX} ${startY} Q ${(startX + endX)/2} ${startY}, ${endX} ${endY}" filter="url(#neonGlow)" />`;
-    });
-
-    // Stage 4: Core Engine Center ➔ Hallucination Control Layer
-    const hallucination = document.querySelector('.eai-hallucination-card');
-    if (hallucination) {
-      const hRect = hallucination.getBoundingClientRect();
-      const startX = centerX;
-      const startY = centerRect.bottom - overlayRect.top;
-      const endX = hRect.left + hRect.width / 2 - overlayRect.left;
-      const endY = hRect.top - overlayRect.top;
-
-      pathsHTML += `<path class="eai-svg-path" data-stage="4" d="M ${startX} ${startY} L ${endX} ${endY}" filter="url(#neonGlow)" />`;
-    }
-
-    // Stage 5: Core Engine Center ➔ Right Capabilities
-    const rightCaps = document.querySelectorAll('.eai-cap-right');
-    rightCaps.forEach((cap) => {
-      const capRect = cap.getBoundingClientRect();
-      const startX = centerRect.right - overlayRect.left;
-      const startY = centerY;
-      const endX = capRect.left - overlayRect.left;
-      const endY = capRect.top + capRect.height / 2 - overlayRect.top;
-
-      pathsHTML += `<path class="eai-svg-path" data-stage="5" d="M ${startX} ${startY} Q ${(startX + endX)/2} ${endY}, ${endX} ${endY}" filter="url(#neonGlow)" />`;
-    });
-
-    // Stage 6: Right Capabilities ➔ Intelligent Outputs
-    const outputCards = document.querySelectorAll('.eai-output-card');
-    rightCaps.forEach((cap, idx) => {
-      const capRect = cap.getBoundingClientRect();
-      const startX = capRect.right - overlayRect.left;
-      const startY = capRect.top + capRect.height / 2 - overlayRect.top;
-      
-      const targetOutputs = [outputCards[idx * 2], outputCards[idx * 2 + 1]];
-      targetOutputs.forEach(targetOutput => {
-        if (targetOutput) {
-          const outRect = targetOutput.getBoundingClientRect();
-          const endX = outRect.left - overlayRect.left;
-          const endY = outRect.top + outRect.height / 2 - overlayRect.top;
-
-          const controlX1 = startX + (endX - startX) * 0.5;
-          const controlX2 = startX + (endX - startX) * 0.5;
-
-          pathsHTML += `<path class="eai-svg-path" data-stage="6" d="M ${startX} ${startY} C ${controlX1} ${startY}, ${controlX2} ${endY}, ${endX} ${endY}" filter="url(#neonGlow)" />`;
+    } else {
+      inputCards.forEach((card, idx) => {
+        const rect = card.getBoundingClientRect();
+        const startX = rect.right - overlayRect.left;
+        const startY = rect.top + rect.height / 2 - overlayRect.top;
+        
+        const targetCap = leftCaps[idx < 2 ? 0 : 1] || leftCaps[0];
+        if (targetCap) {
+          const capRect = targetCap.getBoundingClientRect();
+          const endX = capRect.left - overlayRect.left;
+          const endY = capRect.top + capRect.height / 2 - overlayRect.top;
+          pathsHTML += makeCubic(startX, startY, endX, endY, 2);
         }
       });
-    });
+    }
 
-    // Stage 7: Intelligent Outputs ➔ Automated Actions (Flow inside Column 3)
-    const actionCards = document.querySelectorAll('.eai-action-card');
-    outputCards.forEach((outCard, idx) => {
-      const outRect = outCard.getBoundingClientRect();
-      const actionCard = actionCards[idx];
-      if (actionCard) {
-        const actRect = actionCard.getBoundingClientRect();
-        const startX = outRect.left + outRect.width * 0.75 - overlayRect.left;
-        const startY = outRect.bottom - overlayRect.top;
-        const endX = actRect.left + actRect.width * 0.75 - overlayRect.left;
-        const endY = actRect.top - overlayRect.top;
-
-        pathsHTML += `<path class="eai-svg-path" data-stage="7" d="M ${startX} ${startY} C ${startX} ${(startY + endY)/2}, ${endX} ${(startY + endY)/2}, ${endX} ${endY}" filter="url(#neonGlow)" />`;
+    // Stage 3: Left Capabilities ➔ Core Engine Center
+    if (isMobile) {
+      const lastLeftCap = leftCaps[leftCaps.length - 1];
+      if (lastLeftCap) {
+        const capRect = lastLeftCap.getBoundingClientRect();
+        const startX = capRect.left + capRect.width / 2 - overlayRect.left;
+        const startY = capRect.bottom - overlayRect.top;
+        const endX = centerX;
+        const endY = centerRect.top - overlayRect.top;
+        pathsHTML += makeCurve(startX, startY, endX, endY, 3);
       }
-    });
+    } else {
+      leftCaps.forEach((cap) => {
+        const capRect = cap.getBoundingClientRect();
+        const startX = capRect.right - overlayRect.left;
+        const startY = capRect.top + capRect.height / 2 - overlayRect.top;
+        const endX = centerRect.left - overlayRect.left;
+        const endY = centerY;
+        pathsHTML += makeCurve(startX, startY, endX, endY, 3);
+      });
+    }
+
+    // Stage 4: Core Engine Center ➔ Right Capabilities (Mobile) OR Hallucination Control Layer (Desktop)
+    const rightCaps = document.querySelectorAll('.eai-cap-right');
+    const hallucination = document.querySelector('.eai-hallucination-card');
+    
+    if (isMobile) {
+      const firstRightCap = rightCaps[0];
+      if (firstRightCap) {
+        const capRect = firstRightCap.getBoundingClientRect();
+        const startX = centerX;
+        const startY = centerRect.bottom - overlayRect.top;
+        const endX = capRect.left + capRect.width / 2 - overlayRect.left;
+        const endY = capRect.top - overlayRect.top;
+        pathsHTML += makeCurve(startX, startY, endX, endY, 4);
+      }
+    } else {
+      if (hallucination) {
+        const hRect = hallucination.getBoundingClientRect();
+        const startX = centerX;
+        const startY = centerRect.bottom - overlayRect.top;
+        const endX = hRect.left + hRect.width / 2 - overlayRect.left;
+        const endY = hRect.top - overlayRect.top;
+        pathsHTML += makeLine(startX, startY, endX, endY, 4);
+      }
+    }
+
+    // Stage 5: Right Capabilities ➔ Hallucination Layer (Mobile) OR Core Engine Center ➔ Right Capabilities (Desktop)
+    if (isMobile) {
+      const lastRightCap = rightCaps[rightCaps.length - 1];
+      if (lastRightCap && hallucination) {
+        const capRect = lastRightCap.getBoundingClientRect();
+        const hRect = hallucination.getBoundingClientRect();
+        const startX = capRect.left + capRect.width / 2 - overlayRect.left;
+        const startY = capRect.bottom - overlayRect.top;
+        const endX = hRect.left + hRect.width / 2 - overlayRect.left;
+        const endY = hRect.top - overlayRect.top;
+        pathsHTML += makeCurve(startX, startY, endX, endY, 5);
+      }
+    } else {
+      rightCaps.forEach((cap) => {
+        const capRect = cap.getBoundingClientRect();
+        const startX = centerRect.right - overlayRect.left;
+        const startY = centerY;
+        const endX = capRect.left - overlayRect.left;
+        const endY = capRect.top + capRect.height / 2 - overlayRect.top;
+        pathsHTML += makeCurve(startX, startY, endX, endY, 5);
+      });
+    }
+
+    // Stage 6: Hallucination Layer ➔ Intelligent Outputs (Mobile) OR Right Capabilities ➔ Intelligent Outputs (Desktop)
+    const outputCards = document.querySelectorAll('.eai-output-card');
+    if (isMobile) {
+      if (hallucination && outputCards.length > 0) {
+        const hRect = hallucination.getBoundingClientRect();
+        const firstOut = outputCards[0];
+        const outRect = firstOut.getBoundingClientRect();
+        const startX = hRect.left + hRect.width / 2 - overlayRect.left;
+        const startY = hRect.bottom - overlayRect.top;
+        const endX = outRect.left + outRect.width / 2 - overlayRect.left;
+        const endY = outRect.top - overlayRect.top;
+        pathsHTML += makeLine(startX, startY, endX, endY, 6);
+      }
+    } else {
+      rightCaps.forEach((cap, idx) => {
+        const capRect = cap.getBoundingClientRect();
+        const startX = capRect.right - overlayRect.left;
+        const startY = capRect.top + capRect.height / 2 - overlayRect.top;
+        
+        const targetOutputs = [outputCards[idx * 2], outputCards[idx * 2 + 1]];
+        targetOutputs.forEach(targetOutput => {
+          if (targetOutput) {
+            const outRect = targetOutput.getBoundingClientRect();
+            const endX = outRect.left - overlayRect.left;
+            const endY = outRect.top + outRect.height / 2 - overlayRect.top;
+            pathsHTML += makeCubic(startX, startY, endX, endY, 6);
+          }
+        });
+      });
+    }
+
+    // Stage 7: Intelligent Outputs ➔ Automated Actions
+    const actionCards = document.querySelectorAll('.eai-action-card');
+    if (outputCards.length > 0 && actionCards.length > 0) {
+      if (isMobile) {
+        const lastOutput = outputCards[outputCards.length - 1];
+        const firstAction = actionCards[0];
+        if (lastOutput && firstAction) {
+          const outRect = lastOutput.getBoundingClientRect();
+          const actRect = firstAction.getBoundingClientRect();
+          const startX = outRect.left + outRect.width / 2 - overlayRect.left;
+          const startY = outRect.bottom - overlayRect.top;
+          const endX = actRect.left + actRect.width / 2 - overlayRect.left;
+          const endY = actRect.top - overlayRect.top;
+          pathsHTML += makeLine(startX, startY, endX, endY, 7);
+        }
+      } else {
+        outputCards.forEach((outCard, idx) => {
+          const outRect = outCard.getBoundingClientRect();
+          const actionCard = actionCards[idx];
+          if (actionCard) {
+            const actRect = actionCard.getBoundingClientRect();
+            const startX = outRect.left + outRect.width * 0.75 - overlayRect.left;
+            const startY = outRect.bottom - overlayRect.top;
+            const endX = actRect.left + actRect.width * 0.75 - overlayRect.left;
+            const endY = actRect.top - overlayRect.top;
+            pathsHTML += `<path class="eai-svg-path" data-stage="7" d="M ${startX.toFixed(1)} ${startY.toFixed(1)} C ${startX.toFixed(1)} ${((startY + endY)/2).toFixed(1)}, ${endX.toFixed(1)} ${((startY + endY)/2).toFixed(1)}, ${endX.toFixed(1)} ${endY.toFixed(1)}" filter="url(#neonGlow)" />`;
+          }
+        });
+      }
+    }
 
     group.innerHTML = pathsHTML;
   }

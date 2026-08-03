@@ -38,22 +38,51 @@
   --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
   --shadow-neon: 0 0 20px rgba(0, 222, 255, 0.25);
   
-  /* Typography Scale */
+  /* Fluid Typography Scale (Scales dynamically across all devices) */
   --font-heading: "Instrument Sans", "Inter", -apple-system, sans-serif;
   --font-body: "Inter", -apple-system, sans-serif;
   --font-code: "JetBrains Mono", monospace;
-  --font-size-xs: 12px;
-  --font-size-sm: 14px;
-  --font-size-base: 16px;
-  --font-size-lg: 18px;
-  --font-size-xl: 20px;
-  --font-size-2xl: 24px;
-  --font-size-3xl: 30px;
-  --font-size-4xl: 36px;
+  --font-size-xs: clamp(0.6875rem, 0.65rem + 0.18vw, 0.75rem);   /* ~11px -> 12px */
+  --font-size-sm: clamp(0.8125rem, 0.76rem + 0.26vw, 0.875rem);  /* ~13px -> 14px */
+  --font-size-base: clamp(0.875rem, 0.82rem + 0.35vw, 1rem);     /* ~14px -> 16px */
+  --font-size-lg: clamp(1rem, 0.92rem + 0.44vw, 1.125rem);       /* ~16px -> 18px */
+  --font-size-xl: clamp(1.125rem, 1.02rem + 0.53vw, 1.375rem);   /* ~18px -> 22px */
+  --font-size-2xl: clamp(1.25rem, 1.1rem + 0.88vw, 1.75rem);     /* ~20px -> 28px */
+  --font-size-3xl: clamp(1.5rem, 1.25rem + 1.32vw, 2.25rem);    /* ~24px -> 36px */
+  --font-size-4xl: clamp(1.875rem, 1.4rem + 2.1vw, 3.25rem);    /* ~30px -> 52px */
+  --font-size-5xl: clamp(2.25rem, 1.5rem + 3.3vw, 4.5rem);     /* ~36px -> 72px */
   
   /* Layout Grid Columns */
   --col-inputs-width: 320px;
   --col-core-width: 1fr;
   --col-outputs-width: 340px;
   --col-actions-width: 260px;
+
+  /* Standardized Spacing Scale Tokens */
+  --spacing-3xs: 0.125rem; /* 2px */
+  --spacing-2xs: 0.25rem;  /* 4px */
+  --spacing-xs: 0.5rem;    /* 8px */
+  --spacing-sm: 0.75rem;   /* 12px */
+  --spacing-md: 1rem;      /* 16px */
+  --spacing-lg: 1.5rem;    /* 24px */
+  --spacing-xl: 2rem;      /* 32px */
+  --spacing-2xl: 2.5rem;   /* 40px */
+  --spacing-3xl: 3rem;     /* 48px */
+  --spacing-4xl: 4rem;     /* 64px */
+  --spacing-5xl: 6rem;     /* 96px */
+  --spacing-6xl: 8rem;     /* 128px */
+
+  /* Fluid Section, Container, Card & Grid Spacing System */
+  --container-max-width: 88rem; /* 1408px */
+  --container-narrow-max-width: 72rem; /* 1152px */
+  --container-padding-x: clamp(1rem, 4vw, 2.5rem);
+  --section-padding-hero: clamp(4rem, 8vh + 2rem, 7.5rem);
+  --section-padding-y: clamp(3rem, 6vh + 1.5rem, 5.5rem);
+  --section-padding-compact: clamp(2rem, 4vh + 1rem, 3.5rem);
+  --card-padding: clamp(1.25rem, 2.5vw, 2rem);
+  --card-padding-sm: clamp(0.875rem, 1.5vw, 1.25rem);
+  --card-padding-lg: clamp(1.75rem, 3vw, 2.75rem);
+  --grid-gap: clamp(1.25rem, 2.5vw, 2.25rem);
+  --grid-gap-sm: clamp(0.875rem, 1.5vw, 1.5rem);
 }
+

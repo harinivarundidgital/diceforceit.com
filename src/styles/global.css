@@ -12,6 +12,7 @@
 
 @layer base {
   html {
+    font-size: clamp(14px, 0.4vw + 12px, 18px);
     overflow-x: clip;
     width: 100%;
     scroll-behavior: auto;
@@ -26,7 +27,7 @@
     background-color: #000000;
     color: #ffffff;
     font-family: var(--font-sans);
-    font-size: 16px;
+    font-size: var(--font-size-base);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
