@@ -35,36 +35,13 @@ const pageTitle = `Diceforce IT | Error ${code} - ${highlightWord} ${titleLine2}
 ---
 
 <Layout title={pageTitle} description={description}>
-	<main class="glow-bg w-full min-h-screen h-dvh flex flex-col justify-center items-center px-4 pt-20 sm:pt-24 pb-16 relative overflow-x-hidden overflow-y-auto select-none">
+	<main class="glow-bg w-full min-h-screen h-dvh flex flex-col justify-center items-center px-4 pt-8 pb-8 relative overflow-x-hidden overflow-y-auto select-none">
 		<!-- Interactive Mouse Spotlight Glow -->
 		<div class="mouse-spotlight"></div>
 		
-		<!-- Top Header logo (positioned absolutely at top) -->
-		<header class="absolute top-0 left-0 w-full px-6 sm:px-12 h-20 flex items-center justify-between z-40 animate-fade-in">
-			<div class="max-w-7xl mx-auto w-full h-full flex items-center justify-between">
-				<a href="/" class="group flex items-center gap-3 transition-opacity duration-300 hover:opacity-90">
-					<span class="text-sm sm:text-base font-space tracking-[0.3em] text-shimmer uppercase font-bold leading-none">
-						Diceforce IT
-					</span>
-				</a>
-				
-				<!-- Header status code pill -->
-				<div class="px-3 py-1 border border-cyan-500/25 rounded-full bg-cyan-500/10 backdrop-blur-md hidden sm:flex items-center gap-2">
-					<span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-					<span class="font-mono text-xs font-semibold tracking-wider text-cyan-300 uppercase">SYS_STATUS: {code}</span>
-				</div>
-			</div>
-		</header>
-
 		<!-- Main Center Section (perfectly centered vertically and horizontally) -->
 		<div class="relative flex flex-col justify-center items-center gap-5 sm:gap-6 md:gap-7 z-30 max-w-4xl mx-auto text-center my-auto">
 			
-			<!-- Badge Pill -->
-			<div class="animate-fade-in inline-flex items-center gap-2 px-3.5 py-1.5 border border-cyan-500/20 rounded-full bg-cyan-500/5 backdrop-blur-sm">
-				<span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span>
-				<span class="font-mono text-xs tracking-widest text-cyan-400 uppercase font-semibold">{badge}</span>
-			</div>
-
 			<!-- Heading -->
 			<div class="space-y-2 animate-fade-in animation-delay-200">
 				<h1 class="font-syne font-semibold tracking-tight text-white leading-[1.1] text-balance">
@@ -75,9 +52,6 @@ const pageTitle = `Diceforce IT | Error ${code} - ${highlightWord} ${titleLine2}
 						{titleLine2}
 					</span>
 				</h1>
-				<p class="text-neutral-400 font-sans font-light text-sm sm:text-base max-w-lg mx-auto leading-relaxed pt-1 text-balance">
-					{description}
-				</p>
 			</div>
 
 			<!-- Center Illustration (3D Visual element) -->
@@ -118,38 +92,17 @@ const pageTitle = `Diceforce IT | Error ${code} - ${highlightWord} ${titleLine2}
 						
 						<!-- Main Button Link -->
 						<a 
-							href={primaryButtonHref} 
+							href="/" 
 							class="relative px-8 py-3.5 bg-black hover:bg-neutral-900 text-white font-semibold rounded-full transition-all duration-300 inline-flex items-center gap-2.5 text-sm font-sans tracking-wide cursor-pointer z-10 select-none group-hover:text-[#00deff]"
 						>
-							{primaryButtonText}
+							Return to launchpad
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
 						</a>
 					</div>
 				</div>
-
-				<!-- Secondary Action Button (if provided) -->
-				{secondaryButtonText && (
-					<button 
-						id="secondary-action-btn"
-						data-href={secondaryButtonHref}
-						class="btn-secondary"
-					>
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"></path><path d="M16 16h5v5"></path></svg>
-						<span>{secondaryButtonText}</span>
-					</button>
-				)}
 			</div>
 
 		</div>
-
-		<!-- Giant bold text logo with cinematic half-reveal from bottom -->
-		<footer class="absolute bottom-0 left-0 w-full overflow-hidden pointer-events-none select-none z-10 reveal-mask max-w-full flex justify-center items-center">
-			<div class="animate-reveal-up animation-delay-600 w-full flex justify-center">
-				<h2 class="text-[8vw] sm:text-[9vw] lg:text-[110px] font-extrabold tracking-[10px] mr-[-10px] text-white uppercase leading-none font-syne select-none text-center whitespace-nowrap max-w-full overflow-hidden">
-					Diceforce IT
-				</h2>
-			</div>
-		</footer>
 	</main>
 
 	<!-- Inject inline CSS for dot animations & spotlight -->
@@ -240,19 +193,6 @@ const pageTitle = `Diceforce IT | Error ${code} - ${highlightWord} ${titleLine2}
 			// Reset smooth rotation to zero when mouse leaves the page
 			document.addEventListener('mouseleave', () => {
 				(tiltElement as HTMLElement).style.transform = 'rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-			});
-		}
-
-		// Handle secondary button reload/navigation
-		const secondaryBtn = document.getElementById('secondary-action-btn');
-		if (secondaryBtn) {
-			secondaryBtn.addEventListener('click', () => {
-				const targetHref = secondaryBtn.getAttribute('data-href');
-				if (targetHref && targetHref.length > 0) {
-					window.location.href = targetHref;
-				} else {
-					window.location.reload();
-				}
 			});
 		}
 	</script>
