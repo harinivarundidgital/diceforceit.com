@@ -1,181 +1,600 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import EnterpriseAIVisual from '../components/EnterpriseAI/EnterpriseAIVisual.astro';
+import LastSeenSequence from '../components/LastSeenSequence.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
 ---
 
-<Layout title="Diceforce IT | Something Great Is On The Way">
-	<main class="glow-bg w-full min-h-screen h-dvh flex flex-col justify-center items-center px-4 pt-24 pb-16 relative overflow-x-hidden overflow-y-auto select-none">
-		<!-- Interactive Mouse Spotlight Glow -->
-		<div class="mouse-spotlight"></div>
+<Layout title="Diceforce IT | AI & Machine Learning Solutions">
+	<!-- Ambient Background Glows & Grid -->
+	<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[#030303]">
+		<!-- Centered soft radial glows -->
+		<div class="absolute top-[20%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-blue-600/10 blur-[120px] animate-pulse-slow"></div>
+		<div class="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-cyan-500/[0.04] blur-[140px]"></div>
 		
-		<!-- Top Header logo (positioned absolutely at top) -->
-		<header class="absolute top-0 left-0 w-full px-6 sm:px-12 h-20 flex items-center justify-center z-40 animate-fade-in">
-			<div class="max-w-7xl mx-auto w-full h-full flex items-center justify-center">
-				<span class="text-sm sm:text-base font-space tracking-[0.3em] text-shimmer uppercase font-bold leading-none">Diceforce IT</span>
-			</div>
-		</header>
+	</div>
 
-		<!-- Main Center Section (perfectly centered vertically and horizontally) -->
-		<div class="relative flex flex-col justify-center items-center gap-6 md:gap-8 z-30 max-w-4xl mx-auto text-center">
-			
-			<!-- Heading -->
-			<div class="space-y-4 animate-fade-in animation-delay-200">
-				<h1 class="font-syne font-semibold tracking-tight text-white leading-[1.1] text-balance">
-					<span class="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
-						Something <span class="text-shimmer font-semibold inline-block">Great</span>
-					</span>
-					<span class="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white/35 mt-1 sm:mt-2">
-						Is On The Way
-					</span>
-				</h1>
-			</div>
+	<!-- Floating Header Navigation Component -->
+	<Header activePage="home" />
 
-			<!-- Center Illustration (3D Hand holding glass card) -->
-			<div class="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-[350px] xl:h-[350px] mx-auto animate-float animate-fade-in animation-delay-400 perspective-container">
-				<!-- Outer glow behind hand -->
-				<div class="absolute inset-0 bg-[#4F7DFF]/15 rounded-full filter blur-[64px] opacity-70 animate-pulse-slow"></div>
-				
-				<!-- Tilt element wrapper -->
-				<div class="w-full h-full tilt-element relative z-10">
-					<!-- Cinematic 3D Hand Illustration -->
-					<img 
-						src="/glowing-hand-icon.png" 
-						alt="Cinematic 3D Hand holding a glowing glass card with star sparkle icon" 
-						width="384"
-						height="384"
-						class="w-full h-full object-contain pointer-events-none select-none scale-105"
-						loading="eager"
-						fetchpriority="high"
-					/>
+	<!-- Main Centered Layout -->
+	<main class="relative z-10 w-full min-h-screen text-white font-sans overflow-x-clip">
+		
+		<!-- High-fidelity Preloader Overlay -->
+		<div id="sequence-loading-screen" class="fixed inset-0 bg-[#030303] z-[100] flex flex-col items-center justify-center transition-opacity duration-700 ease-out">
+			<div class="flex flex-col items-center gap-6">
+				<!-- Glowing Logo -->
+				<div class="relative w-16 h-16">
+					<img src="/diceforceITlogo_.gif" alt="Diceforce IT Logo" class="w-full h-full object-contain" />
+					<div class="absolute inset-[-4px] rounded-full border border-cyan-500/20 border-t-cyan-400 animate-spin duration-1000"></div>
 				</div>
-
-				<!-- Subtle shadow block underneath to fade it to black -->
-				<div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black to-transparent z-20 pointer-events-none"></div>
-			</div>
-
-			<!-- Launch Button -->
-			<div class="animate-fade-in animation-delay-500 z-40">
-				<div class="relative group transition-transform duration-500 hover:scale-[1.015]">
-					<!-- Outer atmospheric soft glow using logo colors (very subtle, low opacity) -->
-					<div class="absolute -inset-1 bg-gradient-to-r from-[#0377ff] via-[#00deff] to-[#883ae2] rounded-full blur-md opacity-25 group-hover:opacity-60 transition-all duration-500 ease-out"></div>
-					
-					<!-- Rounded container that clips the rotating border gradient -->
-					<div class="relative rounded-full p-[1px] overflow-hidden flex items-center justify-center bg-black shadow-[0_4px_12px_rgba(0,0,0,0.5)] group-hover:shadow-[0_0_20px_rgba(3,119,255,0.4)] transition-all duration-500">
-						<!-- Rotating gradient element with logo colors -->
-						<div class="absolute inset-[-200%] bg-[conic-gradient(from_0deg,#0377ff,#00deff,#883ae2,#00deff,#0377ff)] animate-border-spin"></div>
-						
-						<!-- Main Button Link -->
-						<a 
-							href="/home" 
-							class="relative px-8 py-3.5 bg-black hover:bg-neutral-900 text-white font-semibold rounded-full transition-all duration-300 inline-flex items-center gap-2.5 text-sm font-sans tracking-wide cursor-pointer z-10 select-none group-hover:text-[#00deff]"
-						>
-							Launch Experience
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-						</a>
+				<div class="text-center space-y-2">
+					<div class="font-space text-xs tracking-[0.3em] text-white/80 uppercase">Diceforce IT</div>
+					<div class="font-mono text-xs text-white/40 uppercase tracking-widest">
+						Initializing Neural Engine... <span id="loading-progress-text">0%</span>
 					</div>
 				</div>
+				<!-- Loading bar container -->
+				<div class="w-48 h-[1px] bg-white/5 rounded-full overflow-hidden">
+					<div id="loading-progress-bar-fill" class="h-full w-0 bg-cyan-400 transition-all duration-300"></div>
+				</div>
 			</div>
-
 		</div>
 
-		<!-- Giant bold text logo with cinematic half-reveal from bottom -->
-		<footer class="absolute bottom-0 left-0 w-full overflow-hidden pointer-events-none select-none z-10 reveal-mask max-w-full flex justify-center items-center">
-			<div class="animate-reveal-up animation-delay-600 w-full flex justify-center">
-				<h2 class="text-[7.5vw] sm:text-[9vw] lg:text-[110px] font-extrabold tracking-widest sm:tracking-[10px] text-white uppercase leading-none font-syne select-none text-center whitespace-nowrap max-w-full overflow-hidden">
-					Diceforce IT
-				</h2>
-			</div>
-		</footer>
-	</main>
-
-	<!-- Inject inline CSS for dot animations & spotlight -->
-	<style>
-		@keyframes dot-fade {
-			0%, 100% { opacity: 0.2; }
-			50% { opacity: 1; }
-		}
-		.dot-1 { animation: dot-fade 1.4s infinite 0s; }
-		.dot-2 { animation: dot-fade 1.4s infinite 0.2s; }
-		.dot-3 { animation: dot-fade 1.4s infinite 0.4s; }
-
-		/* Custom slow, smooth spin for the button border gradient */
-		@keyframes border-spin {
-			from {
-				transform: rotate(0deg);
-			}
-			to {
-				transform: rotate(360deg);
-			}
-		}
-		.animate-border-spin {
-			animation: border-spin 3s linear infinite;
-		}
-
-		/* Mouse Spotlight effect */
-		.mouse-spotlight {
-			position: absolute;
-			inset: 0;
-			background: radial-gradient(
-				600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-				rgba(79, 125, 255, 0.09) 0%,
-				transparent 75%
-			);
-			pointer-events: none;
-			z-index: 1;
-			transition: background 0.3s ease-out;
-		}
-
-		/* Hovering over the page increases interactive glow slightly */
-		body:hover .mouse-spotlight {
-			background: radial-gradient(
-				700px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-				rgba(79, 125, 255, 0.11) 0%,
-				transparent 75%
-			);
-		}
-
-		/* 3D Perspective and Tilt transition rules */
-		.perspective-container {
-			perspective: 1200px;
-		}
-		.tilt-element {
-			transform-style: preserve-3d;
-			transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
-		}
-	</style>
-
-	<script>
-		// Follow cursor for glowing spotlight effect & 3D tilt
-		const mainElement = document.querySelector('main');
-		const tiltElement = document.querySelector('.tilt-element');
-		
-		if (mainElement && tiltElement) {
-			window.addEventListener('mousemove', (e) => {
-				const rect = mainElement.getBoundingClientRect();
-				const x = e.clientX - rect.left;
-				const y = e.clientY - rect.top;
+		<!-- Scroll-driven image sequence section (total scroll zone is 320% of viewport height) -->
+		<div class="hero-scroll-container" id="home">
+			<!-- Sticky Frame Container -->
+			<div class="sticky-hero-frame flex items-center justify-center">
 				
-				// Update spotlight custom properties
-				mainElement.style.setProperty('--mouse-x', `${x}px`);
-				mainElement.style.setProperty('--mouse-y', `${y}px`);
+				<!-- Canvas for Image Sequence -->
+				<canvas id="hero-sequence-canvas" class="absolute inset-0 w-full h-full object-cover pointer-events-none z-0 bg-[#030303]"></canvas>
+				
+				<!-- Dark vignette overlay for contrast -->
+				<div class="absolute inset-0 bg-gradient-to-b from-[#030303]/40 via-transparent to-transparent z-10 pointer-events-none"></div>
 
-				// Parallax 3D tilt calculation
-				const centerX = rect.width / 2;
-				const centerY = rect.height / 2;
-				const percentX = (x - centerX) / centerX; // Range -1 to 1
-				const percentY = (y - centerY) / centerY; // Range -1 to 1
+				<!-- Narrative Text Layers (Scroll-driven Overlay) -->
+				<div class="absolute inset-0 z-20 flex items-center justify-center pointer-events-none px-4 sm:px-6 md:px-12">
+					
+					<!-- Slide 1: Welcome / Introduction -->
+					<div id="hero-slide-1" class="absolute inset-0 flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto px-4 py-8 sm:py-12 md:py-16 gap-6 sm:gap-8 transition-all duration-300 pointer-events-auto -translate-y-4 sm:-translate-y-8">
+						<!-- Left Side: Headline (Left aligned) -->
+						<div class="w-full md:w-1/2 text-left">
+							<h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-white font-syne text-left leading-[1.1]">
+								Build AI <span class="text-shimmer font-semibold block mt-1">That Works</span>
+							</h1>
+						</div>
 
-				const maxTilt = 8; // Max rotation in degrees
-				const tiltX = (percentY * maxTilt * -1).toFixed(2); // Rotate around X axis
-				const tiltY = (percentX * maxTilt).toFixed(2);      // Rotate around Y axis
+						<!-- Right Side: Subtext & Scroll Indicator -->
+						<div class="w-full md:w-1/2 flex flex-col items-start text-left md:items-end md:text-right space-y-4 sm:space-y-6">
+							<p class="text-white/85 text-sm sm:text-lg md:text-xl font-light leading-relaxed text-left md:text-right max-w-md">
+								From AI strategy consulting to deployment, we build AI that delivers measurable outcomes
+							</p>
+							<a href="#enterprise-ai-architecture" class="flex items-center gap-2 font-mono text-xs tracking-widest uppercase text-white/80 hover:text-cyan-400 transition-colors pointer-events-auto cursor-pointer group">
+								<span class="scroll-glow-text font-semibold group-hover:text-cyan-400 transition-colors">Scroll to explore</span>
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 animate-bounce scroll-glow-icon text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+								</svg>
+							</a>
+						</div>
+					</div>
 
-				// Apply 3D rotation and a subtle zoom on hover
-				(tiltElement as HTMLElement).style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.02, 1.02, 1.02)`;
-			});
+					<!-- Slide 2: Enterprise AI -->
+					<div id="hero-slide-2" class="absolute inset-0 flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto px-4 py-8 sm:py-12 md:py-16 gap-6 sm:gap-8 opacity-0 transition-all duration-300 pointer-events-none -translate-y-4 sm:-translate-y-8">
+						<!-- Left Side: Headline (Left aligned) -->
+						<div class="w-full md:w-1/2 text-left pointer-events-auto">
+							<h2 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight font-syne text-left">
+								Think AI.<br/>Build Smarter.<br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-cyan-300 font-extrabold">Scale Faster.</span>
+							</h2>
+						</div>
 
-			// Reset smooth rotation to zero when mouse leaves the page
-			document.addEventListener('mouseleave', () => {
-				(tiltElement as HTMLElement).style.transform = 'rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-			});
-		}
-	</script>
+						<!-- Right Side: Subtext -->
+						<div class="w-full md:w-1/2 flex justify-start md:justify-end pointer-events-auto">
+							<p class="text-white/85 text-sm sm:text-lg md:text-xl font-light leading-relaxed text-left md:text-right max-w-md">
+								Enterprise AI consulting services engineered for real business transformation.
+							</p>
+						</div>
+					</div>
+
+					<!-- Slide 3: Three Ways to Build -->
+					<div id="hero-slide-3" class="absolute inset-0 flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto px-4 py-8 sm:py-12 md:py-16 gap-6 sm:gap-8 opacity-0 transition-all duration-300 pointer-events-none -translate-y-4 sm:-translate-y-8">
+						<!-- Left Side: Headline (Left aligned) -->
+						<div class="w-full md:w-1/2 text-left pointer-events-auto">
+							<h2 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight font-syne text-left">
+								One Vision.<br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-300 font-extrabold">Three Ways<br/>to Build.</span>
+							</h2>
+						</div>
+
+						<!-- Right Side: Subtext -->
+						<div class="w-full md:w-1/2 flex justify-start md:justify-end pointer-events-auto">
+							<p class="text-white/85 text-sm sm:text-lg md:text-xl font-light leading-relaxed text-left md:text-right max-w-md">
+								Pro code | Low code | No code | Maximum control. Unlimited possibilities.
+							</p>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+		<!-- SECTION 2: ENTERPRISE AI ARCHITECTURE VISUAL -->
+		<EnterpriseAIVisual />
+
+		<!-- SECTION 3: LAST SEEN IMAGE SEQUENCE -->
+		<LastSeenSequence />
+
+		<!-- FOOTER SECTION -->
+		<Footer />
+
+	</main>
 </Layout>
+
+<style>
+	.hero-scroll-container {
+		position: relative;
+		width: 100%;
+		height: 320vh;
+	}
+	.sticky-hero-frame {
+		position: -webkit-sticky;
+		position: sticky;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100vh;
+		height: 100dvh;
+		overflow: hidden;
+		z-index: 10;
+		background-color: #030303;
+		will-change: transform;
+	}
+
+	/* Background Dot/Grid Pattern */
+	.grid-overlay-home {
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M 40 0 L 40 80 M 0 40 L 80 40' stroke='rgba(255, 255, 255, 0.015)' stroke-width='1'/%3E%3Cpolygon points='40,39.5 40.5,40 40,40.5 39.5,40' fill='rgba(255, 255, 255, 0.1)' stroke='rgba(255, 255, 255, 0.05)' stroke-width='0.5'/%3E%3C/svg%3E");
+		background-size: 80px 80px;
+		background-position: center center;
+		mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 90%);
+		-webkit-mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 90%);
+	}
+
+	@keyframes pulse-slow {
+		0%, 100% { opacity: 0.6; transform: scale(1); }
+		50% { opacity: 0.9; transform: scale(1.08); }
+	}
+	.animate-pulse-slow {
+		animation: pulse-slow 8s ease-in-out infinite;
+	}
+
+	@keyframes shimmer {
+		0% { background-position: -200% center; }
+		100% { background-position: 200% center; }
+	}
+
+	.text-shimmer {
+		background: linear-gradient(
+			90deg,
+			#22d3ee 0%,
+			#60a5fa 25%,
+			#6366f1 50%,
+			#60a5fa 75%,
+			#22d3ee 100%
+		);
+		background-size: 200% auto;
+		color: transparent;
+		background-clip: text;
+		-webkit-background-clip: text;
+		animation: shimmer 6s linear infinite;
+		filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.2));
+	}
+
+	@keyframes scroll-glow-pulse {
+		0%, 100% {
+			color: #38bdf8;
+			text-shadow: 0 0 8px rgba(56, 189, 248, 0.8), 0 0 16px rgba(34, 211, 238, 0.5), 0 0 24px rgba(99, 102, 241, 0.3);
+		}
+		50% {
+			color: #22d3ee;
+			text-shadow: 0 0 14px rgba(34, 211, 238, 1), 0 0 28px rgba(56, 189, 248, 0.8), 0 0 40px rgba(99, 102, 241, 0.6);
+		}
+	}
+
+	.scroll-glow-text {
+		animation: scroll-glow-pulse 2.5s ease-in-out infinite;
+	}
+
+	.scroll-glow-icon {
+		color: #38bdf8;
+		filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.9)) drop-shadow(0 0 16px rgba(34, 211, 238, 0.6));
+	}
+
+	@keyframes fade-in {
+		from {
+			opacity: 0;
+			transform: translateY(12px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.animate-fade-in {
+		animation: fade-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+	}
+
+	/* Lenis smooth scrolling rules */
+	html.lenis, html.lenis body {
+		height: auto;
+	}
+	.lenis-smooth {
+		scroll-behavior: auto !important;
+	}
+	.lenis-smooth [data-lenis-prevent] {
+		overscroll-behavior: contain;
+	}
+	.lenis-stopped {
+		overflow: hidden;
+	}
+	.lenis-scrolling iframe {
+		pointer-events: none;
+	}
+
+	/* Floating navigation link animations */
+	.animate-nav-link {
+		position: relative;
+		transition: color 0.3s ease;
+	}
+	.animate-nav-link::after {
+		content: '';
+		position: absolute;
+		bottom: -2px;
+		left: 0;
+		width: 0;
+		height: 1px;
+		background-color: #22d3ee;
+		transition: width 0.3s ease;
+	}
+	.animate-nav-link:hover::after {
+		width: 100%;
+	}
+</style>
+
+<script>
+	import Lenis from 'lenis';
+
+	// Main elements
+	const canvas = document.getElementById('hero-sequence-canvas') as HTMLCanvasElement | null;
+	const loadingScreen = document.getElementById('sequence-loading-screen') as HTMLDivElement | null;
+	const loadingProgressText = document.getElementById('loading-progress-text') as HTMLSpanElement | null;
+	const loadingFill = document.getElementById('loading-progress-bar-fill') as HTMLDivElement | null;
+	const scrollContainer = document.getElementById('home') as HTMLDivElement | null;
+	const slide1 = document.getElementById('hero-slide-1') as HTMLDivElement | null;
+	const slide2 = document.getElementById('hero-slide-2') as HTMLDivElement | null;
+	const slide3 = document.getElementById('hero-slide-3') as HTMLDivElement | null;
+
+	// Initialize Lenis smooth scroll first
+	const lenis = new Lenis({
+		duration: 1.2,
+		easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+		smoothWheel: true,
+		touchMultiplier: 1.5,
+	});
+
+	function raf(time: number) {
+		lenis.raf(time);
+		requestAnimationFrame(raf);
+	}
+	requestAnimationFrame(raf);
+
+	if (canvas && scrollContainer) {
+		const ctx = canvas.getContext('2d');
+		if (ctx) {
+			const totalFrames = 180;
+			const images: HTMLImageElement[] = [];
+			let loadedCount = 0;
+			
+			let currentFrame = 0;
+			let targetFrame = 0;
+			const ease = 0.12;
+			let lastDrawnFrame = -1;
+
+			// Path generator
+			const getFramePath = (index: number): string => {
+				const frameNum = 1000 + index;
+				return `/home-hero/scene 1_${frameNum}.jpg`;
+			};
+
+			// Build the progressive load order (keyframes first, then details)
+			const loadOrder: number[] = [];
+			loadOrder.push(0);
+			// Keyframes every 10 frames
+			for (let i = 10; i < totalFrames; i += 10) {
+				loadOrder.push(i);
+			}
+			// Rest of the frames
+			const loadedSet = new Set(loadOrder);
+			for (let i = 0; i < totalFrames; i++) {
+				if (!loadedSet.has(i)) {
+					loadOrder.push(i);
+				}
+			}
+
+			// Cover rendering logic
+			const drawImageCover = (context: CanvasRenderingContext2D, img: HTMLImageElement) => {
+				const canvasEl = context.canvas;
+				const imgRatio = img.width / img.height;
+				const canvasRatio = canvasEl.width / canvasEl.height;
+				let drawWidth, drawHeight, x, y;
+
+				if (canvasRatio > imgRatio) {
+					drawWidth = canvasEl.width;
+					drawHeight = canvasEl.width / imgRatio;
+					x = 0;
+					y = (canvasEl.height - drawHeight) / 2;
+				} else {
+					drawWidth = canvasEl.height * imgRatio;
+					drawHeight = canvasEl.height;
+					x = (canvasEl.width - drawWidth) / 2;
+					y = 0;
+				}
+
+				context.clearRect(0, 0, canvasEl.width, canvasEl.height);
+				context.drawImage(img, x, y, drawWidth, drawHeight);
+			};
+
+			// Draw frame with fallback to nearest loaded frame
+			const drawFrame = (index: number) => {
+				if (index === lastDrawnFrame) return;
+
+				let img = images[index];
+				if (!img) {
+					// Find nearest loaded frame
+					let step = 1;
+					while (step < totalFrames) {
+						if (index - step >= 0 && images[index - step]) {
+							img = images[index - step];
+							break;
+						}
+						if (index + step < totalFrames && images[index + step]) {
+							img = images[index + step];
+							break;
+						}
+						step++;
+					}
+				}
+
+				if (img && img.complete && img.naturalWidth !== 0) {
+					drawImageCover(ctx, img);
+					lastDrawnFrame = index;
+				}
+			};
+
+			// Resize handler
+			const resizeCanvas = () => {
+				const width = canvas.clientWidth || window.innerWidth;
+				const height = canvas.clientHeight || window.innerHeight;
+				if (width === 0 || height === 0) return;
+				
+				canvas.width = width * window.devicePixelRatio;
+				canvas.height = height * window.devicePixelRatio;
+				lastDrawnFrame = -1; // Reset to force redraw after canvas clear
+				drawFrame(Math.round(currentFrame));
+			};
+
+			window.addEventListener('resize', resizeCanvas, { passive: true });
+
+			// Scroll progress handler
+			const handleScroll = () => {
+				const rect = scrollContainer.getBoundingClientRect();
+				const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+				const totalScrollHeight = scrollContainer.offsetHeight - viewportHeight;
+				const effectiveScrollHeight = totalScrollHeight > 0 ? totalScrollHeight : viewportHeight;
+
+				const rawProgress = -rect.top / effectiveScrollHeight;
+				const progress = Math.max(0, Math.min(1, rawProgress));
+				
+				targetFrame = progress * (totalFrames - 1);
+
+				// Ensure Header is always visible and interactive
+				const header = document.getElementById('main-header');
+				if (header) {
+					header.classList.remove('opacity-0', '-translate-y-10', 'pointer-events-none');
+					header.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+				}
+
+				// Animate slides based on progress
+				// Slide 1: 0% to 25% (fades out from 0% to 25%)
+				if (slide1) {
+					if (progress < 0.25) {
+						const factor = progress / 0.25;
+						slide1.style.opacity = `${1 - factor}`;
+						slide1.style.transform = `translateY(${-factor * 40}px)`;
+						slide1.style.pointerEvents = 'auto';
+					} else {
+						slide1.style.opacity = '0';
+						slide1.style.transform = 'translateY(-40px)';
+						slide1.style.pointerEvents = 'none';
+					}
+				}
+
+				// Slide 2: 25% to 60%
+				if (slide2) {
+					if (progress >= 0.25 && progress < 0.6) {
+						let factor = 0;
+						let ty = 0;
+						if (progress < 0.42) {
+							factor = (progress - 0.25) / 0.17;
+							ty = 30 * (1 - factor);
+							slide2.style.opacity = `${factor}`;
+							slide2.style.transform = `translateY(${ty}px)`;
+						} else {
+							factor = (progress - 0.42) / 0.18;
+							ty = -30 * factor;
+							slide2.style.opacity = `${1 - factor}`;
+							slide2.style.transform = `translateY(${ty}px)`;
+						}
+						slide2.style.pointerEvents = 'auto';
+					} else {
+						slide2.style.opacity = '0';
+						slide2.style.transform = progress < 0.25 ? 'translateY(30px)' : 'translateY(-30px)';
+						slide2.style.pointerEvents = 'none';
+					}
+				}
+
+				// Slide 3: 60% to 95%
+				if (slide3) {
+					if (progress >= 0.6 && progress < 0.95) {
+						let factor = 0;
+						let ty = 0;
+						if (progress < 0.77) {
+							factor = (progress - 0.6) / 0.17;
+							ty = 30 * (1 - factor);
+							slide3.style.opacity = `${factor}`;
+							slide3.style.transform = `translateY(${ty}px)`;
+						} else {
+							factor = (progress - 0.77) / 0.18;
+							ty = -30 * factor;
+							slide3.style.opacity = `${1 - factor}`;
+							slide3.style.transform = `translateY(${ty}px)`;
+						}
+						slide3.style.pointerEvents = 'auto';
+					} else {
+						slide3.style.opacity = '0';
+						slide3.style.transform = progress < 0.6 ? 'translateY(30px)' : 'translateY(-30px)';
+						slide3.style.pointerEvents = 'none';
+					}
+				}
+			};
+
+			window.addEventListener('scroll', handleScroll, { passive: true });
+			lenis.on('scroll', handleScroll);
+
+			// Initial call to ensure proper position and canvas size on page load
+			resizeCanvas();
+			handleScroll();
+
+			// Animation Loop
+			const updateAnimation = () => {
+				const diff = targetFrame - currentFrame;
+				if (Math.abs(diff) < 0.01) {
+					currentFrame = targetFrame;
+				} else {
+					currentFrame += diff * ease;
+				}
+				drawFrame(Math.round(currentFrame));
+				requestAnimationFrame(updateAnimation);
+			};
+			requestAnimationFrame(updateAnimation);
+
+			// Loading Screen handling
+			const updateLoadingProgress = (percent: number) => {
+				const percentage = Math.round(percent * 100);
+				if (loadingProgressText) {
+					loadingProgressText.innerText = `${percentage}%`;
+				}
+				if (loadingFill) {
+					loadingFill.style.width = `${percentage}%`;
+				}
+			};
+
+			let isDismissed = false;
+			const dismissLoadingScreen = () => {
+				if (isDismissed) return;
+				isDismissed = true;
+				if (loadingScreen) {
+					loadingScreen.style.opacity = '0';
+					loadingScreen.style.pointerEvents = 'none';
+					setTimeout(() => {
+						loadingScreen.style.display = 'none';
+					}, 700);
+				}
+			};
+
+			// Preload safety timeout to ensure user is never stuck
+			setTimeout(dismissLoadingScreen, 1500);
+
+			// Preload loading queue variables
+			let keyframesLoaded = 0;
+			const totalKeyframes = Math.ceil(totalFrames / 10);
+
+			let queueIndex = 1;
+			const loadNextFromQueue = () => {
+				if (queueIndex >= loadOrder.length) return;
+				const currentIdx = queueIndex++;
+				const frameIdx = loadOrder[currentIdx];
+
+				const img = new Image();
+				img.src = getFramePath(frameIdx);
+				img.onload = () => {
+					images[frameIdx] = img;
+					loadedCount++;
+
+					const percent = loadedCount / totalFrames;
+					updateLoadingProgress(percent);
+
+					if (frameIdx % 10 === 0) {
+						keyframesLoaded++;
+					}
+
+					if (keyframesLoaded >= totalKeyframes || loadedCount === totalFrames) {
+						dismissLoadingScreen();
+					}
+
+					loadNextFromQueue();
+				};
+				img.onerror = () => {
+					loadedCount++;
+					const percent = loadedCount / totalFrames;
+					updateLoadingProgress(percent);
+
+					if (frameIdx % 10 === 0) {
+						keyframesLoaded++;
+					}
+
+					if (keyframesLoaded >= totalKeyframes || loadedCount === totalFrames) {
+						dismissLoadingScreen();
+					}
+
+					loadNextFromQueue();
+				};
+			};
+
+			// Start with Frame 0 for instant rendering
+			const firstImg = new Image();
+			firstImg.src = getFramePath(0);
+			const startHero = () => {
+				images[0] = firstImg;
+				loadedCount++;
+				updateLoadingProgress(loadedCount / totalFrames);
+				
+				resizeCanvas();
+				handleScroll();
+				
+				// Start parallel queue loader
+				queueIndex = 1;
+				const limit = 4;
+				for (let i = 0; i < limit; i++) {
+					loadNextFromQueue();
+				}
+			};
+			firstImg.onload = startHero;
+			firstImg.onerror = startHero;
+		}
+	}
+
+	// Setup custom smooth scroll for anchor links
+	document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+		anchor.addEventListener('click', (e) => {
+			const targetId = anchor.getAttribute('href');
+			if (targetId && targetId !== '#') {
+				e.preventDefault();
+				const targetElement = document.querySelector(targetId);
+				if (targetElement) {
+					lenis.scrollTo(targetElement);
+				}
+			}
+		});
+	});
+</script>

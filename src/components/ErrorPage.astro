@@ -26,7 +26,7 @@ const {
 	imageSrc = "/error-404-icon.png",
 	imageAlt = "3D Error Graphic",
 	primaryButtonText = "Return to Core Interface",
-	primaryButtonHref = "/home",
+	primaryButtonHref = "/",
 	secondaryButtonText = "Retry Connection",
 	secondaryButtonHref = "",
 } = Astro.props;
@@ -42,7 +42,7 @@ const pageTitle = `Diceforce IT | Error ${code} - ${highlightWord} ${titleLine2}
 		<!-- Top Header logo (positioned absolutely at top) -->
 		<header class="absolute top-0 left-0 w-full px-6 sm:px-12 h-20 flex items-center justify-between z-40 animate-fade-in">
 			<div class="max-w-7xl mx-auto w-full h-full flex items-center justify-between">
-				<a href="/home" class="group flex items-center gap-3 transition-opacity duration-300 hover:opacity-90">
+				<a href="/" class="group flex items-center gap-3 transition-opacity duration-300 hover:opacity-90">
 					<span class="text-sm sm:text-base font-space tracking-[0.3em] text-shimmer uppercase font-bold leading-none">
 						Diceforce IT
 					</span>

@@ -11,7 +11,7 @@ const { activePage = 'none' } = Astro.props;
 	<div class="w-[95%] sm:w-[92%] max-w-6xl relative backdrop-blur-lg bg-black/60 border border-white/10 rounded-full px-4 sm:px-8 py-2 flex items-center justify-between shadow-[0_4px_30px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.05)] z-50">
 		
 		<!-- Brand Logo & Link -->
-		<a href="/home" class="flex items-center gap-1.5 sm:gap-2 group relative z-10 shrink-0 pointer-events-auto">
+		<a href="/" class="flex items-center gap-1.5 sm:gap-2 group relative z-10 shrink-0 pointer-events-auto">
 			<img src="/diceforceITlogo_.gif" alt="Diceforce IT Logo" class="w-9 h-9 sm:w-12 sm:h-12 object-contain filter drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]" width="48" height="48" />
 			<img src="/wordmarklogo.svg" alt="Diceforce IT" class="h-4 sm:h-5.5 object-contain group-hover:brightness-110 group-hover:drop-shadow-[0_0_6px_rgba(34,211,238,0.5)] transition-all duration-300" width="130" height="22" />
 		</a>
@@ -20,13 +20,13 @@ const { activePage = 'none' } = Astro.props;
 		<nav class="hidden min-[1180px]:flex items-center gap-6 relative z-25 pointer-events-auto">
 			<!-- Home -->
 			{activePage === 'home' ? (
-				<a href="/home" class="inline-flex items-center justify-center text-[16px] font-mono tracking-widest text-cyan-400 transition-colors uppercase py-1 px-2">
+				<a href="/" class="inline-flex items-center justify-center text-[16px] font-mono tracking-widest text-cyan-400 transition-colors uppercase py-1 px-2">
 					<span class="text-cyan-400 opacity-100 mr-1">[</span>
 					<span>Launch Pad</span>
 					<span class="text-cyan-400 opacity-100 ml-1">]</span>
 				</a>
 			) : (
-				<a href="/home" class="inline-flex items-center justify-center text-[16px] font-mono tracking-widest text-white/60 hover:text-cyan-400 transition-colors uppercase py-1 px-2 group/link">
+				<a href="/" class="inline-flex items-center justify-center text-[16px] font-mono tracking-widest text-white/60 hover:text-cyan-400 transition-colors uppercase py-1 px-2 group/link">
 					<span class="text-cyan-400 opacity-0 group-hover/link:opacity-100 transition-[opacity,transform] duration-200 mr-1 translate-x-1 group-hover/link:translate-x-0">[</span>
 					<span>Launch Pad</span>
 					<span class="text-cyan-400 opacity-0 group-hover/link:opacity-100 transition-[opacity,transform] duration-200 ml-1 -translate-x-1 group-hover/link:translate-x-0">]</span>
@@ -169,7 +169,7 @@ const { activePage = 'none' } = Astro.props;
 	<!-- Dedicated Top Header Bar inside Overlay with Explicit CLOSE Option -->
 	<div class="absolute top-4 left-0 right-0 z-[110] w-full flex justify-center px-4 sm:px-6 pointer-events-auto">
 		<div class="w-[95%] sm:w-[92%] max-w-6xl flex items-center justify-between py-2 border-b border-white/10 pb-3">
-			<a href="/home" onclick="window.closeMobileMenu()" class="flex items-center gap-1.5 sm:gap-2 group">
+			<a href="/" onclick="window.closeMobileMenu()" class="flex items-center gap-1.5 sm:gap-2 group">
 				<img src="/diceforceITlogo_.gif" alt="Diceforce IT Logo" class="w-9 h-9 sm:w-12 sm:h-12 object-contain filter drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]" width="48" height="48" />
 				<img src="/wordmarklogo.svg" alt="Diceforce IT" class="h-4 sm:h-5.5 object-contain group-hover:brightness-110 group-hover:drop-shadow-[0_0_6px_rgba(34,211,238,0.5)] transition-all duration-300" width="130" height="22" />
 			</a>
@@ -199,7 +199,7 @@ const { activePage = 'none' } = Astro.props;
 		<div class="space-y-2">
 			<div class="font-mono text-[11px] uppercase tracking-[0.25em] text-cyan-400/70 font-semibold px-2">01 // Main</div>
 			<a 
-				href="/home" 
+				href="/" 
 				onclick="window.closeMobileMenu()"
 				class={`group flex items-center justify-between p-3.5 rounded-xl border transition-all duration-300 ${
 					activePage === 'home' 
