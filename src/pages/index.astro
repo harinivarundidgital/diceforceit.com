@@ -59,38 +59,51 @@ import Header from '../components/Header.astro';
 					<!-- Slide 1: Welcome / Introduction -->
 					<div id="hero-slide-1" class="absolute inset-0 flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto px-4 py-8 sm:py-12 md:py-16 gap-6 sm:gap-8 transition-all duration-300 pointer-events-auto -translate-y-4 sm:-translate-y-8">
 						<!-- Left Side: Headline (Left aligned) -->
-						<div class="w-full md:w-1/2 text-left">
-							<h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-white font-syne text-left leading-[1.1]">
+						<div class="w-full md:w-1/2 text-center md:text-left mt-[150px] md:mt-0">
+							<h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tight text-white font-syne text-center md:text-left leading-[1.1]">
 								Build AI <span class="text-shimmer font-semibold block mt-1">That Works</span>
 							</h1>
 						</div>
 
-						<!-- Right Side: Subtext & Scroll Indicator -->
-						<div class="w-full md:w-1/2 flex flex-col items-start text-left md:items-end md:text-right space-y-4 sm:space-y-6">
-							<p class="text-white/85 text-sm sm:text-lg md:text-xl font-light leading-relaxed text-left md:text-right max-w-md">
+						<!-- Right Side: Subtext -->
+						<div class="w-full md:w-1/2 flex flex-col items-center text-center md:items-end md:text-right space-y-4 sm:space-y-6">
+							<p class="text-white/85 text-base sm:text-xl md:text-2xl font-light leading-relaxed text-center md:text-right max-w-md">
 								From AI strategy consulting to deployment, we build AI that delivers measurable outcomes
 							</p>
-							<a href="#enterprise-ai-architecture" class="flex items-center gap-2 font-mono text-xs tracking-widest uppercase text-white/80 hover:text-cyan-400 transition-colors pointer-events-auto cursor-pointer group">
-								<span class="scroll-glow-text font-semibold group-hover:text-cyan-400 transition-colors">Scroll to explore</span>
-								<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 animate-bounce scroll-glow-icon text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+						</div>
+
+						<!-- Centered Scroll Indicator -->
+						<a href="#enterprise-ai-architecture" class="relative md:absolute mt-auto mb-2 md:bottom-6 md:left-1/2 -translate-x-0 md:-translate-x-1/2 pointer-events-auto cursor-pointer group flex items-center justify-center z-30">
+							<div class="relative w-28 h-28 flex items-center justify-center">
+								<!-- Rotating circular text -->
+								<svg class="absolute inset-0 w-full h-full animate-[spin_12s_linear_infinite]" viewBox="0 0 100 100">
+									<defs>
+										<path id="circlePath" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" />
+									</defs>
+									<text class="text-[7.5px] font-mono font-semibold tracking-[0.16em] fill-white/70 group-hover:fill-cyan-400 transition-colors">
+										<textPath href="#circlePath">SCROLL TO EXPLORE • SCROLL TO EXPLORE •</textPath>
+									</text>
+								</svg>
+								<!-- Central Icon -->
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 animate-bounce scroll-glow-icon text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 									<path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
 								</svg>
-							</a>
-						</div>
+							</div>
+						</a>
 					</div>
 
 					<!-- Slide 2: Enterprise AI -->
 					<div id="hero-slide-2" class="absolute inset-0 flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto px-4 py-8 sm:py-12 md:py-16 gap-6 sm:gap-8 opacity-0 transition-all duration-300 pointer-events-none -translate-y-4 sm:-translate-y-8">
 						<!-- Left Side: Headline (Left aligned) -->
-						<div class="w-full md:w-1/2 text-left pointer-events-auto">
-							<h2 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight font-syne text-left">
+						<div class="w-full md:w-1/2 text-center md:text-left pointer-events-auto mt-[150px] md:mt-0">
+							<h2 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-tight font-syne text-center md:text-left">
 								Think AI.<br/>Build Smarter.<br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-cyan-300 font-extrabold">Scale Faster.</span>
 							</h2>
 						</div>
 
 						<!-- Right Side: Subtext -->
-						<div class="w-full md:w-1/2 flex justify-start md:justify-end pointer-events-auto">
-							<p class="text-white/85 text-sm sm:text-lg md:text-xl font-light leading-relaxed text-left md:text-right max-w-md">
+						<div class="w-full md:w-1/2 flex justify-center md:justify-end pointer-events-auto">
+							<p class="text-white/85 text-base sm:text-xl md:text-2xl font-light leading-relaxed text-center md:text-right max-w-md">
 								Enterprise AI consulting services engineered for real business transformation.
 							</p>
 						</div>
@@ -99,15 +112,15 @@ import Header from '../components/Header.astro';
 					<!-- Slide 3: Three Ways to Build -->
 					<div id="hero-slide-3" class="absolute inset-0 flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto px-4 py-8 sm:py-12 md:py-16 gap-6 sm:gap-8 opacity-0 transition-all duration-300 pointer-events-none -translate-y-4 sm:-translate-y-8">
 						<!-- Left Side: Headline (Left aligned) -->
-						<div class="w-full md:w-1/2 text-left pointer-events-auto">
-							<h2 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight font-syne text-left">
+						<div class="w-full md:w-1/2 text-center md:text-left pointer-events-auto mt-[150px] md:mt-0">
+							<h2 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-tight font-syne text-center md:text-left">
 								One Vision.<br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-300 font-extrabold">Three Ways<br/>to Build.</span>
 							</h2>
 						</div>
 
 						<!-- Right Side: Subtext -->
-						<div class="w-full md:w-1/2 flex justify-start md:justify-end pointer-events-auto">
-							<p class="text-white/85 text-sm sm:text-lg md:text-xl font-light leading-relaxed text-left md:text-right max-w-md">
+						<div class="w-full md:w-1/2 flex justify-center md:justify-end pointer-events-auto">
+							<p class="text-white/85 text-base sm:text-xl md:text-2xl font-light leading-relaxed text-center md:text-right max-w-md">
 								Pro code | Low code | No code | Maximum control. Unlimited possibilities.
 							</p>
 						</div>
