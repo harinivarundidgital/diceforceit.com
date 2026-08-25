@@ -4,12 +4,21 @@ import '../styles/global.css';
 interface Props {
 	title?: string;
 	description?: string;
+	keywords?: string;
+	ogImage?: string;
+	ogType?: string;
 }
 
 const { 
-	title = "Diceforce IT | Coming Soon", 
-	description = "Something great is on the way. A premium, modern digital experience is coming soon from Diceforce IT." 
+	title = "Diceforce IT | AI & Machine Learning Solutions", 
+	description = "Something great is on the way. A premium, modern digital experience is coming soon from Diceforce IT.",
+	keywords,
+	ogImage = "/glowing-hand-icon.png",
+	ogType = "website"
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, "https://diceforceit.com").href;
+const resolvedOgImage = ogImage.startsWith('http') ? ogImage : new URL(ogImage, "https://diceforceit.com").href;
 ---
 
 <!doctype html>
@@ -26,20 +35,22 @@ const {
 		<!-- SEO Meta Tags -->
 		<title>{title}</title>
 		<meta name="description" content={description} />
+		{keywords && <meta name="keywords" content={keywords} />}
+		<link rel="canonical" href={canonicalURL} />
 		
 		<!-- Open Graph / Facebook -->
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://diceforceit.com/" />
+		<meta property="og:type" content={ogType} />
+		<meta property="og:url" content={canonicalURL} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-		<meta property="og:image" content="/glowing-hand-icon.png" />
+		<meta property="og:image" content={resolvedOgImage} />
 
 		<!-- Twitter -->
 		<meta property="twitter:card" content="summary_large_image" />
-		<meta property="twitter:url" content="https://diceforceit.com/" />
+		<meta property="twitter:url" content={canonicalURL} />
 		<meta property="twitter:title" content={title} />
 		<meta property="twitter:description" content={description} />
-		<meta property="twitter:image" content="/glowing-hand-icon.png" />
+		<meta property="twitter:image" content={resolvedOgImage} />
 
 		<!-- Google Fonts: Inter, Instrument Sans, Plus Jakarta Sans, & JetBrains Mono -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />

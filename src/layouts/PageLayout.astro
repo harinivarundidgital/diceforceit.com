@@ -9,17 +9,23 @@ interface Props {
 	description?: string;
 	activePage?: 'home' | 'about' | 'services' | 'careers' | 'contact' | 'none' | 'animl' | 'ai-ml' | 'it-staffing';
 	showPreloader?: boolean;
+	keywords?: string;
+	ogImage?: string;
+	ogType?: string;
 }
 
 const {
 	title = "Diceforce IT | Let's Talk",
 	description = "Thinking about your next move? Let's discuss how Diceforce IT can help make it real. Reach out to our design, engineering, and staffing teams.",
 	activePage = 'none',
-	showPreloader = true
+	showPreloader = true,
+	keywords,
+	ogImage,
+	ogType
 } = Astro.props;
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} keywords={keywords} ogImage={ogImage} ogType={ogType}>
 	<!-- Ambient Background Glows & Grid (Behind Content) -->
 	<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[#020205]">
 		<!-- Interactive Mouse Spotlight Glow -->
