@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://diceforceit.com/sitemap-index.xml
