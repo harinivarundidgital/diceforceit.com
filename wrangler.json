@@ -2,6 +2,16 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "diceforceit-com",
   "compatibility_date": "2026-07-21",
+  "routes": [
+    {
+      "pattern": "diceforceit.com",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.diceforceit.com",
+      "custom_domain": true
+    }
+  ],
   "assets": {
     "directory": "./dist/client",
     "html_handling": "auto-trailing-slash",
@@ -14,3 +24,4 @@
     }
   ]
 }
+
