@@ -402,6 +402,10 @@ import PageLayout from '../layouts/PageLayout.astro';
 										></textarea>
 									</div>
 								</div>
+								<!-- Error notification if submission fails -->
+								<div id="form-error-msg" class="hidden p-4 rounded-xl bg-red-950/40 border border-red-500/30 text-red-300 text-xs font-mono">
+									Failed to dispatch message. Please try again or reach out directly to <a href="mailto:sawarkar@varundigitalmedia.com" class="underline text-white">sawarkar@varundigitalmedia.com</a>.
+								</div>
 
 								<div class="pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 									<div class="w-full sm:w-auto z-10">
@@ -596,51 +600,111 @@ import PageLayout from '../layouts/PageLayout.astro';
 		});
 		updateInterestPills();
 
-		// Form Submission Animation (Simulated Terminal Output)
+		// Form Submission via FormSubmit.co (Zero Database / Direct Email Forward)
 		if (contactForm && successScreen && resetFormBtn) {
-			contactForm.addEventListener('submit', (e) => {
+			const formErrorMsg = document.getElementById('form-error-msg');
+
+			contactForm.addEventListener('submit', async (e) => {
 				e.preventDefault();
+				if (formErrorMsg) formErrorMsg.classList.add('hidden');
 				
 				const submitBtn = contactForm.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+				const btnText = submitBtn?.querySelector('span');
+				const originalText = btnText ? btnText.innerText : 'Send';
+				
 				if (submitBtn) {
 					submitBtn.disabled = true;
-					const btnText = submitBtn.querySelector('span');
 					if (btnText) {
 						btnText.innerText = 'Routing Transmission…';
-					} else {
-						submitBtn.innerText = 'Routing Transmission…';
 					}
 				}
 
-				// Animate form fields fade-out
-				gsap.to(contactForm, {
-					opacity: 0,
-					y: -10,
-					duration: 0.4,
-					onComplete: () => {
-						contactForm.classList.add('hidden');
-						successScreen.classList.remove('hidden');
-						successScreen.style.opacity = '0';
-						successScreen.style.transform = 'translateY(10px)';
-						
-						gsap.to(successScreen, {
-							opacity: 1,
-							y: 0,
-							duration: 0.5,
-							ease: 'power2.out',
+				try {
+					const formData = new FormData(contactForm);
+
+					// Gather selected interest areas cleanly
+					const selectedServices: string[] = [];
+					checkboxes.forEach((cb) => {
+						if (cb.checked) {
+							const labelSpan = cb.parentElement?.querySelector('span');
+							selectedServices.push(labelSpan ? labelSpan.innerText.trim() : cb.value);
+						}
+					});
+
+					const nameVal = (formData.get('name') as string)?.trim() || 'Anonymous';
+					const companyVal = (formData.get('company') as string)?.trim() || 'N/A';
+					const enquiryVal = enquiryTriggerText ? enquiryTriggerText.innerText.trim() : ((formData.get('enquiry_type') as string) || 'General');
+
+					const payload = {
+						name: nameVal,
+						phone: formData.get('phone'),
+						email: formData.get('email'),
+						company: companyVal,
+						enquiry_type: enquiryVal,
+						interest_areas: selectedServices.length > 0 ? selectedServices.join(', ') : 'None specified',
+						message: formData.get('message'),
+						_subject: `Diceforce IT Inquiry: ${nameVal} (${companyVal})`,
+						_template: 'table',
+						_captcha: 'false'
+					};
+
+					const response = await fetch('https://formsubmit.co/ajax/sawarkar@varundigitalmedia.com', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+							'Accept': 'application/json'
+						},
+						body: JSON.stringify(payload)
+					});
+
+					const data = await response.json().catch(() => null);
+
+					if (response.ok) {
+						// Animate form fields fade-out and show terminal success screen
+						gsap.to(contactForm, {
+							opacity: 0,
+							y: -10,
+							duration: 0.4,
 							onComplete: () => {
-								// Trigger Staggered Terminal Console Lines
-								const lines = successScreen.querySelectorAll('.terminal-line');
-								gsap.to(lines, {
+								contactForm.classList.add('hidden');
+								successScreen.classList.remove('hidden');
+								successScreen.style.opacity = '0';
+								successScreen.style.transform = 'translateY(10px)';
+								
+								gsap.to(successScreen, {
 									opacity: 1,
-									stagger: 0.4,
-									duration: 0.2,
-									ease: 'none'
+									y: 0,
+									duration: 0.5,
+									ease: 'power2.out',
+									onComplete: () => {
+										// Trigger Staggered Terminal Console Lines
+										const lines = successScreen.querySelectorAll('.terminal-line');
+										gsap.to(lines, {
+											opacity: 1,
+											stagger: 0.4,
+											duration: 0.2,
+											ease: 'none'
+										});
+									}
 								});
 							}
 						});
+					} else {
+						throw new Error(data?.message || 'Server returned an error status.');
 					}
-				});
+				} catch (err: any) {
+					console.error('Submission error:', err);
+					if (formErrorMsg) {
+						formErrorMsg.innerText = err?.message 
+							? `Transmission error: ${err.message}` 
+							: 'Failed to route transmission. Please check your connection or email hr@diceforceit.com directly.';
+						formErrorMsg.classList.remove('hidden');
+					}
+					if (submitBtn) {
+						submitBtn.disabled = false;
+						if (btnText) btnText.innerText = originalText;
+					}
+				}
 			});
 
 			// Reset Form
@@ -651,13 +715,14 @@ import PageLayout from '../layouts/PageLayout.astro';
 					duration: 0.4,
 					onComplete: () => {
 						successScreen.classList.add('hidden');
+						if (formErrorMsg) formErrorMsg.classList.add('hidden');
 						
 						// Reset terminal lines
 						const lines = successScreen.querySelectorAll('.terminal-line');
 						lines.forEach(l => (l as HTMLElement).style.opacity = '0');
 						
 						contactForm.reset();
-						if (enquiryTriggerText) enquiryTriggerText.innerText = 'Select inquiry topic...';
+						if (enquiryTriggerText) enquiryTriggerText.innerText = 'AI ML Solutions (Custom Models & Intelligent Systems)';
 						updateInterestPills();
 						contactForm.classList.remove('hidden');
 						contactForm.style.opacity = '0';
