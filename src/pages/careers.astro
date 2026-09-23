@@ -1,229 +1,5 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
-
-interface JobData {
-	id: string;
-	employer_id?: string;
-	category_id?: string;
-	category_name?: string;
-	category?: string | { id?: string; name?: string; slug?: string };
-	title: string;
-	slug?: string;
-	description?: string;
-	requirements?: string | null;
-	location?: string;
-	employment_type?: string;
-	work_mode?: string;
-	salary_min?: string;
-	salary_max?: string;
-	experience_min?: string;
-	experience_max?: string;
-	skills?: string;
-	status?: string;
-	expires_at?: string;
-	created_at?: string;
-	updated_at?: string;
-}
-
-interface CategoryData {
-	id: string | number;
-	name: string;
-	slug?: string;
-	status?: string;
-	created_at?: string;
-	updated_at?: string;
-}
-
-const JOBS_API_URL = 'https://demo1.varundigitalmedia.com/jobportal/public/api/jobs';
-const CATEGORIES_API_URL = 'https://demo1.varundigitalmedia.com/jobportal/public/api/categories';
-
-const defaultCategoryMap: Record<string, string> = {
-	'1': 'Software Development',
-	'2': 'Sales & Marketing',
-	'3': 'HR & Administration',
-	'4': 'Finance',
-	'5': 'Design'
-};
-
-const defaultCategories: CategoryData[] = [
-	{ id: '1', name: 'Software Development', slug: 'software-development' },
-	{ id: '2', name: 'Sales & Marketing', slug: 'sales-marketing' },
-	{ id: '3', name: 'HR & Administration', slug: 'hr-administration' },
-	{ id: '4', name: 'Finance', slug: 'finance' },
-	{ id: '5', name: 'Design', slug: 'design' }
-];
-
-let initialCategories: CategoryData[] = [...defaultCategories];
-let categoryMap: Record<string, string> = { ...defaultCategoryMap };
-
-function formatWorkMode(mode?: string) {
-	if (!mode) return 'Remote';
-	if (mode.toLowerCase() === 'full_time') return 'Full-Time';
-	return mode.charAt(0).toUpperCase() + mode.slice(1).toLowerCase();
-}
-
-function formatEmploymentType(type?: string) {
-	if (!type) return 'Full-Time';
-	return type.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join('-');
-}
-
-function getJobCategory(job: JobData, catMap: Record<string, string> = categoryMap): string {
-	if (job.category_name) return job.category_name;
-	if (typeof job.category === 'string' && job.category.trim()) return job.category.trim();
-	if (job.category && typeof job.category === 'object' && 'name' in job.category && job.category.name) {
-		return job.category.name;
-	}
-	if (job.category_id && catMap[String(job.category_id)]) {
-		return catMap[String(job.category_id)];
-	}
-	if (job.category_id) {
-		return `Category ${job.category_id}`;
-	}
-	return 'General';
-}
-
-function formatSalary(min?: string, max?: string) {
-	const minVal = min ? parseFloat(min) : 0;
-	const maxVal = max ? parseFloat(max) : 0;
-	if (minVal > 0 && maxVal > 0) {
-		return `₹${minVal.toLocaleString('en-IN')} - ₹${maxVal.toLocaleString('en-IN')} PA`;
-	}
-	if (minVal > 0) {
-		return `From ₹${minVal.toLocaleString('en-IN')} PA`;
-	}
-	if (maxVal > 0) {
-		return `Up to ₹${maxVal.toLocaleString('en-IN')} PA`;
-	}
-	return 'Competitive Base + Growth Options';
-}
-
-function formatExperience(min?: string, max?: string) {
-	const minExp = min ? parseFloat(min) : 0;
-	const maxExp = max ? parseFloat(max) : 0;
-	if (minExp > 0 && maxExp > 0) {
-		return `${minExp} - ${maxExp} years`;
-	}
-	if (minExp > 0) {
-		return `${minExp}+ years`;
-	}
-	if (maxExp > 0) {
-		return `Up to ${maxExp} years`;
-	}
-	return 'Experienced';
-}
-
-function formatSkills(skillsStr?: string) {
-	if (!skillsStr) return [];
-	return skillsStr.split(',').map(s => s.trim()).filter(Boolean);
-}
-
-function parseRequirements(req: string | null | undefined): string[] {
-	if (!req) return [];
-	if (Array.isArray(req)) return req;
-	if (typeof req === 'string' && req.includes('<li')) {
-		const matches = req.match(/<li[^>]*>(.*?)<\/li>/gi);
-		if (matches) {
-			return matches.map(m => m.replace(/<\/?li[^>]*>/gi, '').trim()).filter(Boolean);
-		}
-	}
-	return String(req).split(/\r?\n|•|;/).map(s => s.trim().replace(/^[-*]\s*/, '')).filter(Boolean);
-}
-
-const fallbackJobs: JobData[] = [
-	{
-		id: '2',
-		employer_id: '3',
-		category_id: '3',
-		title: 'Web Developer',
-		slug: 'web-developer-7c7310',
-		description: 'Test',
-		requirements: null,
-		location: 'hyderabad',
-		employment_type: 'full_time',
-		work_mode: 'onsite',
-		salary_min: '800000.00',
-		salary_max: '1000000.00',
-		experience_min: '4.0',
-		experience_max: '6.0',
-		skills: 'HTML,JS,CSS,React',
-		status: 'published',
-		expires_at: '2026-09-23',
-		created_at: '2026-09-09 13:20:55',
-		updated_at: '2026-09-09 13:26:35'
-	},
-	{
-		id: '1',
-		employer_id: '3',
-		category_id: '1',
-		title: 'Laravel Developer',
-		slug: 'laravel-developer-73af0c',
-		description: 'TEST DATA',
-		requirements: null,
-		location: 'Hyderabad',
-		employment_type: 'full_time',
-		work_mode: 'onsite',
-		salary_min: '1200000.00',
-		salary_max: '1600000.00',
-		experience_min: '4.0',
-		experience_max: '5.0',
-		skills: 'php, laravel, CI3,CI4',
-		status: 'published',
-		expires_at: '2026-10-30',
-		created_at: '2026-09-09 12:16:15',
-		updated_at: '2026-09-09 12:16:15'
-	}
-];
-
-let initialJobs: JobData[] = [];
-
-try {
-	const [jobsRes, catRes] = await Promise.all([
-		fetch(JOBS_API_URL, {
-			headers: { 'Accept': 'application/json' },
-			signal: AbortSignal.timeout(5000)
-		}),
-		fetch(CATEGORIES_API_URL, {
-			headers: { 'Accept': 'application/json' },
-			signal: AbortSignal.timeout(5000)
-		})
-	]);
-
-	if (catRes.ok) {
-		const catJson = await catRes.json();
-		if (catJson?.status && Array.isArray(catJson?.data) && catJson.data.length > 0) {
-			const activeCats: CategoryData[] = [];
-			catJson.data.forEach((cat: any) => {
-				if (cat?.id && cat?.name) {
-					categoryMap[String(cat.id)] = String(cat.name);
-					if (cat.status !== 'inactive') {
-						activeCats.push({
-							id: cat.id,
-							name: cat.name,
-							slug: cat.slug || cat.name.toLowerCase().replace(/\s+/g, '-'),
-							status: cat.status
-						});
-					}
-				}
-			});
-			if (activeCats.length > 0) {
-				initialCategories = activeCats;
-			}
-		}
-	}
-
-	if (jobsRes.ok) {
-		const json = await jobsRes.json();
-		if (json?.status && Array.isArray(json?.data) && json.data.length > 0) {
-			initialJobs = json.data;
-		}
-	}
-} catch (e) {
-	// Fallback used below if fetch fails
-}
-
-if (!initialJobs || initialJobs.length === 0) {
-	initialJobs = fallbackJobs;
-}
 ---
 
 <PageLayout 
@@ -405,112 +181,277 @@ if (!initialJobs || initialJobs.length === 0) {
 
 		<!-- SECTION 4: OPEN POSITIONS (Accordion List) -->
 		<section id="positions" class="border-t border-white/5 pt-16 scroll-mt-24 animate-stagger-item">
-			<div class="space-y-4 mb-12">
-				<div class="flex items-center gap-2">
-					<span class="text-xs font-mono tracking-widest text-cyan-400/80 uppercase">EXPLORE OPPORTUNITIES</span>
+			<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
+				<div class="space-y-4">
+					<div class="flex items-center gap-2">
+						<span class="text-xs font-mono tracking-widest text-cyan-400/80 uppercase">EXPLORE OPPORTUNITIES</span>
+					</div>
+					<h2 class="font-syne font-semibold text-2xl sm:text-3xl text-white tracking-tight leading-none select-text">
+						Open Positions
+					</h2>
+					<p class="text-neutral-400 text-sm leading-relaxed max-w-xl select-text font-light">
+						Choose a role to view the qualifications, requirements, and apply directly.
+					</p>
 				</div>
-				<h2 class="font-syne font-semibold text-2xl sm:text-3xl text-white tracking-tight leading-none select-text">
-					Open Positions
-				</h2>
-				<p class="text-neutral-400 text-sm leading-relaxed max-w-xl select-text font-light">
-					Choose a role to view the qualifications, requirements, and apply directly.
-				</p>
+				
+				<!-- Filter Buttons -->
+				<div class="flex items-center gap-2 border border-white/5 rounded-full p-1 bg-black/40 backdrop-blur-md self-start sm:self-auto shrink-0 font-mono text-xs tracking-wider uppercase select-none">
+					<button data-filter="all" class="filter-btn px-4 py-1.5 rounded-full text-cyan-400 bg-cyan-500/10 border border-cyan-400/20 transition-all duration-300 cursor-pointer">All</button>
+					<button data-filter="engineering" class="filter-btn px-4 py-1.5 rounded-full text-neutral-400 hover:text-white border border-transparent transition-all duration-300 cursor-pointer">Engineering</button>
+					<button data-filter="consulting" class="filter-btn px-4 py-1.5 rounded-full text-neutral-400 hover:text-white border border-transparent transition-all duration-300 cursor-pointer">Consulting</button>
+				</div>
 			</div>
 
 			<!-- Positions Stack -->
-			<div id="positions-container" class="space-y-4">
-				{initialJobs && initialJobs.length > 0 ? (
-					initialJobs.map((job) => {
-						const categoryName = getJobCategory(job);
-						const workModeStr = formatWorkMode(job.work_mode);
-						const empTypeStr = formatEmploymentType(job.employment_type);
-						const salaryStr = formatSalary(job.salary_min, job.salary_max);
-						const expStr = formatExperience(job.experience_min, job.experience_max);
-						const skillsList = formatSkills(job.skills);
-						const reqList = parseRequirements(job.requirements);
-						const locationTag = job.location ? `${job.location} • ${workModeStr}` : workModeStr;
+			<div class="space-y-4">
+				<!-- Position 1: AI Systems Engineer -->
+				<div class="job-item border border-white/5 bg-white/[0.01] hover:bg-white/[0.02] backdrop-blur-md rounded-2xl overflow-hidden transition-all duration-300 hover:border-cyan-500/20 shadow-lg shadow-black/20" data-dept="engineering">
+					<!-- Header (Trigger) -->
+					<button class="w-full text-left p-6 sm:p-8 flex items-center justify-between gap-4 cursor-pointer outline-none group/jobbtn">
+						<div class="space-y-2">
+							<div class="flex flex-wrap items-center gap-2.5">
+								<span class="font-mono text-xs tracking-widest text-cyan-400 bg-cyan-400/5 border border-cyan-400/10 px-2 py-0.5 rounded uppercase">Engineering</span>
+								<span class="font-mono text-xs tracking-widest text-neutral-400 bg-white/[0.02] border border-white/5 px-2 py-0.5 rounded uppercase">Remote</span>
+								<span class="font-mono text-xs tracking-widest text-neutral-400 bg-white/[0.02] border border-white/5 px-2 py-0.5 rounded uppercase">Full-Time</span>
+							</div>
+							<h3 class="font-syne font-bold text-lg sm:text-xl text-white group-hover/jobbtn:text-cyan-400 transition-colors select-text">
+								Senior AI Systems Engineer
+							</h3>
+						</div>
+						<!-- Chevron Icon -->
+						<div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center shrink-0 text-neutral-400 group-hover/jobbtn:text-cyan-400 group-hover/jobbtn:border-cyan-500/20 transition-all duration-300 chevron-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+							</svg>
+						</div>
+					</button>
 
-						return (
-							<div class="job-item border border-white/5 bg-white/[0.01] hover:bg-white/[0.02] backdrop-blur-md rounded-2xl overflow-hidden transition-all duration-300 hover:border-cyan-500/20 shadow-lg shadow-black/20">
-								<!-- Header (Trigger) -->
-								<button class="w-full text-left p-6 sm:p-8 flex items-center justify-between gap-4 cursor-pointer outline-none group/jobbtn">
-									<div class="space-y-2">
-										<div class="flex flex-wrap items-center gap-2.5">
-											<span class="font-mono text-xs tracking-widest text-cyan-400 bg-cyan-400/5 border border-cyan-400/10 px-2 py-0.5 rounded uppercase">{categoryName}</span>
-											<span class="font-mono text-xs tracking-widest text-neutral-400 bg-white/[0.02] border border-white/5 px-2 py-0.5 rounded uppercase">{locationTag}</span>
-											<span class="font-mono text-xs tracking-widest text-neutral-400 bg-white/[0.02] border border-white/5 px-2 py-0.5 rounded uppercase">{empTypeStr}</span>
-										</div>
-										<h3 class="font-syne font-bold text-lg sm:text-xl text-white group-hover/jobbtn:text-cyan-400 transition-colors select-text">
-											{job.title}
-										</h3>
+					<!-- Expandable Details -->
+					<div class="job-details hidden border-t border-white/5 bg-[#030307]/40 p-6 sm:p-8 space-y-6">
+						<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+							<div class="lg:col-span-2 space-y-4">
+								<h4 class="font-mono text-xs uppercase tracking-widest text-neutral-400">Role Overview</h4>
+								<p class="text-neutral-400 text-sm leading-relaxed font-light select-text">
+									Develop production-ready AI systems using Agentic AI, Generative AI, RAG, and cloud-native platforms. We build, architect, and scale leading AI platforms to help our partners thrive.
+								</p>
+								<h4 class="font-mono text-xs uppercase tracking-widest text-neutral-400 pt-2">Key Responsibilities</h4>
+								<ul class="space-y-2.5 text-neutral-300 text-sm leading-relaxed font-light select-text">
+									<li class="flex items-start gap-2.5">
+										<span class="w-1.5 h-1.5 rounded-full bg-cyan-500/40 mt-2 shrink-0"></span>
+										<span>Architect and deploy scalable Agentic AI and RAG architectures for enterprise applications.</span>
+									</li>
+									<li class="flex items-start gap-2.5">
+										<span class="w-1.5 h-1.5 rounded-full bg-cyan-500/40 mt-2 shrink-0"></span>
+										<span>Mentor team members, perform constructive code reviews, and write clean, maintainable documentation.</span>
+									</li>
+									<li class="flex items-start gap-2.5">
+										<span class="w-1.5 h-1.5 rounded-full bg-cyan-500/40 mt-2 shrink-0"></span>
+										<span>Collaborate with cross-functional teams on high-throughput model inference pipelines.</span>
+									</li>
+								</ul>
+							</div>
+							<div class="space-y-4 lg:border-l lg:border-white/5 lg:pl-8">
+								<h4 class="font-mono text-xs uppercase tracking-widest text-neutral-400">Stack & Requirements</h4>
+								<div class="flex flex-wrap gap-1.5 pt-1">
+									<span class="font-mono text-xs text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Agentic AI</span>
+									<span class="font-mono text-xs text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">RAG</span>
+									<span class="font-mono text-xs text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Python</span>
+									<span class="font-mono text-xs text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">MLOps</span>
+									<span class="font-mono text-xs text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Cloud Native</span>
+								</div>
+								<div class="space-y-3 pt-3">
+									<div>
+										<span class="text-xs font-mono text-neutral-500 uppercase block">Experience</span>
+										<span class="text-white text-xs select-text font-medium">5+ years in AI systems engineering</span>
 									</div>
-									<!-- Chevron Icon -->
-									<div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center shrink-0 text-neutral-400 group-hover/jobbtn:text-cyan-400 group-hover/jobbtn:border-cyan-500/20 transition-all duration-300 chevron-icon">
-										<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-											<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-										</svg>
-									</div>
-								</button>
-
-								<!-- Expandable Details -->
-								<div class="job-details hidden border-t border-white/5 bg-[#030307]/40 p-6 sm:p-8 space-y-6">
-									<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-										<div class="lg:col-span-2 space-y-4">
-											<h4 class="font-mono text-xs uppercase tracking-widest text-neutral-400">Role Overview</h4>
-											<div class="text-neutral-400 text-sm leading-relaxed font-light select-text" set:html={job.description || 'Join our team to work on cutting-edge engineering and consulting projects.'} />
-											{reqList.length > 0 && (
-												<>
-													<h4 class="font-mono text-xs uppercase tracking-widest text-neutral-400 pt-2">Key Responsibilities</h4>
-													<ul class="space-y-2.5 text-neutral-300 text-sm leading-relaxed font-light select-text">
-														{reqList.map((req) => (
-															<li class="flex items-start gap-2.5">
-																<span class="w-1.5 h-1.5 rounded-full bg-cyan-500/40 mt-2 shrink-0"></span>
-																<span>{req}</span>
-															</li>
-														))}
-													</ul>
-												</>
-											)}
-										</div>
-										<div class="space-y-4 lg:border-l lg:border-white/5 lg:pl-8">
-											<h4 class="font-mono text-xs uppercase tracking-widest text-neutral-400">Stack & Requirements</h4>
-											<div class="flex flex-wrap gap-1.5 pt-1">
-												{skillsList.map((skill) => (
-													<span class="font-mono text-xs text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">{skill}</span>
-												))}
-											</div>
-											<div class="space-y-3 pt-3">
-												<div>
-													<span class="text-xs font-mono text-neutral-500 uppercase block">Experience</span>
-													<span class="text-white text-xs select-text font-medium">{expStr}</span>
-												</div>
-												<div>
-													<span class="text-xs font-mono text-neutral-500 uppercase block">Compensation</span>
-													<span class="text-white text-xs select-text font-medium">{salaryStr}</span>
-												</div>
-												{job.location && (
-													<div>
-														<span class="text-xs font-mono text-neutral-500 uppercase block">Location</span>
-														<span class="text-white text-xs select-text font-medium">{job.location}</span>
-													</div>
-												)}
-											</div>
-										</div>
-									</div>
-									<div class="pt-4 border-t border-white/5 flex">
-										<a href="#apply" data-job-id={job.id} data-role={job.title} data-category={categoryName} class="btn-primary apply-to-job-btn !py-2.5 !px-6 !text-xs">
-											<span>Apply For This Role</span>
-										</a>
+									<div>
+										<span class="text-xs font-mono text-neutral-500 uppercase block">Compensation</span>
+										<span class="text-white text-xs select-text font-medium">Competitive Base + Growth Options</span>
 									</div>
 								</div>
 							</div>
-						);
-					})
-				) : (
-					<div class="p-8 text-center border border-white/5 rounded-2xl bg-white/[0.01]">
-						<p class="text-neutral-400 font-mono text-sm">No open positions currently available.</p>
+						</div>
+						<div class="pt-4 border-t border-white/5 flex">
+							<a href="#apply" data-role="AI Engineering" class="btn-primary apply-to-job-btn !py-2.5 !px-6 !text-xs">
+								<span>Apply For This Role</span>
+							</a>
+						</div>
 					</div>
-				)}
+				</div>
+
+				<!-- Position 2: MLOps & AI Operations Engineer -->
+				<div class="job-item border border-white/5 bg-white/[0.01] hover:bg-white/[0.02] backdrop-blur-md rounded-2xl overflow-hidden transition-all duration-300 hover:border-cyan-500/20 shadow-lg shadow-black/20" data-dept="engineering">
+					<!-- Header (Trigger) -->
+					<button class="w-full text-left p-6 sm:p-8 flex items-center justify-between gap-4 cursor-pointer outline-none group/jobbtn">
+						<div class="space-y-2">
+							<div class="flex flex-wrap items-center gap-2.5">
+								<span class="font-mono text-xs tracking-widest text-cyan-400 bg-cyan-400/5 border border-cyan-400/10 px-2 py-0.5 rounded uppercase">Engineering</span>
+								<span class="font-mono text-xs tracking-widest text-neutral-400 bg-white/[0.02] border border-white/5 px-2 py-0.5 rounded uppercase">Remote</span>
+								<span class="font-mono text-xs tracking-widest text-neutral-400 bg-white/[0.02] border border-white/5 px-2 py-0.5 rounded uppercase">Full-Time</span>
+							</div>
+							<h3 class="font-syne font-bold text-lg sm:text-xl text-white group-hover/jobbtn:text-cyan-400 transition-colors select-text">
+								MLOps & AI Operations Specialist
+							</h3>
+						</div>
+						<!-- Chevron Icon -->
+						<div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center shrink-0 text-neutral-400 group-hover/jobbtn:text-cyan-400 group-hover/jobbtn:border-cyan-500/20 transition-all duration-300 chevron-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+							</svg>
+						</div>
+					</button>
+
+					<!-- Expandable Details -->
+					<div class="job-details hidden border-t border-white/5 bg-[#030307]/40 p-6 sm:p-8 space-y-6">
+						<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+							<div class="lg:col-span-2 space-y-4">
+								<h4 class="font-mono text-xs uppercase tracking-widest text-neutral-400">Role Overview</h4>
+								<p class="text-neutral-400 text-sm leading-relaxed font-light select-text">
+									Lead the deployment and operations of intelligent automation pipelines, model monitoring, and cloud-native infrastructure for enterprise partners.
+								</p>
+								<h4 class="font-mono text-xs uppercase tracking-widest text-neutral-400 pt-2">Key Responsibilities</h4>
+								<ul class="space-y-2.5 text-neutral-300 text-sm leading-relaxed font-light select-text">
+									<li class="flex items-start gap-2.5">
+										<span class="w-1.5 h-1.5 rounded-full bg-cyan-500/40 mt-2 shrink-0"></span>
+										<span>Establish robust MLOps workflows and automated CI/CD for LLMs and custom ML models.</span>
+									</li>
+									<li class="flex items-start gap-2.5">
+										<span class="w-1.5 h-1.5 rounded-full bg-cyan-500/40 mt-2 shrink-0"></span>
+										<span>Manage Kubernetes clusters and cloud-native services with zero-downtime deployment targets.</span>
+									</li>
+								</ul>
+							</div>
+							<div class="space-y-4 lg:border-l lg:border-white/5 lg:pl-8">
+								<h4 class="font-mono text-xs uppercase tracking-widest text-neutral-400">Stack & Requirements</h4>
+								<div class="flex flex-wrap gap-1.5 pt-1">
+									<span class="font-mono text-xs text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Kubernetes</span>
+									<span class="font-mono text-xs text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">MLOps</span>
+									<span class="font-mono text-xs text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Docker</span>
+									<span class="font-mono text-xs text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Cloud DevOps</span>
+								</div>
+								<div class="space-y-3 pt-3">
+									<div>
+										<span class="text-xs font-mono text-neutral-500 uppercase block">Experience</span>
+										<span class="text-white text-xs select-text font-medium">4+ years writing production automation</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="pt-4 border-t border-white/5 flex">
+							<a href="#apply" data-role="MLOps & AI Operations" class="btn-primary apply-to-job-btn !py-2.5 !px-6 !text-xs">
+								<span>Apply For This Role</span>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Position 3: Technical Consultant -->
+				<div class="job-item border border-white/5 bg-white/[0.01] hover:bg-white/[0.02] backdrop-blur-md rounded-2xl overflow-hidden transition-all duration-300 hover:border-blue-500/20 shadow-lg shadow-black/20" data-dept="consulting">
+					<!-- Header (Trigger) -->
+					<button class="w-full text-left p-6 sm:p-8 flex items-center justify-between gap-4 cursor-pointer outline-none group/jobbtn">
+						<div class="space-y-2">
+							<div class="flex flex-wrap items-center gap-2.5">
+								<span class="font-mono text-xs tracking-widest text-blue-400 bg-blue-400/5 border border-blue-400/10 px-2 py-0.5 rounded uppercase">Consulting</span>
+								<span class="font-mono text-xs tracking-widest text-neutral-400 bg-white/[0.02] border border-white/5 px-2 py-0.5 rounded uppercase">Hybrid / Remote</span>
+								<span class="font-mono text-xs tracking-widest text-neutral-400 bg-white/[0.02] border border-white/5 px-2 py-0.5 rounded uppercase">Full-Time</span>
+							</div>
+							<h3 class="font-syne font-bold text-lg sm:text-xl text-white group-hover/jobbtn:text-blue-400 transition-colors select-text">
+								Senior Technical Consultant
+							</h3>
+						</div>
+						<!-- Chevron Icon -->
+						<div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center shrink-0 text-neutral-400 group-hover/jobbtn:text-blue-400 group-hover/jobbtn:border-blue-500/20 transition-all duration-300 chevron-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+							</svg>
+						</div>
+					</button>
+
+					<!-- Expandable Details -->
+					<div class="job-details hidden border-t border-white/5 bg-[#030307]/40 p-6 sm:p-8 space-y-6">
+						<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+							<div class="lg:col-span-2 space-y-4">
+								<h4 class="font-mono text-xs uppercase tracking-widest text-neutral-400">Role Overview</h4>
+								<p class="text-neutral-400 text-sm leading-relaxed font-light select-text">
+									Deliver advisory and consulting services to enterprise clients to create meaningful impact and combat complex business challenges using modern technology.
+								</p>
+								<h4 class="font-mono text-xs uppercase tracking-widest text-neutral-400 pt-2">Key Responsibilities</h4>
+								<ul class="space-y-2.5 text-neutral-300 text-sm leading-relaxed font-light select-text">
+									<li class="flex items-start gap-2.5">
+										<span class="w-1.5 h-1.5 rounded-full bg-blue-500/40 mt-2 shrink-0"></span>
+										<span>Conduct technical discovery, cloud architecture evaluations, and AI readiness assessments.</span>
+									</li>
+									<li class="flex items-start gap-2.5">
+										<span class="w-1.5 h-1.5 rounded-full bg-blue-500/40 mt-2 shrink-0"></span>
+										<span>Guide client leadership teams through digital transformation roadmaps.</span>
+									</li>
+								</ul>
+							</div>
+							<div class="space-y-4 lg:border-l lg:border-white/5 lg:pl-8">
+								<h4 class="font-mono text-xs uppercase tracking-widest text-neutral-400">Stack & Requirements</h4>
+								<div class="flex flex-wrap gap-1.5 pt-1">
+									<span class="font-mono text-xs text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Architecture</span>
+									<span class="font-mono text-xs text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Strategy</span>
+									<span class="font-mono text-xs text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">AI Consulting</span>
+								</div>
+							</div>
+						</div>
+						<div class="pt-4 border-t border-white/5 flex">
+							<a href="#apply" data-role="Technical Consulting" class="btn-primary apply-to-job-btn !py-2.5 !px-6 !text-xs">
+								<span>Apply For This Role</span>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Position 4: Full Stack Developer -->
+				<div class="job-item border border-white/5 bg-white/[0.01] hover:bg-white/[0.02] backdrop-blur-md rounded-2xl overflow-hidden transition-all duration-300 hover:border-cyan-500/20 shadow-lg shadow-black/20" data-dept="engineering">
+					<!-- Header (Trigger) -->
+					<button class="w-full text-left p-6 sm:p-8 flex items-center justify-between gap-4 cursor-pointer outline-none group/jobbtn">
+						<div class="space-y-2">
+							<div class="flex flex-wrap items-center gap-2.5">
+								<span class="font-mono text-xs tracking-widest text-cyan-400 bg-cyan-400/5 border border-cyan-400/10 px-2 py-0.5 rounded uppercase">Engineering</span>
+								<span class="font-mono text-xs tracking-widest text-neutral-400 bg-white/[0.02] border border-white/5 px-2 py-0.5 rounded uppercase">Remote</span>
+								<span class="font-mono text-xs tracking-widest text-neutral-400 bg-white/[0.02] border border-white/5 px-2 py-0.5 rounded uppercase">Full-Time</span>
+							</div>
+							<h3 class="font-syne font-bold text-lg sm:text-xl text-white group-hover/jobbtn:text-cyan-400 transition-colors select-text">
+								Senior Full Stack Developer
+							</h3>
+						</div>
+						<!-- Chevron Icon -->
+						<div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center shrink-0 text-neutral-400 group-hover/jobbtn:text-cyan-400 group-hover/jobbtn:border-cyan-500/20 transition-all duration-300 chevron-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+							</svg>
+						</div>
+					</button>
+
+					<!-- Expandable Details -->
+					<div class="job-details hidden border-t border-white/5 bg-[#030307]/40 p-6 sm:p-8 space-y-6">
+						<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+							<div class="lg:col-span-2 space-y-4">
+								<h4 class="font-mono text-xs uppercase tracking-widest text-neutral-400">Role Overview</h4>
+								<p class="text-neutral-400 text-sm leading-relaxed font-light select-text">
+									Build core enterprise applications, frontend portals, and high-performance cloud-native services that solve genuine, real-world problems.
+								</p>
+							</div>
+							<div class="space-y-4 lg:border-l lg:border-white/5 lg:pl-8">
+								<h4 class="font-mono text-xs uppercase tracking-widest text-neutral-400">Stack & Requirements</h4>
+								<div class="flex flex-wrap gap-1.5 pt-1">
+									<span class="font-mono text-xs text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">TypeScript</span>
+									<span class="font-mono text-xs text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">React</span>
+									<span class="font-mono text-xs text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Node.js</span>
+									<span class="font-mono text-xs text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Cloud Native</span>
+								</div>
+							</div>
+						</div>
+						<div class="pt-4 border-t border-white/5 flex">
+							<a href="#apply" data-role="Full Stack Development" class="btn-primary apply-to-job-btn !py-2.5 !px-6 !text-xs">
+								<span>Apply For This Role</span>
+							</a>
+						</div>
+					</div>
+				</div>
 			</div>
 		</section>
 
@@ -565,19 +506,11 @@ if (!initialJobs || initialJobs.length === 0) {
 						<div class="absolute -bottom-40 -left-40 w-80 h-80 bg-[#883ae2]/10 rounded-full blur-[60px] pointer-events-none transition-all duration-700 group-hover/form:bg-[#883ae2]/15"></div>
 
 						<div class="relative min-h-[480px] z-10">
-							<form 
-								id="apply-form" 
-								action="/api/apply" 
-								method="POST" 
-								enctype="multipart/form-data" 
-								class="space-y-6"
-							>
-								<!-- Job Portal Application Configuration -->
-								<input type="hidden" id="apply_job_id" name="job_id" value="" />
+							<form id="apply-form" class="space-y-6">
 								
 								<!-- Sub-header / Question -->
 								<div class="space-y-2">
-									<label for="apply_position" class="block font-mono text-xs uppercase tracking-widest text-neutral-300">Position Applying For</label>
+									<label for="apply_position" class="block font-mono text-xs uppercase tracking-widest text-neutral-300">Where Would You Like to Contribute?</label>
 									<div class="relative rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] focus-within:border-cyan-500/50 focus-within:bg-white/[0.04] transition-all duration-300">
 										<select 
 											id="apply_position" 
@@ -585,12 +518,17 @@ if (!initialJobs || initialJobs.length === 0) {
 											required
 											class="w-full bg-transparent text-sm sm:text-base text-white outline-none py-3 px-4 pr-10 appearance-none cursor-pointer border-none focus:ring-0"
 										>
-											<option value="" disabled selected class="bg-neutral-950 text-neutral-400">Select open position…</option>
-											{initialJobs.map((job) => (
-												<option value={job.id} data-job-id={job.id} class="bg-neutral-950 text-white">
-													{job.title}
-												</option>
-											))}
+											<option value="" disabled selected class="bg-neutral-950 text-neutral-400">Select area of contribution…</option>
+											<option value="ai_engineering" class="bg-neutral-950 text-white">AI Engineering</option>
+											<option value="ml_engineering" class="bg-neutral-950 text-white">Machine Learning Engineering</option>
+											<option value="genai_engineering" class="bg-neutral-950 text-white">Generative AI & LLM Engineering</option>
+											<option value="software_engineering" class="bg-neutral-950 text-white">Software Engineering</option>
+											<option value="full_stack" class="bg-neutral-950 text-white">Full Stack Development</option>
+											<option value="platform_engineering" class="bg-neutral-950 text-white">Platform Engineering</option>
+											<option value="cloud_devops" class="bg-neutral-950 text-white">Cloud & DevOps Engineering</option>
+											<option value="mlops_ops" class="bg-neutral-950 text-white">MLOps & AI Operations</option>
+											<option value="data_engineering" class="bg-neutral-950 text-white">Data Engineering</option>
+											<option value="technical_consulting" class="bg-neutral-950 text-white">Technical Consulting</option>
 										</select>
 										<div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-neutral-400">
 											<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -632,32 +570,17 @@ if (!initialJobs || initialJobs.length === 0) {
 									</div>
 								</div>
 
-								<!-- Phone & Portfolio Link -->
-								<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-									<div class="space-y-2">
-										<label for="apply_phone" class="block font-mono text-xs uppercase tracking-widest text-neutral-300">Phone</label>
-										<div class="relative rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] focus-within:border-cyan-500/50 focus-within:bg-white/[0.04] transition-all duration-300 px-4 py-2">
-											<input 
-												type="tel" 
-												id="apply_phone" 
-												name="phone" 
-												autocomplete="tel"
-												placeholder="+91 98765 43210" 
-												class="w-full bg-transparent text-sm sm:text-base text-white placeholder-neutral-500 outline-none py-1 border-none focus:ring-0"
-											/>
-										</div>
-									</div>
-									<div class="space-y-2">
-										<label for="apply_url" class="block font-mono text-xs uppercase tracking-widest text-neutral-300">Portfolio Link</label>
-										<div class="relative rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] focus-within:border-cyan-500/50 focus-within:bg-white/[0.04] transition-all duration-300 px-4 py-2">
-											<input 
-												type="url" 
-												id="apply_url" 
-												name="portfolio_url" 
-												placeholder="https://github.com/yourusername" 
-												class="w-full bg-transparent text-sm sm:text-base text-white placeholder-neutral-500 outline-none py-1 border-none focus:ring-0"
-											/>
-										</div>
+								<!-- Portfolio Link -->
+								<div class="space-y-2">
+									<label for="apply_url" class="block font-mono text-xs uppercase tracking-widest text-neutral-300">Portfolio Link</label>
+									<div class="relative rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] focus-within:border-cyan-500/50 focus-within:bg-white/[0.04] transition-all duration-300 px-4 py-2">
+										<input 
+											type="url" 
+											id="apply_url" 
+											name="portfolio_url" 
+											placeholder="https://github.com/yourusername or portfolio site" 
+											class="w-full bg-transparent text-sm sm:text-base text-white placeholder-neutral-500 outline-none py-1 border-none focus:ring-0"
+										/>
 									</div>
 								</div>
 
@@ -708,22 +631,19 @@ if (!initialJobs || initialJobs.length === 0) {
 									</div>
 								</div>
 
-								<!-- Cover Letter -->
+								<!-- Upload Cover Letter -->
 								<div class="space-y-2">
-									<label for="apply_cover_letter" class="block font-mono text-xs uppercase tracking-widest text-neutral-300">Cover Letter</label>
+									<label for="apply_message" class="block font-mono text-xs uppercase tracking-widest text-neutral-300">Upload Cover Letter</label>
 									<div class="relative rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] focus-within:border-cyan-500/50 focus-within:bg-white/[0.04] transition-all duration-300 px-4 py-3">
 										<textarea 
-											id="apply_cover_letter" 
-											name="cover_letter" 
+											id="apply_message" 
+											name="message" 
 											rows="3" 
-											placeholder="Share your experience and why you would love to join our team…" 
+											placeholder="Share a brief cover letter or introduce yourself…" 
 											class="w-full bg-transparent text-sm sm:text-base text-white placeholder-neutral-500 outline-none py-1 border-none focus:ring-0 resize-none"
 										></textarea>
 									</div>
 								</div>
-
-								<!-- Error Message Box (Hidden by default) -->
-								<div id="apply-error-msg" class="hidden p-3.5 rounded-xl border border-red-500/30 bg-red-950/30 text-red-400 text-xs font-mono leading-relaxed select-text"></div>
 
 								<div class="pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 									<div class="w-full sm:w-auto z-10">
@@ -748,27 +668,35 @@ if (!initialJobs || initialJobs.length === 0) {
 							</form>
 
 							<!-- Success Screen (Hidden by default) -->
-							<div id="success-screen" class="hidden absolute inset-0 bg-neutral-950/95 backdrop-blur-xl flex flex-col items-center justify-center text-center space-y-6 p-6 sm:p-10 rounded-3xl z-20 border border-white/10">
-								<div class="relative w-16 h-16 sm:w-20 sm:h-20 mb-2">
-									<div class="absolute inset-0 rounded-full border border-cyan-500/30 bg-cyan-500/10 animate-pulse-slow"></div>
-									<div class="absolute inset-2 rounded-full border border-cyan-500/40 bg-cyan-950/40 flex items-center justify-center shadow-[0_0_25px_rgba(0,222,255,0.2)]">
-										<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+							<div id="success-screen" class="hidden absolute inset-0 bg-neutral-950/95 backdrop-blur-xl flex flex-col items-center justify-center text-center space-y-6 p-6 rounded-3xl z-20 border border-white/10">
+								<div class="relative w-16 h-16 mb-2">
+									<div class="absolute inset-0 rounded-full border border-white/10 bg-white/5 animate-pulse-slow"></div>
+									<div class="absolute inset-2 rounded-full border border-white/20 flex items-center justify-center">
+										<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
 											<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
 										</svg>
 									</div>
 								</div>
-								<div class="space-y-3 px-4 max-w-md">
-									<h3 class="text-2xl font-syne font-bold tracking-tight text-white uppercase select-text">Application Submitted</h3>
-									<p class="text-sm font-light text-neutral-300 leading-relaxed select-text">
-										Thank you for applying. We have received your application and resume. Our recruitment team will review your profile and get back to you within 48 hours.
+								<div class="space-y-4 px-6 max-w-md">
+									<h3 class="text-xl font-syne font-bold tracking-tight text-white uppercase select-text">Submission Received</h3>
+									
+									<!-- Simulated Console -->
+									<div class="bg-black/90 border border-white/10 rounded-lg p-4 font-mono text-xs text-left text-neutral-400 space-y-1.5 overflow-hidden h-28 max-w-sm mx-auto shadow-inner">
+										<div class="terminal-line opacity-0">> RECEIVING APPLICATION TRANSMISSION… [OK]</div>
+										<div class="terminal-line opacity-0">> PARSING CANDIDATE PROFILE… [100%]</div>
+										<div class="terminal-line opacity-0">> ROUTING TO ENGINEERING TEAM… [OK]</div>
+										<div class="terminal-line opacity-0">> HANDSHAKE COMPLETED… [ESTABLISHED]</div>
+									</div>
+									
+									<p class="text-xs font-mono text-neutral-400 leading-relaxed select-text mt-2">
+										Thank you for sharing your interest. Response time: <span class="text-white font-bold">48 Hours</span>.
 									</p>
 								</div>
 								<button 
-									type="button"
 									id="reset-form-btn" 
-									class="px-6 py-2.5 rounded-full border border-white/15 bg-white/[0.03] hover:bg-white/[0.08] hover:border-cyan-500/40 text-xs font-mono tracking-widest text-neutral-300 hover:text-white uppercase transition-all duration-300 cursor-pointer select-none"
+									class="text-xs font-mono tracking-widest text-neutral-400 hover:text-white uppercase transition-colors pointer-events-auto cursor-pointer"
 								>
-									Submit Another Application
+									Submit Another Profile
 								</button>
 							</div>
 						</div>
@@ -796,380 +724,114 @@ if (!initialJobs || initialJobs.length === 0) {
 		import * as THREE from 'three';
 		import { gsap } from 'gsap';
 
-		// Dynamic Jobs Fetch & Render
-		const JOBS_API_URL = 'https://demo1.varundigitalmedia.com/jobportal/public/api/jobs';
-		const CATEGORIES_API_URL = 'https://demo1.varundigitalmedia.com/jobportal/public/api/categories';
-		const positionsContainer = document.getElementById('positions-container');
-		const positionSelect = document.getElementById('apply_position') as HTMLSelectElement | null;
+		// Accordion Logic
+		const jobBtns = document.querySelectorAll('.job-item button');
+		jobBtns.forEach(btn => {
+			btn.addEventListener('click', () => {
+				const item = btn.parentElement;
+				const details = item?.querySelector('.job-details') as HTMLElement | null;
+				const chevron = btn.querySelector('.chevron-icon svg') as HTMLElement | null;
 
-		let clientCategoryMap: Record<string, string> = {
-			'1': 'Software Development',
-			'2': 'Sales & Marketing',
-			'3': 'HR & Administration',
-			'4': 'Finance',
-			'5': 'Design'
-		};
-		let clientJobsList: any[] = [];
+				if (!details || !item) return;
 
-		function formatWorkModeClient(mode?: string) {
-			if (!mode) return 'Remote';
-			if (mode.toLowerCase() === 'full_time') return 'Full-Time';
-			return mode.charAt(0).toUpperCase() + mode.slice(1).toLowerCase();
-		}
+				const isOpen = !details.classList.contains('hidden');
 
-		function formatEmploymentTypeClient(type?: string) {
-			if (!type) return 'Full-Time';
-			return type.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join('-');
-		}
-
-		function getJobCategoryClient(job: any): string {
-			if (job.category_name) return job.category_name;
-			if (typeof job.category === 'string' && job.category.trim()) return job.category.trim();
-			if (job.category && typeof job.category === 'object' && job.category.name) {
-				return job.category.name;
-			}
-			if (job.category_id && clientCategoryMap[String(job.category_id)]) {
-				return clientCategoryMap[String(job.category_id)];
-			}
-			if (job.category_id) {
-				return `Category ${job.category_id}`;
-			}
-			return 'General';
-		}
-
-		function formatSalaryClient(min?: string, max?: string) {
-			const minVal = min ? parseFloat(min) : 0;
-			const maxVal = max ? parseFloat(max) : 0;
-			if (minVal > 0 && maxVal > 0) {
-				return `₹${minVal.toLocaleString('en-IN')} - ₹${maxVal.toLocaleString('en-IN')} PA`;
-			}
-			if (minVal > 0) {
-				return `From ₹${minVal.toLocaleString('en-IN')} PA`;
-			}
-			if (maxVal > 0) {
-				return `Up to ₹${maxVal.toLocaleString('en-IN')} PA`;
-			}
-			return 'Competitive Base + Growth Options';
-		}
-
-		function formatExperienceClient(min?: string, max?: string) {
-			const minExp = min ? parseFloat(min) : 0;
-			const maxExp = max ? parseFloat(max) : 0;
-			if (minExp > 0 && maxExp > 0) {
-				return `${minExp} - ${maxExp} years`;
-			}
-			if (minExp > 0) {
-				return `${minExp}+ years`;
-			}
-			if (maxExp > 0) {
-				return `Up to ${maxExp} years`;
-			}
-			return 'Experienced';
-		}
-
-		function formatSkillsClient(skillsStr?: string): string[] {
-			if (!skillsStr) return [];
-			return skillsStr.split(',').map((s: string) => s.trim()).filter(Boolean);
-		}
-
-		function parseRequirementsClient(req: any): string[] {
-			if (!req) return [];
-			if (Array.isArray(req)) return req;
-			if (typeof req === 'string' && req.includes('<li')) {
-				const matches = req.match(/<li[^>]*>(.*?)<\/li>/gi);
-				if (matches) {
-					return matches.map((m: string) => m.replace(/<\/?li[^>]*>/gi, '').trim()).filter(Boolean);
-				}
-			}
-			if (typeof req === 'string') {
-				return req.split(/\r?\n|•|;/).map((s: string) => s.trim().replace(/^[-*]\s*/, '')).filter(Boolean);
-			}
-			return [];
-		}
-
-		function renderJobHtml(job: any): string {
-			const categoryName = getJobCategoryClient(job);
-			const workModeStr = formatWorkModeClient(job.work_mode);
-			const empTypeStr = formatEmploymentTypeClient(job.employment_type);
-			const salaryStr = formatSalaryClient(job.salary_min, job.salary_max);
-			const expStr = formatExperienceClient(job.experience_min, job.experience_max);
-			const skillsList = formatSkillsClient(job.skills);
-			const reqList = parseRequirementsClient(job.requirements);
-			const locationTag = job.location ? `${job.location} • ${workModeStr}` : workModeStr;
-
-			const skillsHtml = skillsList.map(skill => 
-				`<span class="font-mono text-xs text-neutral-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">${skill}</span>`
-			).join('');
-
-			const reqHtml = reqList.length > 0 ? `
-				<h4 class="font-mono text-xs uppercase tracking-widest text-neutral-400 pt-2">Key Responsibilities</h4>
-				<ul class="space-y-2.5 text-neutral-300 text-sm leading-relaxed font-light select-text">
-					${reqList.map(r => `
-						<li class="flex items-start gap-2.5">
-							<span class="w-1.5 h-1.5 rounded-full bg-cyan-500/40 mt-2 shrink-0"></span>
-							<span>${r}</span>
-						</li>
-					`).join('')}
-				</ul>
-			` : '';
-
-			const locationHtml = job.location ? `
-				<div>
-					<span class="text-xs font-mono text-neutral-500 uppercase block">Location</span>
-					<span class="text-white text-xs select-text font-medium">${job.location}</span>
-				</div>
-			` : '';
-
-			return `
-				<div class="job-item border border-white/5 bg-white/[0.01] hover:bg-white/[0.02] backdrop-blur-md rounded-2xl overflow-hidden transition-all duration-300 hover:border-cyan-500/20 shadow-lg shadow-black/20">
-					<!-- Header (Trigger) -->
-					<button class="w-full text-left p-6 sm:p-8 flex items-center justify-between gap-4 cursor-pointer outline-none group/jobbtn">
-						<div class="space-y-2">
-							<div class="flex flex-wrap items-center gap-2.5">
-								<span class="font-mono text-xs tracking-widest text-cyan-400 bg-cyan-400/5 border border-cyan-400/10 px-2 py-0.5 rounded uppercase">${categoryName}</span>
-								<span class="font-mono text-xs tracking-widest text-neutral-400 bg-white/[0.02] border border-white/5 px-2 py-0.5 rounded uppercase">${locationTag}</span>
-								<span class="font-mono text-xs tracking-widest text-neutral-400 bg-white/[0.02] border border-white/5 px-2 py-0.5 rounded uppercase">${empTypeStr}</span>
-							</div>
-							<h3 class="font-syne font-bold text-lg sm:text-xl text-white group-hover/jobbtn:text-cyan-400 transition-colors select-text">
-								${job.title}
-							</h3>
-						</div>
-						<!-- Chevron Icon -->
-						<div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center shrink-0 text-neutral-400 group-hover/jobbtn:text-cyan-400 group-hover/jobbtn:border-cyan-500/20 transition-all duration-300 chevron-icon">
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-								<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-							</svg>
-						</div>
-					</button>
-
-					<!-- Expandable Details -->
-					<div class="job-details hidden border-t border-white/5 bg-[#030307]/40 p-6 sm:p-8 space-y-6">
-						<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-							<div class="lg:col-span-2 space-y-4">
-								<h4 class="font-mono text-xs uppercase tracking-widest text-neutral-400">Role Overview</h4>
-								<div class="text-neutral-400 text-sm leading-relaxed font-light select-text">
-									${job.description || 'Join our team to work on cutting-edge engineering and consulting projects.'}
-								</div>
-								${reqHtml}
-							</div>
-							<div class="space-y-4 lg:border-l lg:border-white/5 lg:pl-8">
-								<h4 class="font-mono text-xs uppercase tracking-widest text-neutral-400">Stack & Requirements</h4>
-								<div class="flex flex-wrap gap-1.5 pt-1">
-									${skillsHtml}
-								</div>
-								<div class="space-y-3 pt-3">
-									<div>
-										<span class="text-xs font-mono text-neutral-500 uppercase block">Experience</span>
-										<span class="text-white text-xs select-text font-medium">${expStr}</span>
-									</div>
-									<div>
-										<span class="text-xs font-mono text-neutral-500 uppercase block">Compensation</span>
-										<span class="text-white text-xs select-text font-medium">${salaryStr}</span>
-									</div>
-									${locationHtml}
-								</div>
-							</div>
-						</div>
-						<div class="pt-4 border-t border-white/5 flex">
-							<a href="#apply" data-job-id="${job.id}" data-role="${job.title}" data-category="${categoryName}" class="btn-primary apply-to-job-btn !py-2.5 !px-6 !text-xs">
-								<span>Apply For This Role</span>
-							</a>
-						</div>
-					</div>
-				</div>
-			`;
-		}
-
-		function updatePositionOptions(jobs: any[]) {
-			if (!positionSelect || !Array.isArray(jobs) || jobs.length === 0) return;
-			const currentSelected = positionSelect.value;
-			
-			// Keep existing placeholder option
-			const placeholder = positionSelect.querySelector('option[value=""]');
-			positionSelect.innerHTML = '';
-			if (placeholder) {
-				positionSelect.appendChild(placeholder);
-			} else {
-				const defaultOpt = document.createElement('option');
-				defaultOpt.value = '';
-				defaultOpt.disabled = true;
-				defaultOpt.selected = true;
-				defaultOpt.className = 'bg-neutral-950 text-neutral-400';
-				defaultOpt.textContent = 'Select open position…';
-				positionSelect.appendChild(defaultOpt);
-			}
-
-			jobs.forEach((job: any) => {
-				if (!job || !job.title) return;
-				const opt = document.createElement('option');
-				opt.value = String(job.id);
-				opt.textContent = job.title;
-				opt.className = 'bg-neutral-950 text-white';
-				opt.setAttribute('data-job-id', String(job.id));
-				positionSelect.appendChild(opt);
-			});
-
-			if (currentSelected) {
-				const matchingOpt = Array.from(positionSelect.options).find(o => 
-					o.value === currentSelected || 
-					o.text.toLowerCase() === currentSelected.toLowerCase()
-				);
-				if (matchingOpt) {
-					positionSelect.value = matchingOpt.value;
-					const jobIdInput = document.getElementById('apply_job_id') as HTMLInputElement | null;
-					if (jobIdInput) jobIdInput.value = matchingOpt.value;
-				}
-			}
-		}
-
-		async function fetchAndRenderJobs() {
-			try {
-				const [jobsRes, catRes] = await Promise.all([
-					fetch(JOBS_API_URL).catch(() => null),
-					fetch(CATEGORIES_API_URL).catch(() => null)
-				]);
-
-				if (catRes && catRes.ok) {
-					const catJson = await catRes.json();
-					if (catJson && catJson.status && Array.isArray(catJson.data)) {
-						catJson.data.forEach((cat: any) => {
-							if (cat?.id && cat?.name) {
-								clientCategoryMap[String(cat.id)] = String(cat.name);
-							}
-						});
-					}
-				}
-
-				if (jobsRes && jobsRes.ok) {
-					const json = await jobsRes.json();
-					if (json && json.status && Array.isArray(json.data) && json.data.length > 0) {
-						clientJobsList = json.data;
-						updatePositionOptions(json.data);
-						if (positionsContainer) {
-							positionsContainer.innerHTML = json.data.map((job: any) => renderJobHtml(job)).join('');
+				// Close all other jobs
+				document.querySelectorAll('.job-item').forEach(otherItem => {
+					if (otherItem !== item) {
+						const otherDetails = otherItem.querySelector('.job-details') as HTMLElement | null;
+						const otherChevron = otherItem.querySelector('.chevron-icon svg') as HTMLElement | null;
+						if (otherDetails && !otherDetails.classList.contains('hidden')) {
+							gsap.to(otherDetails, {
+								height: 0,
+								opacity: 0,
+								duration: 0.3,
+								ease: 'power2.out',
+								onComplete: () => {
+									otherDetails.classList.add('hidden');
+									otherDetails.style.height = '';
+								}
+							});
+							if (otherChevron) otherChevron.style.transform = 'rotate(0deg)';
 						}
 					}
-				}
-			} catch (err) {
-				console.warn('Jobs API fetch error, pre-rendered positions active:', err);
-			}
-		}
+				});
 
-		// Fetch latest jobs and categories from API
-		fetchAndRenderJobs();
-
-		// Sync apply_job_id when position dropdown changes
-		if (positionSelect) {
-			positionSelect.addEventListener('change', () => {
-				const selectedVal = positionSelect.value;
-				const jobIdInput = document.getElementById('apply_job_id') as HTMLInputElement | null;
-				if (jobIdInput) {
-					jobIdInput.value = selectedVal;
-				}
-			});
-		}
-
-		// Event Delegation on Positions Container for Accordion & Apply Buttons
-		if (positionsContainer) {
-			positionsContainer.addEventListener('click', (e) => {
-				const target = e.target as HTMLElement | null;
-				if (!target) return;
-
-				// Apply Button Click
-				const applyBtn = target.closest('.apply-to-job-btn') as HTMLElement | null;
-				if (applyBtn) {
-					e.preventDefault();
-					const targetJobId = applyBtn.getAttribute('data-job-id');
-					const targetRole = applyBtn.getAttribute('data-role');
-					const jobIdInput = document.getElementById('apply_job_id') as HTMLInputElement | null;
-					if (targetJobId && jobIdInput) {
-						jobIdInput.value = targetJobId;
-					}
-					if (positionSelect && targetJobId) {
-						let matchingOption = Array.from(positionSelect.options).find(opt => 
-							opt.value === targetJobId || 
-							(targetRole && opt.text.toLowerCase().trim() === targetRole.toLowerCase().trim())
-						);
-
-						if (!matchingOption && targetRole) {
-							const newOpt = document.createElement('option');
-							newOpt.value = targetJobId;
-							newOpt.text = targetRole;
-							newOpt.className = 'bg-neutral-950 text-white';
-							newOpt.setAttribute('data-job-id', targetJobId);
-							positionSelect.appendChild(newOpt);
-							matchingOption = newOpt;
-						}
-
-						if (matchingOption) {
-							positionSelect.value = matchingOption.value;
-						}
-					}
-					const applySection = document.getElementById('apply');
-					if (applySection) {
-						applySection.scrollIntoView({ behavior: 'smooth' });
-					}
-					return;
-				}
-
-				// Accordion Trigger Click
-				const jobBtn = target.closest('.job-item button') as HTMLButtonElement | null;
-				if (jobBtn) {
-					const item = jobBtn.closest('.job-item') as HTMLElement | null;
-					if (!item) return;
-					const details = item.querySelector('.job-details') as HTMLElement | null;
-					const chevron = jobBtn.querySelector('.chevron-icon svg') as HTMLElement | null;
-
-					if (!details) return;
-					const isOpen = !details.classList.contains('hidden');
-
-					// Close all other open jobs
-					document.querySelectorAll('.job-item').forEach(otherItem => {
-						if (otherItem !== item) {
-							const otherDetails = otherItem.querySelector('.job-details') as HTMLElement | null;
-							const otherChevron = otherItem.querySelector('.chevron-icon svg') as HTMLElement | null;
-							if (otherDetails && !otherDetails.classList.contains('hidden')) {
-								gsap.to(otherDetails, {
-									height: 0,
-									opacity: 0,
-									duration: 0.3,
-									ease: 'power2.out',
-									onComplete: () => {
-										otherDetails.classList.add('hidden');
-										otherDetails.style.height = '';
-									}
-								});
-								if (otherChevron) otherChevron.style.transform = 'rotate(0deg)';
-							}
+				// Toggle clicked job
+				if (isOpen) {
+					gsap.to(details, {
+						height: 0,
+						opacity: 0,
+						duration: 0.3,
+						ease: 'power2.out',
+						onComplete: () => {
+							details.classList.add('hidden');
+							details.style.height = '';
 						}
 					});
-
-					// Toggle current job
-					if (isOpen) {
-						gsap.to(details, {
-							height: 0,
-							opacity: 0,
-							duration: 0.3,
-							ease: 'power2.out',
-							onComplete: () => {
-								details.classList.add('hidden');
-								details.style.height = '';
-							}
-						});
-						if (chevron) chevron.style.transform = 'rotate(0deg)';
-					} else {
-						details.classList.remove('hidden');
-						const naturalHeight = details.scrollHeight;
-						gsap.fromTo(details, 
-							{ height: 0, opacity: 0 },
-							{ height: naturalHeight, opacity: 1, duration: 0.4, ease: 'power2.out' }
-						);
-						if (chevron) chevron.style.transform = 'rotate(180deg)';
-					}
+					if (chevron) chevron.style.transform = 'rotate(0deg)';
+				} else {
+					details.classList.remove('hidden');
+					const naturalHeight = details.scrollHeight;
+					gsap.fromTo(details, 
+						{ height: 0, opacity: 0 },
+						{ height: naturalHeight, opacity: 1, duration: 0.4, ease: 'power2.out' }
+					);
+					if (chevron) chevron.style.transform = 'rotate(180deg)';
 				}
 			});
-		}
+		});
 
+		// Apply button logic inside accordion
+		const applyBtns = document.querySelectorAll('.apply-to-job-btn');
+		const positionSelect = document.getElementById('apply_position') as HTMLSelectElement | null;
+		applyBtns.forEach(btn => {
+			btn.addEventListener('click', (e) => {
+				e.preventDefault();
+				const targetRole = btn.getAttribute('data-role');
+				if (positionSelect && targetRole) {
+					const options = Array.from(positionSelect.options);
+					const matchingOption = options.find(opt => 
+						opt.text.toLowerCase().includes(targetRole.toLowerCase()) || 
+						targetRole.toLowerCase().includes(opt.text.toLowerCase())
+					);
+					if (matchingOption) {
+						positionSelect.value = matchingOption.value;
+					}
+				}
+				
+				const applySection = document.getElementById('apply');
+				if (applySection) {
+					applySection.scrollIntoView({ behavior: 'smooth' });
+				}
+			});
+		});
+
+		// Filters Logic
+		const filterBtns = document.querySelectorAll('.filter-btn');
+		filterBtns.forEach(btn => {
+			btn.addEventListener('click', () => {
+				const filter = btn.getAttribute('data-filter');
+				
+				// Update active class
+				filterBtns.forEach(b => {
+					b.classList.remove('text-cyan-400', 'bg-cyan-500/10', 'border-cyan-400/20');
+					b.classList.add('text-neutral-400', 'border-transparent');
+				});
+				btn.classList.remove('text-neutral-400', 'border-transparent');
+				btn.classList.add('text-cyan-400', 'bg-cyan-500/10', 'border-cyan-400/20');
+
+				// Filter items
+				document.querySelectorAll('.job-item').forEach(item => {
+					const dept = item.getAttribute('data-dept');
+					if (filter === 'all' || dept === filter) {
+						gsap.to(item, { display: 'block', opacity: 1, y: 0, duration: 0.3 });
+					} else {
+						gsap.to(item, { display: 'none', opacity: 0, y: 15, duration: 0.3 });
+					}
+				});
+			});
+		});
 
 		// Drag & Drop File Upload UI updates
 		const fileInput = document.getElementById('resume-file') as HTMLInputElement | null;
@@ -1180,16 +842,14 @@ if (!initialJobs || initialJobs.length === 0) {
 		const removeBtn = document.getElementById('remove-file-btn');
 		const canvasContainer = document.getElementById('canvas-container');
 		const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-		let selectedResumeFile: File | null = null;
 
 		if (fileInput && dropZone && emptyState && activeState && fileNameSpan && removeBtn) {
 			const handleFile = (file: File) => {
-				selectedResumeFile = file;
 				fileNameSpan.innerText = file.name;
 				emptyState.classList.add('hidden');
 				activeState.classList.remove('hidden');
 				dropZone.classList.add('border-cyan-500/30', 'bg-cyan-950/5');
-				fileInput.classList.add('pointer-events-none');
+				fileInput.classList.add('hidden');
 			};
 
 			fileInput.addEventListener('change', () => {
@@ -1201,9 +861,8 @@ if (!initialJobs || initialJobs.length === 0) {
 			removeBtn.addEventListener('click', (e) => {
 				e.preventDefault();
 				e.stopPropagation(); // Avoid triggering file selection dialog
-				selectedResumeFile = null;
 				fileInput.value = '';
-				fileInput.classList.remove('pointer-events-none');
+				fileInput.classList.remove('hidden');
 				activeState.classList.add('hidden');
 				emptyState.classList.remove('hidden');
 				dropZone.classList.remove('border-cyan-500/30', 'bg-cyan-950/5');
@@ -1225,9 +884,7 @@ if (!initialJobs || initialJobs.length === 0) {
 				e.preventDefault();
 				if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length > 0) {
 					const file = e.dataTransfer.files[0];
-					try {
-						fileInput.files = e.dataTransfer.files;
-					} catch (_) {}
+					fileInput.files = e.dataTransfer.files;
 					handleFile(file);
 				}
 			});
@@ -1237,208 +894,64 @@ if (!initialJobs || initialJobs.length === 0) {
 		const applyForm = document.getElementById('apply-form') as HTMLFormElement | null;
 		const successScreen = document.getElementById('success-screen');
 		const resetFormBtn = document.getElementById('reset-form-btn');
-		const applyErrorMsg = document.getElementById('apply-error-msg');
 
 		if (applyForm && successScreen && resetFormBtn) {
-			applyForm.addEventListener('submit', async (e) => {
+			applyForm.addEventListener('submit', (e) => {
 				e.preventDefault();
-
-				if (applyErrorMsg) {
-					applyErrorMsg.innerText = '';
-					applyErrorMsg.classList.add('hidden');
-				}
-
-				// Check resume file
-				const file = selectedResumeFile || (fileInput?.files && fileInput.files[0]);
-				if (!file) {
-					if (applyErrorMsg) {
-						applyErrorMsg.innerText = 'Please attach your resume (PDF or DOCX) before submitting.';
-						applyErrorMsg.classList.remove('hidden');
-					}
-					return;
-				}
-
-				// Validate file size (5MB limit)
-				if (file.size > 5 * 1024 * 1024) {
-					if (applyErrorMsg) {
-						applyErrorMsg.innerText = 'The uploaded resume exceeds the 5MB size limit. Please upload a smaller file.';
-						applyErrorMsg.classList.remove('hidden');
-					}
-					return;
-				}
-
 				const submitBtn = applyForm.querySelector('button[type="submit"]') as HTMLButtonElement | null;
 				if (submitBtn) {
 					submitBtn.disabled = true;
 					const btnText = submitBtn.querySelector('span');
 					if (btnText) {
-						btnText.innerText = 'Transmitting Application…';
+						btnText.innerText = 'Sending Application…';
 					} else {
-						submitBtn.innerText = 'Transmitting Application…';
+						submitBtn.innerText = 'Sending Application…';
 					}
 				}
 
-				try {
-					const formData = new FormData();
+				gsap.to(applyForm, {
+					opacity: 0,
+					y: -10,
+					duration: 0.4,
+					onComplete: () => {
+						applyForm.classList.add('hidden');
+						successScreen.classList.remove('hidden');
+						successScreen.style.opacity = '0';
+						successScreen.style.transform = 'translateY(10px)';
 
-					// Cover letter text matching curl: --form 'cover_letter=...'
-					const coverLetterEl = (document.getElementById('apply_cover_letter') || document.getElementById('apply_message')) as HTMLTextAreaElement | null;
-					const coverLetterText = coverLetterEl?.value?.trim() || '';
-					formData.append('cover_letter', coverLetterText);
-
-					// Resume file matching curl: --form 'resume=@...'
-					formData.append('resume', file);
-
-					// Additional applicant profile info
-					const nameInput = document.getElementById('apply_name') as HTMLInputElement | null;
-					const emailInput = document.getElementById('apply_email') as HTMLInputElement | null;
-					const phoneInput = document.getElementById('apply_phone') as HTMLInputElement | null;
-					const portfolioInput = document.getElementById('apply_url') as HTMLInputElement | null;
-					if (nameInput?.value?.trim()) formData.append('name', nameInput.value.trim());
-					if (emailInput?.value?.trim()) formData.append('email', emailInput.value.trim());
-					if (phoneInput?.value?.trim()) formData.append('phone', phoneInput.value.trim());
-					if (portfolioInput?.value?.trim()) formData.append('portfolio_url', portfolioInput.value.trim());
-
-					// Dynamic Target Job ID for whichever position the user selected or clicked
-					const jobIdInput = document.getElementById('apply_job_id') as HTMLInputElement | null;
-					const jobId = jobIdInput?.value?.trim() || positionSelect?.value?.trim();
-					if (!jobId) {
-						if (applyErrorMsg) {
-							applyErrorMsg.innerText = 'Please select the position you are applying for.';
-							applyErrorMsg.classList.remove('hidden');
-						}
-						if (submitBtn) {
-							submitBtn.disabled = false;
-							const btnText = submitBtn.querySelector('span');
-							if (btnText) btnText.innerText = 'Send';
-							else submitBtn.innerText = 'Send';
-						}
-						return;
-					}
-					formData.append('job_id', jobId);
-
-					// Target URLs
-					const guestEndpoint = `/api/jobs/${jobId}/apply/guest`;
-					const fallbackProxy = '/api/apply';
-					const directApiUrl = `https://demo1.varundigitalmedia.com/jobportal/public/api/jobs/${jobId}/apply/guest`;
-
-					let response: Response;
-					try {
-						// Submit via guest endpoint proxy
-						response = await fetch(guestEndpoint, {
-							method: 'POST',
-							body: formData
+						gsap.to(successScreen, {
+							opacity: 1,
+							y: 0,
+							duration: 0.5,
+							ease: 'power2.out',
+							onComplete: () => {
+								const lines = successScreen.querySelectorAll('.terminal-line');
+								gsap.to(lines, {
+									opacity: 1,
+									stagger: 0.35,
+									duration: 0.15,
+									ease: 'none'
+								});
+							}
 						});
-
-						if (!response.ok && response.status === 404) {
-							// Try proxy fallback
-							response = await fetch(fallbackProxy, {
-								method: 'POST',
-								body: formData
-							});
-						}
-					} catch (proxyErr) {
-						// Fallback to proxy route or direct call if guest route is unavailable
-						try {
-							response = await fetch(fallbackProxy, {
-								method: 'POST',
-								body: formData
-							});
-						} catch (_) {
-							response = await fetch(directApiUrl, {
-								method: 'POST',
-								body: formData
-							});
-						}
 					}
-
-					const result = await response.json().catch(() => ({}));
-					const isSuccess = response.ok && (result.status === true || result.success === true || result.status === 200 || (!result.errors && !result.message?.toLowerCase().includes('error')));
-
-					if (!isSuccess) {
-						let errorMsg = result.message || result.error;
-						if (!errorMsg && result.errors) {
-							errorMsg = typeof result.errors === 'object'
-								? Object.values(result.errors).join(' ')
-								: String(result.errors);
-						}
-						if (!errorMsg) {
-							errorMsg = response.status === 401
-								? 'Submission failed: Authorization header required by API.'
-								: `Application submission returned status ${response.status}. Please try again later.`;
-						}
-						throw new Error(errorMsg);
-					}
-
-					// Clear form inputs and dropzone immediately upon successful submission
-					applyForm.reset();
-					selectedResumeFile = null;
-					if (fileInput && dropZone && emptyState && activeState) {
-						fileInput.value = '';
-						fileInput.classList.remove('pointer-events-none');
-						activeState.classList.add('hidden');
-						emptyState.classList.remove('hidden');
-						dropZone.classList.remove('border-cyan-500/30', 'bg-cyan-950/5');
-					}
-					if (applyErrorMsg) {
-						applyErrorMsg.innerText = '';
-						applyErrorMsg.classList.add('hidden');
-					}
-
-					// Animate transition to clean success screen
-					gsap.to(applyForm, {
-						opacity: 0,
-						y: -10,
-						duration: 0.35,
-						onComplete: () => {
-							applyForm.classList.add('hidden');
-							successScreen.classList.remove('hidden');
-							successScreen.style.opacity = '0';
-							successScreen.style.transform = 'translateY(10px)';
-
-							gsap.to(successScreen, {
-								opacity: 1,
-								y: 0,
-								duration: 0.4,
-								ease: 'power2.out'
-							});
-						}
-					});
-				} catch (err: any) {
-					console.error('Application transmission error:', err);
-					if (applyErrorMsg) {
-						applyErrorMsg.innerText = err.message || 'Unable to transmit application. Please check your connection or email hr@diceforceit.com directly.';
-						applyErrorMsg.classList.remove('hidden');
-					}
-					if (submitBtn) {
-						submitBtn.disabled = false;
-						const btnText = submitBtn.querySelector('span');
-						if (btnText) {
-							btnText.innerText = 'Send';
-						} else {
-							submitBtn.innerText = 'Send';
-						}
-					}
-				}
+				});
 			});
 
 			resetFormBtn.addEventListener('click', () => {
 				gsap.to(successScreen, {
 					opacity: 0,
 					y: 10,
-					duration: 0.3,
+					duration: 0.4,
 					onComplete: () => {
 						successScreen.classList.add('hidden');
+						const lines = successScreen.querySelectorAll('.terminal-line');
+						lines.forEach(line => (line as HTMLElement).style.opacity = '0');
 
 						applyForm.reset();
-						selectedResumeFile = null;
-						if (applyErrorMsg) {
-							applyErrorMsg.innerText = '';
-							applyErrorMsg.classList.add('hidden');
-						}
 						if (fileInput && dropZone && emptyState && activeState) {
 							fileInput.value = '';
-							fileInput.classList.remove('pointer-events-none');
+							fileInput.classList.remove('hidden');
 							activeState.classList.add('hidden');
 							emptyState.classList.remove('hidden');
 							dropZone.classList.remove('border-cyan-500/30', 'bg-cyan-950/5');
